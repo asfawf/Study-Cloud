@@ -19,22 +19,25 @@ public class TestVo {
 	 * );
 	 */
 	
-	private int number;
+	private int boardNum;
 	private String boardWriter;
 	private String boardSubject;
 	private String boardContent;
 	private Date boardDate;
 	private int boardView;
 	
+	
+	
 	public TestVo() {
 		super();
 	}
 
 
-	public TestVo(int number, String boardWriter, String boardSubject, String boardContent, Date boardDate,
+
+	public TestVo(int boardNum, String boardWriter, String boardSubject, String boardContent, Date boardDate,
 			int boardView) {
 		super();
-		this.number = number;
+		this.boardNum = boardNum;
 		this.boardWriter = boardWriter;
 		this.boardSubject = boardSubject;
 		this.boardContent = boardContent;
@@ -43,14 +46,17 @@ public class TestVo {
 	}
 
 
-	public int getNumber() {
-		return number;
+
+	public int getBoardNum() {
+		return boardNum;
 	}
 
 
-	public void setNumber(int number) {
-		this.number = number;
+
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
 	}
+
 
 
 	public String getBoardWriter() {
@@ -58,9 +64,11 @@ public class TestVo {
 	}
 
 
+
 	public void setBoardWriter(String boardWriter) {
 		this.boardWriter = boardWriter;
 	}
+
 
 
 	public String getBoardSubject() {
@@ -68,9 +76,11 @@ public class TestVo {
 	}
 
 
+
 	public void setBoardSubject(String boardSubject) {
 		this.boardSubject = boardSubject;
 	}
+
 
 
 	public String getBoardContent() {
@@ -78,9 +88,11 @@ public class TestVo {
 	}
 
 
+
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
 	}
+
 
 
 	public Date getBoardDate() {
@@ -88,9 +100,11 @@ public class TestVo {
 	}
 
 
+
 	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
+
 
 
 	public int getBoardView() {
@@ -98,16 +112,19 @@ public class TestVo {
 	}
 
 
+
 	public void setBoardView(int boardView) {
 		this.boardView = boardView;
 	}
 
 
+
 	@Override
 	public String toString() {
-		return "TestVo [number=" + number + ", boardWriter=" + boardWriter + ", boardSubject=" + boardSubject
+		return "TestVo [boardNum=" + boardNum + ", boardWriter=" + boardWriter + ", boardSubject=" + boardSubject
 				+ ", boardContent=" + boardContent + ", boardDate=" + boardDate + ", boardView=" + boardView + "]";
 	}
+	
 	
 	
 	
