@@ -32,6 +32,7 @@ public class TestController {
 		) {
 		
 		
+		// Rowbounds 유기적 페이징 가능
 		int currentPage = page;
 		int totalCnt= service.selectCount();
 		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT);
