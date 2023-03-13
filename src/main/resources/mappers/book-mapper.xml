@@ -29,7 +29,7 @@
         DELETE FROM book WHERE BO_NUM = #{boNum}
     </delete>
     
-    <select id="boselectOne" resultMap="bovo">
+    <select id="boselectOne" resultType="bovo">
         SELECT BO_NUM, MEM_NAME, MEM_PHONE, PRO_NAME, PRO_ADRESS, PRO_PRICE
         FROM book WHERE BO_NUM = #{boNum} order by BO_NUM
     </select>
