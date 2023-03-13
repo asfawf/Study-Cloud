@@ -9,11 +9,13 @@
 		<typeAlias type="study.cloud.stc.test.vo.TestVo" alias="tvo"/>
 		<typeAlias type="study.cloud.stc.member.vo.MemberVo" alias="mvo"/>
 		<typeAlias type="study.cloud.stc.contact.model.vo.ContactVo" alias="convo"/>
+		<typeAlias type="study.cloud.stc.book.model.vo.BookVo" alias="bovo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml"/>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/contact-mapper.xml"/>
+		<mapper resource="mappers/book-mapper.xml"/>
 	</mappers>
 	
 </configuration>
