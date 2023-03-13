@@ -22,6 +22,11 @@ public class ContactVo {
 	private String conContent;
 	private Date conDate;
  
+	
+	public ContactVo() {
+		super();
+	}
+
 	public ContactVo(int conNum, String conName, String conEmail, String conTitle, String conContent, Date conDate) {
 		super();
 		this.conNum = conNum;
