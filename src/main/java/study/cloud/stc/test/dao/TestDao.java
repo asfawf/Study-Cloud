@@ -2,6 +2,7 @@ package study.cloud.stc.test.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,6 +29,20 @@ public class TestDao {
 	}
 	public List<TestVo> selectList() {
 		return sqlSession.selectList("testMember.testselectList");
+	}
+	
+	public List<TestVo> selectList(int currentPage, int limit) {
+		
+		int offset= (currentPage -1 )*limit;
+		
+		RowBounds rb = new RowBounds(offset, limit);
+		
+		return sqlSession.selectList("testMember.testselectList", null , rb);
+	}
+	
+	
+	public int selectCount() {
+		return sqlSession.selectOne("testMember.selectCount");
 	}
 	
 }

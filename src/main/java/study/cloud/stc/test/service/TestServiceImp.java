@@ -26,9 +26,21 @@ public class TestServiceImp implements TestService{
 	public TestVo selectOne(int boardNum) {
 		return dao.selectOne(boardNum);
 	}
+	
 	public List<TestVo> selectList(){
 		return dao.selectList();
 	}
 	
+	@Override
+	public List<TestVo> selectList(int currentPage, int limit) {
+		// TODO Auto-generated method stub
+		return dao.selectList(currentPage, limit);
+	}
 	
+	
+	
+	
+	public int selectCount() {
+		return dao.selectCount();
+	}
 }

@@ -26,4 +26,8 @@
 		select boardNum, boardWriter, boardSubject, boardContent, boardDate from BOARDTBL order by boardNum desc
 	</select>
 
+
+	<select id="selectCount" resultType="_int">
+		select count(*) cnt from BOARDTBL
+	</select>
 </mapper>
