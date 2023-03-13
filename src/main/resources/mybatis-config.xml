@@ -8,10 +8,12 @@
 	<typeAliases>
 		<typeAlias type="study.cloud.stc.test.vo.TestVo" alias="tvo"/>
 		<typeAlias type="study.cloud.stc.member.vo.MemberVo" alias="mvo"/>
+		<typeAlias type="study.cloud.stc.contact.model.vo.ContactVo" alias="convo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml"/>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/contact-mapper.xml"/>
 	</mappers>
 	
 </configuration>
