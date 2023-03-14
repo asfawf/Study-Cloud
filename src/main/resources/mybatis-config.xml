@@ -13,12 +13,17 @@
 			alias="convo" />
 		<typeAlias type="study.cloud.stc.book.model.vo.BookVo"
 			alias="bovo" />
+		<typeAlias type="study.cloud.stc.review.model.vo.ReviewVo"
+			alias="revo" />
+	
+	
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/contact-mapper.xml" />
 		<mapper resource="mappers/book-mapper.xml" />
+		<mapper resource="mappers/review-mapper.xml"/>
 	</mappers>
 
 </configuration>

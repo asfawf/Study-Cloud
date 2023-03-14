@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="review">
+
+	<resultMap type="revo" id="revoMap">
+		<id column="PRO_NUM" property="proNum" />
+		<result column="MEM_ID" property="memid" />
+		<result column="RE_CONT" property="recont" />
+		<result column="HOST_ID" property="hostid" />
+		<result column="HOST_RE" property="hostre" />
+	</resultMap>
+
+	<insert id="reinsert">
+		INSERT INTO review_tbl VALUES (
+		#{proNum}
+		, #{memid}
+		, #{recont}
+		, #{hostid}
+		, #{hostre}
+		, default)
+	</insert>
+
+	<update id="reupdate">
+
+	</update>
+
+	<delete id="redelete">
+		DELETE FROM REVIEW WHERE PRO_NUM = #{proNum} and MEM_ID = #{memID}
+	</delete>
+
+	<select id="reselectOne" resultType="revo">
+		SELECT  PRO_NUM, MEM_ID, RE_CONT, HOST_ID, HOST_RE
+		FROM review_tbl WHERE PRO_NUM = #{proNum} 
+	</select>
+
+	<select id="reselectAll" resultType="revo">
+		select * from review_tbl 
+	</select>
+
+
+
+</mapper>
