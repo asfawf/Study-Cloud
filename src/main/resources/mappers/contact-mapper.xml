@@ -3,42 +3,46 @@
 <mapper namespace="contact">
 
 	<resultMap type="convo" id="convoMap">
-		<id column="CON_NUM" property="conNum"/>
-		<result column="CON_NAME" property="conName"/>
-		<result column="CON_EMAIL" property="conEmail"/>
-		<result column="CON_TITLE" property="conTitle"/>
-		<result column="CON_CONTENT" property="conContent"/>	
-		<result column="CON_DATE" property="conDate"/>		
+		<id column="CON_NUM" property="conNum" />
+		<result column="CON_NAME" property="conName" />
+		<result column="CON_EMAIL" property="conEmail" />
+		<result column="CON_TITLE" property="conTitle" />
+		<result column="CON_CONTENT" property="conContent" />
+		<result column="CON_DATE" property="conDate" />
 	</resultMap>
-		
+
 	<insert id="coninsert">
 		INSERT INTO contact VALUES(
-        	   con_seq.NEXTVAL
-      		 , #{conName}
-             , #{conEmail}
-             , #{conTitle}
-             , #{conContent}
-             , DEFAULT
-        )
+		con_seq.NEXTVAL
+		, #{conName}
+		, #{conEmail}
+		, #{conTitle}
+		, #{conContent}
+		, DEFAULT
+		)
 	</insert>
-	
+
 	<update id="conupdate">
-	
+
 	</update>
-	
+
 	<delete id="condelete">
 		DELETE FROM contact WHERE CON_NUM = #{conNum}
 	</delete>
-	
+
 	<select id="conselectOne" resultType="convo">
-		SELECT CON_NUM, CON_NAME, CON_TITLE, CON_CONTENT, CON_DATE FROM contact ORDER BY CON_NUM
+		SELECT CON_NUM, CON_NAME,
+		CON_TITLE, CON_CONTENT, CON_DATE FROM contact ORDER BY CON_NUM
 	</select>
-	
+
 	<select id="conselectList" resultType="convo">
-		SELECT CON_NUM, CON_NAME, CON_EMAIL, CON_TITLE, CON_CONTENT, CON_DATE FROM contact ORDER BY CON_NUM
+		SELECT CON_NUM, CON_NAME,
+		CON_EMAIL, CON_TITLE, CON_CONTENT, CON_DATE FROM contact ORDER BY
+		CON_NUM
 	</select>
 
 	<select id="conselectCount" resultType="_int">
-		SELECT COUNT(*) cnt FROM contact
+		SELECT COUNT(*) cnt FROM
+		contact
 	</select>
 </mapper>

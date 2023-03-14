@@ -8,31 +8,38 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
+
 	<!-- properties 사용 -->
-	<context:property-placeholder location="classpath:properties/studycloud.properties"/>
-	
-	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
+	<context:property-placeholder
+		location="classpath:properties/studycloud.properties" />
+
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		id="dataSource">
 		<property name="driverClassName" value="${Test.driverName}"></property>
 		<property name="url" value="${Test.url}"></property>
 		<property name="username" value="${Test.username}"></property>
-		<property name="password" value="${Test.password}"></property>	
+		<property name="password" value="${Test.password}"></property>
 	</bean>
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml"></property>
 	</bean>
-	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+	<bean class="org.mybatis.spring.SqlSessionTemplate"
+		id="sqlSession">
 		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
-	
+
 	<!-- 트랜잭션 객체 생성 -->
-	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="dataSourceTransactionManager">
+	<bean
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		id="dataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
-	<tx:annotation-driven/>
-		
+
+	<tx:annotation-driven />
+
 </beans>

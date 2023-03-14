@@ -33,7 +33,7 @@ public class TestDao {
 	
 	public List<TestVo> selectList(int currentPage, int limit) {
 		
-		int offset= (currentPage -1 )*limit;
+		int offset = (currentPage -1 )*limit;
 		
 		RowBounds rb = new RowBounds(offset, limit);
 		

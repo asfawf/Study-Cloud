@@ -14,15 +14,14 @@ public class ContactVo {
 //	CON_TITLE            VARCHAR2(50)   
 //	CON_CONTENT          VARCHAR2(2000)
 //  CON_DATE
-	
+
 	private int conNum;
 	private String conName;
 	private String conEmail;
 	private String conTitle;
 	private String conContent;
 	private Date conDate;
- 
-	
+
 	public ContactVo() {
 		super();
 	}
@@ -90,7 +89,5 @@ public class ContactVo {
 	public void setConDate(Date conDate) {
 		this.conDate = conDate;
 	}
-	
-	
-	
+
 }

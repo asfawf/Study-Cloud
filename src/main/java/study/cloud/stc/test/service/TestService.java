@@ -12,7 +12,8 @@ public interface TestService {
 	public TestVo selectOne(int boardNum);
 	
 	public List<TestVo> selectList();
-	public List<TestVo> selectList(int currentPage,int limit);
+
+	public List<TestVo> selectList(int currentPage, int limit);
 	
 	public int selectCount();
 	
