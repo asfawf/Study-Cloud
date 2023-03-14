@@ -1,8 +1,8 @@
-package study.cloud.stc.test.service;
+package study.cloud.stc.test.model.service;
 
 import java.util.List;
 
-import study.cloud.stc.test.vo.TestVo;
+import study.cloud.stc.test.model.vo.TestVo;
 
 public interface TestService {
 

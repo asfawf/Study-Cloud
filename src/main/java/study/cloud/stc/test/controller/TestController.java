@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import study.cloud.stc.common.paging.Paging;
-import study.cloud.stc.test.service.TestService;
+import study.cloud.stc.test.model.service.TestService;
 
 @Controller
 @RequestMapping("/Test")

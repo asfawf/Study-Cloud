@@ -1,4 +1,4 @@
-package study.cloud.stc.test.vo;
+package study.cloud.stc.test.model.vo;
 
 import java.sql.Date;
 

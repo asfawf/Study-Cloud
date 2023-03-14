@@ -1,4 +1,4 @@
-package study.cloud.stc.test.dao;
+package study.cloud.stc.test.model.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import study.cloud.stc.test.vo.TestVo;
+import study.cloud.stc.test.model.vo.TestVo;
 
 @Repository
 public class TestDao {

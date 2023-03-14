@@ -1,12 +1,12 @@
-package study.cloud.stc.test.service;
+package study.cloud.stc.test.model.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import study.cloud.stc.test.dao.TestDao;
-import study.cloud.stc.test.vo.TestVo;
+import study.cloud.stc.test.model.dao.TestDao;
+import study.cloud.stc.test.model.vo.TestVo;
 
 @Service
 public class TestServiceImp implements TestService{
