@@ -17,10 +17,10 @@
 
 	<bean class="org.apache.commons.dbcp.BasicDataSource"
 		id="dataSource">
-		<property name="driverClassName" value="${Test.driverName}"></property>
-		<property name="url" value="${Test.url}"></property>
-		<property name="username" value="${Test.username}"></property>
-		<property name="password" value="${Test.password}"></property>
+		<property name="driverClassName" value="${test.driverName}"></property>
+		<property name="url" value="${test.url}"></property>
+		<property name="username" value="${test.username}"></property>
+		<property name="password" value="${test.password}"></property>
 	</bean>
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
 		id="sqlSessionFactoryBean">

@@ -16,7 +16,7 @@ import study.cloud.stc.common.paging.Paging;
 import study.cloud.stc.test.model.service.TestService;
 
 @Controller
-@RequestMapping("/Test")
+@RequestMapping("/test")
 public class TestController {
 
 	@Autowired
@@ -42,7 +42,7 @@ public class TestController {
 		//mv.addObject("testlist", service.selectList());
 		mv.addObject("testlist", service.selectList(currentPage,BOARD_LIMIT));
 		
-		mv.setViewName("/Test/list");
+		mv.setViewName("/test/list");
 		
 		System.out.println("totalCnt: "+ totalCnt);
 		
@@ -56,7 +56,7 @@ public class TestController {
 		) {
 		int boardNum = 12;
 		mv.addObject("selectOne", service.selectOne(boardNum));
-		mv.setViewName("/Test/listone");
+		mv.setViewName("/test/listone");
 		
 		return mv;
 	}

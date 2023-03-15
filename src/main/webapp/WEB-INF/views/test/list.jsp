@@ -14,7 +14,7 @@
 	<hr>
 	<c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }"
 		var="page">
-		<a href="<%=request.getContextPath() %>/Test/list?page=${page }">${page }</a>
+		<a href="<%=request.getContextPath() %>/test/list?page=${page }">${page }</a>
 		<c:if test="${pageInfo.endPage != page }">
 	,
 	</c:if>
