@@ -17,19 +17,16 @@
 
 	<bean class="org.apache.commons.dbcp.BasicDataSource"
 		id="dataSource">
-		<property name="driverClassName" value="${test.driverName}"></property>
-		<property name="url" value="${test.url}"></property>
-		<property name="username" value="${test.username}"></property>
-		<property name="password" value="${test.password}"></property>
+		<property name="driverClassName" value="${jdbc.driverName}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
 	</bean>
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
-		id="sqlSessionFactoryBean">
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation"
-			value="classpath:mybatis-config.xml"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
-	<bean class="org.mybatis.spring.SqlSessionTemplate"
-		id="sqlSession">
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
 		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 
