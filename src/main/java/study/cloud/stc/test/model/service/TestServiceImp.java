@@ -14,25 +14,25 @@ public class TestServiceImp implements TestService{
 	@Autowired
 	private TestDao dao;
 	
-	public int insert(TestVo vo) {
+	public int insert(TestVo vo) throws Exception {
 		return dao.insert(vo);
 	}
-	public int update(TestVo vo) {
+	public int update(TestVo vo) throws Exception {
 		return dao.update(vo);
 	}
-	public int delete(String id) {
+	public int delete(String id) throws Exception {
 		return dao.delete(id);
 	}
-	public TestVo selectOne(int boardNum) {
+	public TestVo selectOne(int boardNum) throws Exception {
 		return dao.selectOne(boardNum);
 	}
 	
-	public List<TestVo> selectList(){
+	public List<TestVo> selectList() throws Exception {
 		return dao.selectList();
 	}
 	
 	@Override
-	public List<TestVo> selectList(int currentPage, int limit) {
+	public List<TestVo> selectList(int currentPage, int limit) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectList(currentPage, limit);
 	}
@@ -40,7 +40,7 @@ public class TestServiceImp implements TestService{
 	
 	
 	
-	public int selectCount() {
+	public int selectCount() throws Exception {
 		return dao.selectCount();
 	}
 }

@@ -15,23 +15,23 @@ public class TestDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insert(TestVo vo) {
+	public int insert(TestVo vo) throws Exception {
 		return sqlSession.insert("testMember.testinsert", vo);
 	}
-	public int update(TestVo vo) {
+	public int update(TestVo vo) throws Exception {
 		return sqlSession.update("testMember.testupdate", vo);
 	}
-	public int delete(String id) {
+	public int delete(String id) throws Exception {
 		return sqlSession.delete("testMember.testdelete", id);
 	}
-	public TestVo selectOne(int boardNum) {
+	public TestVo selectOne(int boardNum) throws Exception {
 		return sqlSession.selectOne("testMember.testselectOne", boardNum);
 	}
-	public List<TestVo> selectList() {
+	public List<TestVo> selectList() throws Exception {
 		return sqlSession.selectList("testMember.testselectList");
 	}
 	
-	public List<TestVo> selectList(int currentPage, int limit) {
+	public List<TestVo> selectList(int currentPage, int limit) throws Exception {
 		
 		int offset = (currentPage -1 )*limit;
 		
@@ -41,7 +41,7 @@ public class TestDao {
 	}
 	
 	
-	public int selectCount() {
+	public int selectCount() throws Exception {
 		return sqlSession.selectOne("testMember.selectCount");
 	}
 	

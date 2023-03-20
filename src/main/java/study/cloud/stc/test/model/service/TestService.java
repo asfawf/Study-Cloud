@@ -6,15 +6,15 @@ import study.cloud.stc.test.model.vo.TestVo;
 
 public interface TestService {
 
-	public int insert(TestVo vo);
-	public int update(TestVo vo);
-	public int delete(String id) ;
-	public TestVo selectOne(int boardNum);
+	public int insert(TestVo vo) throws Exception;
+	public int update(TestVo vo) throws Exception;
+	public int delete(String id) throws Exception ;
+	public TestVo selectOne(int boardNum) throws Exception;
 	
-	public List<TestVo> selectList();
+	public List<TestVo> selectList() throws Exception;
 
-	public List<TestVo> selectList(int currentPage, int limit);
+	public List<TestVo> selectList(int currentPage, int limit) throws Exception;
 	
-	public int selectCount();
+	public int selectCount() throws Exception;
 	
 }

@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+<script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
 </head>
 <body>
 	${testlist }
