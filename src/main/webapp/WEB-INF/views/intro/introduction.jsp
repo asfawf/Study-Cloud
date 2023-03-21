@@ -6,12 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>소개 페이지</title>
 </head>
 <body>
 
-<h1>Access Denied!</h1>
+<h1>소개 페이지 입니다.</h1>
 
-<h3>[<a href="<c:url value="/home.do" />">홈</a>]</h3>
+<p><a href="<c:url value="/home.do" />">홈</a></p>
+
 </body>
 </html>

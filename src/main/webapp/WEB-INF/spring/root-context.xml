@@ -15,8 +15,7 @@
 	<context:property-placeholder
 		location="classpath:properties/studycloud.properties" />
 
-	<bean class="org.apache.commons.dbcp.BasicDataSource"
-		id="dataSource">
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
 		<property name="driverClassName" value="${jdbc.driverName}"></property>
 		<property name="url" value="${jdbc.url}"></property>
 		<property name="username" value="${jdbc.username}"></property>
