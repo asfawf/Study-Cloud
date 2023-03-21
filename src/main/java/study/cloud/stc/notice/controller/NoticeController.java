@@ -1,4 +1,4 @@
-package study.cloud.stc.contact.controller;
+package study.cloud.stc.notice.controller;
 
 import java.sql.SQLException;
 
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ContactController {
+public class NoticeController {
 
 	
 	
