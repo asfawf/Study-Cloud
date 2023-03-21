@@ -9,7 +9,7 @@ import study.cloud.stc.test.model.dao.TestDao;
 import study.cloud.stc.test.model.vo.TestVo;
 
 @Service
-public class TestServiceImp implements TestService{
+public class TestServiceImpl implements TestService{
 
 	@Autowired
 	private TestDao dao;
