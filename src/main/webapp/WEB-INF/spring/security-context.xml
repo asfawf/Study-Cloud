@@ -4,30 +4,39 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
-	<security:http use-expressions="true">
-		<security:intercept-url pattern="/login/loginForm.do" access="permitAll"/>
-		<security:intercept-url pattern="/home.do" access="permitAll"/>
-		<security:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
+	<security:http  use-expressions="true">
 		<security:intercept-url pattern="/**" access="hasRole('ADMIN')"/>
+		
+		<security:form-login/>
+		<security:logout/>
 
-		<security:form-login 	login-page="/login/loginForm.do"
-								default-target-url="/home.do"
-								authentication-failure-url="/login/loginForm.do?error"
-								username-parameter="id"
-								password-parameter="passwd" />
-		<security:logout logout-url="/logout" logout-success-url="/home.do"/>
-		<security:access-denied-handler error-page="/login/accessDenined.do"/>
 	</security:http>
 	
 
-	<!-- 계정 -->
+	<!-- 계정 --> 
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service data-source-ref="dataSource"
-										role-prefix=""
-										users-by-username-query="select username, password, enabled from users where username = ?" 
-										authorities-by-username-query="select username, authority from authorities where username = ?"
-										/>
+							role-prefix=""
+							users-by-username-query="select MEM_ID as username ,MEM_PASSWD ,MEM_QUIT as enabled from MEMBER where MEM_ID= ?"
+							authorities-by-username-query="select MEM_ID as username, CASE WHEN MEM_AUTHORITY= 'ROLE_ADMIN'  THEN 'ROLE_ADMIN' ELSE 'ROLE_USER' END authority FROM MEMBER where MEM_ID=? "
+			/>
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- <security:jdbc-user-service data-source-ref="dataSource"
+			authorities-by-username-query="select MEM_ID as username ,MEM_PASSWD as password,MEM_QUIT as enabled from MEMBER where MEM_ID = ?"
+			users-by-username-query="select MEM_ID as username, MEM_AUTHORITY as authority from MEMBER where MEM_ID= ?"			
+			/> -->
+	
+	
 </beans>
+
+

@@ -12,22 +12,10 @@
 	Hello world!  
 </h1>
 
-<!-- 로그인 안된 상태를 확인. -->
-<sec:authorize access="isAnonymous()">
-	<p><a href="<c:url value="/login/loginForm.do" />">로그인</a></p>
-</sec:authorize>
 
-<sec:authorize access="isAuthenticated()">
-	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-	 	<input type="submit" value="로그아웃" />
-	</form:form>
-</sec:authorize>
+<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+    <input type="submit" value="로그아웃" />
+</form:form>
 
-<h3>
-		[<a href="<c:url value="/intro/introduction.do" />">소개 페이지</a>]
-		[<a href="<c:url value="/admin/adminHome.do" />">관리자 홈</a>]
-</h3>
-
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
