@@ -5,10 +5,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 	<security:http  use-expressions="true">
+		<security:intercept-url pattern="/login/loginForm.do" access="permitAll"/>
+		<security:intercept-url pattern="/home" access="permitAll"/>
 		<security:intercept-url pattern="/**" access="hasRole('ADMIN')"/>
 		
-		<security:form-login/>
-		<security:logout/>
+		<security:form-login 	login-page="/login/loginForm.do"
+								default-target-url="/home"
+								authentication-failure-url="/login/loginForm.do?error"
+								username-parameter="id"
+								password-parameter="password" />
+		<security:logout logout-url="/logout" logout-success-url="/home"/>
+		<security:access-denied-handler error-page="/login/accessDenined.do"/>
 
 	</security:http>
 	
