@@ -4,17 +4,25 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
 	<security:http  use-expressions="true">
+		<security:session-management> 
+			<security:concurrency-control max-sessions="1" expired-url="/"/>
+		</security:session-management>
+		<security:intercept-url pattern="/" access="permitAll"/>
 		<security:intercept-url pattern="/login/loginForm.do" access="permitAll"/>
 		<security:intercept-url pattern="/home" access="permitAll"/>
-		<security:intercept-url pattern="/**" access="hasRole('ADMIN')"/>
+		
+		<!-- <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/> -->
 		
 		<security:form-login 	login-page="/login/loginForm.do"
-								default-target-url="/home"
+								default-target-url=""
 								authentication-failure-url="/login/loginForm.do?error"
 								username-parameter="id"
 								password-parameter="password" />
-		<security:logout logout-url="/logout" logout-success-url="/"/>
+		<security:logout logout-url="/logout" logout-success-url="/?logout=true" invalidate-session="true"/>
 		<security:access-denied-handler error-page="/login/accessDenined.do"/>
 
 	</security:http>
@@ -26,7 +34,7 @@
 			<security:jdbc-user-service data-source-ref="dataSource"
 							role-prefix=""
 							users-by-username-query="select MEM_ID as username ,MEM_PASSWD ,MEM_QUIT as enabled from MEMBER where MEM_ID= ?"
-							authorities-by-username-query="select MEM_ID as username, CASE WHEN MEM_AUTHORITY= 'ROLE_ADMIN'  THEN 'ROLE_ADMIN' ELSE 'ROLE_USER' END authority FROM MEMBER where MEM_ID=? "
+							authorities-by-username-query="select MEM_ID as username, MEM_AUTHORITY as authority from MEMBER where MEM_ID= ?"
 			/>
 		</security:authentication-provider>
 	</security:authentication-manager>
@@ -35,7 +43,7 @@
 	
 	
 	
-	
+	<!-- select MEM_ID as username, CASE WHEN MEM_AUTHORITY= 'ROLE_ADMIN'  THEN 'ROLE_ADMIN' ELSE 'ROLE_USER' END authority FROM MEMBER where MEM_ID=? -->
 	
 	
 	<!-- <security:jdbc-user-service data-source-ref="dataSource"
