@@ -8,26 +8,15 @@
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<security:http  use-expressions="true">
-		
-		<!--  CSRF 적용 -->
-		<security:csrf/>
-		
 		<security:session-management> 
 			<security:concurrency-control max-sessions="1" expired-url="/"/>
 		</security:session-management>
+		<security:intercept-url pattern="/" access="permitAll"/>
 		<security:intercept-url pattern="/login/loginForm.do" access="permitAll"/>
 		<security:intercept-url pattern="/home" access="permitAll"/>
-
+		
 		<!-- <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/> -->
 		
-		<!-- 토큰 시간들 + dataSource는 bean으로 등록된 dataSource id -->
-		<security:remember-me data-source-ref="dataSource"
-			remember-me-parameter="remeber-me"
-			token-validity-seconds="6048"
-		/>
-		
-		
-		<!-- 로그인 관련 설정들 -->
 		<security:form-login 	login-page="/login/loginForm.do"
 								default-target-url=""
 								authentication-failure-url="/login/loginForm.do?error"
