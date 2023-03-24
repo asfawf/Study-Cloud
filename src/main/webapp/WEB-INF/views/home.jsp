@@ -904,9 +904,32 @@
 
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/main.js"></script>
 
-<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-    <input type="submit" value="로그아웃" />
-</form:form>
+
+		
+		
+		<!--  -->
+		<sec:authorize access="isAnonymous()">
+			로그인 안 했을 때
+		</sec:authorize>
+		
+		
+		
+		<sec:authorize access="isAuthenticated()">
+			<sec:authorize access="hasRole('ADMIN')">
+				로그인 한 관리자 페이지
+			</sec:authorize>			
+		</sec:authorize>
+		
+		<sec:authorize access="isAuthenticated()">
+			<sec:authorize access="hasRole('USER')">
+				로그인 한 유저 페이지
+			</sec:authorize>			
+		</sec:authorize>
+		
+		
+		<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+		    <input type="submit" value="로그아웃" />
+		</form:form>
 
 </body>
 </html>
