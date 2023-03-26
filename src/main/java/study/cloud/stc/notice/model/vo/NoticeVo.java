@@ -4,90 +4,36 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Component
+@ToString
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class NoticeVo {
-
-//	----------- -------- -------------- 
-//	CON_NUM     NOT NULL NUMBER         
-//	CON_NAME    NOT NULL VARCHAR2(20)   
-//	CON_EMAIL            VARCHAR2(30)   
-//	CON_TITLE            VARCHAR2(50)   
-//	CON_CONTENT          VARCHAR2(2000)
-//  CON_DATE
-
-	private int conNum;
-	private String conName;
-	private String conEmail;
-	private String conTitle;
-	private String conContent;
-	private Date conDate;
-
-	public NoticeVo() {
-		super();
-	}
-
-	public NoticeVo(int conNum, String conName, String conEmail, String conTitle, String conContent, Date conDate) {
-		super();
-		this.conNum = conNum;
-		this.conName = conName;
-		this.conEmail = conEmail;
-		this.conTitle = conTitle;
-		this.conContent = conContent;
-		this.conDate = conDate;
-	}
-
-	@Override
-	public String toString() {
-		return "ContactVo [conNum=" + conNum + ", conName=" + conName + ", conEmail=" + conEmail + ", conTitle="
-				+ conTitle + ", conContent=" + conContent + ", conDate=" + conDate + "]";
-	}
-
-	public int getConNum() {
-		return conNum;
-	}
-
-	public void setConNum(int conNum) {
-		this.conNum = conNum;
-	}
-
-	public String getConName() {
-		return conName;
-	}
-
-	public void setConName(String conName) {
-		this.conName = conName;
-	}
-
-	public String getConEmail() {
-		return conEmail;
-	}
-
-	public void setConEmail(String conEmail) {
-		this.conEmail = conEmail;
-	}
-
-	public String getConTitle() {
-		return conTitle;
-	}
-
-	public void setConTitle(String conTitle) {
-		this.conTitle = conTitle;
-	}
-
-	public String getConContent() {
-		return conContent;
-	}
-
-	public void setConContent(String conContent) {
-		this.conContent = conContent;
-	}
-
-	public Date getConDate() {
-		return conDate;
-	}
-
-	public void setConDate(Date conDate) {
-		this.conDate = conDate;
-	}
-
+ 
+//	NOTI_NUM          NOT NULL NUMBER         
+//	MEM_ID            NOT NULL VARCHAR2(20)   
+//	NOTI_IDX                   VARCHAR2(15)   
+//	NOTI_TITLE                 VARCHAR2(100)   
+//	NOTI_CONTENTS              VARCHAR2(4000) 
+//	NOTI_DATE                  DATE           
+//	ORIGINAL_FILENAME          VARCHAR2(100)  
+//	RENAME_FILENAME            VARCHAR2(100)
+	
+	private int notiNum;
+	private String memId;
+	private String notiIdx;
+	private String notiTitle;
+	private String notiContents;
+	private Date notiDate;
+	private String originalFilename;
+	private String renameFilename;
+	
 }

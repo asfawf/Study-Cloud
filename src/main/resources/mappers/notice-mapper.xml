@@ -2,47 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="notice">
   
-  <resultMap type="novo" id="novoMap">
-		<id column="CON_NUM" property="conNum" />
-		<result column="CON_NAME" property="conName" />
-		<result column="CON_EMAIL" property="conEmail" />
-		<result column="CON_TITLE" property="conTitle" />
-		<result column="CON_CONTENT" property="conContent" />
-		<result column="CON_DATE" property="conDate" />
-	</resultMap>
+<insert id="insert">
+	INSERT INTO NOTICE VALUES(
+           (SELECT NVL(MAX(NOTI_NUM), 0)+1 FROM NOTICE)
+         , #{memId}
+         , #{notiIdx}
+         , #{notiTitle}
+         , #{notiContents}
+         , DEFAULT
+	 <choose>
+	 	<when test="originalFilename != null and !originalFilename.equals('')">
+	 	 , #{originalFilename}
+	 	 , #{renameFilename}
+	 	</when>
+	 	<otherwise>
+	 	 , NULL
+         , NULL
+	 	</otherwise>
+	 </choose>
+	)
+</insert>
 
-	<insert id="coninsert">
-		INSERT INTO contact VALUES(
-		con_seq.NEXTVAL
-		, #{conName}
-		, #{conEmail}
-		, #{conTitle}
-		, #{conContent}
-		, DEFAULT
-		)
-	</insert>
+<update id="update">
+	UPDATE NOTICE 
+	   SET NOTI_TITLE = #{notiTitle}
+         , NOTI_CONTENTS = #{notiContents}
+     WHERE NOTI_NUM = #{notiNum}
+</update>
 
-	<update id="conupdate">
+<delete id="delete" >
+	DELETE FROM NOTICE WHERE NOTI_NUM = #{notiNum}
+</delete>
 
-	</update>
+<select id="selectOneCount" resultType="_int">
+SELECT COUNT(*) CNT FROM NOTICE
+	<if test="notiIdx != null and notiIdx neq ''">
+		WHERE NOTI_IDX like '%'||#{notiIdx}||'%'		
+	</if>
+</select>
 
-	<delete id="condelete">
-		DELETE FROM contact WHERE CON_NUM = #{conNum}
-	</delete>
+<select id="selectList" resultType="novo">
+	SELECT * FROM NOTICE
+   	<if test="notiIdx != null">
+     WHERE NOTI_IDX = #{notiIdx}
+   	</if>          
+     ORDER BY NOTI_DATE DESC
+</select>
 
-	<select id="conselectOne" resultType="novo">
-		SELECT CON_NUM, CON_NAME,
-		CON_TITLE, CON_CONTENT, CON_DATE FROM contact ORDER BY CON_NUM
-	</select>
-
-	<select id="conselectList" resultType="novo">
-		SELECT CON_NUM, CON_NAME,
-		CON_EMAIL, CON_TITLE, CON_CONTENT, CON_DATE FROM contact ORDER BY
-		CON_NUM
-	</select>
-
-	<select id="conselectCount" resultType="_int">
-		SELECT COUNT(*) cnt FROM
-		contact
-	</select>
 </mapper>

@@ -1,14 +1,42 @@
 package study.cloud.stc.notice.controller;
 
 import java.sql.SQLException;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import study.cloud.stc.common.paging.Paging;
+import study.cloud.stc.notice.model.service.NoticeService;
+import study.cloud.stc.notice.model.vo.NoticeVo;
+
+ 
 
 @Controller
 public class NoticeController {
-
+	
+	@Autowired
+	private NoticeService service;
+	
+	@GetMapping("/notice")
+	public ModelAndView noticeList(ModelAndView mv
+		  //, @RequestParam("notiIdx") String notiIdx
+		  , NoticeVo vo
+		  , @RequestParam(value="page", defaultValue="1") int page) throws Exception{
+		
+		//mv.addObject("noticeList", service.selectList(notiIdx));
+		int currentPage = page; 
+		int totalCnt= service.selectCount(); 
+		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 3, 3); 
+		mv.addObject("pageInfo", map);
+		mv.addObject("noticeList", service.selectList(vo));
+		mv.setViewName("notice");
+		return mv;
+	}
 	
 	
 	
