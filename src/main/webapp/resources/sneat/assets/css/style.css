@@ -298,15 +298,15 @@ input[type="search"]::-webkit-search-decoration {
 .btn-default {
     border-radius: 1px;
     padding: 10px 20px;
-    border: 1px solid #FDC600;
+    border: 1px solid;
     color: #000;
-    background-color: #FDC600;
+    background-color: #88B04B;
     border-color: #F0F0F0;
     font-weight: 600;
 }
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
     color: #000;
-    background-color: #FDC600;
+    /* background-color: #88B04B; */
     border-color: #F0F0F0;
     font-weight: 600;
 }
@@ -439,11 +439,11 @@ input[type="search"]::-webkit-search-decoration {
     border-left: 0 none;
 }
 .search-btn ,.toggle-btn{
-    background-color: #FDC600;
+    background-color: #88B04B;
     color: #333;
     font-size: 16px;
     border: 1px solid #EAE9E9;
-    width: 40px;
+    width: 80px;
     height: 40px;
     color: #FFF;
     transition: all 0.3s ease 0s; 
@@ -740,8 +740,14 @@ label small{
 .main-nav {
     padding-top: 10px;
 }
+.button.notice-btn {
+	padding-top: 10px;
+    display: inline-flex;
+    /* text-align: center; */
+}
 .button.navbar-right {
     padding-top: 10px;
+    display: inline-flex;
 }
 .nav-button {
     background-color: #c2c2c2;
@@ -1088,7 +1094,7 @@ font-weight: 500;
 page-header
 ======================================================*/
 .page-head{
-    background: #494C53 url("../../assets/img/page-header.jpg") 
+    background: /* #494C53 url("../../assets/img/page-header.jpg")  */
         no-repeat scroll center top / cover;
     color:#FFF;
     position: relative;
@@ -1408,6 +1414,7 @@ Asside widgets CSS
 
 .pagination a,
 .pagination span {
+	color: #FDC600;
     float: left;
     padding: 0 14px;
     line-height: 38px;
@@ -1425,7 +1432,7 @@ Asside widgets CSS
 
 .pagination .active a,
 .pagination .active span {
-    color: #999999;
+    color: #88B04B;
     cursor: default;
 }
 
@@ -2800,7 +2807,7 @@ padding-bottom: 15px;
 /*FOOOTER*/
 .footer-area{
 border-top: 1px solid #D1D1D1;
-background: #555 url("../../assets/img/bg-footer.jpg") repeat scroll 0% 0%;
+background: #555 repeat scroll 0% 0%;
 color: #535353;
 }
 .footer{
@@ -2816,7 +2823,7 @@ background: rgba(255, 255, 255, 0.89) none repeat scroll 0% 0%;
     border-top: 0.051px solid rgba(162, 162, 162, 0.46);
     padding-bottom: 0px;
     padding-bottom: 7px;
-padding-top: 7px;
+	padding-top: 7px;
 }
 .single-footer{
     margin-top: 35px
