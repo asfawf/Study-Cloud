@@ -39,7 +39,11 @@ public class NoticeController {
 	}
 	
 	
-	
+	@GetMapping("/contact")
+	public ModelAndView contact(ModelAndView mv) {
+		mv.setViewName("contact");
+		return mv;
+	}
 	
 	
 	
