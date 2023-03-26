@@ -218,6 +218,14 @@
 			<version>${org.springframework.security-version}</version>
 		</dependency>
 
+	<!-- 채팅 코드 start -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-websocket</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	
+	<!-- 채팅 코드 end -->
 
 	</dependencies>
 	<build>

@@ -13,6 +13,8 @@
 		</security:session-management>
 		<security:intercept-url pattern="/" access="permitAll"/>
 		<security:intercept-url pattern="/login/loginForm.do" access="permitAll"/>
+		<security:intercept-url pattern="/ws/**" access="permitAll"/>
+		<security:intercept-url pattern="/echo/**" access="permitAll"/>
 		<security:intercept-url pattern="/home" access="permitAll"/>
 		
 		<!-- <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/> -->
