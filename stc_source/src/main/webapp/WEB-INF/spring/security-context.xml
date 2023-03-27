@@ -19,14 +19,14 @@
 		
 		<!-- <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/> -->
 		
-		<security:form-login 	login-page="/login/loginForm.do"
+		<security:form-login 	login-page="/login"
 								default-target-url=""
 								authentication-failure-url="/login/loginForm.do?error"
 								username-parameter="id"
 								password-parameter="password" />
 		
 		<!-- 로그아웃할 url 및 로그아웃성공시 이동할 url -->
-		<security:logout logout-url="/logout" logout-success-url="/?logout=true" invalidate-session="true"/>
+		<security:logout logout-url="/logout" logout-success-url="/" invalidate-session="true"/>
 		<security:access-denied-handler error-page="/login/accessDenined.do"/>
 
 	</security:http>

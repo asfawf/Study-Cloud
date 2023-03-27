@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	@RequestMapping(value = "/login/loginForm.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginFor(Locale locale, Model model) {
 		logger.info("Welcome Login Form!");
 

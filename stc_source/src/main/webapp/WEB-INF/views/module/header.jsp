@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                     	<sec:authorize access="isAnonymous()">
-	                    	<form:form action="${pageContext.request.contextPath}/login/loginForm.do" method="GET">
+	                    	<form:form action="${pageContext.request.contextPath}/login" method="GET">
 					    		<button class="navbar-btn nav-button login" onclick=" submit(); ">로그인</button>
 							</form:form>
 							<form:form action="${pageContext.request.contextPath}/join" method="GET">
