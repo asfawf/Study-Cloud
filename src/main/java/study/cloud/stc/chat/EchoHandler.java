@@ -45,7 +45,7 @@ public class EchoHandler extends TextWebSocketHandler{
 		
 		for(WebSocketSession sess : sessionList) {
 			// 세션 + 내용
-			sess.sendMessage(new TextMessage(session.getId() + ":" + message.getPayload()));
+			sess.sendMessage(new TextMessage(session.getPrincipal().getName() + "<br><hr><br>" + message.getPayload()+ "<br><br>"));
 			
 			/*
 			 * 내용만 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="input-group mb-3">
+	
+
+	<div>
+		<ul class="list-group list-group-flush" id="data"></ul>
+	</div>
+	
+	<div  class="input-group mb-3">
 		<input type="text" id="message" class="form-control"
 			placeholder="Message">
 		<div class="input-group-append" style="padding: 0px;">
 			<button id="sendBtn" class="btn btn-outline-secondary" type="button">Send</button>
 		</div>
 	</div>
-
-	<div>
-		<ul class="list-group list-group-flush" id="data"></ul>
-	</div>
+	
+	
 	<script>
 		const ws = new WebSocket(`ws://\${location.host}${pageContext.request.contextPath}/echo`);
 		ws.addEventListener('open', (e) => console.log("open : ", e));
