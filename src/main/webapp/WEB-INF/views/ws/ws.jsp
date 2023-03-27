@@ -9,7 +9,8 @@
 </head>
 <body>
 	
-
+	${id }
+	
 	<div>
 		<ul class="list-group list-group-flush" id="data"></ul>
 	</div>
