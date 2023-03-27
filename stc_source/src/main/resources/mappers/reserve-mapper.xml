@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="reserve">
 
-	<resultMap type="revo" id="rvoMap">
+	<resultMap type="rsvvo" id="rvoMap">
 		<id column="RSV_NUM" property="rsvNum" />
 		<result column="RSV_DATE" property="rsvDate" />
 		<result column="RSV_PERSON" property="rsvPerson" />
