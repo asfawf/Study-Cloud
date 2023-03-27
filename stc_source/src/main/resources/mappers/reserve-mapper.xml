@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reserve">
+
+	<resultMap type="rvo" id="rvoMap">
+		<id column="RSV_NUM" property="rsvNum" />
+		<result column="RSV_DATE" property="rsvDate" />
+		<result column="RSV_PERSON" property="rsvPerson" />
+		<result column="MEM_ID" property="memId" />
+		<result column="RSV_METHOD" property="rsvMethod" />
+		<result column="RSV_PAY_DATE" property="rsvPayDate" />
+		<result column="RSV_AMOUNT" property="rsvAmount" />
+		<result column="RSV_STATUS" property="rsvStatus" />
+	</resultMap>
+
+	<insert id="rsvinsert">
+		INSERT INTO reserve VALUES (
+		#{rsvNum}
+		, #{rsvDate}
+		, #{rsvPerson}
+		, #{memId}
+		, #{rsvMethod}
+		, #{rsvPayDate}
+		, #{rsvAmount}
+		, #{rsvStatus})
+	</insert>
+
+	<update id="rsvupdate">
+
+	</update>
+
+	<delete id="rsvdelete">
+		DELETE FROM reserve WHERE RSV_NUM = #{rsvNum}
+	</delete>
+
+	<select id="rsvselectOne" resultType="rsvvo">
+		SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_METHOD, RSV_PAY_DATE, RSV_AMOUNT, RSV_STATUS
+		FROM reserve WHERE RSV_NUM = #{rsvNum} order by RSV_NUM
+	</select>
+
+	<select id="rsvselectList" resultType="rsvvo">
+		SELECT RSV_NUM, RSV_DATE,
+		RSV_PERSON, MEM_ID, RSV_METHOD, RSV_PAY_DATE, RSV_AMOUNT, RSV_STATUS
+		FROM reserve order by RSV_NUM
+	</select>
+
+	<select id="rsvselectCount" resultType="_int">
+		SELECT COUNT(*) FROM reserve
+	</select>
+
+</mapper>

@@ -11,8 +11,8 @@
 			alias="mvo" />
 		<typeAlias type="study.cloud.stc.notice.model.vo.NoticeVo"
 			alias="novo" />
-		<typeAlias type="study.cloud.stc.book.model.vo.BookVo"
-			alias="bovo" />
+		<typeAlias type="study.cloud.stc.reserve.model.vo.ReserveVo"
+			alias="rsvvo" />
 		<typeAlias type="study.cloud.stc.review.model.vo.ReviewVo"
 			alias="revo" />
 	
@@ -22,7 +22,7 @@
 		<mapper resource="mappers/test-mapper.xml" />
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/notice-mapper.xml" />
-		<mapper resource="mappers/book-mapper.xml" />
+		<mapper resource="mappers/reserve-mapper.xml" />
 		<mapper resource="mappers/review-mapper.xml"/>
 	</mappers>
 

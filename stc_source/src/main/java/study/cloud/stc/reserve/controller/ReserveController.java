@@ -1,4 +1,4 @@
-package study.cloud.stc.book.controller;
+package study.cloud.stc.reserve.controller;
 
 import java.sql.SQLException;
 
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class BookController {
+public class ReserveController {
 
 	
 	
