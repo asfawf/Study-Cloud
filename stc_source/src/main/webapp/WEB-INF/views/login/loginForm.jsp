@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,42 @@
 <title>로그인</title>
 <%@ include file="../module/link.jsp" %>
 </head>
+<style>
+
+.kakao{
+   margin-top: 15px;
+   height: 60px;
+   border: solid 1px #FEE500;
+   background: #FEE500;
+   color: #3c1d1e;
+   font-size: 18px; 
+   box-sizing: border-box;
+   border-radius: 5px;
+   cursor: pointer;
+   width: 450px;
+   display: flex;
+}
+.kakao_i{
+   background: url(resources/icons/kakao.png) no-repeat;
+   width: 40px;
+   height: 100%;
+   background-size: 90%;
+   background-position: 50%;
+   margin: 0 20px;
+}
+.kakao_txt{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 16px;
+   padding-right: 60px;
+}
+
+a {
+   text-decoration: none;
+}
+</style>
 <body>
 <%@ include file="../module/header.jsp" %> 
 
@@ -49,16 +86,17 @@
                             <div class="text-center">
                                 <button type="submit" class="btn btn-default">로그인</button>
                             </div>
-                        </form:form>
                         <br>
                         
                         <h2>Social login :  </h2> 
                         
-                        <p>
-                        <a class="login-social" href="#"><i class="fa fa-facebook"></i>&nbsp;네이버</a> 
-                        <a class="login-social" href="#"><i class="fa fa-twitter"></i>&nbsp;카카오</a>  
-                        <a class="login-social" href="#"><i class="fa fa-google-plus"></i>&nbsp;Gmail</a> 
-                        </p> 
+                        <a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=94e122bfd99bcf13ff8bfa4508d639b3&redirect_uri=http://localhost:8090/stc/kakaologin&response_type=code">
+				     		<!-- REST_API키 및 REDIRECT_URI는 본인걸로 수정하세요 -->
+					        
+					      	<div class="kakao_i"></div>
+					      	<div class="kakao_txt">카카오톡으로 간편로그인 </div>
+   						</a>
+                        </form:form>
                     </div>
                     
                 </div>
@@ -205,7 +243,7 @@
 
     </div>
 
-     <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/modernizr-2.6.2.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/modernizr-2.6.2.min.js"></script>
 
     <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery-1.10.2.min.js"></script> 
     <script src="<%=request.getContextPath() %>/resources/sneat/bootstrap/js/bootstrap.min.js"></script>

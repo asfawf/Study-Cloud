@@ -38,6 +38,8 @@
 		document.querySelector("#sendBtn").addEventListener('click', (e) => {
 			ws.send(document.querySelector("#message").value);
 		});
+		
+		
 </script>
 </body>
 </html>

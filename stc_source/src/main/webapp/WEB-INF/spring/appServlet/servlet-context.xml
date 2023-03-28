@@ -39,5 +39,6 @@
 	</websocket:handlers>
 	<beans:bean id="echoHandler" class="study.cloud.stc.chat.EchoHandler">
 	</beans:bean>
-
+	
+	
 </beans:beans>
