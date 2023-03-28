@@ -68,7 +68,7 @@
 													<form:form action="${pageContext.request.contextPath}/search" method="POST">
 														<button class="btn search-btn" type="button" onclick=" submit(); ">수정</button>
 													</form:form>
-													<form:form action="${pageContext.request.contextPath}/join" method="GET">
+													<form:form action="${pageContext.request.contextPath}/notice/delete?notiNum=${notice.notiNum }" method="POST">
 											    		<button class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
 													</form:form>
 												</sec:authorize>			

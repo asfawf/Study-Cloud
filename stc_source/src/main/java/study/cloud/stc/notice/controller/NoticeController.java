@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,12 +19,13 @@ import study.cloud.stc.notice.model.vo.NoticeVo;
  
 
 @Controller
+@RequestMapping("/notice")
 public class NoticeController {
 	
 	@Autowired
 	private NoticeService service;
 	
-	@GetMapping("/notice")
+	@GetMapping
 	public ModelAndView noticeList(ModelAndView mv
 		  //, @RequestParam("notiIdx") String notiIdx
 		  , NoticeVo vo
@@ -38,12 +41,14 @@ public class NoticeController {
 		return mv;
 	}
 	
-	
-	@GetMapping("/contact")
-	public ModelAndView contact(ModelAndView mv) {
-		mv.setViewName("contact");
+	@PostMapping("/delete")
+	public ModelAndView noticeDelete(ModelAndView mv
+			, int notiNum) throws Exception{
+		service.delete(notiNum);
+		mv.setViewName("redirect:/notice");
 		return mv;
 	}
+	
 	
 	
 	

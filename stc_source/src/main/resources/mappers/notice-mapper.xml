@@ -30,7 +30,7 @@
      WHERE NOTI_NUM = #{notiNum}
 </update>
 
-<delete id="delete" >
+<delete id="delete" parameterType="novo">
 	DELETE FROM NOTICE WHERE NOTI_NUM = #{notiNum}
 </delete>
 
