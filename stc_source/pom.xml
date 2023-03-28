@@ -230,6 +230,19 @@
     <version>2.11.3</version>
 </dependency>
 	<!-- 채팅 코드 end -->
+	
+	<!-- 시큐리티 코어 추가 start-->
+	
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>${org.springframework.security-version}</version>
+		</dependency>
+		
+	
+	
+	<!-- end -->
 
 	</dependencies>
 	<build>
