@@ -9,7 +9,7 @@ public interface NoticeService {
 
 	public int insert(NoticeVo vo) throws Exception;
 	public int update(NoticeVo vo) throws Exception;
-	public int delete(int notiNum) throws Exception;
+	public int delete(NoticeVo vo) throws Exception;
 	public List<NoticeVo> selectList(String notiIdx) throws Exception;
 	public List<NoticeVo> selectList(NoticeVo vo) throws Exception;
 //	public int selectCount(String notiIdx) throws Exception;

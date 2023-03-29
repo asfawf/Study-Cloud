@@ -22,8 +22,8 @@ public class NoticeDao {
 		return sqlSession.update("notice.update", vo);
 	}
 	
-	public int delete(int notiNum) throws Exception{
-		return sqlSession.delete("notice.delete", notiNum);
+	public int delete(NoticeVo vo) throws Exception{
+		return sqlSession.delete("notice.delete", vo);
 	}
 	
 	public List<NoticeVo> selectList(String notiIdx) throws Exception{

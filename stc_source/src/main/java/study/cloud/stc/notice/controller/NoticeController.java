@@ -43,8 +43,8 @@ public class NoticeController {
 	
 	@PostMapping("/delete")
 	public ModelAndView noticeDelete(ModelAndView mv
-			, int notiNum) throws Exception{
-		service.delete(notiNum);
+			, NoticeVo vo) throws Exception{
+		service.delete(vo);
 		mv.setViewName("redirect:/notice");
 		return mv;
 	}
