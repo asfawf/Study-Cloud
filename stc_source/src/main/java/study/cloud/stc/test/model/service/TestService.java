@@ -2,6 +2,7 @@ package study.cloud.stc.test.model.service;
 
 import java.util.List;
 
+import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.test.model.vo.TestVo;
 
 public interface TestService {
@@ -16,5 +17,9 @@ public interface TestService {
 	public List<TestVo> selectList(int currentPage, int limit) throws Exception;
 	
 	public int selectCount() throws Exception;
+	
+	public int insertKakao(MemberVo vo) throws Exception;
+	
+	public MemberVo kakaoselect(String memId) throws Exception;
 	
 }

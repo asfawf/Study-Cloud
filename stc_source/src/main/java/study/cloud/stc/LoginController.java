@@ -25,10 +25,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import study.cloud.stc.member.model.vo.MemberVo;
+import study.cloud.stc.test.model.service.TestService;
+
 @Controller
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+	@Autowired
+	private TestService service;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginFor(Locale locale, Model model) {
@@ -50,6 +55,7 @@ public class LoginController {
 
 		KakaoLoginServiceImpl iKakaoS = new KakaoLoginServiceImpl();
 		
+		
 		System.out.println("code : "+ code);
 		
 		String access_Token = iKakaoS.getAccessToken(code);
@@ -59,23 +65,40 @@ public class LoginController {
 		System.out.println("###nickname#### : " + userInfo.get("nickname"));
 		System.out.println("###email#### : " + userInfo.get("email"));
 		
-		String username= (String) userInfo.get("email");
+		MemberVo vo = new MemberVo();
 		
+		String memEmail = (String) userInfo.get("email");
+		String memName = (String) userInfo.get("nickname");
+		String memId = "kakao_"+ memEmail;
+		
+		
+		vo.setMemId(memId); 
+		vo.setMemEmail(memEmail); 
+		vo.setMemName(memName);
+		 
+		System.out.println("memEmail: "+memEmail + " memName: " + memName +" memId: " + memId);
+		
+		MemberVo result;
+		result = service.kakaoselect(memId);
+		
+		System.out.println("result: "+ result);
+		
+		if(result == null)
+		{
+			service.insertKakao(vo);
+		}
 		
 		// 여기 수정해야 함 ==> 현재 하드 코딩 상태 DB 왔다 가서 auther 가져와서 비교 후 그걸로 로그인 구현 넣기		
 		
 		List<GrantedAuthority> roles = new ArrayList<>(1);
-		String roleStr = username.equals("soub0713@naver.com") ? "ROLE_USER" : "ROLE_HOST";
+		String roleStr = memEmail.equals("soub0713@naver.com") ? "ROLE_USER" : "ROLE_HOST";
 		roles.add(new SimpleGrantedAuthority(roleStr));
 		
 		
-		//  
-		
-		
-		User user = new User(username, "", roles);
+		User user = new User(memEmail, "", roles);
 		
 		// DB 접근 		
-		Authentication auth = new UsernamePasswordAuthenticationToken(username, null, roles);
+		Authentication auth = new UsernamePasswordAuthenticationToken(memEmail, null, roles);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		
 		session.setAttribute("kakaoToken", access_Token);

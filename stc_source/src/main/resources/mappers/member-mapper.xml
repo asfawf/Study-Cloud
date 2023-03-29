@@ -3,12 +3,23 @@
 <mapper namespace="memberns">
   
   	<resultMap type="mvo" id="mmvo">
-  	
+  		<id column="MEM_ID" property="memId"/>
+  		<result column="MEM_PASSWD" property="memPasswd"/>
+  		<result column="MEM_NAME" property="memName"/>
+  		<result column="MEM_PHONE" property="memPhone"/>
+  		<result column="MEM_EMAIL" property="memEmail"/>
+  		<result column="MEM_QUIT" property="memQuit"/>
+  		<result column="MEM_AUTHORITY" property="memAuthority"/>
+  		<result column="MEM_SNS" property="memSns"/>
   	</resultMap>	
   		
-	<insert id="testinsert">
-	
+	<insert id="kakaoinsert" >
+		Insert Into Member values(#{memId},NULL,#{memName},NULL,#{memEmail}, 1 ,'ROLE_ADMIN','kakao')
 	</insert>
+	
+	<select id="kakaoselect" resultType="mvo">
+		select MEM_ID FROM MEMBER WHERE MEM_ID = #{memId}
+	</select>
 	
 	<update id="testupdate">
 	

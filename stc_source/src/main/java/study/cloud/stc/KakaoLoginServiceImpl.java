@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import study.cloud.stc.member.model.vo.MemberVo;
+
 @Service
 public class KakaoLoginServiceImpl   {
 
@@ -138,6 +140,14 @@ public class KakaoLoginServiceImpl   {
 					e.printStackTrace();
 				}
 		return userInfo;
+	}
+	
+	public int kakaoinsert(String memId,String memEmail,String memName) {
+		
+		KakaoLoginDao dao = new KakaoLoginDao();
+		
+		return dao.kakaoinsert(memId, memEmail, memName);
+		
 	}
 
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.test.model.vo.TestVo;
 
 @Repository
@@ -45,4 +46,17 @@ public class TestDao {
 		return sqlSession.selectOne("testMember.selectCount");
 	}
 	
+	public int insertKakao(MemberVo vo) {
+		int result ;
+		
+		result = sqlSession.insert("memberns.kakaoinsert", vo);
+		
+		return result;
+	}
+	
+	public MemberVo kakaoselect(String memId) throws Exception {
+		
+		return sqlSession.selectOne("memberns.kakaoselect", memId);		
+		
+	}
 }

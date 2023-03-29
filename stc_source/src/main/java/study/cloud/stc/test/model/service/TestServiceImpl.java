@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.test.model.dao.TestDao;
 import study.cloud.stc.test.model.vo.TestVo;
 
@@ -43,4 +44,20 @@ public class TestServiceImpl implements TestService{
 	public int selectCount() throws Exception {
 		return dao.selectCount();
 	}
+	
+	
+	@Override
+	public int insertKakao(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.insertKakao(vo);
+	}
+	
+	@Override
+	public MemberVo kakaoselect(String memId) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.kakaoselect(memId);
+	}
+	
+	
+	
 }
