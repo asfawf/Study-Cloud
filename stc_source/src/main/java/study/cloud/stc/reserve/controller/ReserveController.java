@@ -4,10 +4,24 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ReserveController {
+	
+	@GetMapping("/reserve")
+	public ModelAndView reserve(ModelAndView mv) {
+		mv.setViewName("/reserve");
+		return mv;
+	}
+	@GetMapping("/reservecheck")
+	public ModelAndView reservecheck(ModelAndView mv) {
+		mv.setViewName("/reservecheck");
+		return mv;
+	}
+	 
+	
 
 	
 	
