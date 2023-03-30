@@ -49,6 +49,14 @@ public class NoticeController {
 		return mv;
 	}
 	
+	@PostMapping("/insert")
+	public ModelAndView noticeInsert(ModelAndView mv
+			, NoticeVo vo) throws Exception{
+		service.insert(vo);
+		mv.setViewName("redirect:/notice");
+		return mv;
+	}
+	
 	
 	
 	

@@ -50,23 +50,24 @@
 							<!-- Modal -->
 							<div class="modal fade" id="insertNotice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
-									<div class="modal-content">
+									<div class="modal-content">									
 									  	<div class="modal-header">
-										    <h4 class="modal-title fs-5" id="exampleModalLabel">
-										    공지사항 등록
+										    <h4 class="modal-title text-center" id="exampleModalLabel">
+										    공지 등록
 										    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close">X</button>
 										    </h4>										    
-										</div>
+										</div>							
+										<form:form id="insertForm" action="${pageContext.request.contextPath}/notice/insert" method="POST">
 										<div class="modal-body">
-										<form>
 											<div class="row" style="background: gray;">
 												<div class="col-sm-4">
-												<select id="basic" class="selectpicker show-tick form-control" title="-전체-">
+												<%-- <select id="basic" name="notiIdx" class="selectpicker show-tick form-control" title="-전체-">
 													<option> -전체- </option>
 													<c:forEach items="${noticeList }" var="notice"> 
-													<option value="notiIdx">${notice.notiIdx }</option>
+													<option value="${notice.notiIdx }">${notice.notiIdx }</option>
 													</c:forEach>
-												</select>
+												</select> --%>
+													<input type="text" class="form-control" name="notiIdx" placeholder="분류" >
 												</div>
 												<div class="col-sm-8">
 													<input type="text" class="form-control" name="notiTitle" placeholder="제목" >
@@ -77,16 +78,14 @@
 												<textarea class="form-control" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
 												<input type="hidden" class="form-control" name="memId" value="<%= request.getUserPrincipal().getName() %>">
 											</div>
-										</form>
 										</div>
+										</form:form>
 									    <div class="modal-footer">
 											<div class="button notice-btn">
 										        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-												<form action="${pageContext.request.contextPath}/notice/insert" method="POST">
-												<button type="submit" class="btn search-btn" >등록</button>
-												</form>
+												<button form="insertForm" type="submit" class="btn search-btn" >등록</button>												
 											</div> 
-										</div>
+										</div>										
 									</div>
 								</div>
 							</div>
