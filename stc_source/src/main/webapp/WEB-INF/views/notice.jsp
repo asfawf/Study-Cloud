@@ -41,12 +41,62 @@
 								</select>
 							</div>                             
                         </form>
-						<button class="btn search-btn pull-right" type="button" onclick=" location.href='search' ">등록</button>
+						<!-- 공지사항 등록 버튼 시작 -->
+						<sec:authorize access="isAuthenticated()">
+						<sec:authorize access="hasRole('ADMIN')">
+							<button type="button" class="btn search-btn" data-toggle="modal" data-target="#insertNotice">
+								등록
+							</button>
+							<!-- Modal -->
+							<div class="modal fade" id="insertNotice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">									
+									  	<div class="modal-header">
+										    <h4 class="modal-title text-center" id="exampleModalLabel">
+										    공지 등록
+										    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close">X</button>
+										    </h4>										    
+										</div>							
+										<form:form id="insertForm" action="${pageContext.request.contextPath}/notice/insert" method="POST">
+										<div class="modal-body">
+											<div class="row" style="background: gray;">
+												<div class="col-sm-4">
+												<%-- <select id="basic" name="notiIdx" class="selectpicker show-tick form-control" title="-전체-">
+													<option> -전체- </option>
+													<c:forEach items="${noticeList }" var="notice"> 
+													<option value="${notice.notiIdx }">${notice.notiIdx }</option>
+													</c:forEach>
+												</select> --%>
+													<input type="text" class="form-control" name="notiIdx" placeholder="분류" >
+												</div>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" name="notiTitle" placeholder="제목" >
+												</div>
+											</div>
+											<div class="mb-3">
+												<br>
+												<textarea class="form-control" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
+												<input type="hidden" class="form-control" name="memId" value="<%= request.getUserPrincipal().getName() %>">
+											</div>
+										</div>
+										</form:form>
+									    <div class="modal-footer">
+											<div class="button notice-btn">
+										        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+												<button form="insertForm" type="submit" class="btn search-btn" >등록</button>												
+											</div> 
+										</div>										
+									</div>
+								</div>
+							</div>
+						</sec:authorize>			
+						</sec:authorize>
+						<!-- 공지사항 등록 버튼 끝 -->
 						</div>
                     </div>
                 </div>
 
-                <div class="row row-feat"> 
+       <div class="row row-feat"> 
                     <div class="col-md-12"> 
                         <div class="col-sm feat-list">
                         	<c:forEach items="${noticeList }" var="notice"> 
@@ -61,40 +111,61 @@
 							            <div class="panel-body">
 							                <ol>
 							                    ${notice.notiContents }    
-							                </ol>
-							                <!-- 모달예시 -->
-							                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-											  Launch demo modal
-											</button>
-											
-											<!-- Modal -->
-											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
-											    <div class="modal-content">
-											      <div class="modal-header">
-											        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											      </div>
-											      <div class="modal-body">
-											        ...
-											      </div>
-											      <div class="modal-footer">
-											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-											        <button type="button" class="btn btn-primary">Save changes</button>
-											      </div>
-											    </div>
-											  </div>
-											</div>
-											<!-- 모달예시 끝 -->
+							                </ol>		
+							                					                
 							                <div class="button notice-btn">
                                             	<sec:authorize access="isAuthenticated()">
 												<sec:authorize access="hasRole('ADMIN')">
-													<form:form action="${pageContext.request.contextPath}/search" method="POST">
-														<button class="btn search-btn" type="button" onclick=" submit(); ">수정</button>
+													<!-- 공지사항 수정 버튼 시작 -->
+													<button type="button" class="btn search-btn" data-toggle="modal" data-target="#updateNotice">
+														수정
+													</button>
+													<!-- 공지사항 삭제 버튼 -->
+													<form:form id="deleteForm${notice.notiNum }" action="${pageContext.request.contextPath}/notice/delete?notiNum=${notice.notiNum }" method="POST">
+													<button form="deleteForm${notice.notiNum }" class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
 													</form:form>
-													<form:form action="${pageContext.request.contextPath}/notice/delete?notiNum=${notice.notiNum }" method="POST">
-											    		<button class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
-													</form:form>
+													<!-- 공지사항 수정 Modal -->
+													<div class="modal fade" id="updateNotice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+															  	<div class="modal-header">
+																    <h4 class="modal-title fs-5" id="exampleModalLabel">
+																    공지사항 수정
+																    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close">X</button>
+																    </h4>										    
+																</div>
+																<form:form id="updateForm${notice.notiNum }" action="${pageContext.request.contextPath}/notice/update?notiNum=${notice.notiNum }" method="POST">
+																<div class="modal-body">
+																	<div class="row" style="background: gray;">
+																		<div class="col-sm-4">
+																		<select id="basic" class="selectpicker show-tick form-control" title="-전체-">
+																			<option> -전체- </option>
+																			<c:forEach items="${noticeList }" var="notice"> 
+																			<option value="${notice.notiIdx }">${notice.notiIdx }</option>
+																			</c:forEach>
+																		</select>
+																		</div>
+																		<div class="col-sm-8">
+																			<input type="text" class="form-control" name="notiTitle" placeholder="제목" value="">
+																		</div>
+																	</div>
+																	<div class="mb-3">
+																		<br>
+																		<textarea class="form-control" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
+																		<input type="hidden" class="form-control" name="memId" value="<%= request.getUserPrincipal().getName() %>">
+																	</div>
+																</div>
+																</form:form>
+															    <div class="modal-footer">
+																	<div class="button notice-btn">
+																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>																	
+																		<button form="updateForm${notice.notiNum}" type="submit" class="btn search-btn" >등록</button>
+																	</div> 
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- 공지사항 수정 버튼 끝 -->
 												</sec:authorize>			
 												</sec:authorize>
 											</div> 
@@ -102,69 +173,7 @@
 							        </div>
 							    </div>
 							</div>
-							</c:forEach>
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                         <h4 class="panel-title fqa-title" data-toggle="collapse" data-target="#fqa11" >
-                                            Nostrud exercitation ullamco laboris 1 1
-                                         </h4> 
-                                    </div>
-                                    <div id="fqa11" class="panel-collapse collapse fqa-body">
-                                        <div class="panel-body">
-                                            <ol>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>                                           
-                                            </ol>
-                                            <div class="button notice-btn">
-                                            	<sec:authorize access="isAuthenticated()">
-												<sec:authorize access="hasRole('ADMIN')">
-													<form:form action="${pageContext.request.contextPath}/search" method="POST">
-														<button class="btn search-btn" type="button" onclick=" submit(); ">수정</button>
-													</form:form>
-													<form:form action="${pageContext.request.contextPath}/join" method="GET">
-											    		<button class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
-													</form:form>
-												</sec:authorize>			
-												</sec:authorize>
-											<!-- 	<button class="btn search-btn" type="button" onclick=" location.href='search' ">수정</button>
-												<button type="button" class="btn search-btn" data-bs-toggle="modal-content" data-bs-target="#exampleModal" data-bs-whatever="@mdo">modal</button>
-													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													  <div class="modal-dialog">
-													    <div class="modal-content">
-													      <div class="modal-header">
-													        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-													        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-													      </div>
-													      <div class="modal-body">
-													        <form>
-													          <div class="mb-3">
-													            <label for="recipient-name" class="col-form-label">Recipient:</label>
-													            <input type="text" class="form-control" id="recipient-name">
-													          </div>
-													          <div class="mb-3">
-													            <label for="message-text" class="col-form-label">Message:</label>
-													            <textarea class="form-control" id="message-text"></textarea>
-													          </div>
-													        </form>
-													      </div>
-													      <div class="modal-footer">
-													        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-													        <button type="button" class="btn btn-primary">Send message</button>
-													      </div>
-													    </div>
-													  </div>
-													</div>
-												<button class="btn search-btn" type="button" onclick=" location.href='search' ">삭제</button> -->
-											</div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-		                    
+							</c:forEach>		                    
                          </div>
                     </div>
                 </div>
