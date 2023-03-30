@@ -27,25 +27,15 @@ public class NoticeController {
 	
 	@GetMapping
 	public ModelAndView noticeList(ModelAndView mv
-		  //, @RequestParam("notiIdx") String notiIdx
 		  , NoticeVo vo
 		  , @RequestParam(value="page", defaultValue="1") int page) throws Exception{
 		
-		//mv.addObject("noticeList", service.selectList(notiIdx));
 		int currentPage = page; 
 		int totalCnt= service.selectCount(); 
 		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 3, 3); 
 		mv.addObject("pageInfo", map);
 		mv.addObject("noticeList", service.selectList(vo));
 		mv.setViewName("notice");
-		return mv;
-	}
-	
-	@PostMapping("/delete")
-	public ModelAndView noticeDelete(ModelAndView mv
-			, NoticeVo vo) throws Exception{
-		service.delete(vo);
-		mv.setViewName("redirect:/notice");
 		return mv;
 	}
 	
@@ -57,8 +47,21 @@ public class NoticeController {
 		return mv;
 	}
 	
+	@PostMapping("/update")
+	public ModelAndView noticeUpdate(ModelAndView mv
+			, NoticeVo vo) throws Exception {
+		service.update(vo);
+		mv.setViewName("redirect:/notice");
+		return mv;
+	}
 	
-	
+	@PostMapping("/delete")
+	public ModelAndView noticeDelete(ModelAndView mv
+			, NoticeVo vo) throws Exception{
+		service.delete(vo);
+		mv.setViewName("redirect:/notice");
+		return mv;
+	}
 	
 	
 	
