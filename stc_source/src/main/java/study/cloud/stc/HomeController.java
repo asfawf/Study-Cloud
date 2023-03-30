@@ -44,4 +44,11 @@ public class HomeController {
 		mv.setViewName("contact");
 		return mv;
 	}
+	
+	@GetMapping("/search")
+	public ModelAndView search(ModelAndView mv) {
+		mv.setViewName("search/search");
+		return mv;
+	}
+
 }
