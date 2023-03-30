@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <div class="row row-feat"> 
+       <div class="row row-feat"> 
                     <div class="col-md-12"> 
                         <div class="col-sm feat-list">
                         	<c:forEach items="${noticeList }" var="notice"> 
@@ -120,7 +120,11 @@
 													<button type="button" class="btn search-btn" data-toggle="modal" data-target="#updateNotice">
 														수정
 													</button>
-													<!-- Modal -->
+													<!-- 공지사항 삭제 버튼 -->
+													<form:form id="deleteForm${notice.notiNum }" action="${pageContext.request.contextPath}/notice/delete?notiNum=${notice.notiNum }" method="POST">
+													<button form="deleteForm${notice.notiNum }" class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
+													</form:form>
+													<!-- 공지사항 수정 Modal -->
 													<div class="modal fade" id="updateNotice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 														<div class="modal-dialog">
 															<div class="modal-content">
@@ -130,19 +134,19 @@
 																    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close">X</button>
 																    </h4>										    
 																</div>
+																<form:form id="updateForm${notice.notiNum }" action="${pageContext.request.contextPath}/notice/update?notiNum=${notice.notiNum }" method="POST">
 																<div class="modal-body">
-																<form>
 																	<div class="row" style="background: gray;">
 																		<div class="col-sm-4">
 																		<select id="basic" class="selectpicker show-tick form-control" title="-전체-">
 																			<option> -전체- </option>
 																			<c:forEach items="${noticeList }" var="notice"> 
-																			<option value="notiIdx">${notice.notiIdx }</option>
+																			<option value="${notice.notiIdx }">${notice.notiIdx }</option>
 																			</c:forEach>
 																		</select>
 																		</div>
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" name="notiTitle" placeholder="제목" >
+																			<input type="text" class="form-control" name="notiTitle" placeholder="제목" value="">
 																		</div>
 																	</div>
 																	<div class="mb-3">
@@ -150,23 +154,18 @@
 																		<textarea class="form-control" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
 																		<input type="hidden" class="form-control" name="memId" value="<%= request.getUserPrincipal().getName() %>">
 																	</div>
-																</form>
 																</div>
+																</form:form>
 															    <div class="modal-footer">
 																	<div class="button notice-btn">
-																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-																		<form action="${pageContext.request.contextPath}/notice/update" method="POST">
-																		<button type="submit" class="btn search-btn" >등록</button>
-																		</form>
+																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>																	
+																		<button form="updateForm${notice.notiNum}" type="submit" class="btn search-btn" >등록</button>
 																	</div> 
 																</div>
 															</div>
 														</div>
 													</div>
-													<!-- 공지사항 등록 버튼 끝 -->
-													<form:form action="${pageContext.request.contextPath}/notice/delete?notiNum=${notice.notiNum }" method="POST">
-											    		<button class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
-													</form:form>
+													<!-- 공지사항 수정 버튼 끝 -->
 												</sec:authorize>			
 												</sec:authorize>
 											</div> 
@@ -174,40 +173,7 @@
 							        </div>
 							    </div>
 							</div>
-							</c:forEach>
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                         <h4 class="panel-title fqa-title" data-toggle="collapse" data-target="#fqa11" >
-                                            Nostrud exercitation ullamco laboris 1 1
-                                         </h4> 
-                                    </div>
-                                    <div id="fqa11" class="panel-collapse collapse fqa-body">
-                                        <div class="panel-body">
-                                            <ol>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>
-                                                <li> Lorem ipsum dolor sit amet, consectetur adipisicing</li>                                           
-                                            </ol>
-                                            <div class="button notice-btn">
-                                            	<sec:authorize access="isAuthenticated()">
-												<sec:authorize access="hasRole('ADMIN')">
-													<form:form action="${pageContext.request.contextPath}/search" method="POST">
-														<button class="btn search-btn" type="button" onclick=" submit(); ">수정</button>
-													</form:form>
-													<form:form action="${pageContext.request.contextPath}/join" method="GET">
-											    		<button class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
-													</form:form>
-												</sec:authorize>			
-												</sec:authorize>											
-											</div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-		                    
+							</c:forEach>		                    
                          </div>
                     </div>
                 </div>
