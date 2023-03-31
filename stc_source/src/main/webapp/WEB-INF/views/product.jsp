@@ -74,17 +74,17 @@
                                 
 
 
-                            </div>
-                            <!-- .property-meta -->
-
-                            <div class="section">
-                                <h4 class="s-property-title">공간소개</h4>
-                                <div class="s-property-content">
-                                    <p>여러화가의 색체가 예쁘게담긴<br>편안한 12인 모임감성공간[헬로강남] 입니다. </p>
-                                </div>
-                            </div>
-                            <!-- End description area  -->
-
+	  	                    </div>
+	                            <!-- .property-meta -->
+	
+	                            <div class="section">
+	                                <h4 class="s-property-title">공간소개</h4>
+	                                <div class="s-property-content">
+	                                    <p>여러화가의 색체가 예쁘게담긴<br>편안한 12인 모임감성공간[헬로강남] 입니다. </p>
+	                                </div>
+	                           <!-- End description area  -->
+	                        </div>
+	     
                             
                             
                             
@@ -135,6 +135,56 @@
 
                             <div class="section review"> 
                                 <h4 class="s-property-title">Review</h4> 
+                                
+                                  <div class="container">
+                                        <div class="row">
+                                            <div class="blog-lst col-md-9 p0">
+                                                
+                        
+                                             <section class="about-autor">
+                        
+                                              </section>
+                      
+                                              <section id="comments" class="comments wow fadeInRight animated"> 
+                                                
+                        
+                        
+                                                    <div class="row comment">
+                                                        <div class="">
+                                                            
+                                                        </div>
+                                                        <div class="col-sm-9 col-md-10">
+                                                            <h5 class="text-uppercase">Julie Alma</h5>
+                                                            <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
+                                                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                                               </p>
+                                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.comment -->
+                        
+                        
+                                                    <div class="row comment last">
+                                                        <div class="">
+                                                        </div>
+                                                        <div class="col-sm-9 col-md-10">
+                                                            <h5 class="text-uppercase">Louise Armero</h5>
+                                                            <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
+                                                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                                                </p>
+                                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                                            </p>
+                                                        </div>
+                        
+                                                    </div>
+                                                    <!-- /.comment -->
+                                                </section>
+                                                
+                                            </div>                    
+                                            </div>   
+                                        </div>
+                                </div>
                                 
                             </div>
                             <!-- review area  -->
