@@ -21,6 +21,12 @@
 		select MEM_ID FROM MEMBER WHERE MEM_ID = #{memId}
 	</select>
 	
+	
+	<select id="kakaoselectauth" resultType="mvo">
+		select MEM_AUTHORITY FROM MEMBER WHERE MEM_ID = #{memId}
+	</select>
+	
+	
 	<update id="testupdate">
 	
 	</update>

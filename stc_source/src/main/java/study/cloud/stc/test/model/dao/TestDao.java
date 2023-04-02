@@ -59,4 +59,14 @@ public class TestDao {
 		return sqlSession.selectOne("memberns.kakaoselect", memId);		
 		
 	}
+	
+	
+	public MemberVo kakaoselectdivision(String memId) throws Exception {
+		
+		return sqlSession.selectOne("memberns.kakaoselectauth", memId);		
+		
+	}
+	
+	
+	
 }

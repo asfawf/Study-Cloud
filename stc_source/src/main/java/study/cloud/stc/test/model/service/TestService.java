@@ -22,4 +22,6 @@ public interface TestService {
 	
 	public MemberVo kakaoselect(String memId) throws Exception;
 	
+	public MemberVo kakaoselectdivision(String memId) throws Exception;
+	
 }

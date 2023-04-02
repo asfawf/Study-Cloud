@@ -57,6 +57,11 @@ public class TestServiceImpl implements TestService{
 		// TODO Auto-generated method stub
 		return dao.kakaoselect(memId);
 	}
+	@Override
+	public MemberVo kakaoselectdivision(String memId) throws Exception {
+		// TODO Auto-generated method stub 
+		return dao.kakaoselectdivision(memId);
+	}
 	
 	
 	
