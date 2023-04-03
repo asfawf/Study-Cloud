@@ -14,7 +14,7 @@
   	</resultMap>	
   		
 	<insert id="kakaoinsert" >
-		Insert Into Member values(#{memId},NULL,#{memName},NULL,#{memEmail}, 1 ,'ROLE_ADMIN','kakao')
+		Insert Into Member values(#{memId},NULL,#{memName},NULL,#{memEmail}, 1 ,'ROLE_USER','kakao')
 	</insert>
 	
 	<select id="kakaoselect" resultType="mvo">
@@ -39,8 +39,16 @@
 		
 	</select>
 	
-	<select id="memberSelectList" resultType="mvo">
+	<select id="memberSelectHostsList" resultType="mvo">
 		
+	</select>
+	
+	<select id="selectUserCount" resultType="_int">
+		select count(*) cnt from MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER'
+	</select>	
+	
+	<select id="memberSelectUsersList" resultType="mvo">
+		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER'
 	</select>
 
 

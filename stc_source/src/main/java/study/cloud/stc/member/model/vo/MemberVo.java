@@ -24,8 +24,8 @@ public class MemberVo {
 	private int memPhone;
 	private String memEmail;
 	private int memQuit;
-	private int memAuthority;
-	private int memSns;
+	private String memAuthority;
+	private String memSns;
 
 
 }
