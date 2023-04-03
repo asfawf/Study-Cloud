@@ -62,6 +62,20 @@
 	</select>	
 	
 	
+	<select id="selectCountHost" resultType="_int">
+		select count(*) cnt from MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST'
+	</select>	
+	
+	<select id="selectUnblockCountHost" resultType="_int">
+		select count(*) cnt from MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST' AND MEM_QUIT = 1
+	</select>	
+	<select id="selectBlockCountHost" resultType="_int">
+		select count(*) cnt from MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST' AND MEM_QUIT = 0
+	</select>	
+	
+	
+	
+	
 	<select id="memberSelectUsersList" resultType="mvo">
 		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER'
 	</select>
@@ -77,6 +91,18 @@
 		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_SNS != 'null'
 	</select>
 	
+	
+	<select id="selectListHost" resultType="mvo">
+		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST'
+	</select>
+
+	<select id="selectUnblockHost" resultType="mvo">
+		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST' AND MEM_QUIT = 1
+	</select>
+	
+	<select id="selectBlockHost" resultType="mvo">
+		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST' AND MEM_QUIT = 0
+	</select>
 
 
 	<select id="memberSelectCount" resultType="_int">

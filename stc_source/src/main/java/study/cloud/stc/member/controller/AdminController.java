@@ -88,6 +88,61 @@ public class AdminController {
 		
 	}
 	
+	
+	//------------------------------------------------------------------------------------------------
+	
+	
+	
+	@GetMapping("/host")
+	public ModelAndView hostList(
+			ModelAndView mv, MemberVo vo
+			, HttpServletRequest req
+			, @RequestParam(value = "page", defaultValue="1") int page
+			, @RequestParam(value = "selectbox", defaultValue="1") int selectbox
+			) throws Exception {
+		
+		
+		System.out.println();
+		String select = req.getParameter("selectbox");
+		System.out.println("selectbox: "+ selectbox);
+		
+		if(selectbox == 1) {
+			int currentPage = page;
+			int totalCnt = service.selectCountHost();
+			Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT);
+			mv.addObject("pageInfo", map);
+			req.setAttribute("nowoption", selectbox);
+			mv.addObject("usersList", service.selectListHost(currentPage, BOARD_LIMIT, vo));
+		}else if(selectbox == 2) {
+			
+			int currentPage = page;
+			int totalCnt = service.selectUnblockCountHost();
+			Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT);
+			mv.addObject("pageInfo", map);
+			req.setAttribute("nowoption", selectbox);
+			mv.addObject("usersList", service.selectUnblockHost(currentPage, BOARD_LIMIT, vo));
+		}else if(selectbox == 3) {
+			
+			int currentPage = page;
+			int totalCnt = service.selectBlockCountHost();
+			Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT);
+			mv.addObject("pageInfo", map);
+			req.setAttribute("nowoption", selectbox);
+			mv.addObject("usersList", service.selectBlockHost(currentPage, BOARD_LIMIT, vo));
+		}
+		
+		
+		mv.setViewName("/host");
+		
+		return mv;
+		
+	}
+	
+	
+	//------------------------------------------------------------------------------------------------
+	
+	
+	
 	@PostMapping("/block")
 	public ModelAndView memberBlock(ModelAndView mv
 			,MemberVo vo
@@ -119,6 +174,38 @@ public class AdminController {
 	}
 	
 	
+	//------------------------------------------------------------------------------------------------
+	
+	
+	@PostMapping("/blockho")
+	public ModelAndView memberBlockHost(ModelAndView mv
+			,MemberVo vo
+			,HttpServletRequest req
+			, @RequestParam(value = "selectbox", defaultValue="1") int selectbox
+			) throws Exception {
+				
+		System.out.println("vo: "+ vo);
+		int result = service.memberblock(vo);
+		mv.setViewName("redirect:/admin/host?selectbox="+ selectbox);
+		
+		return mv;
+		
+	}
+	
+	@PostMapping("/unblockho")
+	public ModelAndView memberUnblockHost(ModelAndView mv
+			,MemberVo vo
+			,HttpServletRequest req
+			, @RequestParam(value = "selectbox", defaultValue="1") int selectbox
+			) throws Exception {
+				
+		System.out.println("vo: "+ vo);
+		int result = service.memberUnblock(vo);
+		mv.setViewName("redirect:/admin/host?selectbox="+ selectbox);
+		
+		return mv;
+		
+	}
 	
 	
 	

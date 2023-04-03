@@ -21,6 +21,8 @@ public class MemberDao {
 		
 		return session.selectList("memberns.memberSelectUsersList", vo);
 	}
+
+// -----------------------------------------------------------------------------------------------------------
 	
 	public int selectCount() throws Exception {
 		return session.selectOne("memberns.selectUserCount");
@@ -39,6 +41,10 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("memberns.selectSnsCount");
 	}
+	
+// -----------------------------------------------------------------------------------------------------------
+
+
 	
 	public List<MemberVo> selectListTest(int currentPage, int limit, MemberVo vo) throws Exception {
 			
@@ -83,9 +89,49 @@ public class MemberDao {
 		return session.selectList("memberns.selectSnskUsers", vo , rb);
 	}
 
-
-
 	
+	
+	
+	public List<MemberVo> selectListHost(int currentPage, int limit, MemberVo vo) {
+		int offset = (currentPage -1 )*limit;
+		
+		RowBounds rb = new RowBounds(offset, limit);
+		
+		return session.selectList("memberns.selectListHost", vo , rb);
+	}
+
+	public List<MemberVo> selectUnblockHost(int currentPage, int limit, MemberVo vo) {
+		int offset = (currentPage -1 )*limit;
+		
+		RowBounds rb = new RowBounds(offset, limit);
+		
+		return session.selectList("memberns.selectUnblockHost", vo , rb);
+	}
+
+	public List<MemberVo> selectBlockHost(int currentPage, int limit, MemberVo vo) {
+		int offset = (currentPage -1 )*limit;
+		
+		RowBounds rb = new RowBounds(offset, limit);
+		
+		return session.selectList("memberns.selectBlockHost", vo , rb);
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------------------
+
+	public int selectCountHost() {
+		return session.selectOne("memberns.selectCountHost");
+	}
+
+	public int selectUnblockCountHost() {
+		return session.selectOne("memberns.selectUnblockCountHost");
+	}
+
+	public int selectBlockCountHost() {
+		return session.selectOne("memberns.selectBlockCountHost");
+	}
+
 	
 	
 	

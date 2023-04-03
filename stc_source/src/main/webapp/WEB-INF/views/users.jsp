@@ -14,7 +14,7 @@
 
 	<form action="${pageContext.request.contextPath}/admin/users" method="get">
 		<select id="selectbox" name="selectbox" onchange="chageLangSelect(this)">
-			<option value="" selected disabled>선정을 고르세요</option>              
+			<option value="" selected disabled>설정을 고르세요</option>              
 			<option value="1">전체</option>
 			<option value="2">활성화 유저</option>
 			<option value="3">탈퇴 혹은 차단</option>

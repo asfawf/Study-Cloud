@@ -7,12 +7,21 @@ import study.cloud.stc.notice.model.vo.NoticeVo;
 
 public interface MemberService {
 	public List<MemberVo> selectList(MemberVo vo) throws Exception;
-	
+// ----------------------------------------------------------------------------------------------------------- 
 	public int selectCount() throws Exception;
 	
 	public int selectUnblockCount() throws Exception;
 	public int selectBlockCount() throws Exception;
 	public int selectSnsCount() throws Exception;
+
+// -----------------------------------------------------------------------------------------------------------
+
+	public int selectCountHost() throws Exception;
+	
+	public int selectUnblockCountHost() throws Exception;
+	public int selectBlockCountHost() throws Exception;
+	
+// ------------------------------------------------------------------------------------------------------------	
 	
 	public List<MemberVo> selectListTest(int currentPage, int limit, MemberVo vo) throws Exception;
 	
@@ -20,10 +29,20 @@ public interface MemberService {
 	public List<MemberVo> selectBlockUsers(int currentPage, int limit, MemberVo vo) throws Exception;
 	public List<MemberVo> selectSnskUsers(int currentPage, int limit, MemberVo vo) throws Exception;
 
+	
+// ------------------------------------------------------------------------------------------------------------	
+	
+	public List<MemberVo> selectListHost(int currentPage, int limit, MemberVo vo) throws Exception;
+	
+	public List<MemberVo> selectUnblockHost(int currentPage, int limit, MemberVo vo) throws Exception;
+	public List<MemberVo> selectBlockHost(int currentPage, int limit, MemberVo vo) throws Exception;
+	
+//	------------------------------------------------------------------------------------------------------------
+	
 	public int memberblock(MemberVo vo) throws Exception;
 	public int memberUnblock(MemberVo vo) throws Exception;
 	
-	
+// ------------------------------------------------------------------------------------------------------------		
 	
 	
 }
