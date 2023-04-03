@@ -29,6 +29,7 @@
 		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 
+
 	<!-- 트랜잭션 객체 생성 -->
 	<bean
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"

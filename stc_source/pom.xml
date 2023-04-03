@@ -242,7 +242,7 @@
 		<!-- end -->
 
 		<!-- 네이버 api 시작 -->
-		
+
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
 			<artifactId>scribejava-apis</artifactId>
@@ -261,8 +261,26 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 			<version>2.11.3</version>
 		</dependency>
-		
+
 		<!-- 네이버 api 끝 -->
+
+
+
+
+		<!-- 메일 시작 -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.1</version>
+		</dependency>
+
+		<!-- 메일 끝 -->
 	</dependencies>
 	<build>
 		<plugins>
