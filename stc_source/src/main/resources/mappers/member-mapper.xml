@@ -27,8 +27,12 @@
 	</select>
 	
 	
-	<update id="testupdate">
+	<update id="memberblock">
+		UPDATE MEMBER SET MEM_QUIT= 0 WHERE MEM_ID= #{memId}
+	</update>
 	
+	<update id="memberUnblock">
+		UPDATE MEMBER SET MEM_QUIT= 1 WHERE MEM_ID= #{memId}
 	</update>
 	
 	<delete id="testdelete">
@@ -47,9 +51,32 @@
 		select count(*) cnt from MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER'
 	</select>	
 	
+	<select id="selectUnblockCount" resultType="_int">
+		select count(*) cnt from MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_QUIT = 1
+	</select>	
+	<select id="selectBlockCount" resultType="_int">
+		select count(*) cnt from MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_QUIT = 0
+	</select>	
+	<select id="selectSnsCount" resultType="_int">
+		select count(*) cnt from MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_SNS != 'null'
+	</select>	
+	
+	
 	<select id="memberSelectUsersList" resultType="mvo">
 		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER'
 	</select>
+
+	<select id="selectUnblockUsers" resultType="mvo">
+		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_QUIT = 1
+	</select>
+	
+	<select id="selectBlockUsers" resultType="mvo">
+		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_QUIT = 0
+	</select>
+	<select id="selectSnskUsers" resultType="mvo">
+		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_SNS != 'null'
+	</select>
+	
 
 
 	<select id="memberSelectCount" resultType="_int">

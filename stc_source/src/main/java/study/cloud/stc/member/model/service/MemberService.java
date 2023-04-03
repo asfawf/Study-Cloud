@@ -10,7 +10,20 @@ public interface MemberService {
 	
 	public int selectCount() throws Exception;
 	
+	public int selectUnblockCount() throws Exception;
+	public int selectBlockCount() throws Exception;
+	public int selectSnsCount() throws Exception;
+	
 	public List<MemberVo> selectListTest(int currentPage, int limit, MemberVo vo) throws Exception;
 	
+	public List<MemberVo> selectUnblockUsers(int currentPage, int limit, MemberVo vo) throws Exception;
+	public List<MemberVo> selectBlockUsers(int currentPage, int limit, MemberVo vo) throws Exception;
+	public List<MemberVo> selectSnskUsers(int currentPage, int limit, MemberVo vo) throws Exception;
 
+	public int memberblock(MemberVo vo) throws Exception;
+	public int memberUnblock(MemberVo vo) throws Exception;
+	
+	
+	
+	
 }
