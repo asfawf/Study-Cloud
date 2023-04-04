@@ -27,6 +27,12 @@ public class AdminController {
 	private final static int BOARD_LIMIT = 5;
 	private final static int PAGE_LIMIT = 5;
 	
+	@GetMapping
+	public ModelAndView main(ModelAndView mv) {
+		mv.setViewName("admin/admin");
+		return mv;
+	}	
+	
 	@GetMapping("/users")
 	public ModelAndView usersList(
 			ModelAndView mv, MemberVo vo

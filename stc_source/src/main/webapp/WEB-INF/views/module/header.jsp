@@ -34,7 +34,7 @@
 							<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 								<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
 							</form:form>
-							<form:form action="${pageContext.request.contextPath}/join" method="GET">
+							<form:form action="${pageContext.request.contextPath}/admin" method="GET">
 					    		<button class="navbar-btn nav-button" onclick=" submit(); ">관리자관리</button>
 							</form:form>
 						</sec:authorize>			
