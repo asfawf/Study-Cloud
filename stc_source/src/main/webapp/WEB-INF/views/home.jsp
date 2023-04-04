@@ -60,40 +60,5 @@
         </div>        
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
- 
-
-
-		
-		
-		<!--  -->
-		<sec:authorize access="isAnonymous()">
-			<form:form action="${pageContext.request.contextPath}/login/loginForm.do" method="GET">
-				    	<input type="submit" value="로그인" />
-			</form:form>
-		</sec:authorize>
-		
-		<sec:authorize access="isAuthenticated()">
-			<sec:authorize access="hasRole('ADMIN')">
-				<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-			    	<input type="submit" value="로그아웃" />
-				</form:form>	
-				로그인 한 관리자 페이지
-			</sec:authorize>			
-		</sec:authorize>
-		
-		<sec:authorize access="isAuthenticated()">
-			<sec:authorize access="hasRole('USER')">
-				<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-			    	<input type="submit" value="로그아웃" />
-				</form:form>	
-				로그인 한 유저 페이지
-			</sec:authorize>			
-		</sec:authorize>
-		
-		<%-- 
-		<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-		    <input type="submit" value="로그아웃" />
-		</form:form>
- --%>
 </body>
 </html>
