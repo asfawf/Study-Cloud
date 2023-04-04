@@ -49,13 +49,13 @@
 					<td style="border: 1px solid #444444; padding: 10px;">${vo.memQuit }</td>
 					<td style="border: 1px solid #444444; padding: 10px;"><c:choose>
 							<c:when test="${vo.memQuit != 0}">
-								<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/blockho?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
+								<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/host/block?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
 									<button form="block${vo.memId}" type="button"
 										class="btn btn-primary block" onclick="submit();">차단하기</button>
 								</form:form>
 							</c:when>
 							<c:otherwise>
-								<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/unblockho?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
+								<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/host/unblock?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
 									<button form="block${vo.memId}" type="button"
 										class="btn btn-primary block" onclick="submit();">차단해제</button>
 								</form:form>
