@@ -4,12 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Study Cloud</title>
+<%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
-${msg }<br>
-잠시 오류가 발생하였습니다.<br> 
-잠시 후 다시 시도해 주세요.<br>
-<a href="<%=request.getContextPath()%>/"> 메인페이지로 이동</a>
+<%@ include file="/WEB-INF/views/module/header.jsp" %>
+      
+        <div class="content-area error-page" style="background-color: #FFFFFF; padding-bottom: 55px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                        <h2 class="error-title">500</h2>
+                        <p>${msg }</p><br>
+                        <a href="<%=request.getContextPath()%>/" class="btn btn-default">Home</a>                        
+                    </div>
+                </div> 
+            </div>
+        </div> 
+
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>
 </html>
