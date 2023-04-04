@@ -40,7 +40,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/insert")
-	public ModelAndView noticeInsert(ModelAndView mv
+	public ModelAndView insertNotice(ModelAndView mv
 			, NoticeVo vo) throws Exception{
 		service.insert(vo);
 		mv.setViewName("redirect:/notice");
@@ -48,7 +48,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/update")
-	public ModelAndView noticeUpdate(ModelAndView mv
+	public ModelAndView updateNotice(ModelAndView mv
 			, NoticeVo vo) throws Exception {
 		service.update(vo);
 		mv.setViewName("redirect:/notice");
@@ -56,7 +56,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/delete")
-	public ModelAndView noticeDelete(ModelAndView mv
+	public ModelAndView deleteNotice(ModelAndView mv
 			, NoticeVo vo) throws Exception{
 		service.delete(vo);
 		mv.setViewName("redirect:/notice");
