@@ -40,11 +40,21 @@
 						</sec:authorize>			
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
+						<sec:authorize access="hasRole('HOST')">
+							<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+						    	<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
+					    	</form:form>
+							<form:form action="${pageContext.request.contextPath}/host" method="GET">
+					    		<button class="navbar-btn nav-button" onclick=" submit(); ">마이페이지</button>
+							</form:form>
+						</sec:authorize>			
+						</sec:authorize> 
+						<sec:authorize access="isAuthenticated()">
 						<sec:authorize access="hasRole('USER')">
 							<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 						    	<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
 					    	</form:form>
-							<form:form action="${pageContext.request.contextPath}/mypage" method="GET">
+							<form:form action="${pageContext.request.contextPath}/user" method="GET">
 					    		<button class="navbar-btn nav-button" onclick=" submit(); ">마이페이지</button>
 							</form:form>
 						</sec:authorize>			
