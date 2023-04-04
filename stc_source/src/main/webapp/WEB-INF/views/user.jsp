@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<form action="${pageContext.request.contextPath}/admin/users" method="get">
+	<form action="${pageContext.request.contextPath}/admin/user" method="get">
 		<select id="selectbox" name="selectbox" onchange="chageLangSelect(this)">
 			<option value="" selected disabled>설정을 고르세요</option>              
 			<option value="1">전체</option>
@@ -48,12 +48,12 @@
 					<td style=" border: 1px solid #444444; padding: 10px;">
 					<c:choose>
 						<c:when test="${vo.memQuit != 0}">
-							<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/block?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
+							<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/user/block?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
 								<button form="block${vo.memId}" type="button" class="btn btn-primary block" onclick="submit();">차단하기</button>
 							</form:form>
 						</c:when>
 						<c:otherwise>
-								<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/unblock?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
+								<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/user/unblock?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
 									<button form="block${vo.memId}" type="button" class="btn btn-primary block" onclick="submit();">차단해제</button>
 								</form:form>
 						</c:otherwise>					
@@ -66,7 +66,7 @@
 	
 	<c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }"
 		var="page">
-		<a href="<%=request.getContextPath() %>/admin/users?selectbox=${nowoption }&page=${page }">${page }</a>
+		<a href="<%=request.getContextPath() %>/admin/user?selectbox=${nowoption }&page=${page }">${page }</a>
 		<c:if test="${pageInfo.endPage != page }">
 	,
 	</c:if>

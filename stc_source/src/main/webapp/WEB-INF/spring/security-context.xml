@@ -22,7 +22,7 @@
 		
 		<security:form-login 	login-page="/login"
 								default-target-url=""
-								authentication-failure-url="/login/loginForm.do?error"
+								authentication-failure-url="/login"
 								username-parameter="id"
 								password-parameter="password" />
 		

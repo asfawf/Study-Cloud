@@ -33,7 +33,7 @@ public class AdminController {
 		return mv;
 	}	
 	
-	@GetMapping("/users")
+	@GetMapping("/user")
 	public ModelAndView usersList(
 			ModelAndView mv, MemberVo vo
 			, HttpServletRequest req
@@ -87,7 +87,7 @@ public class AdminController {
 		}	
 		
 		
-		mv.setViewName("/users");
+		mv.setViewName("/user");
 		
 		
 		return mv;
@@ -149,7 +149,7 @@ public class AdminController {
 	
 	
 	
-	@PostMapping("/block")
+	@PostMapping("/user/block")
 	public ModelAndView memberBlock(ModelAndView mv
 			,MemberVo vo
 			,HttpServletRequest req
@@ -158,13 +158,13 @@ public class AdminController {
 				
 		System.out.println("vo: "+ vo);
 		int result = service.memberblock(vo);
-		mv.setViewName("redirect:/admin/users?selectbox="+ selectbox);
+		mv.setViewName("redirect:/admin/user?selectbox="+ selectbox);
 		
 		return mv;
 		
 	}
 	
-	@PostMapping("/unblock")
+	@PostMapping("/user/unblock")
 	public ModelAndView memberUnblock(ModelAndView mv
 			,MemberVo vo
 			,HttpServletRequest req
@@ -173,7 +173,7 @@ public class AdminController {
 				
 		System.out.println("vo: "+ vo);
 		int result = service.memberUnblock(vo);
-		mv.setViewName("redirect:/admin/users?selectbox="+ selectbox);
+		mv.setViewName("redirect:/admin/user?selectbox="+ selectbox);
 		
 		return mv;
 		
@@ -183,7 +183,7 @@ public class AdminController {
 	//------------------------------------------------------------------------------------------------
 	
 	
-	@PostMapping("/blockho")
+	@PostMapping("/host/block")
 	public ModelAndView memberBlockHost(ModelAndView mv
 			,MemberVo vo
 			,HttpServletRequest req
@@ -198,7 +198,7 @@ public class AdminController {
 		
 	}
 	
-	@PostMapping("/unblockho")
+	@PostMapping("/host/unblock")
 	public ModelAndView memberUnblockHost(ModelAndView mv
 			,MemberVo vo
 			,HttpServletRequest req
