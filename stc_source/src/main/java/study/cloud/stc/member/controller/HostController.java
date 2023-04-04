@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class HostController {
 
 	@GetMapping
-	public ModelAndView main(ModelAndView mv) {
+	public ModelAndView main(ModelAndView mv) throws Exception {
 		mv.setViewName("host/host");
 		return mv;
 	}	

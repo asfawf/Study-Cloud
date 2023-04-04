@@ -28,7 +28,7 @@ public class AdminController {
 	private final static int PAGE_LIMIT = 5;
 	
 	@GetMapping
-	public ModelAndView main(ModelAndView mv) {
+	public ModelAndView main(ModelAndView mv) throws Exception {
 		mv.setViewName("admin/admin");
 		return mv;
 	}	

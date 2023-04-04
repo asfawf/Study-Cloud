@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
 	@GetMapping
-	public ModelAndView main(ModelAndView mv) {
+	public ModelAndView main(ModelAndView mv) throws Exception {
 		mv.setViewName("user/user");
 		return mv;
 	}	
