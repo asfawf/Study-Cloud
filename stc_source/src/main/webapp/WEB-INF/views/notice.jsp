@@ -9,6 +9,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %> 
+<section>
           <div class="page-head"> 
             <div class="container">
                 <div class="row">
@@ -34,9 +35,10 @@
 							<div class="form-group ">     
                             	<select id="basic" name="notiIdx" class="selectpicker show-tick form-control" title="-전체-" onchange="submit();">
 									<option value=""> -전체- </option>
-									<c:forEach items="${noticeList }" var="notice"> 
-									<option value="${notice.notiIdx }">${notice.notiIdx }</option>
-									</c:forEach>
+									<option value="공지">공지</option>
+									<option value="이벤트">이벤트</option>
+									<option value="복구">복구</option>
+									<option value="복구완료">복구완료</option>
 								</select>
 							</div>                             
                         </form>
@@ -195,7 +197,7 @@
                     </div>                     
             </div>
         </div>
+</section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
-
-    </body>
+</body>
 </html>

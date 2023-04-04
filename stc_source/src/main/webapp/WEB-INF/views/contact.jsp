@@ -10,6 +10,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %> 
+<section>
         <!-- property area -->
         <div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
             <div class="container">  
@@ -71,7 +72,7 @@
                 </div>
             </div>
         </div>
-
-     <%@ include file="/WEB-INF/views/module/footer.jsp" %>
+</section>
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>
 </html>
