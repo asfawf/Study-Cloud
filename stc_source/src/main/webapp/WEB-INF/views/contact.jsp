@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Contact</title>
-<%@ include file="../views/module/link.jsp" %>
+<%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
-<%@ include file="../views/module/header.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header.jsp" %> 
         <!-- property area -->
         <div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
             <div class="container">  
@@ -72,6 +72,6 @@
             </div>
         </div>
 
-     <%@ include file="../views/module/footer.jsp" %>
+     <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>
 </html>

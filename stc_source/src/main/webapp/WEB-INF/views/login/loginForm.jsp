@@ -9,7 +9,7 @@
 <title>로그인</title>
 <!-- 네아로 SDK -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-<%@ include file="../module/link.jsp" %>
+<%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <style>
 
@@ -83,7 +83,7 @@ a {
 
 </style>
 <body>
-<%@ include file="../module/header.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header.jsp" %> 
 
     <div class="page-head"> 
         <div class="container">

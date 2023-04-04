@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>검색 페이지</title>
-<%@ include file="../module/link.jsp" %>
+<%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
-<%@ include file="../module/header.jsp" %>
+<%@ include file="/WEB-INF/views/module/header.jsp" %>
 
 <section>
         <div class="page-head"> 
@@ -364,6 +364,6 @@
         </div>
 
 </section>
-<%@ include file="../module/footer.jsp" %>
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>
     </body>
 </html>

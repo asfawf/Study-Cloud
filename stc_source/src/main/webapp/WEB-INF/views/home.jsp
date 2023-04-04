@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Study Cloud</title>
-<%@ include file="../views/module/link.jsp" %>
+<%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
-<%@ include file="../views/module/header.jsp" %>
+<%@ include file="/WEB-INF/views/module/header.jsp" %>
 <section>
         <div class="slider-area">
             <div class="slider">
@@ -59,7 +59,7 @@
             </div>
         </div>        
 </section>
-<%@ include file="../views/module/footer.jsp" %>
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>
  
 
 

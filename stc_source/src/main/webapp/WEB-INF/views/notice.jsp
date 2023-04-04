@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
-<%@ include file="../views/module/link.jsp" %>
+<%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
-<%@ include file="../views/module/header.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header.jsp" %> 
           <div class="page-head"> 
             <div class="container">
                 <div class="row">
@@ -195,7 +195,7 @@
                     </div>                     
             </div>
         </div>
-<%@ include file="../views/module/footer.jsp" %>
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
     </body>
 </html>

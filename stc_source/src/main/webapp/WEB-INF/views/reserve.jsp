@@ -51,14 +51,14 @@
 
 
 <!-- 링크 -->
-<%@ include file="../views/module/link.jsp" %>
+<%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
 
 
 
 <!-- 공간상세설명부분 -->
-	<%--  <%@ include file="./module/header.jsp" %>--%>
+	<%--  <%@ include file="/WEB-INF/views/module/header.jsp" %>--%>
 	<div class="page-head">
 		<div class="container">
 			<div class="row">
