@@ -51,7 +51,7 @@
 	                            </div>
 	                            <div class="col-xs-6 m-padding">
 	                                <div class="welcome-estate">
-	                                    <a href="${pageContext.request.contextPath}/admin/users">
+	                                    <a href="${pageContext.request.contextPath}/admin/user">
 		                                    <div class="welcome-icon">
 		                                      	<i class="pe-7s-users pe-4x"></i>
 		                                    </div>
