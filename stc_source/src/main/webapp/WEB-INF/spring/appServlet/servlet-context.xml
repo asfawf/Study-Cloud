@@ -35,9 +35,11 @@
 		base-package="study.cloud.stc" />
 
 	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/echo"/>
+		<websocket:mapping handler="handlerChat" path="/chat"/>
+		<websocket:sockjs websocket-enabled="true"/>
 	</websocket:handlers>
-	<beans:bean id="echoHandler" class="study.cloud.stc.chat.EchoHandler">
+	
+	<beans:bean id="handlerChat" class="study.cloud.stc.chat.HandlerChat">
 	</beans:bean>
 	
 	
