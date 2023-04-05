@@ -28,7 +28,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 register-blocks">
-                        <h2>회원가입 : </h2> 
+                        <h2>회원가입</h2> 
                         <form action="" method="post">
                             <div class="form-group">
                                 <label for="id">아이디</label>
