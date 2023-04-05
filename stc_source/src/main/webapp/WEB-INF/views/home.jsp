@@ -50,8 +50,8 @@
                                         <option>used</option>  
                                     </select>
                                 </div>
-                                <button class="btn search-btn" type="button" onclick=" location.href='search' ">검색</button>
-                                <button class="btn search-btn" type="button" onclick=" location.href='map' ">지도</button>
+                                <button class="btn search-btn" type="button" onclick=" location.href='product' ">검색</button>
+                                <button class="btn search-btn" type="button" onclick=" location.href='product/map' ">지도</button>
 							</form>
                         </div>
                     </div>

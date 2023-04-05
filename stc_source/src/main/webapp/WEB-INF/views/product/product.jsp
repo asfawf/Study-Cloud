@@ -104,11 +104,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -127,11 +127,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -156,11 +156,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -179,11 +179,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -202,11 +202,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -225,11 +225,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -248,11 +248,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -271,11 +271,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -300,11 +300,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
@@ -323,11 +323,11 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
