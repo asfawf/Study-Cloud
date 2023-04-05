@@ -4,18 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<!-- jQuery -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-	<!-- iamport.payment.js -->
-	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<title>product detail page</title>
+
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
+
 </head>
     <body>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<%--  <%@ include file="/WEB-INF/views/module/header.jsp" %>--%>
-       <div class="page-head"> 
+    <section>
+        <%@ include file="/WEB-INF/views/module/header.jsp" %>
+        
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- Body content -->
+        <div class="page-head"> 
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
@@ -32,66 +34,43 @@
 
                 <div class="clearfix padding-top-40" >
 
- <div class="col-md-8 single-property-content prp-style-1 "> 
+                    <div class="col-md-8 single-property-content prp-style-1 ">
                         <div class="row">
                             <div class="light-slide-item">            
                                 <div class="clearfix">
-                                    <div class="favorite-and-print">
-                                        <a class="add-to-fav" href="#login-modal" data-toggle="modal">
-                                            <i class="fa fa-star-o"></i>
-                                        </a>
-                                        <a class="printer-icon " href="javascript:window.print()">
-                                            <i class="fa fa-print"></i> 
-                                        </a>
-                                    </div> 
-
-                                   <!--  <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                                        <li data-thumb="../assets/img/hello/085436.jpg"> 
-                                            <img src="../assets/img/hello/085436.jpg" />
+                                    
+                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                                        <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property1.jpg"> 
+                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/hello/085436.jpg" />
                                         </li>
-                                        <li data-thumb="../assets/img/property-1/property2.jpgfd"> 
-                                            <img src="../assets/img/hello/085503.jpg" />
+                                        <%-- <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property2.jpg"> 
+                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property3.jpg" />
                                         </li>
-                                        <li data-thumb="../assets/img/property-1/property3.jpg"> 
-                                            <img src="../assets/img/hello/085528.jpg" />
+                                        <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property3.jpg"> 
+                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property3.jpg" />
                                         </li>
-                                        <li data-thumb="../assets/img/property-1/property4.jpg"> 
-                                            <img src="../assets/img/hello/085538.jpg" />
-                                        </li>                                         
-                                    </ul> -->
+                                        <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property4.jpg"> 
+                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property4.jpg" />
+                                        </li>      --%>                                    
+                                    </ul>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
 
-                        <div class="single-property-wrapper">
+                       <!--   <div class="single-property-wrapper">-->
                             <div class="single-property-header">                                          
                                 <h1 class="property-title pull-left">강남역 3분 스터디룸[헬로강남]</h1>
-                                <button onclick="requestPay()" class="property-price pull-right">결제하기(동작X)</button>
+                                <span class="property-price pull-right">$825,000</span>
                             </div>
 
-                            <div class="property-meta entry-meta clearfix ">   
-
-                                
-
-
-	  	                    </div>
-	                            <!-- .property-meta -->
-	
-	                            <div class="section">
-	                                <h4 class="s-property-title">공간소개</h4>
-	                                <div class="s-property-content">
-	                                    <p>여러화가의 색체가 예쁘게담긴<br>편안한 12인 모임감성공간[헬로강남] 입니다. </p>
-	                                </div>
-	                           <!-- End description area  -->
-	                        </div>
-	     
                             
-                            
-                            
-                            
-                            
-                            
-                            <!-- End additional-details area  -->
+                            <div class="section">
+                                <h4 class="s-property-title">공간소개</h4>
+                                <div class="s-property-content">
+                                    <p>N여러화가의 색체가 예쁘게담긴<br>편안한 12인 모임감성공간[헬로강남] 입니다.</p>
+                                </div>
+                            </div>
+                            <!-- End introduce area  -->
 
                             <div class="section additional-details">
 
@@ -102,100 +81,57 @@
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">영업시간</span>
                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">0~24시</span>
                                     </li>
-                                    
+
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">층</span>
                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">지상8층</span>
                                     </li>
-
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">주차</span>
                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">불가능</span>
                                     </li>
+
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">엘리베이터</span>
                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">없음</span>
                                     </li>
-                                  
-
                                 </ul>
-                            </div> 
+                            </div>  
+                            <!-- End additional-details area  -->
 
-                            
-                            <!-- End features area  -->
+                            <div class="section property-features">      
 
+                                <h4 class="s-property-title">유의사항</h4>                            
+                                <ul>
+                                    <li><a>잔여시간 환불 불가</a></li><br>   
+                                    <li><a>소품 파손시 신품가격 변상</a></li><br>
+                                    <li><a>퇴실시 기본적인 청소 및 소품 원위치</a></li><br>
+                                    <li><a>고객님의 안전과 보안을 위하여 CCTV설치</a></li><br>
+                                    <li><a>5분전퇴실</a></li><br>
+                                    <li><a>작업실내 달리기/고함지르기 소음행위 금지</a></li>
+                                </ul>
 
-
-                            
-                            <div class="section review"> 
-                                <h4 class="s-property-title">유의사항</h4> 
-                                
                             </div>
-                            <!-- review area  -->
+                            <!-- End 유의사항 area  -->
 
-                            <div class="section review"> 
-                                <h4 class="s-property-title">Review</h4> 
-                                
-                                  <div class="container">
-                                        <div class="row">
-                                            <div class="blog-lst col-md-9 p0">
-                                                
-                        
-                                             <section class="about-autor">
-                        
-                                              </section>
-                      
-                                              <section id="comments" class="comments wow fadeInRight animated"> 
-                                                
-                        
-                        
-                                                    <div class="row comment">
-                                                        <div class="">
-                                                            
-                                                        </div>
-                                                        <div class="col-sm-9 col-md-10">
-                                                            <h5 class="text-uppercase">Julie Alma</h5>
-                                                            <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                                               </p>
-                                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.comment -->
-                        
-                        
-                                                    <div class="row comment last">
-                                                        <div class="">
-                                                        </div>
-                                                        <div class="col-sm-9 col-md-10">
-                                                            <h5 class="text-uppercase">Louise Armero</h5>
-                                                            <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
-                                                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                                                </p>
-                                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                                            </p>
-                                                        </div>
-                        
-                                                    </div>
-                                                    <!-- /.comment -->
-                                                </section>
-                                                
-                                            </div>                    
-                                            </div>   
-                                        </div>
-                                </div>
-                                
-                            </div>
-                            <!-- review area  -->
-                            
-                            
 
-                            <div class="section qna"> 
-                                <h4 class="s-property-title">Q&A</h4> 
-                              
+
+                            <div class="section property-features">      
+
+                                <h4 class="s-property-title">환불규정</h4>                            
+                                <ul>
+                                    <li><a>이용 6일전 : 총 금액의 100% 환불</a></li><br>   
+                                    <li><a>이용 5일전 : 환불 불가</a></li><br>
+                                    <li><a>이용 4일전 : 환불 불가</a></li><br>
+                                    <li><a>이용 3일전 : 환불 불가</a></li><br>
+                                    <li><a>이용 2일전 : 환불 불가</a></li><br>
+                                    <li><a>이용 1일전 : 환불 불가</a></li>
+                                </ul>
+
                             </div>
-                            <!-- qna area  -->
+                            <!-- End 환불 규정 area  -->
+
+
 
 
                             <div class="section property-features">      
@@ -223,16 +159,211 @@
 							marker.setMap(map);    
 							</script>
 
+                            </div>                      
+                            
+
+
+                            <!-- 지도 안내 -->
+
+                            <div class="section property-share"> 
+                                <h4 class="s-property-title">Q&A</h4> 
+                                <section id="comments" class="comments wow fadeInRight animated"> 
+                                           
+                                    <div class="row comment">
+                                        
+                                        <div class="col-sm-9 col-md-10">
+                                            <h5 class="text-uppercase">Julie Alma</h5>
+                                            <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
+                                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                                Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- /.comment -->
+        
+        
+                                    <div class="row comment last">
+        
+                                        <div class="col-sm-9 col-md-10">
+                                            <h5 class="text-uppercase">Louise Armero</h5>
+                                            <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
+                                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                                Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                            </p>
+                                        </div>
+        
+                                    </div>
+                                    <!-- /.comment -->
+                                </section>
+                            </div>
+                            <!-- End qna area  -->
+                           
+                            <!-- start review area -->
+                            <div class="section property-share"> 
+                                <h4 class="s-property-title">review</h4> 
+                                <div class="client-text">                                
+                                    <p>접근성이 좋고 공간에 들어섰을때 아늑한 분위기가 너무 좋았습니다.</p>
+                                    <h4><strong>Ohidul Islam, </strong></h4>
+                                </div>
+                                <div class="client-text">                                
+                                    <p>깔끔하고 무료로 마실수 있어서 좋았어요 또 이용할 생각입니다</p>
+                                    <h4><strong>Ohidul Islam, </strong></h4>
+                                </div>
+                                <div class="client-text">                                
+                                    <p>넘 좋았어요 음료 1개 주는게 좋네요 다음에도 이용할게요</p>
+                                    <h4><strong>Ohidul Islam, </strong></h4>
+                                </div>
+                            
+                            </div>
+
+
+                            <!-- End review area -->
+
+                            
+                      <!--   </div> -->
+                       </div>
+
+
+                    <!-- 사이드바 구역 -->
+
+                    <div class="col-md-4 p0">
+                        <aside class="sidebar sidebar-property blog-asside-right">
+                            <div class="dealer-widget">
+                                <div class="dealer-content">
+                                    <div class="inner-wrapper">
+
+                                        <div class="clear">
+                                            <div class="col-xs-4 col-sm-4 dealer-face">
+                                                <a href="">
+                                                    <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/client-face1.png" class="img-circle">
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 ">
+                                                <h3 class="dealer-name">
+                                                    <a href="">Nathan James</a>
+                                                    <span>Real Estate Agent</span>        
+                                                </h3>
+                                                <div class="dealer-social-media">
+                                                    <a class="twitter" target="_blank" href="">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                    <a class="facebook" target="_blank" href="">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                    <a class="gplus" target="_blank" href="">
+                                                        <i class="fa fa-google-plus"></i>
+                                                    </a>
+                                                    <a class="linkedin" target="_blank" href="">
+                                                        <i class="fa fa-linkedin"></i>
+                                                    </a> 
+                                                    <a class="instagram" target="_blank" href="">
+                                                        <i class="fa fa-instagram"></i>
+                                                    </a>       
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="clear">
+                                            <ul class="dealer-contacts">                                       
+                                                <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
+                                                <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+                                                <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
+                                            </ul>
+                                            <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Similar Properties</h3>
+                                </div>
+                                <div class="panel-body recent-property-widget">
+                                        <ul>
+                                        <li>
+                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                                <a href="single.html"><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/small-property-2.jpg"></a>
+                                                <span class="property-seeker">
+                                                    <b class="b-1">A</b>
+                                                    <b class="b-2">S</b>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                                <h6> <a href="single.html">Super nice villa </a></h6>
+                                                <span class="property-price">3000000$</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="col-md-3 col-sm-3  col-xs-3 blg-thumb p0">
+                                                <a href="single.html"><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/small-property-1.jpg"></a>
+                                                <span class="property-seeker">
+                                                    <b class="b-1">A</b>
+                                                    <b class="b-2">S</b>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                                <h6> <a href="single.html">Super nice villa </a></h6>
+                                                <span class="property-price">3000000$</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                                <a href="single.html"><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/small-property-3.jpg"></a>
+                                                <span class="property-seeker">
+                                                    <b class="b-1">A</b>
+                                                    <b class="b-2">S</b>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                                <h6> <a href="single.html">Super nice villa </a></h6>
+                                                <span class="property-price">3000000$</span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                                <a href="single.html"><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/small-property-2.jpg"></a>
+                                                <span class="property-seeker">
+                                                    <b class="b-1">A</b>
+                                                    <b class="b-2">S</b>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                                <h6> <a href="single.html">Super nice villa </a></h6>
+                                                <span class="property-price">3000000$</span>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>                          
+
+                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Ads her  </h3>
+                                </div>
+                                <div class="panel-body recent-property-widget">
+                                    <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/ads.jpg">
+                                </div>
                             </div>
 
                             
-                        </div>
-                    </div>
 
+                        </aside>
                     </div>
                 </div>
-                
-                
+
+            </div>
+        </div>
+
+
+         
+          
         
         
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/vendor/modernizr-2.6.2.min.js"></script>
@@ -265,35 +396,9 @@
                     }
                 });
             });
-            
-            
-            
-            var IMP = window.IMP;
-        	IMP.init("imp43677748"); // 예: imp00000000
-        	
-            function requestPay() {
-              // IMP.request_pay(param, callback) 결제창 호출
-              IMP.request_pay({ // param
-                  pg: "html5_inicis",
-                  pay_method: "card",
-                  merchant_uid: "G9F80131-0000411",
-                  name: "[1시간무료[헬로강남]",
-                  amount: 100,
-                  buyer_email: "study-cloud@gmail.com",
-                  buyer_name: "구매자",
-//                   buyer_tel: "010-1234-5678",
-//                   buyer_addr: "서울특별시 강남구",
-//                   buyer_postcode: "01181"
-              }, function (rsp) { // callback
-            	  if (rsp.success) {
-                      alert('결제성공');
-               } else {
-                      alert('결제실패');
-               }
-              });
-            }
         </script>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+		</section>
+		<%@ include file="/WEB-INF/views/module/footer.jsp" %>
+		
     </body>
 </html>
