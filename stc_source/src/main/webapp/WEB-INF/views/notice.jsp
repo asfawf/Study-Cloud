@@ -10,17 +10,15 @@
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %> 
 <section>
-          <div class="page-head"> 
-            <div class="container">
-                <div class="row">
-                    <div class="page-head-content">
-                        <h2 class="page-title text-center" style="color: black;">
-                        	공지사항
-                        </h2>               
-                    </div>
-                </div>
-            </div>
-        </div>
+	<div class="count-area"> 
+	    <div class="container">
+		    <div class="row">
+	    	    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+	        	    <h2>공지사항</h2>               
+	            </div>
+	        </div>
+	    </div>
+	</div>
         <!-- End page header -->
         
 
