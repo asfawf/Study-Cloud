@@ -25,7 +25,7 @@
 	                    	<form:form action="${pageContext.request.contextPath}/login" method="GET">
 					    		<button class="navbar-btn nav-button login" onclick=" submit(); ">로그인</button>
 							</form:form>
-							<form:form action="${pageContext.request.contextPath}/join" method="GET">
+							<form:form action="${pageContext.request.contextPath}/jointerms" method="GET">
 					    		<button class="navbar-btn nav-button" onclick=" submit(); ">회원가입</button>
 							</form:form>		                        
 						</sec:authorize>
