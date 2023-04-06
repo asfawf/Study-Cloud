@@ -14,4 +14,6 @@ public class HostController {
 		mv.setViewName("host/host");
 		return mv;
 	}	
+	
+	
 }
