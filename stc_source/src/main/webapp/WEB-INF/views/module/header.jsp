@@ -60,11 +60,33 @@
 						</sec:authorize>			
 						</sec:authorize>                      
                     </div>
-                    <ul class="main-nav nav navbar-nav navbar-right">
-                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
-						<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat</a></li>
-                    </ul>
+                    <sec:authorize access="isAuthenticated()">
+					<sec:authorize access="hasRole('USER')">
+	                    <ul class="main-nav nav navbar-nav navbar-right">
+	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
+							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
+	                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat(USER)</a></li>
+	                    </ul>
+                    </sec:authorize>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+					<sec:authorize access="hasRole('HOST')">
+	                    <ul class="main-nav nav navbar-nav navbar-right">
+	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
+							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
+	                    </ul>
+                    </sec:authorize>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+					<sec:authorize access="hasRole('ADMIN')">
+	                    <ul class="main-nav nav navbar-nav navbar-right">
+	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
+							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
+	                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat(ADMIN)</a></li>
+	                    </ul>
+                    </sec:authorize>
+                    </sec:authorize>
+                    
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
