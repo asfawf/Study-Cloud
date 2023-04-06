@@ -11,7 +11,13 @@ public class HostController {
 
 	@GetMapping
 	public ModelAndView main(ModelAndView mv) throws Exception {
-		mv.setViewName("host/host");
+		mv.setViewName("/host/host");
+		return mv;
+	}	
+	
+	@GetMapping("/product")
+	public ModelAndView selectProductList(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/product");
 		return mv;
 	}	
 	

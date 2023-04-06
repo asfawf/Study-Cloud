@@ -11,6 +11,14 @@
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
 
 <section>
+		<div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- Body content -->
+
+
+
+
         <div class="page-head"> 
             <div class="container">
                 <div class="row">

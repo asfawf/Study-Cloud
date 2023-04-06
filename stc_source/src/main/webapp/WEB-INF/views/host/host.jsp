@@ -43,7 +43,7 @@
                         	</a>
                     	</div>
 	                	<div class="col-sm-2 col-xs-6">
-	                    	<a href="${pageContext.request.contextPath}host/product">
+	                    	<a href="${pageContext.request.contextPath}/host/product">
 	                        	<div class="count-item">
 	                            	<div class="count-item-circle">
 	                                	<span class="pe-7s-notebook"></span>
