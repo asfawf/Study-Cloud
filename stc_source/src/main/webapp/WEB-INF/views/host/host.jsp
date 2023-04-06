@@ -14,7 +14,7 @@
 	    <div class="container">
 		    <div class="row">
 	    	    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-	        	    <h2>호스트님, 반갑습니다.</h2>               
+	        	    <h2>호스트 <%= request.getUserPrincipal().getName() %>님, 반갑습니다.</h2>               
 	            </div>
 	        </div>
 	    </div>
@@ -33,7 +33,7 @@
                         	<a href="${pageContext.request.contextPath}/host/info">
                             	<div class="count-item">
                                 	<div class="count-item-circle">
-                                    	<span class="pe-7s-users"></span>
+                                    	<span class="pe-7s-id"></span>
                                     </div>
                                     <div class="chart" data-percent="5000">
                                         <h2></h2>
@@ -43,10 +43,10 @@
                         	</a>
                     	</div>
 	                	<div class="col-sm-2 col-xs-6">
-	                    	<a href="${pageContext.request.contextPath}/host/product">
+	                    	<a href="${pageContext.request.contextPath}host/product">
 	                        	<div class="count-item">
 	                            	<div class="count-item-circle">
-	                                	<span class="pe-7s-notebook"></span>
+	                                	<span class="pe-7s-home"></span>
 	                                </div>
 	                                <div class="chart" data-percent="120">
 	                                	<h2></h2>
@@ -59,7 +59,7 @@
                         	<a href="${pageContext.request.contextPath}/host/reserve">
                                 <div class="count-item">
                             	    <div class="count-item-circle">
-                                        <span class="pe-7s-home"></span>
+                                        <span class="pe-7s-edit"></span>
                                     </div>
                                     <div class="chart" data-percent="12000">
                                         <h2></h2>
@@ -72,7 +72,7 @@
                         	<a href="${pageContext.request.contextPath}/host/review">
                                 <div class="count-item">
                                     <div class="count-item-circle">
-                                        <span class="pe-7s-help2"></span>
+                                        <span class="pe-7s-copy-file"></span>
                                     </div>
                                     <div class="chart" data-percent="120">
                                         <h2></h2>
@@ -85,7 +85,7 @@
                             <a href="${pageContext.request.contextPath}/host/qna">
                                 <div class="count-item">
                                     <div class="count-item-circle">
-                                        <span class="pe-7s-flag"></span>
+                                        <span class="pe-7s-comment"></span>
                                     </div>
                                     <div class="chart" data-percent="120">
                                         <h2></h2>

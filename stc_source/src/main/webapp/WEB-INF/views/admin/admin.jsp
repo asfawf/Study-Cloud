@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자관리 페이지</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
@@ -14,7 +14,7 @@
 	    <div class="container">
 		    <div class="row">
 	    	    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-					<h3>관리자님, 반갑습니다.</h3>	        	    	
+					<h2><%= request.getUserPrincipal().getName() %>님, 반갑습니다.</h2>	        	    	
 	            </div>
 	        </div>
 	    </div>
@@ -33,7 +33,7 @@
                         	<a href="${pageContext.request.contextPath}/admin/user">
                             	<div class="count-item">
                                 	<div class="count-item-circle">
-                                    	<span class="pe-7s-users"></span>
+                                    	<span class="pe-7s-id"></span>
                                     </div>
                                     <div class="chart" data-percent="5000">
                                         <h2></h2>
@@ -46,7 +46,7 @@
 	                    	<a href="${pageContext.request.contextPath}/admin/host">
 	                        	<div class="count-item">
 	                            	<div class="count-item-circle">
-	                                	<span class="pe-7s-notebook"></span>
+	                                	<span class="pe-7s-users"></span>
 	                                </div>
 	                                <div class="chart" data-percent="120">
 	                                	<h2></h2>
@@ -72,7 +72,7 @@
                         	<a href="${pageContext.request.contextPath}/admin/chat">
                                 <div class="count-item">
                                     <div class="count-item-circle">
-                                        <span class="pe-7s-help2"></span>
+                                        <span class="pe-7s-chat"></span>
                                     </div>
                                     <div class="chart" data-percent="120">
                                         <h2></h2>
@@ -85,7 +85,7 @@
                             <a href="${pageContext.request.contextPath}/notice">
                                 <div class="count-item">
                                     <div class="count-item-circle">
-                                        <span class="pe-7s-flag"></span>
+                                        <span class="pe-7s-pin"></span>
                                     </div>
                                     <div class="chart" data-percent="120">
                                         <h2></h2>
@@ -98,7 +98,7 @@
                             <a href="${pageContext.request.contextPath}/contact">
                                 <div class="count-item">
                                     <div class="count-item-circle">
-                                        <span class="pe-7s-graph2"></span>
+                                        <span class="pe-7s-help1"></span>
                                     </div>
                                     <div class="chart" data-percent="5000">
                                         <h2></h2>

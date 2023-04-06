@@ -30,36 +30,33 @@
 							</form:form>		                        
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
-						<sec:authorize access="hasRole('ADMIN')">
-							<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-								<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
-							</form:form>
-							<form:form action="${pageContext.request.contextPath}/admin" method="GET">
-					    		<button class="navbar-btn nav-button" onclick=" submit(); ">관리자관리</button>
-							</form:form>
-						</sec:authorize>			
-						</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
-						<sec:authorize access="hasRole('HOST')">
-							<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-						    	<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
-					    	</form:form>
-							<form:form action="${pageContext.request.contextPath}/host" method="GET">
-					    		<button class="navbar-btn nav-button" onclick=" submit(); ">마이페이지</button>
-							</form:form>
-						</sec:authorize>			
-						</sec:authorize> 
-						<sec:authorize access="isAuthenticated()">
-						<sec:authorize access="hasRole('USER')">
-							<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-						    	<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
-					    	</form:form>
-							<form:form action="${pageContext.request.contextPath}/user" method="GET">
-					    		<button class="navbar-btn nav-button" onclick=" submit(); ">마이페이지</button>
-							</form:form>
-						</sec:authorize>			
-						</sec:authorize>                      
+							<sec:authorize access="hasRole('ADMIN')">
+						    	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+									<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
+								</form:form>
+								<form:form action="${pageContext.request.contextPath}/admin" method="GET">
+				    				<button class="navbar-btn nav-button" onclick=" submit(); ">관리자관리</button>
+								</form:form>
+							</sec:authorize>  
+						    <sec:authorize access="hasRole('HOST')">
+						    	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+					    			<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
+				    			</form:form>
+								<form:form action="${pageContext.request.contextPath}/host" method="GET">
+				    				<button class="navbar-btn nav-button" onclick=" submit(); ">마이페이지</button>
+								</form:form>
+							</sec:authorize>  
+						    <sec:authorize access="hasRole('USER')">
+						    	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+					    			<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
+				    			</form:form>
+								<form:form action="${pageContext.request.contextPath}/user" method="GET">
+				    				<button class="navbar-btn nav-button" onclick=" submit(); ">마이페이지</button>
+								</form:form>
+							</sec:authorize>	
+						</sec:authorize>						                     
                     </div>
+                    <!-- navbar 시작 -->
                     <sec:authorize access="isAnonymous()">					
 	                    <ul class="main-nav nav navbar-nav navbar-right">
 	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
@@ -68,33 +65,29 @@
 	                    </ul>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
-					<sec:authorize access="hasRole('USER')">
-	                    <ul class="main-nav nav navbar-nav navbar-right">
-	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
-							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat('USER')</a></li>
-	                    </ul>
-                    </sec:authorize>
-                    </sec:authorize>
-                    <sec:authorize access="isAuthenticated()">
-					<sec:authorize access="hasRole('HOST')">
-	                    <ul class="main-nav nav navbar-nav navbar-right">
-	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
-							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                    </ul>
-                    </sec:authorize>
-                    </sec:authorize>
-                    <sec:authorize access="isAuthenticated()">
-					<sec:authorize access="hasRole('ADMIN')">
-	                    <ul class="main-nav nav navbar-nav navbar-right">
-	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
-							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat('ADMIN')</a></li>
-	                    </ul>
-                    </sec:authorize>
-                    </sec:authorize>
-                    
-                </div><!-- /.navbar-collapse -->
+	                    <sec:authorize access="hasRole('ADMIN')">
+		                    <ul class="main-nav nav navbar-nav navbar-right">
+		                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
+								<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
+		                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat('ADMIN')</a></li>
+		                    </ul>
+	                    </sec:authorize>
+	                    <sec:authorize access="hasRole('HOST')">
+		                    <ul class="main-nav nav navbar-nav navbar-right">
+		                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
+								<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
+		                    </ul>
+	                    </sec:authorize>
+						<sec:authorize access="hasRole('USER')">
+		                    <ul class="main-nav nav navbar-nav navbar-right">
+		                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
+								<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
+		                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat('USER')</a></li>
+		                    </ul>
+	                    </sec:authorize> 
+					</sec:authorize>					                   
+                </div>
+                <!-- navbar 끝 --> 
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
