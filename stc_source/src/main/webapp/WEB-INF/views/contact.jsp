@@ -11,11 +11,20 @@
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %> 
 <section>
+	<div class="count-area"> 
+	    <div class="container">
+		    <div class="row">
+	    	    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+	        	    <h2></h2>               
+	            </div>
+	        </div>
+	    </div>
+	</div>
         <!-- property area -->
         <div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
             <div class="container">  
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2"> 
+                    <div class="col-md-12"> 
                         <div class="" id="contact1">                        
                             <div class="row">
                                 <div class="col-sm-4">
