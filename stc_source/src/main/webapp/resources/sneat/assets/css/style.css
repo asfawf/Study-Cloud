@@ -1,6 +1,5 @@
 html, body {
-    width: 100%;
-    height:100%;
+    width: 100%;height:100%;
     overflow-x: hidden;
 }
 body {
@@ -15,16 +14,20 @@ body {
     background: #fff; 
     position: relative;
 }
-footer{
+footer{ /* height:43px; position:relative; transform: translateY(-100%); */
 	position: relative;
 	left: 0px;
 	bottom: 0px;
 	width: 100%;
 }
-section{
+section{ 
 	height: auto; 
 	min-height:100%; 
 	padding-bottom:43px;
+}
+.notice-select{
+	padding-top: 55px;
+	padding-bottom: 40px;
 }
 /*           Font Smoothing      */
 
@@ -82,7 +85,7 @@ p {
     margin:0;
 }
 a {
-    color: #d27e04;
+    color: #718f45;
     outline: 0;
     font-weight: bold;
     -webkit-transition: all .8s ease;
@@ -2367,8 +2370,8 @@ count-area
     padding: 2px 15px;
     text-transform: uppercase;
     margin: 0px;
-    border-left: 2px solid #FDC600;
-    border-right: 2px solid #FDC600;
+    /* border-left: 2px solid #FDC600;
+    border-right: 2px solid #FDC600; */
     display: inline-block;
 }
 .boy-sale-area {

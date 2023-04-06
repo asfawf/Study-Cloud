@@ -8,89 +8,110 @@
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/module/header.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header2.jsp" %> 
 <section>
-	<div class="page-head"> 
-	      <div class="container">
-	          <div class="row">
-	              <div class="page-head-content">
-	                  <h1 class="page-title text-center" style="color: black;">관리자관리 페이지 </h1>               
+	<div class="count-area"> 
+	    <div class="container">
+		    <div class="row">
+	    	    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+					<h3>관리자님, 반갑습니다.</h3>	        	    	
 	            </div>
 	        </div>
 	    </div>
 	</div>
-	<!-- End page header -->
-	
-	<!--Welcome area -->
-	<div>
-	    <div class="container">
-	        <div class="row">
-	            <div class="col-md-12 Welcome-entry  col-sm-12">
-	                <!-- <div class="col-md-5 col-md-offset-2 col-sm-6 col-xs-12">
-	                    <div>
-	                        <div class="row">
-	                            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-	                                /.feature title
-	                                 
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div> -->
-	                <div class="col-md-12">
-	                    <div>
-	                        <div class="row">
-	                            <div class="col-xs-6 m-padding">
-	                                <div class="welcome-estate">
-		                                <a href="${pageContext.request.contextPath}/admin/product">
-		                                    <div class="welcome-icon">
-		                                        <i class="pe-7s-home pe-4x"></i>
-		                                    </div>
-		                                    <h3>공간관리</h3>
-	                                    </a>
+	<div class="count-area">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                	<h2></h2> 
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+                	<div class="row">
+                    	<div class="col-sm-2 col-xs-6">
+                        	<a href="${pageContext.request.contextPath}/admin/user">
+                            	<div class="count-item">
+                                	<div class="count-item-circle">
+                                    	<span class="pe-7s-users"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        <h2></h2>
+                                        <h5>일반회원 관리</h5>
+                                    </div>
+                            	</div>
+                        	</a>
+                    	</div>
+	                	<div class="col-sm-2 col-xs-6">
+	                    	<a href="${pageContext.request.contextPath}/admin/host">
+	                        	<div class="count-item">
+	                            	<div class="count-item-circle">
+	                                	<span class="pe-7s-notebook"></span>
 	                                </div>
-	                            </div>
-	                            <div class="col-xs-6 m-padding">
-	                                <div class="welcome-estate">
-	                                    <a href="${pageContext.request.contextPath}/admin/user">
-		                                    <div class="welcome-icon">
-		                                      	<i class="pe-7s-users pe-4x"></i>
-		                                    </div>
-		                                    <h3>사용자 정보 관리</h3>
-	                                    </a>
+	                                <div class="chart" data-percent="120">
+	                                	<h2></h2>
+	                                    <h5>호스트 관리</h5>
 	                                </div>
-	                            </div>
-	
-	
-	                            <!-- <div class="col-xs-12 text-center">
-	                                <i class="welcome-circle"></i>
-	                            </div> -->
-	
-	                            <div class="col-xs-6 m-padding">
-	                                <div class="welcome-estate">
-		                                <a href="${pageContext.request.contextPath}/admin/host">
-		                                    <div class="welcome-icon">
-		                                        <i class="pe-7s-notebook pe-4x"></i>
-		                                    </div>
-		                                    <h3>호스트 정보 관리</h3>
-	                                	</a>
-	                                </div>
-	                            </div>
-	                            <div class="col-xs-6 m-padding">
-	                                <div class="welcome-estate">
-	                                    <div class="welcome-icon">
-	                                        <i class="pe-7s-help2 pe-4x"></i>
-	                                    </div>
-	                                    <h3>채팅 관리</h3>
-	                                </div>
-	                            </div>
-	
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div> 
+	                        	</div> 
+	                    	</a>
+	                	</div>
+                        <div class="col-sm-2 col-xs-6">
+                        	<a href="${pageContext.request.contextPath}/admin/product">
+                                <div class="count-item">
+                            	    <div class="count-item-circle">
+                                        <span class="pe-7s-home"></span>
+                                    </div>
+                                    <div class="chart" data-percent="12000">
+                                        <h2></h2>
+                                        <h5>공간관리</h5>
+                                    </div>
+                                </div>
+                            </a> 
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                        	<a href="${pageContext.request.contextPath}/admin/chat">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span class="pe-7s-help2"></span>
+                                    </div>
+                                    <div class="chart" data-percent="120">
+                                        <h2></h2>
+                                        <h5>채팅관리</h5>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div>                       
+                        <div class="col-sm-2 col-xs-6">
+                            <a href="${pageContext.request.contextPath}/notice">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span class="pe-7s-flag"></span>
+                                    </div>
+                                    <div class="chart" data-percent="120">
+                                        <h2></h2>
+                                        <h5>공지사항 관리</h5>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div> 
+                        <div class="col-sm-2 col-xs-6">
+                            <a href="${pageContext.request.contextPath}/contact">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span class="pe-7s-graph2"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        <h2></h2>
+                                        <h5>도움말 관리</h5>
+                                    </div>
+                                </div> 
+							</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %> 
 </body>

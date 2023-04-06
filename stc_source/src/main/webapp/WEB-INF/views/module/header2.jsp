@@ -34,7 +34,7 @@
 							<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 								<button class="navbar-btn nav-button login" onclick=" submit(); ">로그아웃</button>
 							</form:form>
-							<form:form action="${pageContext.request.contextPath}/admin" method="GET">
+							<form:form action="${pageContext.request.contextPath}/admin?memId=${member.memId }" method="GET">
 					    		<button class="navbar-btn nav-button" onclick=" submit(); ">관리자관리</button>
 							</form:form>
 						</sec:authorize>			
@@ -60,40 +60,39 @@
 						</sec:authorize>			
 						</sec:authorize>                      
                     </div>
-                    <sec:authorize access="isAnonymous()">					
-	                    <ul class="main-nav nav navbar-nav navbar-right">
-	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
-							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat</a></li>
-	                    </ul>
-                    </sec:authorize>
-                    <sec:authorize access="isAuthenticated()">
-					<sec:authorize access="hasRole('USER')">
-	                    <ul class="main-nav nav navbar-nav navbar-right">
-	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
-							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat('USER')</a></li>
-	                    </ul>
-                    </sec:authorize>
-                    </sec:authorize>
-                    <sec:authorize access="isAuthenticated()">
-					<sec:authorize access="hasRole('HOST')">
-	                    <ul class="main-nav nav navbar-nav navbar-right">
-	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
-							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                    </ul>
-                    </sec:authorize>
-                    </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
 					<sec:authorize access="hasRole('ADMIN')">
-	                    <ul class="main-nav nav navbar-nav navbar-right">
-	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
-							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat('ADMIN')</a></li>
-	                    </ul>
-                    </sec:authorize>
-                    </sec:authorize>
-                    
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li><a class="" href="<%=request.getContextPath() %>/admin/user">일반회원 관리</a></li>
+						<li><a class="" href="<%=request.getContextPath() %>/admin/host">호스트 관리</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/admin/product">공간 관리</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/admin/chat">채팅 관리</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice 관리</a></li>
+                    </ul>
+                    </sec:authorize>			
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+					<sec:authorize access="hasRole('HOST')">
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li><a class="" href="<%=request.getContextPath() %>/host/info">내 정보</a></li>
+						<li><a class="" href="<%=request.getContextPath() %>/host/product">공간 관리</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/host/reserve">예약 관리</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/host/review">리뷰 관리</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/host/qna">Q&A 관리</a></li>
+                    </ul>
+                    </sec:authorize>			
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+					<sec:authorize access="hasRole('USER')">
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li><a class="" href="<%=request.getContextPath() %>/user/info">내 정보</a></li>
+						<li><a class="" href="<%=request.getContextPath() %>/user/reserve">내 예약</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/user/review">내 리뷰</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/user/qna">내 Q&A</a></li>
+                        <li><a class="" href="<%=request.getContextPath() %>/user/chat">내 채팅</a></li>
+                    </ul>
+                    </sec:authorize>			
+					</sec:authorize>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
