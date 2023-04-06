@@ -10,8 +10,8 @@
 
 </head>
     <body>
-    <section>
         <%@ include file="/WEB-INF/views/module/header.jsp" %>
+    <section>
         
         <div id="preloader">
             <div id="status">&nbsp;</div>
