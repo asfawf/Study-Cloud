@@ -6,8 +6,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>이용약관</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
+
 </head>
+
 <body>
 
 
@@ -41,11 +45,11 @@
                         <form action="" method="post">             
                             <div class="form-group"  style="padding: 40px;">
                                 <label>
-                                <input type="checkbox">
+                                <input type="checkbox" id="chkAll">
                                	 스터디클라우드 이용약관, 개인정보 수집 및 이용, 위치기반서비스에 모두 동의합니다.                        		                                
                                 </label> 
                                 <label>
-                                <input type="checkbox">
+                                <input type="checkbox" name="chk">
                                                          이용약관 동의                              	
                               	</label>
                                 <textarea rows="4" style="resize:none; " class="form-control">
@@ -85,7 +89,7 @@
                             </div>
                             <div class="form-group"  style="padding: 40px;">
                                 <label>
-                                <input type="checkbox">
+                                <input type="checkbox" name="terms" name="chk">
                                                          개인정보 수집 및 이용 동의                              	
                               	</label>
                                 <textarea rows="4" style="resize:none;" class="form-control">
@@ -129,7 +133,7 @@
                             </div>
                             <div class="form-group"  style="padding: 40px;">
                                 <label>
-                                <input type="checkbox">
+                                <input type="checkbox" name="terms" name="chk">
                                                         위치기반 서비스 이용약관 동의                              	
                               	</label>
                                 <textarea rows="4" style="resize:none;" class="form-control">
@@ -166,7 +170,7 @@
                             
                             <div class="text-center" style="padding: 60px;">
                                 <button type="button" class="btn btn-default" onclick="location.href='join' ">일반회원 가입</button>
-                                <button type="button" class="btn btn-default">호스트 가입</button>
+                                <button type="button" class="btn btn-default" onclick="location.href='join' ">호스트 가입</button>
                             </div>
                         </form>
                     </div>
@@ -179,8 +183,37 @@
 <!-- End register-area -->
 
 
+<script>
+	$(document).ready(function() {
+		$("#chkAll").click(function() {
+			if($("#chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
+			else $("input[name=chk]").prop("checked", false);
+		});
+		
+		$("input[name=chk]").click(function() {
+			var total = $("input[name=chk]").length;
+			var checked = $("input[name=chk]:checked").length;
+			
+			if(total != checked) $("#chkAll").prop("checked", false);
+			else $("#chkAll").prop("checked", true); 
+		});
+	});
+</script>
+
+
+
+
+
+
 <!-- Footer area-->
    	<%@ include file="/WEB-INF/views/module/footer.jsp" %>
+
+
+
+
+
+
+
 
 </body>
 </html>
