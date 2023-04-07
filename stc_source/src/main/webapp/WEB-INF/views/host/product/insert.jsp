@@ -124,5 +124,6 @@
 
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/main.js"></script>
 </section>
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>
 </html>
