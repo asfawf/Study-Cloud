@@ -11,7 +11,7 @@
 
 <body>
 
-<%@ include file="/WEB-INF/views/module/header.jsp" %>
+<%@ include file="/WEB-INF/views/module/header2.jsp" %>
 <section>
   <div id="preloader">
             <div id="status">&nbsp;</div>
