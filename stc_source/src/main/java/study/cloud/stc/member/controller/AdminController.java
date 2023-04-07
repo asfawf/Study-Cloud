@@ -213,7 +213,13 @@ public class AdminController {
 		
 	}
 	
-	
+	//-------------------------------------------------------
+
+	@GetMapping("/product")
+	public ModelAndView adminselectProductList(ModelAndView mv) {
+		mv.setViewName("/admin/product");
+		return mv;
+	}
 	
 	
 }
