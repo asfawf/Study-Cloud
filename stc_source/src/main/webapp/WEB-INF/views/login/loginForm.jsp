@@ -113,7 +113,7 @@ a {
                                 <label for="id">아이디</label>
                                 <input type="text" class="form-control" id="id" name="id" >
                             	<c:if test="${param.error != null}">
-						        <p>아이디와 비밀번호가 잘못되었습니다.</p>
+						        <p>로그인을 실패했습니다. 다시 시도하거나 회원가입을 해 주세요.</p>
 						    	</c:if>
                             </div>
                             <div class="form-group">

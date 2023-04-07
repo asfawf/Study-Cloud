@@ -1,6 +1,8 @@
 package study.cloud.stc.chat;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +26,30 @@ public class HandlerChat extends TextWebSocketHandler {
 		protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
 			super.handleTextMessage(session, message);
-	        
-			// JSON --> Map으로 변환
+			
+			// JSON --> Map으로 변환 이게 메세지 받는거
 			ObjectMapper objectMapper = new ObjectMapper();
 			Map<String, String> mapReceive = objectMapper.readValue(message.getPayload(), Map.class);
-
+			
+			/*  작업 시작  */
+			
+			// 날짜 선언
+			SimpleDateFormat stf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+			System.out.println("stf: " + stf);
+			
+			String strDate=stf.format(new Date());
+			
+			//날짜 더하기 - 추가 작업 필요
+			String asd = mapReceive.get("msg") + stf;
+			System.out.println();
+			System.out.println("From HandlerChat msg: "+mapReceive.get("msg"));
+			
+			// 메일 전송자의 닉네임
+			String division = mapReceive.get("division");
+			System.out.println("From HandlerChat division: "+ division);
+			
+			
+			
 			switch (mapReceive.get("cmd")) {
 			
 			// CLIENT 입장
@@ -44,6 +65,8 @@ public class HandlerChat extends TextWebSocketHandler {
 					Map<String, Object> mapSessionList = sessionList.get(i);
 					String bang_id = (String) mapSessionList.get("bang_id");
 					WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
+					
+					System.out.println("입장 == session.getId(): "+session.getId()+ "sess.getId(): "+ sess.getId());
 					
 					if(bang_id.equals(mapReceive.get("bang_id"))) {
 						Map<String, String> mapToSend = new HashMap<String, String>();
@@ -70,6 +93,9 @@ public class HandlerChat extends TextWebSocketHandler {
 						mapToSend.put("bang_id", bang_id);
 						mapToSend.put("cmd", "CMD_MSG_SEND");
 						mapToSend.put("msg", session.getPrincipal().getName() + " : " + mapReceive.get("msg"));
+						
+						// 구분용 전송자의 principal 정보가 들어있음
+						mapToSend.put("division", division);
 
 						String jsonStr = objectMapper.writeValueAsString(mapToSend);
 						sess.sendMessage(new TextMessage(jsonStr));
@@ -107,6 +133,8 @@ public class HandlerChat extends TextWebSocketHandler {
 				String bang_id = (String) mapSessionList.get("bang_id");
 				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
 
+				System.out.println("퇴장 == session.getId(): "+session.getId()+ "sess.getId(): "+ sess.getId());
+				
 				if (bang_id.equals(now_bang_id)) {
 					Map<String, String> mapToSend = new HashMap<String, String>();
 					mapToSend.put("bang_id", bang_id);

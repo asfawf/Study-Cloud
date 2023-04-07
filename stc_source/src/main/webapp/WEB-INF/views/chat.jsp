@@ -16,32 +16,35 @@
 			this._initSocket();
 		},
 		sendChat : function() {
-			this._sendMessage('${param.bang_id}', 'CMD_MSG_SEND', $('#message')
-					.val());
+			this._sendMessage('${param.bang_id}', 'CMD_MSG_SEND', $('#message').val(), $('#division').val() );
 			$('#message').val('');
 		},
 		sendEnter : function() {
-			this._sendMessage('${param.bang_id}', 'CMD_ENTER', $('#message')
-					.val());
+			this._sendMessage('${param.bang_id}', 'CMD_ENTER', $('#message').val(), $('#division').val() );
 			$('#message').val('');
 		},
 		receiveMessage : function(msgData) {
 
 			// 정의된 CMD 코드에 따라서 분기 처리
 			if (msgData.cmd == 'CMD_MSG_SEND') {
-				$('#divChatData').append('<div>' + msgData.msg + '</div>');
+				if(msgData.division!= "${standname }" ){
+					$('#divChatData').append('<div align="left">' + msgData.msg + '</div>');	
+				}
+				else if(msgData.division== "${standname }" ){
+					$('#divChatData').append('<div align="right">' + msgData.msg + '</div>');	
+				}
 			}
 			// 입장
 			else if (msgData.cmd == 'CMD_ENTER') {
-				$('#divChatData').append('<div>' + msgData.msg + '</div>');
+				$('#divChatData').append('<div align="center ">' + msgData.msg + '</div>');
 			}
 			// 퇴장
 			else if (msgData.cmd == 'CMD_EXIT') {
-				$('#divChatData').append('<div>' + msgData.msg + '</div>');
+				$('#divChatData').append('<div align="center ">' + msgData.msg + '</div>');
 			}
 		},
 		closeMessage : function(str) {
-			$('#divChatData').append('<div>' + '연결 끊김 : ' + str + '</div>');
+			$('#divChatData').append('<div align="center ">' + '연결 끊김 : ' + str + '</div>');
 		},
 		disconnect : function() {
 			this._socket.close();
@@ -58,11 +61,12 @@
 				webSocket.closeMessage(JSON.parse(evt.data));
 			}
 		},
-		_sendMessage : function(bang_id, cmd, msg) {
+		_sendMessage : function(bang_id, cmd, msg, division) {
 			var msgData = {
 				bang_id : bang_id,
 				cmd : cmd,
-				msg : msg
+				msg : msg,
+				division : division
 			};
 			var jsonData = JSON.stringify(msgData);
 			this._socket.send(jsonData);
@@ -84,6 +88,7 @@
 	</div>
 	<div style="width: 100%; height: 10%; padding: 10px;">
 		<input type="text" id="message" size="110" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
+		<input type="hidden" id="division" size="110" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />
 		<input type="button" id="btnSend" value="채팅 전송" onclick="webSocket.sendChat()" />
 	</div>
 </body>

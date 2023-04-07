@@ -22,12 +22,18 @@
 		
 		<security:form-login 	login-page="/login"
 								default-target-url=""
-								authentication-failure-url="/login"
+								authentication-failure-url="/login?error"
 								username-parameter="id"
 								password-parameter="password" />
 		
 		<!-- 로그아웃할 url 및 로그아웃성공시 이동할 url -->
-		<security:logout logout-url="/logout" logout-success-url="/" invalidate-session="true"/>
+		<security:logout 
+								logout-url="/logout" 
+								logout-success-url="/" 
+								invalidate-session="true"
+								delete-cookies="true"
+		/>
+		
 		<security:access-denied-handler error-page="/"/>
 
 	</security:http>
