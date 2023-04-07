@@ -156,8 +156,8 @@
                     
                     
                     
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <input type="text" class='btn btn-finish btn-primary pull-right' name='update' value='등록' />
+                     <div class="col-sm-10 col-sm-offset-1">
+                       <button><a  href="<%=request.getContextPath()%>/host/product/insert">등록</a></button>
                     </div>
                     
 

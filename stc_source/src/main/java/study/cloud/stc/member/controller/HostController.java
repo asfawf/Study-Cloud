@@ -21,5 +21,13 @@ public class HostController {
 		return mv;
 	}	
 	
+	@GetMapping("/product/insert")
+	public ModelAndView insertProductPage(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/product/insert");
+		return mv;
+	}	
+	
+	
+	
 	
 }
