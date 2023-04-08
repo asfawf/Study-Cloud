@@ -9,6 +9,11 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
+<c:set var="add">
+	종로구,  중구, 용산구, 성동구,광진구, 동대문구, 중랑구, 성북구, 
+	강북구, 도봉구, 노원구, 은평구, 서대문구, 마포구, 양천구, 강서구, 
+	구로구, 금천구, 영등포구, 동작구, 관악구, 서초구, 강남구, 송파구, 강동구
+</c:set>
 <section>
         <div class="slider-area">
             <div class="slider">
@@ -26,18 +31,17 @@
                         <h2><!-- Study Cloud --></h2>
                         <p><!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo! --></p>
                         <div class="search-form pulse">
-                            <form action="search" class="form-inline">                                
+                            <form action="${pageContext.request.contextPath}/product" class="form-inline">                                
                                 <div class="form-group">                                     
-                                    <select id="basic" class="selectpicker show-tick form-control" title="지역">
-                                        <option> -Status- </option>
-                                        <option>Rent </option>
-                                        <option>Boy</option>
-                                        <option>used</option>  
+                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="지역">
+                                        <c:forEach var="v" items="${add }">
+											<option value="${v }">${v }</option>
+										</c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-group">                                   
                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="인원">
-										<c:forEach var="i" begin="0" end="30" step="5">
+										<c:forEach var="i" begin="0" end="20" step="5">
 									   		<option>${i }</option>
 										</c:forEach>                                        
                                     </select>
@@ -50,7 +54,7 @@
                                         <option>used</option>  
                                     </select>
                                 </div>
-                                <button class="btn search-btn" type="button" onclick=" location.href='product' ">검색</button>
+                                <button class="btn search-btn" type="button" onclick=" submit(); ">검색</button>
                                 <button class="btn search-btn" type="button" onclick=" location.href='product/map' ">지도</button>
 							</form>
                         </div>

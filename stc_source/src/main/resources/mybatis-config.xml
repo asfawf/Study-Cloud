@@ -15,7 +15,8 @@
 			alias="rsvvo" />
 		<typeAlias type="study.cloud.stc.review.model.vo.ReviewVo"
 			alias="revo" />
-	
+		<typeAlias type="study.cloud.stc.product.model.vo.ProductVo"
+			alias="pdvo" />
 	
 	</typeAliases>
 	<mappers>
@@ -24,6 +25,7 @@
 		<mapper resource="mappers/notice-mapper.xml" />
 		<mapper resource="mappers/reserve-mapper.xml" />
 		<mapper resource="mappers/review-mapper.xml"/>
+		<mapper resource="mappers/product-mapper.xml"/>
 	</mappers>
 
 </configuration>

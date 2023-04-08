@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="product">	
+	
+	<select id="selectList" resultType="pdvo">
+		SELECT PRO_NUM
+      		 , PRO_NAME
+             , SUBSTR(PRO_ADDRESS,3) AS PRO_ADDRESS
+             , PRO_PHONE
+             , MIN(PRO_PRICE) AS PRO_PRICE
+		  FROM MAP 
+    LEFT OUTER JOIN PRODUCT
+         USING (PRO_NUM)
+    LEFT OUTER JOIN PROTIME 
+         USING (PRO_NUM)
+         WHERE PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
+         GROUP BY (PRO_NUM, PRO_NAME, PRO_ADDRESS, PRO_PHONE)
+         ORDER BY PRO_NUM
+	</select>
+	
+</mapper>

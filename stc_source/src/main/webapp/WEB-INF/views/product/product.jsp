@@ -9,28 +9,13 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
-
+<c:set var="add">
+	종로구, 중구, 용산구, 성동구,광진구, 동대문구, 중랑구, 성북구, 
+	강북구, 도봉구, 노원구, 은평구, 서대문구, 마포구, 양천구, 강서구, 
+	구로구, 금천구, 영등포구, 동작구, 관악구, 서초구, 강남구, 송파구, 강동구
+</c:set>
 <section>
-		<div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
-        <!-- Body content -->
-
-
-
-
-        <div class="page-head"> 
-            <div class="container">
-                <div class="row">
-                    <div class="page-head-content">
-                        <h1 class="page-title">List Layout With Sidebar</h1>               
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End page header -->
-
-        <!-- property area -->
+	<!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container"> 
                 <div class="row  pr0 padding-top-40 properties-page">
@@ -39,18 +24,17 @@
                             <form action="" class=" form-inline">
                                 <div class="col-md-12">
                                 	<div class="col-md-4">                                     
-	                                    <select id="basic" class="selectpicker show-tick form-control" title="지역">
-	                                        <option> -Status- </option>
-	                                        <option>Rent </option>
-	                                        <option>Boy</option>
-	                                        <option>used</option>  
-	                                    </select>
+	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="지역" onchange="submit();">
+	                                        <c:forEach var="v" items="${add }">
+												<option value="${v }">${v }</option>
+											</c:forEach>
+                                    	</select>
                                 	</div>
                                     <div class="col-md-4">                                   
                                         <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="인원">
-										<c:forEach var="i" begin="1" end="30" step="5">
-									   		<option>${i }</option>
-										</c:forEach>                                        
+											<c:forEach var="i" begin="0" end="20" step="5">
+										   		<option>${i }</option>
+											</c:forEach>                                        
                                     	</select>
                                     </div>
                                     <div class="col-md-4">                                     
@@ -106,253 +90,36 @@
                             <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>                          
                         </div><!--/ .layout-switcher-->
                     </div>
-
+					
+				<!-- pruductList 시작 -->
                     <div class="col-md-12 clear "> 
                         <div id="list-type" class="proerty-th">
+                       		<c:forEach items="${pdList }" var="product"> 
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail?proNum=${product.proNum }" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
+                                        <h5><a href="${pageContext.request.contextPath}/product/detail?proNum=${product.proNum }"> ${product.proName } </a></h5>
                                         <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
+                                        <span class="pull-left"><b> ${product.proAddress } </b></span> <br>
+                                        <span class="pull-left"> ${product.proPhone } </span>
+                                        <span class="proerty-price pull-right"> <fmt:formatNumber value="${product.proPrice }" type="currency" /> </span>                                        
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
                                     </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item proerty-item-ads">
-                                    <a href="" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/pro-ads.jpg"></a>
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-                            
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item proerty-item-ads">
-                                    <a href="" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/pro-ads.jpg"></a>
+                                    <%-- <div class="item-entry">
+                                        <span class="proerty-price pull-right"> ￦ ${product.proPrice } </span>
+                                    </div> --%>
+                                    
                                 </div>
                             </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-2.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-1.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/bed.png">(5)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/shawer.png">(2)|
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
+                            </c:forEach>
                         </div>
                     </div>
-
+				<!-- pruductList 끝 -->
+					
                     <div class="col-md-12 clear"> 
                         <div class="pull-right">
                             <div class="pagination">
@@ -370,8 +137,7 @@
                 </div>                
             </div>
         </div>
-
-</section>
-<%@ include file="/WEB-INF/views/module/footer.jsp" %>
-    </body>
+	</section>
+	<%@ include file="/WEB-INF/views/module/footer.jsp" %>
+</body>
 </html>
