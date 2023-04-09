@@ -43,14 +43,16 @@
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 register-blocks">
                         <form action="" method="post">             
-                            <div class="form-group"  style="padding: 40px;">
+                            <div class="form-group"  style="padding-left: 40px; padding-top: 40px; ">
                                 <label>
                                 <input type="checkbox" id="chkAll">
                                	 스터디클라우드 이용약관, 개인정보 수집 및 이용, 위치기반서비스에 모두 동의합니다.                        		                                
                                 </label> 
+                                </div>
+                            <div class="form-group"  style="padding: 40px;">    
                                 <label>
                                 <input type="checkbox" name="chk">
-                                                         이용약관 동의                              	
+                                이용약관 동의                              	
                               	</label>
                                 <textarea rows="4" style="resize:none; " class="form-control">
 여러분을 환영합니다.
@@ -89,8 +91,8 @@
                             </div>
                             <div class="form-group"  style="padding: 40px;">
                                 <label>
-                                <input type="checkbox" name="terms" name="chk">
-                                                         개인정보 수집 및 이용 동의                              	
+                                <input type="checkbox" name="chk">
+                                개인정보 수집 및 이용 동의                              	
                               	</label>
                                 <textarea rows="4" style="resize:none;" class="form-control">
 1. 개인정보처리방침의 의의
@@ -133,8 +135,8 @@
                             </div>
                             <div class="form-group"  style="padding: 40px;">
                                 <label>
-                                <input type="checkbox" name="terms" name="chk">
-                                                        위치기반 서비스 이용약관 동의                              	
+                                <input type="checkbox" name="chk">
+                                 위치기반 서비스 이용약관 동의                              	
                               	</label>
                                 <textarea rows="4" style="resize:none;" class="form-control">
 위치기반서비스 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 스터디클라우드 위치기반 서비스를 이용할 수 있습니다.
@@ -164,9 +166,6 @@
 ② 제1항에 의한 서비스 중단의 경우에는 회사는 사전에 인터넷 등에 공지하거나 개인위치정보주체에게 통지합니다.                                
                                 </textarea>
                             </div>
-                            
-                            
-                                                 
                             
                             <div class="text-center" style="padding: 60px;">
                                 <button type="button" class="btn btn-default" onclick="location.href='join' ">일반회원 가입</button>
