@@ -28,10 +28,10 @@
 			// 정의된 CMD 코드에 따라서 분기 처리
 			if (msgData.cmd == 'CMD_MSG_SEND') {
 				if(msgData.division!= "${standname }" ){
-					$('#divChatData').append('<div align="left">' + msgData.msg + '</div>');	
+					$('#divChatData').append('<div align="left">' + msgData.sender + '<div class="messageformleft">' + msgData.msg + '</div>' + msgData.formatedNow +'</div>');	
 				}
 				else if(msgData.division== "${standname }" ){
-					$('#divChatData').append('<div align="right">' + msgData.msg + '</div>');	
+					$('#divChatData').append('<div align="right">'+ msgData.sender+ msgData.formatedNow + '<div class="messageformright">' + msgData.msg +'</div>' +'</div>');	
 				}
 			}
 			// 입장
@@ -61,12 +61,14 @@
 				webSocket.closeMessage(JSON.parse(evt.data));
 			}
 		},
-		_sendMessage : function(bang_id, cmd, msg, division) {
+		_sendMessage : function(bang_id, cmd, msg, division, formatedNow, sender) {
 			var msgData = {
 				bang_id : bang_id,
 				cmd : cmd,
 				msg : msg,
-				division : division
+				division : division,
+				formatedNow : formatedNow,
+				sender : sender
 			};
 			var jsonData = JSON.stringify(msgData);
 			this._socket.send(jsonData);
@@ -81,6 +83,32 @@
 	});
 </script>
 </head>
+<style>
+.messageformleft{
+	position: relative;
+    display: inline-block;
+    max-width: calc(100% - 70px);
+    padding: 10px;
+    margin-top: 7px;
+    margin-right: 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    background-color: #ddd;
+}
+
+.messageformright{
+	position: relative;
+    display: inline-block;
+    max-width: calc(100% - 70px);
+    padding: 10px;
+    margin-top: 7px;
+    margin-left: 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    background-color: #F9EB54;
+}
+
+</style>
 <body>
 	
 	<div style="width: 800px; height: 700px; padding: 10px; border: solid 1px #e1e3e9;">

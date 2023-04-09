@@ -2,6 +2,7 @@ package study.cloud.stc.chat;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -34,15 +35,25 @@ public class HandlerChat extends TextWebSocketHandler {
 			/*  작업 시작  */
 			
 			// 날짜 선언
-			SimpleDateFormat stf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
-			System.out.println("stf: " + stf);
+			Date date = new Date();
+			Date now = Calendar.getInstance().getTime();
+
+			// 캘린더 선언
+			Calendar cal = Calendar.getInstance();
 			
-			String strDate=stf.format(new Date());
+			// 포멧
+			//SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분 ss초");
+			SimpleDateFormat formatter = new SimpleDateFormat("a hh:mm");
+			String formatedNow = formatter.format(now);
 			
-			//날짜 더하기 - 추가 작업 필요
-			String asd = mapReceive.get("msg") + stf;
-			System.out.println();
-			System.out.println("From HandlerChat msg: "+mapReceive.get("msg"));
+			System.out.println(formatedNow);
+			
+			/*
+			 * //날짜 더하기 - 추가 작업 필요 String asd = mapReceive.get("msg") + df;
+			 * System.out.println();
+			 * System.out.println("From HandlerChat msg: "+mapReceive.get("msg"));
+			 */
+			
 			
 			// 메일 전송자의 닉네임
 			String division = mapReceive.get("division");
@@ -92,10 +103,19 @@ public class HandlerChat extends TextWebSocketHandler {
 						Map<String, String> mapToSend = new HashMap<String, String>();
 						mapToSend.put("bang_id", bang_id);
 						mapToSend.put("cmd", "CMD_MSG_SEND");
-						mapToSend.put("msg", session.getPrincipal().getName() + " : " + mapReceive.get("msg"));
+						
+						// 실질적인 메세지 			
+						//mapToSend.put("msg", session.getPrincipal().getName() + " 같을때 <br> " + formatedNow + mapReceive.get("msg"));				
+						mapToSend.put("msg", mapReceive.get("msg"));
+
+						// 작성자
+						mapToSend.put("sender", session.getPrincipal().getName() + "<br>");
 						
 						// 구분용 전송자의 principal 정보가 들어있음
 						mapToSend.put("division", division);
+						
+						// 메세지 전송 시간이 들어있음
+						mapToSend.put("formatedNow", formatedNow);
 
 						String jsonStr = objectMapper.writeValueAsString(mapToSend);
 						sess.sendMessage(new TextMessage(jsonStr));
