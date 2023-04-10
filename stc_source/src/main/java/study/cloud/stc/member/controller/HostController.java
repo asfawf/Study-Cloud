@@ -25,6 +25,12 @@ public class HostController {
 	public ModelAndView insertProductPage(ModelAndView mv) throws Exception {
 		mv.setViewName("/host/product/insert");
 		return mv;
+	}
+	
+	@GetMapping("/review")
+	public ModelAndView selectReviewList(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/review");
+		return mv;
 	}	
 	
 	

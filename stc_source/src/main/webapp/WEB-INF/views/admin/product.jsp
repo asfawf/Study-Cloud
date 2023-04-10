@@ -36,7 +36,7 @@
 
                                 
                                 <div class="form-group">                                   
-                                    <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
+                                    <select id="lunchBegins" class="form-control" data-live-search="true" data-live-search-style="begins" title="Select your city">
 
                                         <option>New york, CA</option>
                                         <option>Paris</option>
@@ -148,23 +148,23 @@
         
         
 
-        <script src="assets/js/modernizr-2.6.2.min.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/modernizr-2.6.2.min.js"></script>
 
-        <script src="assets/js/jquery-1.10.2.min.js"></script> 
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootstrap-select.min.js"></script>
-        <script src="assets/js/bootstrap-hover-dropdown.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery-1.10.2.min.js"></script> 
+        <script src="<%=request.getContextPath() %>/resources/sneat/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/bootstrap-select.min.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/bootstrap-hover-dropdown.js"></script>
 
-        <script src="assets/js/easypiechart.min.js"></script>
-        <script src="assets/js/jquery.easypiechart.min.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/easypiechart.min.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script>
 
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/wow.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/owl.carousel.min.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/wow.js"></script>
 
-        <script src="assets/js/icheck.min.js"></script>
-        <script src="assets/js/price-range.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/icheck.min.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/price-range.js"></script>
 
-        <script src="assets/js/main.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/main.js"></script>
 
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
