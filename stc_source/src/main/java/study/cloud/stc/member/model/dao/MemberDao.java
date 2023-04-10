@@ -19,22 +19,22 @@ public class MemberDao {
 	
 	public List<MemberVo> selectList(MemberVo vo) throws Exception {
 		
-		return session.selectList("memberns.memberSelectUsersList", vo);
+		return session.selectList("memberns.SelectListUser", vo);
 	}
 
 // -----------------------------------------------------------------------------------------------------------
 	
 	public int selectCount() throws Exception {
-		return session.selectOne("memberns.selectUserCount");
+		return session.selectOne("memberns.selectCountUser");
 	}
 
 	
 	public int selectUnblockCount() {
-		return session.selectOne("memberns.selectUnblockCount");
+		return session.selectOne("memberns.selectUnblockCountUser");
 	}
 	
 	public int selectBlockCount() {
-		return session.selectOne("memberns.selectBlockCount");
+		return session.selectOne("memberns.selectBlockCountUser");
 	}
 	
 	public int selectSnsCount() {
@@ -52,7 +52,7 @@ public class MemberDao {
 		
 		RowBounds rb = new RowBounds(offset, limit);
 		
-		return session.selectList("memberns.memberSelectUsersList", vo , rb);
+		return session.selectList("memberns.SelectListUser", vo , rb);
 	}
 
 	public int memberblock(MemberVo vo) {
@@ -70,7 +70,7 @@ public class MemberDao {
 		
 		RowBounds rb = new RowBounds(offset, limit);
 		
-		return session.selectList("memberns.selectUnblockUsers", vo , rb);
+		return session.selectList("memberns.selectUnblockUser", vo , rb);
 	}
 
 	public List<MemberVo> selectBlockUsers(int currentPage, int limit, MemberVo vo) {
@@ -78,7 +78,7 @@ public class MemberDao {
 		
 		RowBounds rb = new RowBounds(offset, limit);
 		
-		return session.selectList("memberns.selectBlockUsers", vo , rb);
+		return session.selectList("memberns.selectBlockUser", vo , rb);
 	}
 
 	public List<MemberVo> selectSnskUsers(int currentPage, int limit, MemberVo vo) {
@@ -86,7 +86,7 @@ public class MemberDao {
 		
 		RowBounds rb = new RowBounds(offset, limit);
 		
-		return session.selectList("memberns.selectSnskUsers", vo , rb);
+		return session.selectList("memberns.selectSnsUser", vo , rb);
 	}
 
 	

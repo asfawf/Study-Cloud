@@ -138,5 +138,16 @@
 		SELECT COUNT(*) FROM MEMBER
 	</select>
 	
+	<!-- 차단 , 차단 해제 문구  -->
+	
+	<update id="memberblock">
+		UPDATE MEMBER SET MEM_QUIT= 0 WHERE MEM_ID= #{memId}
+	</update>
+	
+	<update id="memberUnblock">
+		UPDATE MEMBER SET MEM_QUIT= 1 WHERE MEM_ID= #{memId}
+	</update>
+	
+	<!-- 차단 , 차단 해제 문구  -->
 	
 </mapper>
