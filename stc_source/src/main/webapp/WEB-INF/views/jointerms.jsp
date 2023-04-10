@@ -54,7 +54,7 @@
                                 <input type="checkbox" name="chk">
                                 이용약관 동의                              	
                               	</label>
-                                <textarea rows="4" style="resize:none; " class="form-control">
+                                <textarea  rows="4" style="resize:none; " class="form-control" onfocus="this.blur();">
 여러분을 환영합니다.
 스터디클라우드 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 스터디클라우드 서비스의 이용과 관련하여 스터디클라우드 서비스를 제공하는 스터디클라우드 주식회사(이하 ‘스터디클라우드’)와 이를 이용하는 스터디클라우드 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 스터디클라우드 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
 스터디클라우드 서비스를 이용하시거나 스터디클라우드 서비스 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 확인하거나 동의하게 되므로, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다
@@ -94,7 +94,7 @@
                                 <input type="checkbox" name="chk">
                                 개인정보 수집 및 이용 동의                              	
                               	</label>
-                                <textarea rows="4" style="resize:none;" class="form-control">
+                                <textarea rows="4" style="resize:none;" class="form-control" onfocus="this.blur();">
 1. 개인정보처리방침의 의의
 스터디클라우드는 본 개인정보처리방침은 개인정보보호법을 기준으로 작성하되, 스터디클라우드 내에서의 이용자 개인정보 처리 현황을 최대한 알기 쉽고 상세하게 설명하기 위해 노력하였습니다.
 이는 쉬운 용어를 사용한 개인정보처리방침 작성 원칙인 ‘Plain Language Privacy Policy(쉬운 용어를 사용한 개인정보처리방침)’를 도입한 것입니다.
@@ -138,7 +138,7 @@
                                 <input type="checkbox" name="chk">
                                  위치기반 서비스 이용약관 동의                              	
                               	</label>
-                                <textarea rows="4" style="resize:none;" class="form-control">
+                                <textarea rows="4" style="resize:none;" class="form-control" onfocus="this.blur();">
 위치기반서비스 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 스터디클라우드 위치기반 서비스를 이용할 수 있습니다.
 제 1 조 (목적)
 이 약관은 스터디클라우드 주식회사 (이하 “회사”)가 제공하는 위치기반서비스와 관련하여 회사와 개인위치정보주체와의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
@@ -167,9 +167,8 @@
                                 </textarea>
                             </div>
                             
-                            <div class="text-center" style="padding: 60px;">
-                                <button type="button" class="btn btn-default" onclick="location.href='join' ">일반회원 가입</button>
-                                <button type="button" class="btn btn-default" onclick="location.href='join' ">호스트 가입</button>
+                            <div class="form-group" style="padding-top: 100px; padding-bottom: 60px; padding-left: 60px; padding-right: 60px;">
+								<input class="btn btn-primary" type="button" onclick="location.href='join'" value="회원가입">
                             </div>
                         </form>
                     </div>
@@ -183,6 +182,8 @@
 
 
 <script>
+
+
 	$(document).ready(function() {
 		$("#chkAll").click(function() {
 			if($("#chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);

@@ -31,13 +31,28 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 register-blocks">
-                        <form action="" method="post">
+                        <form action="" method="post">                      
                             <div class="input-group" style="padding-left: 60px; padding-right: 60px; padding-top: 60px;">
+                                <div>
+                                <label for="id">가입 구분</label>
+                                </div>                                
+                            </div>
+                            <div class="input-group" style="padding-left: 60px; padding-right: 60px; ">   
+                                <input id="radio-1" type="radio" name="userjoin" value="user" checked >
+								<label for="radio-1" style="padding-left:10px; padding-right: 130px;">일반회원</label>                              
+                                <input id="radio-2" type="radio" name="hostjoin" value="host">
+								<label for="radio-2" style="padding-left:10px;"> 호스트회원</label>                           
+                            </div>
+                            
+                            
+                            
+                            
+                            <div class="input-group" style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
                                 <div>
                                 <label for="id">아이디</label>
                                 </div>                                
                             </div>
-                            <div class="input-group" style="padding-left: 60px; padding-right: 60px; margin-bottom: 15px;">   
+                            <div class="input-group" style="padding-left: 60px; padding-right: 60px;">   
                                 <input type="text" class="form-control" id="id">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" onclick=idCheckFunction();" type="button">중복확인</button>
@@ -59,7 +74,7 @@
                                 <label for="phone">휴대전화(- 제외)</label>
                                 <input type="tel" class="form-control" id="phone">
                             </div>           
-                            <div class="input-group" style="padding-left: 60px; padding-right: 60px; padding-top: 60px;">
+                            <div class="input-group" style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
                                 <div>
                                 <label for="id">이메일</label>
                                 </div>                                
@@ -74,6 +89,9 @@
                                 <label for="authCode">이메일 인증번호</label>
                                 <input type="text" class="form-control" id="authCode">
                             </div>
+                            
+                           
+                            
                             <div class="text-center" style="padding-top: 100px; padding-bottom: 60px; padding-left: 60px; padding-right: 60px;">
                                 <input class="btn btn-primary" type="submit" value="가입하기"></input>
                             </div>
@@ -81,7 +99,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>   
     <!-- End register-area -->  
