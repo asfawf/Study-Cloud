@@ -16,11 +16,11 @@
 			this._initSocket();
 		},
 		sendChat : function() {
-			this._sendMessage('${param.bang_id}', 'CMD_MSG_SEND', $('#message').val(), $('#division').val() );
+			this._sendMessage('${param.room_id}', 'CMD_MSG_SEND', $('#message').val(), $('#division').val() );
 			$('#message').val('');
 		},
 		sendEnter : function() {
-			this._sendMessage('${param.bang_id}', 'CMD_ENTER', $('#message').val(), $('#division').val() );
+			this._sendMessage('${param.room_id}', 'CMD_ENTER', $('#message').val(), $('#division').val() );
 			$('#message').val('');
 		},
 		receiveMessage : function(msgData) {
@@ -28,10 +28,10 @@
 			// 정의된 CMD 코드에 따라서 분기 처리
 			if (msgData.cmd == 'CMD_MSG_SEND') {
 				if(msgData.division!= "${standname }" ){
-					$('#divChatData').append('<div align="left">' + msgData.sender + '<div class="messageformleft">' + msgData.msg + '</div>' + msgData.formatedNow +'</div>');	
+					$('#divChatData').append('<div align="left" class="wrap">' + msgData.sender + '<div class="messageformleft" style="max-width: 300px;">' + msgData.msg + '</div>' + '<div class="chatTime">'+ msgData.formatedNow+'</div>' +'</div>');	
 				}
 				else if(msgData.division== "${standname }" ){
-					$('#divChatData').append('<div align="right">'+ msgData.sender+ msgData.formatedNow + '<div class="messageformright">' + msgData.msg +'</div>' +'</div>');	
+					$('#divChatData').append('<div align="right" class="wrap">'+ msgData.sender +'<div class="chatTime">'+ msgData.formatedNow + '</div>' + '<div class="messageformright" style="max-width: 300px;">' + msgData.msg +'</div>' +'</div>');	
 				}
 			}
 			// 입장
@@ -61,9 +61,9 @@
 				webSocket.closeMessage(JSON.parse(evt.data));
 			}
 		},
-		_sendMessage : function(bang_id, cmd, msg, division, formatedNow, sender) {
+		_sendMessage : function(room_id, cmd, msg, division, formatedNow, sender) {
 			var msgData = {
-				bang_id : bang_id,
+				room_id : room_id,
 				cmd : cmd,
 				msg : msg,
 				division : division,
@@ -83,7 +83,18 @@
 	});
 </script>
 </head>
+
 <style>
+
+
+.chatTime {
+  display: inline-block;
+  position: relative;
+  top: 11px;
+  color: #171717;
+  font-size: 9px;
+}
+
 .messageformleft{
 	position: relative;
     display: inline-block;
@@ -108,16 +119,82 @@
     background-color: #F9EB54;
 }
 
+.wrap {
+		
+    	word-break: break-all;
+      	word-wrap: normal;
+      }
+
+#chatWrap {
+    width: 600px;
+    border: 1px solid #ddd;
+}
+
+#chatLog {
+    height: 700px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#chatForm {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-top: 2px solid #f0f0f0;
+}
+
+#message{
+ 	width: 85%;
+    border: none;
+    padding-bottom: 0;
+    height: calc(100% - 1px);
+    
+}
+
+#message:focus {
+    outline: none;
+}
+
+#chatForm > input[type=button] {
+	float: right;
+	height: 99%;
+    outline: none;
+    border: none;
+    background: none;
+    color: #0084FF;
+    font-size: 17px;
+  	border-top: 25px;    
+}
+#contentCover{
+    width: 1280px;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#chatHeader {
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    font-weight: 900;
+    border-bottom: 1px solid #ddd;
+}
+
 </style>
 <body>
-	
-	<div style="width: 800px; height: 700px; padding: 10px; border: solid 1px #e1e3e9;">
-		<div id="divChatData"></div>
-	</div>
-	<div style="width: 100%; height: 10%; padding: 10px;">
-		<input type="text" id="message" size="110" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
-		<input type="hidden" id="division" size="110" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />
-		<input type="button" id="btnSend" value="채팅 전송" onclick="webSocket.sendChat()" />
-	</div>
+ <div id="contentCover">
+	<div id="chatWrap">
+		<div id="chatLog" >
+			<div id="divChatData" style="top: 10px"></div>
+		</div>
+		<div id="chatForm" class="input-group mb-3">
+			<input type="hidden" id="division" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />
+			<input type="text" autocomplete="off" id="message" class="message" size="30" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
+			<input type="button"id="btnSend" value="채팅 전송" onclick="webSocket.sendChat()" />			
+		</div>
+	</div>		
+</div>
 </body>
 </html>
