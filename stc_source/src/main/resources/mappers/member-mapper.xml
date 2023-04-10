@@ -113,13 +113,21 @@
 	</select>
 	
 		
-	<!-- 회원전체 탈퇴수정, 삭제, 조회 -->
+	<!-- 회원전체 탈퇴수정, 차단, 차단 해제, 삭제, 조회 -->
 	<update id="Quitupdate">		
 		UPDATE MEMBER
 		   SET MEM_QUIT = #{memQuit}
 		 WHERE MEM_ID = #{memId}
 	</update>
-
+	
+	<update id="memberblock">
+		UPDATE MEMBER SET MEM_QUIT= 0 WHERE MEM_ID= #{memId}
+	</update>
+	
+	<update id="memberUnblock">
+		UPDATE MEMBER SET MEM_QUIT= 1 WHERE MEM_ID= #{memId}
+	</update>
+	
 	<delete id="delete">
 		DELETE FROM MEMBER WHERE MEM_ID = #{memId}
 	</delete>
@@ -137,8 +145,6 @@
 	<select id="selectCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
 	</select>
-	
-	<!-- 차단 , 차단 해제 문구  -->
 	
 	<update id="memberblock">
 		UPDATE MEMBER SET MEM_QUIT= 0 WHERE MEM_ID= #{memId}
