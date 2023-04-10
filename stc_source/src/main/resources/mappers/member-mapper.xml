@@ -146,13 +146,5 @@
 		SELECT COUNT(*) FROM MEMBER
 	</select>
 	
-	<update id="memberblock">
-		UPDATE MEMBER SET MEM_QUIT= 0 WHERE MEM_ID= #{memId}
-	</update>
-	
-	<update id="memberUnblock">
-		UPDATE MEMBER SET MEM_QUIT= 1 WHERE MEM_ID= #{memId}
-	</update>
-	
 	
 </mapper>
