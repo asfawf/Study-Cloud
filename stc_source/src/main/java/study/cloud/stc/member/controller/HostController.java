@@ -34,6 +34,13 @@ public class HostController {
 	}	
 	
 	
+	@GetMapping("/qna")
+	public ModelAndView selectQnaList(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/qna");
+		return mv;
+	}	
+	
+	
 	
 	
 }

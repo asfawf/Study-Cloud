@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
-
-
 <body>
 
 <%@ include file="/WEB-INF/views/module/header2.jsp" %>
@@ -18,9 +16,6 @@
         </div>
         <!-- Body content -->
 
-        
-
-       
 
         <div class="slider-area">
            
@@ -30,10 +25,7 @@
                         <h2>공간 목록</h2>
                        
                         <div class="search-form wow pulse" data-wow-delay="0.8s">
-
                             <form action="" class=" form-inline">
-                               
-
                                 
                                 <div class="form-group">                                   
                                     <select id="lunchBegins" class="form-control" data-live-search="true" data-live-search-style="begins" title="Select your city">
@@ -48,28 +40,12 @@
                                 </div>
                                 
                                 <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
-
                                 <div style="display: none;" class="search-toggle">
-
-                                                                   
-
                                                               
                                     <button class="btn search-btn prop-btm-sheaerch" type="submit"><i class="fa fa-search"></i></button>  
                                 </div>                    
-
                             </form>
-                            
-
-
-
-
                         </div>
-
-                        
-
-
-                        
-                    
                 </div>
 
                 <!-- property area -->
@@ -144,7 +120,6 @@
             </div>
             </div>
         </div>
-   
         
         
 
