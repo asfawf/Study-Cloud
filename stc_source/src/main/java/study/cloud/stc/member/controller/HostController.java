@@ -33,12 +33,23 @@ public class HostController {
 		return mv;
 	}	
 	
-	
 	@GetMapping("/qna")
 	public ModelAndView selectQnaList(ModelAndView mv) throws Exception {
 		mv.setViewName("/host/qna");
 		return mv;
-	}	
+	}
+	
+	@GetMapping("/reserve")
+	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve");
+		return mv;
+	}
+	
+	@GetMapping("/reserve/delete")
+	public ModelAndView deleteReservePage(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve/delete");
+		return mv;
+	}
 	
 	
 	
