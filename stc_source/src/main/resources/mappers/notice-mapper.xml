@@ -37,7 +37,7 @@
 <select id="selectOneCount" resultType="_int">
 	SELECT COUNT(*) CNT FROM NOTICE
 	<if test="notiIdx != null and notiIdx neq ''">
-		WHERE NOTI_IDX like '%'||#{notiIdx}||'%'		
+		WHERE NOTI_IDX = #{notiIdx}		
 	</if>
 </select>
 

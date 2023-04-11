@@ -2,6 +2,7 @@ package study.cloud.stc.product.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,6 +17,14 @@ public class ProductDao {
 
 	public List<ProductVo> selectList(ProductVo vo) throws Exception {
 		return sqlSession.selectList("product.selectList", vo);
+	}
+
+	public List<ProductVo> selectList(int currentPage, int limit, String proAddress) throws Exception {
+		return sqlSession.selectList("product.selectList", proAddress, new RowBounds((currentPage-1)*limit, limit));
+	}
+
+	public int selectCount(String proAddress) throws Exception {
+		return sqlSession.selectOne("product.selectOneCount");
 	}
 
 }

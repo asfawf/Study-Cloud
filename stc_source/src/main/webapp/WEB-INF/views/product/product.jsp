@@ -124,12 +124,25 @@
                         <div class="pull-right">
                             <div class="pagination">
                                 <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">Next</a></li>
+                                    <c:choose>
+	                               	<c:when test="${pageInfo.currentPage eq 1 }">
+	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
+	                               	</c:when>
+	                               	<c:otherwise>
+	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/product?proAddress=${product.proAddress }&page=${pageInfo.currentPage - 1 }"></a></li>
+	                               	</c:otherwise>
+                                	</c:choose>
+	                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
+										<li><a href="${pageContext.request.contextPath}/product?proAddress=${product.proAddress }&page=${page }">${page }</a></li>
+									</c:forEach>  
+									<c:choose>
+									<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
+	                               		<li><a class="disabled pe-7s-angle-right"></a></li>
+	                               	</c:when>
+	                               	<c:otherwise>
+	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product?proAddress=${product.proAddress }&page=${pageInfo.currentPage +1 }"></a></li>
+	                               	</c:otherwise> 
+	                               	</c:choose>
                                 </ul>
                             </div>
                         </div>                

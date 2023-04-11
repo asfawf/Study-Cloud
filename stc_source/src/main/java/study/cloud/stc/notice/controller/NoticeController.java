@@ -24,17 +24,21 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService service;
+	private final static int BOARD_LIMIT = 5;
+	private final static int PAGE_LIMIT = 5;
 	
 	@GetMapping
 	public ModelAndView noticeList(ModelAndView mv
 		  , NoticeVo vo
-		  , @RequestParam(value="page", defaultValue="1") int page) throws Exception{
+		  , @RequestParam(value="page", defaultValue="1") int page
+		  , @RequestParam(value="notiIdx", defaultValue="") String notiIdx
+        ) throws Exception{
 		
 		int currentPage = page; 
-		int totalCnt= service.selectCount(); 
-		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 3, 3); 
+		int totalCnt= service.selectCount(notiIdx); 
+		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT); 
 		mv.addObject("pageInfo", map);
-		mv.addObject("noticeList", service.selectList(vo));
+		mv.addObject("noticeList", service.selectList(currentPage, BOARD_LIMIT, notiIdx));
 		mv.setViewName("notice");
 		return mv;
 	}
@@ -57,8 +61,8 @@ public class NoticeController {
 	
 	@PostMapping("/delete")
 	public ModelAndView deleteNotice(ModelAndView mv
-			, NoticeVo vo) throws Exception{
-		service.delete(vo);
+			, int notiNum) throws Exception{
+		service.delete(notiNum);
 		mv.setViewName("redirect:/notice");
 		return mv;
 	}

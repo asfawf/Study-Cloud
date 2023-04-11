@@ -25,28 +25,24 @@
         <!-- section property area -->
         <div class="content-area recent-property" style=" padding-bottom: 55px;">
             <div class="container">  
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 page-title">
-                        <!-- /.feature title -->
-                        <div style="display: inline-flex;" class="col-lg-6 float-center">
-                        <form action="${pageContext.request.contextPath}/notice?notiIdx=${notice.notiIdx }" class="form-inline">
-							<div class="form-group ">     
-                            	<select id="basic" name="notiIdx" class="selectpicker show-tick form-control" title="-전체-" onchange="submit();">
-									<option value=""> -전체- </option>
-									<option value="공지">공지</option>
-									<option value="이벤트">이벤트</option>
-									<option value="복구">복구</option>
-									<option value="복구완료">복구완료</option>
-								</select>
-							</div>                             
-                        </form>
-                        </div> 
-                        <div style="display: inline;" class="col-md-6 pull-right"> 
-                        <!-- admin security 적용 -->
-						<sec:authorize access="isAuthenticated()">
+                <div class="notice-slider-area">
+            <div class="notice-slider-content">
+                <div class="row">                
+  	                <form action="${pageContext.request.contextPath}/notice?notiIdx=${notice.notiIdx }" class="form-inline" style="display: inline-flex; padding-left: 20px;">
+          	            <div class="form-group">                                   
+                            <select name="notiIdx" class="selectpicker show-tick form-control" data-width="220px" onchange="submit();">
+								<option value=""> -전체- </option>
+								<option value="공지">공지</option>
+								<option value="이벤트">이벤트</option>
+								<option value="복구">복구</option>
+								<option value="복구완료">복구완료</option>	
+							</select>
+                        </div>
+                    </form>
+                        <sec:authorize access="isAuthenticated()">
 						<sec:authorize access="hasRole('ADMIN')">
 							<!-- 공지사항 등록 버튼 시작 -->
-							<button type="button" class="btn search-btn" data-toggle="modal" data-target="#insertNotice">
+							<button type="button" class="btn search-btn" data-toggle="modal" data-target="#insertNotice" style="display: inline;">
 								등록
 							</button>
 							<!-- 공지사항 등록 Modal -->
@@ -56,20 +52,20 @@
 									  	<div class="modal-header">
 										    <h4 class="modal-title text-center" id="exampleModalLabel">
 										    공지 등록
-										    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close">X</button>
+										    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button>
 										    </h4>										    
 										</div>							
 										<form:form id="insertForm" action="${pageContext.request.contextPath}/notice/insert" method="POST">
 										<div class="modal-body">
 											<div class="row">
-												<div class="col-sm-4">
-												<select id="basic" name="notiIdx" class="selectpicker show-tick form-control" title="-전체-" >
+												<div class="col-sm-4"> 
+												<select name="notiIdx" class="selectpicker show-tick form-control" title="-전체-" >
 													<option> -전체- </option>
 													<option value="공지">공지</option>
 													<option value="이벤트">이벤트</option>
 													<option value="복구">복구</option>
 													<option value="복구완료">복구완료</option>													
-												</select>
+												</select>													
 												</div>
 												<div class="col-sm-8">
 													<input type="text" class="form-control" name="notiTitle" placeholder="제목" >
@@ -77,13 +73,13 @@
 											</div>
 											<div class="mb-3">
 												<br>
-												<textarea class="form-control" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
-												<input type="hidden" class="form-control" name="memId" value="<%= request.getUserPrincipal().getName() %>">
+												<textarea class="form-control" id="notiContents" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
+												<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}">
 											</div>
 										</div>
 										</form:form>
 									    <div class="modal-footer">
-											<div class="button notice-btn">
+											<div class="button notice-btn"><button type="button" id="btnCheck">textarea값 확인</button>
 										        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 												<button form="insertForm" type="submit" class="btn search-btn" >등록</button>												
 											</div> 
@@ -94,9 +90,10 @@
 							<!-- 공지사항 등록 버튼 끝 -->
 						</sec:authorize>			
 						</sec:authorize>
-						</div>
-                    </div>
-                </div>
+                    <!-- </form> -->
+                 </div>   
+             </div> 
+         </div>
 
 				<!-- noticeList 시작 -->
                 <div class="row row-feat"> 
@@ -184,11 +181,25 @@
                         <div class="text-center">
                             <div class="pagination">
                                 <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
-										<li><a href="#">${page }</a></li>	
-									</c:forEach>                                    
-                                    <li><a href="#">Next</a></li>
+                                    <c:choose>
+	                               	<c:when test="${pageInfo.currentPage eq 1 }">
+	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
+	                               	</c:when>
+	                               	<c:otherwise>
+	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/notice?notiIdx=${notice.notiIdx }&page=${pageInfo.currentPage - 1 }"></a></li>
+	                               	</c:otherwise>
+                                	</c:choose>
+	                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
+										<li><a href="${pageContext.request.contextPath}/notice?notiIdx=${notice.notiIdx }&page=${page }">${page }</a></li>
+									</c:forEach>  
+									<c:choose>
+									<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
+	                               		<li><a class="disabled pe-7s-angle-right"></a></li>
+	                               	</c:when>
+	                               	<c:otherwise>
+	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/notice?notiIdx=${notice.notiIdx }&page=${pageInfo.currentPage +1 }"></a></li>
+	                               	</c:otherwise> 
+	                               	</c:choose>  
                                 </ul>
                             </div>
                         </div>                

@@ -2,6 +2,7 @@ package study.cloud.stc.notice.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,8 +23,8 @@ public class NoticeDao {
 		return sqlSession.update("notice.update", vo);
 	}
 	
-	public int delete(NoticeVo vo) throws Exception{
-		return sqlSession.delete("notice.delete", vo);
+	public int delete(int notiNum) throws Exception{
+		return sqlSession.delete("notice.delete", notiNum);
 	}
 	
 	public List<NoticeVo> selectList(String notiIdx) throws Exception{
@@ -33,10 +34,14 @@ public class NoticeDao {
 		return sqlSession.selectList("notice.selectList", vo);
 	}
 
-	public int selectCount(String notiIdx) {
+	public int selectCount(String notiIdx) throws Exception{
 		return sqlSession.selectOne("notice.selectOneCount", notiIdx);
 	}
-	public int selectCount() {
+	public int selectCount() throws Exception{
 		return sqlSession.selectOne("notice.selectOneCount");
+	}
+
+	public List<NoticeVo> selectList(int currentPage, int limit, String notiIdx) throws Exception {
+		return sqlSession.selectList("notice.selectList", notiIdx, new RowBounds((currentPage-1)*limit, limit));
 	}
 }

@@ -18,4 +18,14 @@
          ORDER BY PRO_NUM
 	</select>
 	
+	<select id="selectOneCount" resultType="_int">
+	SELECT COUNT(*) CNT
+	  FROM MAP 
+      LEFT OUTER JOIN PRODUCT
+     USING (PRO_NUM)     
+		<if test="proAddress != null and proAddress neq ''">
+			WHERE PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
+		</if>
+	</select>
+	
 </mapper>
