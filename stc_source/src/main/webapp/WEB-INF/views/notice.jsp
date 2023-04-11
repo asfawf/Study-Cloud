@@ -149,7 +149,7 @@
 																	<div class="mb-3">
 																		<br>
 																		<textarea class="form-control" name="notiContents" placeholder="내용" style="height: 300px;">${notice.notiContents }</textarea>
-																		<input type="hidden" class="form-control" name="memId" value="<%= request.getUserPrincipal().getName() %>">
+																		<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}">
 																	</div>
 																</div>
 																<div class="modal-footer">
