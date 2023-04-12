@@ -24,7 +24,7 @@ public class ProductDao {
 	}
 
 	public int selectCount(String proAddress) throws Exception {
-		return sqlSession.selectOne("product.selectOneCount");
+		return sqlSession.selectOne("product.selectOneCount", proAddress);
 	}
 
 }

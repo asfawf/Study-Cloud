@@ -32,8 +32,8 @@ public class NoticeController {
 		  , NoticeVo vo
 		  , @RequestParam(value="page", defaultValue="1") int page
 		  , @RequestParam(value="notiIdx", defaultValue="") String notiIdx
-        ) throws Exception{
-		
+		  ) throws Exception{
+
 		int currentPage = page; 
 		int totalCnt= service.selectCount(notiIdx); 
 		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT); 

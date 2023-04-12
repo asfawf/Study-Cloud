@@ -26,7 +26,7 @@
                                 	<div class="col-md-4">                                     
 	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="지역" onchange="submit();">
 	                                        <c:forEach var="v" items="${add }">
-												<option value="${v }">${v }</option>
+												<option value="${v }" ${param.proAddress eq v ? 'selected' : '' }>${v }</option>
 											</c:forEach>
                                     	</select>
                                 	</div>
@@ -129,18 +129,18 @@
 	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
 	                               	</c:when>
 	                               	<c:otherwise>
-	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/product?proAddress=${product.proAddress }&page=${pageInfo.currentPage - 1 }"></a></li>
+	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage - 1 }"></a></li>
 	                               	</c:otherwise>
                                 	</c:choose>
 	                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
-										<li><a href="${pageContext.request.contextPath}/product?proAddress=${product.proAddress }&page=${page }">${page }</a></li>
+										<li><a href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&page=${page }">${page }</a></li>
 									</c:forEach>  
 									<c:choose>
 									<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
 	                               		<li><a class="disabled pe-7s-angle-right"></a></li>
 	                               	</c:when>
 	                               	<c:otherwise>
-	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product?proAddress=${product.proAddress }&page=${pageInfo.currentPage +1 }"></a></li>
+	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage +1 }"></a></li>
 	                               	</c:otherwise> 
 	                               	</c:choose>
                                 </ul>

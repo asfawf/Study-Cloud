@@ -28,9 +28,9 @@ public class ProductController {
 			) throws Exception {
 		int currentPage = page; 
 		int totalCnt= service.selectCount(proAddress); 
-		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 12, 3); 
+		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 8, 3); 
 		mv.addObject("pageInfo", map);
-		mv.addObject("pdList", service.selectList(currentPage, 12, proAddress));
+		mv.addObject("pdList", service.selectList(currentPage, 8, proAddress));
 		mv.setViewName("product/product");
 		return mv;
 	}
