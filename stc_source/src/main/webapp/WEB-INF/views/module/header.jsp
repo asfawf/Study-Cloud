@@ -62,7 +62,7 @@
 	                    <ul class="main-nav nav navbar-nav navbar-right">
 	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
 							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                        <li><a class="" href="<%=request.getContextPath() %>/chat">chat</a></li>
+	                        <li><a class="chat" href="">chat</a></li>
 	                    </ul>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
@@ -93,4 +93,3 @@
         </nav>
         <!-- End of nav bar -->
 </header>
-

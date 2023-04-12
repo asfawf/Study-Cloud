@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Study Cloud</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
+<script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
@@ -64,5 +65,12 @@
         </div>        
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
+<script type="text/javascript">
+$('.chat').click(function() {	
+	alert('로그인을 해주세요');
+	location.replace('<%=request.getContextPath() %>/login');
+	return false;			
+});
+</script>
 </body>
 </html>
