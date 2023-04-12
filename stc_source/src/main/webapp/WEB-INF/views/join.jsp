@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>회원가입</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %> 
@@ -53,18 +54,25 @@
                                 </div>                                
                             </div>
                             <div class="input-group" style="padding-left: 60px; padding-right: 60px;">   
-                                <input type="text" class="form-control" id="id">
+                                <input type="text" class="form-control" id="userId" name="user_id" maxlength="15">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" onclick=idCheckFunction();" type="button">중복확인</button>
+                                <button class="btn btn-default" onclick=idCheckFunction(); type="button" id="idDoubleChk">중복확인</button>
                                 </span>                           
                             </div>
+                            <div class="input-group" style="padding-left: 60px; padding-right: 60px;">
+                            <span class="point successIdChk">이름은 2자 이상 8자 이하로 설정해주시기 바랍니다.</span>
+  							    <input type="hidden" id="idDoubleChk"/>
+  							</div>
+  							    
                             <div class="form-group" style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
-                                <label for="password">비밀번호</label>
-                                <input type="password" class="form-control" id="password">
+                                <label for="userpw">비밀번호</label>
+                                <input type="password" class="form-control" id="userPw" name="user_pw">
                             </div>
                             <div class="form-group" style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
-                                <label for="password">비밀번호 재확인</label>
-                                <input type="password" class="form-control" id="password">
+                                <label for="userpwchk">비밀번호 재확인</label>
+                                <input type="password" class="form-control" id="userPwChk" name="user_pw_chk">
+                                <span class="point successPwChk"></span>
+								<input type="hidden" id="pwDoubleChk"/>
                             </div>                          
                             <div class="form-group" style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
                                 <label for="name">이름</label>
@@ -76,7 +84,7 @@
                             </div>           
                             <div class="input-group" style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
                                 <div>
-                                <label for="id">이메일</label>
+                                <label for="email">이메일</label>
                                 </div>                                
                             </div>
                             <div class="input-group" style="padding-left: 60px; padding-right: 60px; margin-bottom: 15px;">   
@@ -104,10 +112,24 @@
     <!-- End register-area -->  
 </section>    
 
-     
+<!-- Footer area-->
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
-      <!-- Footer area-->
-   	<%@ include file="/WEB-INF/views/module/footer.jsp" %>
+
+<script type="text/javascript">
+	$("#userPwChk").blur(function() {
+		if($("#userPwChk").val() == $("#userPw").val()){
+			$(".successPwChk").text("비밀번호가 일치합니다.");
+			$(".successPwChk").css("color", "#88B04B");
+			$("#pwDoubleChk").val("true");
+		}else{
+			$(".successPwChk").text("비밀번호가 일치하지 않습니다.");
+			$(".successPwChk").css("color", "#FDC600");
+			$("#pwDoubleChk").val("false");
+		}
+	});
+		
+</script>
 
 </body>
 </html>
