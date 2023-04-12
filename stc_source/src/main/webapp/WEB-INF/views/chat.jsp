@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>웹소켓 채팅</title>
-
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript">
@@ -28,7 +28,7 @@
 			// 정의된 CMD 코드에 따라서 분기 처리
 			if (msgData.cmd == 'CMD_MSG_SEND') {
 				if(msgData.division!= "${standname }" ){
-					$('#divChatData').append('<div align="left" class="wrap">' + msgData.sender + '<div class="messageformleft" style="max-width: 300px;">' + msgData.msg + '</div>' + '<div class="chatTime">'+ msgData.formatedNow+'</div>' +'</div>');	
+					$('#divChatData').append('<div align="left" class="wrap" >' + msgData.sender + '<div class="messageformleft" style="max-width: 300px;">' + msgData.msg + '</div>' + '<div class="chatTime">'+ msgData.formatedNow+'</div>' +'</div>');	
 				}
 				else if(msgData.division== "${standname }" ){
 					$('#divChatData').append('<div align="right" class="wrap">'+ msgData.sender +'<div class="chatTime">'+ msgData.formatedNow + '</div>' + '<div class="messageformright" style="max-width: 300px;">' + msgData.msg +'</div>' +'</div>');	
@@ -74,6 +74,9 @@
 			this._socket.send(jsonData);
 		}
 	};
+	
+	
+	
 </script>
 <script type="text/javascript">
 	$(window).on('load', function() {
@@ -120,9 +123,9 @@
 }
 
 .wrap {
-		
     	word-break: break-all;
       	word-wrap: normal;
+
       }
 
 #chatWrap {
@@ -133,7 +136,6 @@
 #chatLog {
     height: 700px;
     overflow-y: auto;
-    padding: 10px;
 }
 
 #chatForm {
@@ -182,17 +184,38 @@
     border-bottom: 1px solid #ddd;
 }
 
+#divChatData{
+	border-top: 25px;    
+	border-bottom: 20px;
+}
+
 </style>
+
+<script>
+
+	$( document ).ready( function() {
+	    $( 'input[type=button]' ).click( function() {
+	      $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
+	    } );
+	  } );
+	
+	/*
+	$(document).height()  
+	$('.chatLog')[0].scrollHeight
+	*/
+</script>
+
+
 <body>
  <div id="contentCover">
 	<div id="chatWrap">
-		<div id="chatLog" >
-			<div id="divChatData" style="top: 10px"></div>
+		<div id="chatLog" class="chatLog" style="overflow-y: scroll; ">
+			<div id="divChatData"  style="top: 10px;"></div>
 		</div>
-		<div id="chatForm" class="input-group mb-3">
+		<div id="chatForm" class="input-group mb-3" onsubmit="return false">
 			<input type="hidden" id="division" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />
 			<input type="text" autocomplete="off" id="message" class="message" size="30" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
-			<input type="button"id="btnSend" value="채팅 전송" onclick="webSocket.sendChat()" />			
+			<input type="button" id="btnSend" class="btnSend" value="채팅 전송" onclick="webSocket.sendChat()" />			
 		</div>
 	</div>		
 </div>
