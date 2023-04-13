@@ -25,16 +25,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ctc.wstx.shaded.msv_core.util.Util;
 
 @Controller
-@RequestMapping("/changemail")
+@RequestMapping("/changeInfo")
 public class mailSender {
 	
-
-	@RequestMapping("/naver")
-	public ModelAndView changemailsend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@GetMapping
+	public ModelAndView changemailsend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, String division, String sendTo) throws Exception{
 
 		String proId = WebUtil.getProperty("mail_id");
 		String proPass = WebUtil.getProperty("mail_password");
-		String proEmail = WebUtil.getProperty("mail_email");
+		String proEmail = WebUtil.getProperty("mail_email"); // 보내는 사람
 		
 		System.out.println("proId: " + proId);
 		System.out.println("propass: " + proPass);
@@ -55,8 +54,8 @@ public class mailSender {
 		System.out.println();
 		System.out.println("pw1: "+ change);
 		
-		// 보내는 사람
-		String recipient  = proEmail;
+		// 받는 사람
+		String recipient  = sendTo;
 		
 		String subject = "임시 비밀번호 발급 메일 입니다.";
 		String body = "귀하의 변경된 비밀번호는 " + change + " 입니다.";

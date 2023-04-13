@@ -80,11 +80,19 @@ a {
    color: white;
 }
 
+.leftId{
+	text-align: left;
+	display: inline;
+}
+
+.rightpw{
+	float: right;	
+}
 
 </style>
 <body>
-<%@ include file="/WEB-INF/views/module/header.jsp" %> 
 
+<%@ include file="/WEB-INF/views/module/header.jsp" %> 
     <div class="page-head"> 
         <div class="container">
             <div class="row">
@@ -123,18 +131,24 @@ a {
                             <div class="text-center">
                                 <button type="submit" class="btn btn-default">로그인</button>
                             </div>
-                        <br>
+                            
+                        	<br>
+                            
+                            <div class="leftId" id="leftId"><h2><a href="#">아이디 찾기</a></h2></div>
+                            <div id="rightpw" class="rightpw"><h2><a href="#">비밀번호 찾기</a></h2></div> 
+                            
+                        	<br>
                         
-                        <h2>Social login :  </h2> 
-                        
-                        <a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=94e122bfd99bcf13ff8bfa4508d639b3&redirect_uri=http://localhost:8090/stc/kakaologin&response_type=code">
-				     		<!-- REST_API키 및 REDIRECT_URI는 본인걸로 수정하세요 -->
-					      	<div class="kakao_i"></div>
-					      	<div class="kakao_txt">카카오톡으로 간편로그인 </div>
-					      	
-   						</a>
-   						
-                        </form:form>
+                        	<h2>Social login :  </h2> 
+	                        
+	                        <a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=94e122bfd99bcf13ff8bfa4508d639b3&redirect_uri=http://localhost:8090/stc/kakaologin&response_type=code">
+					     		<!-- REST_API키 및 REDIRECT_URI는 본인걸로 수정하세요 -->
+						      	<div class="kakao_i"></div>
+						      	<div class="kakao_txt">카카오톡으로 간편로그인 </div>
+						      	
+	   						</a>
+	   						
+	                    </form:form>
                         
                         <!-- 네이버 로그인 버튼 생성 위치 -->
 						<div id="naverIdLogin" style="display: none;"></div>
