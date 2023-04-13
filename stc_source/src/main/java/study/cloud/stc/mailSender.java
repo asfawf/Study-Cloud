@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ctc.wstx.shaded.msv_core.util.Util;
 
 @Controller
-@RequestMapping("/changeInfo")
+@RequestMapping("/sendmail")
 public class mailSender {
 	
 	@GetMapping
