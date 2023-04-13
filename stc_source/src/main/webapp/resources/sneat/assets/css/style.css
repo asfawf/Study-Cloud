@@ -2116,7 +2116,7 @@ single property page
 }
 
 .sidebar-property{
-    background-color:#EEE;
+    background-color:white;
     padding: 15px 25px 25px;
 }
 .dealer-widget {
@@ -2545,10 +2545,10 @@ blog
 */ 
 .blog-asside-right{
     padding-right: 15px;
-padding-left: 15px;
-padding-top: 15px;
-padding-bottom: 15px;
-}
+	padding-left: 15px;
+	padding-top: 0;
+	padding-bottom: 15px;
+	}
 #blog-listing-big {
     padding: 100px 0px 70px;
 }
