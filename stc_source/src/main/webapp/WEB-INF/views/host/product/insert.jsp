@@ -83,10 +83,16 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <input type="text" class='btn btn-finish btn-primary pull-right' name='update' value='등록' />
+<!--                                     <input type="submit" class='btn btn-finish btn-primary pull-right' name='update' value='등록' /> -->
+                                <button class="btn btn-finish btn-primary pull-right" type="submit">
+								<a href="<%=request.getContextPath()%>/host/product">등록</a>
+							</button>
                                 </div>
-                                
-                            </div>
+
+						
+
+
+						</div>
  
                     
                             
