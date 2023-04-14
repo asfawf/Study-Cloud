@@ -16,40 +16,36 @@
         </div>
         <!-- Body content -->
 
-        
 
-        
 
-        <div class="page-head"> 
-            <div class="container">
-                <div class="row">
-                    <div class="page-head-content">
-                        <h1 class="page-title"><span class="orange strong">공간등록 page</span></h1>               
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End page header --> 
+
+
+		<div class="row">
+			<div class="page-head-content">
+				<h1 class="page-title" style="text-align: center">내 공간 등록</h1>
+			</div>
+		</div>
+		<!-- End page header --> 
 
         <!-- property area -->
-        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+<!--         <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp; -->
             <div class="container">   
                 <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container" style="background-color: #FCFCFC;">
 
                         <form action="insert" method="post">
 
-                            <div class="profiel-header">
-                                <h3>
-                                    <b>공간</b>등록<br>
-                                </h3>
-                                <hr>
-                            </div>
+<!--                             <div class="profiel-header"> -->
+<!--                                 <h3> -->
+<!--                                     <b>공간</b>등록<br> -->
+<!--                                 </h3> -->
+<!--                                 <hr> -->
+<!--                             </div> -->
 
                             <div class="clear">
 
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-top:25px">
                                         <label>공간이름</label>
                                         <input name="productName" type="text" class="form-control">
                                     </div>
@@ -101,7 +97,7 @@
                 </div><!-- end row -->
 
              </div>
-        </div>
+<!--         </div> -->
 
   
         
