@@ -6,16 +6,24 @@
 <meta charset="UTF-8">
 <title>product detail page</title>
 
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
+
+
+
+<!-- datepicker -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js">
+<!-- selectpicker -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
 
 </head>
     <body>
+    
         <%@ include file="/WEB-INF/views/module/header.jsp" %>
     <section>
-        
-        <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
+     
         <!-- Body content -->
         <div class="page-head"> 
             <div class="container">
@@ -230,11 +238,9 @@
 
 					<div class="col-md-4 p0">
 						<aside class="sidebar sidebar-property blog-asside-right">
-
-
-							<div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
+							<div class="panel panel-default sidebar-menu">
 								<div class="panel-heading">
-									<h3 class="panel-title">예약하기</h3>
+									<h3 class="panel-title"><b>예약하기</b></h3>
 								</div>
 								<div class="panel-body recent-property-widget">
 									<img src="https://images.unsplash.com/photo-1616400619175-5beda3a17896?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80">
@@ -245,32 +251,61 @@
                                                 <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
                                                 <li><i class="pe-7s-call strong"> </i> 010-1234-5678</li>
                                                 <li><i class="pe-7s-up-arrow strong"> </i> 11층</li>
-                                                <li><i class="pe-7s-car strong"> </i> 주차가능</li>
+                                                <li><i class="pe-7s-car strong"> </i> 주차가능</li>                                                
                                                 <li><i class="pe-7s-signal strong"> </i> 와이파이</li>
-                                            </ul>
-                                            <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+                                            </ul>                             
                                         </div>
-
-
-
-
-
-
-
-
-
+									</div>
 								</div>
-							</div>
-
-							<div
-								class="panel panel-default sidebar-menu wow fadeInRight animated">
+							<div class="panel panel-default sidebar-menu">
 								<div class="panel-heading">
-									<h3 class="panel-title">Ads her</h3>
+									<h3 class="panel-title"><b>날짜선택</b></h3>
 								</div>
 								<div class="panel-body recent-property-widget">
-									<img
-										src="<%=request.getContextPath()%>/resources/sneat/assets/img/ads.jpg">
+									<div class="input-group date" id="datepicker">
+										<input type="text" class="form-control" id="datepicker" />
+										<span class="input-group-addon"> <span
+											class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
 								</div>
+							</div>
+							<div class="panel panel-default sidebar-menu">
+								<div class="panel-heading">
+									<h3 class="panel-title"><b>시간선택</b></h3>
+								</div>
+									<div class="panel-body recent-property-widget">
+										<select class="selectpicker" multiple data-width="350px">
+											<optgroup label="오전">
+												<option value="1">00:00 ~ 01:00</option>
+												<option value="2">01:00 ~ 02:00</option>
+												<option value="3">02:00 ~ 03:00</option>
+												<option value="4">03:00 ~ 04:00</option>
+												<option value="5">04:00 ~ 05:00</option>
+												<option value="6">05:00 ~ 06:00</option>
+												<option value="7">06:00 ~ 07:00</option>
+												<option value="8">07:00 ~ 08:00</option>
+												<option value="9">08:00 ~ 09:00</option>
+												<option value="10">09:00 ~ 10:00</option>
+												<option value="11">10:00 ~ 11:00</option>
+												<option value="12">11:00 ~ 12:00</option>
+											</optgroup>
+											<optgroup label="오후">
+												<option value="13">12:00 ~ 13:00</option>
+												<option value="14">13:00 ~ 14:00</option>
+												<option value="15">14:00 ~ 15:00</option>
+												<option value="16">15:00 ~ 16:00</option>
+												<option value="17">16:00 ~ 17:00</option>
+												<option value="18">17:00 ~ 18:00</option>
+												<option value="19">18:00 ~ 19:00</option>
+												<option value="20">19:00 ~ 20:00</option>
+												<option value="21">20:00 ~ 21:00</option>
+												<option value="22">21:00 ~ 22:00</option>
+												<option value="23">22:00 ~ 23:00</option>
+												<option value="24">23:00 ~ 24:00</option>
+											</optgroup>
+										</select>
+									</div>
 							</div>
 
 
@@ -286,38 +321,29 @@
          
           
         
-        
-        <script src="<%=request.getContextPath()%>/resources/sneat/assets/js/vendor/modernizr-2.6.2.min.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery-1.10.2.min.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/sneat/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/sneat/assets/js/bootstrap-select.min.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/sneat/assets/js/bootstrap-hover-dropdown.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/sneat/assets/js/easypiechart.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/owl.carousel.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/wow.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/icheck.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/price-range.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath() %>/resources/sneat/assets/js/lightslider.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/main.js"></script>
-
+     
         <script>
-            $(document).ready(function () {
-
-                $('#image-gallery').lightSlider({
-                    gallery: true,
-                    item: 1,
-                    thumbItem: 9,
-                    slideMargin: 0,
-                    speed: 500,
-                    auto: true,
-                    loop: true,
-                    onSliderLoad: function () {
-                        $('#image-gallery').removeClass('cS-hidden');
-                    }
-                });
-            });
-        </script>
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+	</script>
 		</section>
 		<%@ include file="/WEB-INF/views/module/footer.jsp" %>
 		
