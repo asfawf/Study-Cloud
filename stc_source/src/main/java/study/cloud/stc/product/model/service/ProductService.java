@@ -2,7 +2,7 @@ package study.cloud.stc.product.model.service;
 
 import java.util.List;
 
-
+import study.cloud.stc.product.model.vo.ProductDetailDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 
 
@@ -12,4 +12,7 @@ public interface ProductService {
 	public List<ProductVo> selectList(int currentPage, int limit, String proAddress) throws Exception;
 
 	public int selectCount(String proAddress) throws Exception;
+	
+	//상세페이지화면
+	public ProductDetailDto selectOne(int proNum) throws Exception;
 }

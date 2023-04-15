@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import study.cloud.stc.product.model.vo.ProductDetailDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 
 @Repository
@@ -27,4 +28,13 @@ public class ProductDao {
 		return sqlSession.selectOne("product.selectOneCount", proAddress);
 	}
 
+	
+	
+	
+	
+	public ProductDetailDto selectOne(int proNum) {
+		return sqlSession.selectOne("product.proDetail",proNum);
+	}
+	
+	
 }

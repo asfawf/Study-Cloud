@@ -96,7 +96,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail?proNum=${product.proNum }" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/product/detail/${product.proNum }" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
                                     </div>
 
                                     <div class="item-entry overflow">

@@ -28,4 +28,27 @@
 		</if>
 	</select>
 	
+	
+	
+	
+<!-- 	상세 페이지 화면 -->
+	<select id="proDetail"  resultType="pdto">
+	SELECT
+			pro_num 
+		  ,pro_name
+		  ,pro_post
+		  ,pro_info
+		  ,pro_notice
+		  ,pro_refund
+		  ,pro_phone
+		  from map
+    LEFT OUTER JOIN PRODUCT
+         USING (PRO_NUM)
+    LEFT OUTER JOIN PROTIME 
+         USING (PRO_NUM)
+         where pro_num = #{proNum}
+<!-- 	WHERE PRO_NUM LIKE '%'||#{proNum}||'%' -->
+
+	</select>
+	
 </mapper>

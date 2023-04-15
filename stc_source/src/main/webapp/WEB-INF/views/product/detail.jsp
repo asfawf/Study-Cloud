@@ -21,7 +21,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">강남역 3분 스터디룸 [헬로강남] </h1>               
+                        <h1 class="page-title">${detail.proName }</h1>               
                     </div>
                 </div>
             </div>
@@ -59,15 +59,15 @@
 
                        <!--   <div class="single-property-wrapper">-->
                             <div class="single-property-header">                                          
-                                <h1 class="property-title pull-left">강남역 3분 스터디룸[헬로강남]</h1>
-                                <span class="property-price pull-right">$825,000</span>
+                                <h1 class="property-title pull-left">${detail.proName }</h1>
+                                <span class="property-price pull-right">${detail.proPrice}</span>
                             </div>
 
                             
                             <div class="section">
                                 <h4 class="s-property-title">공간소개</h4>
                                 <div class="s-property-content">
-                                    <p>N여러화가의 색체가 예쁘게담긴<br>편안한 12인 모임감성공간[헬로강남] 입니다.</p>
+                                    <p>${detail.proPost }</p>
                                 </div>
                             </div>
                             <!-- End introduce area  -->
@@ -77,39 +77,42 @@
                                 <h4 class="s-property-title">시설안내</h4>
 
                                 <ul class="additional-details-list clearfix">
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">영업시간</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">0~24시</span>
-                                    </li>
+                                
+                                ${detail.proInfo }
+<!--                                     <li> -->
+<!--                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">영업시간</span> -->
+<!--                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">0~24시</span> -->
+<!--                                     </li> -->
 
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">층</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">지상8층</span>
-                                    </li>
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">주차</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">불가능</span>
-                                    </li>
+<!--                                     <li> -->
+<!--                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">층</span> -->
+<!--                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">지상8층</span> -->
+<!--                                     </li> -->
+<!--                                     <li> -->
+<!--                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">주차</span> -->
+<!--                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">불가능</span> -->
+<!--                                     </li> -->
 
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">엘리베이터</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">없음</span>
-                                    </li>
+<!--                                     <li> -->
+<!--                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">엘리베이터</span> -->
+<!--                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">없음</span> -->
+<!--                                     </li> -->
                                 </ul>
                             </div>  
                             <!-- End additional-details area  -->
 
                             <div class="section property-features">      
 
-                                <h4 class="s-property-title">유의사항</h4>                            
-                                <ul>
-                                    <li><a>잔여시간 환불 불가</a></li><br>   
-                                    <li><a>소품 파손시 신품가격 변상</a></li><br>
-                                    <li><a>퇴실시 기본적인 청소 및 소품 원위치</a></li><br>
-                                    <li><a>고객님의 안전과 보안을 위하여 CCTV설치</a></li><br>
-                                    <li><a>5분전퇴실</a></li><br>
-                                    <li><a>작업실내 달리기/고함지르기 소음행위 금지</a></li>
-                                </ul>
+                                <h4 class="s-property-title">유의사항</h4>   
+                                ${detail.proNotice }                         
+<!--                                 <ul> -->
+<!--                                     <li><a>잔여시간 환불 불가</a></li><br>    -->
+<!--                                     <li><a>소품 파손시 신품가격 변상</a></li><br> -->
+<!--                                     <li><a>퇴실시 기본적인 청소 및 소품 원위치</a></li><br> -->
+<!--                                     <li><a>고객님의 안전과 보안을 위하여 CCTV설치</a></li><br> -->
+<!--                                     <li><a>5분전퇴실</a></li><br> -->
+<!--                                     <li><a>작업실내 달리기/고함지르기 소음행위 금지</a></li> -->
+<!--                                 </ul> -->
 
                             </div>
                             <!-- End 유의사항 area  -->
@@ -118,15 +121,16 @@
 
                             <div class="section property-features">      
 
-                                <h4 class="s-property-title">환불규정</h4>                            
-                                <ul>
-                                    <li><a>이용 6일전 : 총 금액의 100% 환불</a></li><br>   
-                                    <li><a>이용 5일전 : 환불 불가</a></li><br>
-                                    <li><a>이용 4일전 : 환불 불가</a></li><br>
-                                    <li><a>이용 3일전 : 환불 불가</a></li><br>
-                                    <li><a>이용 2일전 : 환불 불가</a></li><br>
-                                    <li><a>이용 1일전 : 환불 불가</a></li>
-                                </ul>
+                                <h4 class="s-property-title">환불규정</h4>       
+                                ${detail.proRefund }                     
+<!--                                 <ul> -->
+<!--                                     <li><a>이용 6일전 : 총 금액의 100% 환불</a></li><br>    -->
+<!--                                     <li><a>이용 5일전 : 환불 불가</a></li><br> -->
+<!--                                     <li><a>이용 4일전 : 환불 불가</a></li><br> -->
+<!--                                     <li><a>이용 3일전 : 환불 불가</a></li><br> -->
+<!--                                     <li><a>이용 2일전 : 환불 불가</a></li><br> -->
+<!--                                     <li><a>이용 1일전 : 환불 불가</a></li> -->
+<!--                                 </ul> -->
 
                             </div>
                             <!-- End 환불 규정 area  -->

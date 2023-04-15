@@ -17,6 +17,8 @@
 			alias="revo" />
 		<typeAlias type="study.cloud.stc.product.model.vo.ProductVo"
 			alias="pdvo" />
+		<typeAlias type="study.cloud.stc.product.model.vo.ProductDetailDto"
+			alias="pdto"/>
 	
 	</typeAliases>
 	<mappers>

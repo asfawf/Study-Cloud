@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import study.cloud.stc.product.model.dao.ProductDao;
+import study.cloud.stc.product.model.vo.ProductDetailDto;
 import study.cloud.stc.product.model.vo.ProductVo;
  
 @Service
@@ -27,6 +28,12 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int selectCount(String proAddress) throws Exception {
 		return dao.selectCount(proAddress);
+	}
+	
+	
+	@Override
+	public ProductDetailDto selectOne(int proNum) throws Exception {
+		return dao.selectOne(proNum);
 	}
 
 }
