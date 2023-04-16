@@ -50,10 +50,10 @@ public class ProductController {
 //		return mv;
 //	}
 	
-	@GetMapping("/detail/{proNum}")
+	@GetMapping("/detail")
 	public ModelAndView productDetail(
 			ModelAndView mv
-			,@PathVariable int proNum
+			,@RequestParam(value="proNum" ,defaultValue = "") int proNum
 			) throws Exception {
 		ProductDetailDto dto = service.selectOne(proNum);
 		mv.addObject("detail",dto);
