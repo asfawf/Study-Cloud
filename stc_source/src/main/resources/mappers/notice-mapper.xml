@@ -27,6 +27,16 @@
 	UPDATE NOTICE
 	   SET NOTI_TITLE = #{notiTitle}
 		 , NOTI_CONTENTS = #{notiContents}
+		 <choose>
+		 	<when test="originalFilename != null and originalFilename neq '' and renameFilename != null and renameFilename neq ''">
+		 , ORIGINAL_FILENAME = #{originalFilename}
+		 , RENAME_FILENAME = #{renameFilename}
+		 	</when>
+		 	<otherwise>
+		 , ORIGINAL_FILENAME = null
+		 , RENAME_FILENAME = null
+		 	</otherwise>
+		 </choose>		 
      WHERE NOTI_NUM = #{notiNum}
 </update>
 

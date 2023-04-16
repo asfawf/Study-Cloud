@@ -6,9 +6,13 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
+<script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/module/header.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header.jsp" %>
+<c:set var="cpath" value="${pageContext.request.contextPath }"/>
+<c:set var="uploadpath" value="/resources/uploadfiles/"/>
 <section>
 	<div class="count-area"> 
 	    <div class="container">
@@ -19,13 +23,10 @@
 	        </div>
 	    </div>
 	</div>
-        <!-- End page header -->
-        
-
         <!-- section property area -->
         <div class="content-area recent-property" style=" padding-bottom: 55px;">
-            <div class="container">  
-                <div class="notice-slider-area">
+            <div class="container">                  
+		        <div class="notice-slider-area">
 		            <div class="notice-slider-content">
 		                <div class="row">                
 		  	                <form action="${pageContext.request.contextPath}/notice" class="form-inline" style="display: inline-flex; padding-left: 20px;">
@@ -55,10 +56,10 @@
 												    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button>
 												    </h4>										    
 												</div>							
-												<form:form id="insertForm" action="${pageContext.request.contextPath}/notice/insert" method="POST">
+												<form:form id="insertForm" action="${pageContext.request.contextPath}/notice/insert" method="POST" enctype="multipart/form-data">
 												<div class="modal-body">
 													<div class="row">
-														<div class="col-sm-4">
+														<div class="col-sm-4"> 
 														<select name="notiIdx" class="selectpicker show-tick form-control" title="-전체-" >
 															<option> -전체- </option>
 															<option value="공지">공지</option>
@@ -74,7 +75,8 @@
 													<div class="mb-3">
 														<br>
 														<textarea class="form-control" id="notiContents" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
-														<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}">
+														<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}"><br>
+														<input type="file" class="form-control" name="report" placeholder="첨부파일">
 													</div>
 												</div>
 												</form:form>
@@ -109,7 +111,12 @@
 							        <div id="${notice.notiNum }" class="panel-collapse collapse fqa-body">
 							            <div class="panel-body">
 							                <ol>
-							                    ${notice.notiContents }    
+							                    ${notice.notiContents }  
+							                    <c:choose>
+				                               	<c:when test="${notice.renameFilename ne null }">
+				                               		<img src="${cpath}${uploadpath}${notice.renameFilename }">  
+				                               	</c:when>
+				                               	</c:choose>							                    
 							                </ol>		
 							                					                
 							                <div class="button notice-btn">
@@ -124,20 +131,20 @@
 													<button form="deleteForm${notice.notiNum }" class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
 													</form:form>
 													<!-- 공지사항 수정 Modal -->													 
-													<form:form id="updateForm${notice.notiNum }" action="${pageContext.request.contextPath}/notice/update?notiNum=${notice.notiNum }" method="POST">
+													<form:form id="updateForm${notice.notiNum }" action="${pageContext.request.contextPath}/notice/update?notiNum=${notice.notiNum }" method="POST" enctype="multipart/form-data">
 													<div class="modal fade" id="updateNotice${notice.notiNum }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 														<div class="modal-dialog">
 															<div class="modal-content">
 															  	<div class="modal-header">
 																    <h4 class="modal-title text-center" id="exampleModalLabel">
 																    공지사항 수정
-																    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close">X</button>
+																    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button>
 																    </h4>										    
 																</div>
 																<div class="modal-body">
 																	<div class="row">
 																		<div class="col-sm-4">
-																		<select id="basic" name="notiIdx" class="selectpicker show-tick form-control" title="${notice.notiIdx }">
+																		<select name="notiIdx" class="selectpicker show-tick form-control" title="${notice.notiIdx }">
 																			<option value="${notice.notiIdx }">${notice.notiIdx }</option>
 																		</select>
 																		</div>
@@ -147,8 +154,16 @@
 																	</div>
 																	<div class="mb-3">
 																		<br>
-																		<textarea class="form-control" name="notiContents" placeholder="내용" style="height: 300px;">${notice.notiContents }</textarea>
+																		<textarea class="form-control" id="#notiContents" name="notiContents" placeholder="내용" style="height: 300px;">
+																			${notice.notiContents }
+																			<c:choose>
+											                               	<c:when test="${notice.renameFilename ne null }">
+											                               		<img src="${cpath}${uploadpath}${notice.renameFilename }">  
+											                               	</c:when>
+											                               	</c:choose>
+										                               	</textarea>
 																		<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}">
+																		<input type="file" class="form-control" name="report" placeholder="첨부파일">
 																	</div>
 																</div>
 																<div class="modal-footer">
@@ -180,7 +195,7 @@
                         <div class="text-center">
                             <div class="pagination">
                                 <ul>
-                                    <c:choose>
+                                	<c:choose>
 	                               	<c:when test="${pageInfo.currentPage eq 1 }">
 	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
 	                               	</c:when>
@@ -198,7 +213,7 @@
 	                               	<c:otherwise>
 	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/notice?notiIdx=${param.notiIdx }&page=${pageInfo.currentPage +1 }"></a></li>
 	                               	</c:otherwise> 
-	                               	</c:choose>  
+	                               	</c:choose>                                 
                                 </ul>
                             </div>
                         </div>                
@@ -207,5 +222,18 @@
         </div>
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
-</body>
+	
+<script>
+	CKEDITOR.replace( 'notiContents'
+			, {
+				filebrowserUploadUrl: 'imageUpload.do'
+				// ckfinder 추가하여 이미지 찾기도 가능함
+			   }
+	); 
+	$(document).ready(function() {
+	    CKEDITOR.replace('#notiContents');
+	});
+	
+</script>
+    </body>
 </html>

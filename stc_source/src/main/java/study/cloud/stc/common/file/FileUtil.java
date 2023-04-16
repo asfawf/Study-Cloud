@@ -9,9 +9,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
+@Component("fileUtil") 
 public class FileUtil {
 	private final static String UPLOAD_FOLDER = "\\resources\\uploadfiles";
 

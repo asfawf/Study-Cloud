@@ -3,15 +3,20 @@ package study.cloud.stc.notice.controller;
 import java.sql.SQLException;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import study.cloud.stc.common.file.FileUtil;
 import study.cloud.stc.common.paging.Paging;
 import study.cloud.stc.notice.model.service.NoticeService;
 import study.cloud.stc.notice.model.vo.NoticeVo;
@@ -26,6 +31,10 @@ public class NoticeController {
 	private NoticeService service;
 	private final static int BOARD_LIMIT = 5;
 	private final static int PAGE_LIMIT = 5;
+	
+	@Autowired
+	@Qualifier("fileUtil")
+	private FileUtil fileUtil;
 	
 	@GetMapping
 	public ModelAndView noticeList(ModelAndView mv
@@ -45,7 +54,18 @@ public class NoticeController {
 	
 	@PostMapping("/insert")
 	public ModelAndView insertNotice(ModelAndView mv
-			, NoticeVo vo) throws Exception{
+			, NoticeVo vo
+			, @RequestParam(name = "report", required = false) MultipartFile multi
+			, HttpServletRequest request
+			) throws Exception {
+		Map<String, String> filePath;
+		try {
+			filePath = fileUtil.saveFile(multi, request, null);
+			vo.setOriginalFilename(filePath.get("original"));
+			vo.setRenameFilename(filePath.get("rename"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		service.insert(vo);
 		mv.setViewName("redirect:/notice");
 		return mv;
@@ -53,7 +73,18 @@ public class NoticeController {
 	
 	@PostMapping("/update")
 	public ModelAndView updateNotice(ModelAndView mv
-			, NoticeVo vo) throws Exception {
+			, NoticeVo vo
+			, @RequestParam(name = "report", required = false) MultipartFile multi
+			, HttpServletRequest request
+			) throws Exception {
+		Map<String, String> filePath;
+		try {
+			filePath = fileUtil.saveFile(multi, request, null);
+			vo.setOriginalFilename(filePath.get("original"));
+			vo.setRenameFilename(filePath.get("rename"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		service.update(vo);
 		mv.setViewName("redirect:/notice");
 		return mv;

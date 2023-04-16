@@ -7,6 +7,8 @@
 <title>Study Cloud</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
@@ -45,14 +47,7 @@
 										</c:forEach>                                        
                                     </select>
                                 </div>
-                                <div class="form-group">                                     
-                                    <select id="basic" class="selectpicker show-tick form-control" title="날짜">
-                                        <option> -Status- </option>
-                                        <option>Rent </option>
-                                        <option>Boy</option>
-                                        <option>used</option>  
-                                    </select>
-                                </div>
+                                <input id="datepicker" width="270" />
                                 <button class="btn search-btn" type="button" onclick=" submit(); ">검색</button>
                                 <button class="btn search-btn" type="button" onclick=" location.href='product/map' ">지도</button>
 							</form>
@@ -60,7 +55,12 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
+<script>
+	$('#datepicker').datepicker({
+	    uiLibrary: 'bootstrap'
+	});
+</script>        
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 <script type="text/javascript">
