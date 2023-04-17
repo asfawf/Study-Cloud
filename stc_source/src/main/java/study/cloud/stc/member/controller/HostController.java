@@ -51,7 +51,17 @@ public class HostController {
 		return mv;
 	}
 	
+	@GetMapping("/product/update")
+	public ModelAndView updateProductPage(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/product/update");
+		return mv;
+	}
 	
+	@GetMapping("/reserve/update")
+	public ModelAndView updateProduct(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/product");
+		return mv;
+	}
 	
 	
 }

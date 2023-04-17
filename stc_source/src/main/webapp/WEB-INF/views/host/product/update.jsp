@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등록</title>
+<title>공간 수정 페이지</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
@@ -24,7 +24,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title"><span class="orange strong">공간등록 page</span></h1>               
+                        <h1 class="page-title"><span class="orange strong">수정 page</span></h1>               
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
 
                             <div class="profiel-header">
                                 <h3>
-                                    <b>공간</b>등록<br>
+                                    <b>공간수정<br>
                                 </h3>
                                 <hr>
                             </div>
