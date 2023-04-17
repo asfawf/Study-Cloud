@@ -184,20 +184,20 @@
 <script>
 
 
-	$(document).ready(function() {
-		$("#chkAll").click(function() {
-			if($("#chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
-			else $("input[name=chk]").prop("checked", false);
-		});
-		
-		$("input[name=chk]").click(function() {
-			var total = $("input[name=chk]").length;
-			var checked = $("input[name=chk]:checked").length;
-			
-			if(total != checked) $("#chkAll").prop("checked", false);
-			else $("#chkAll").prop("checked", true); 
-		});
+$(document).ready(function() {
+	$("#chkAll").on("ifChanged", function() {
+		if($("#chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
+		else $("input[name=chk]").prop("checked", false);
 	});
+	
+	$("input[name=chk]").on("ifChanged", function() {
+		var total = $("input[name=chk]").length;
+		var checked = $("input[name=chk]:checked").length;
+		
+		if(total !== checked) $("#chkAll").prop("checked", false);
+		else $("#chkAll").prop("checked", true); 
+	});
+});
 </script>
 
 

@@ -39,9 +39,9 @@
                                 </div>                                
                             </div>
                             <div class="input-group" style="padding-left: 60px; padding-right: 60px; ">   
-                                <input id="radio-1" type="radio" name="userjoin" value="user" checked >
+                                <input id="radio-1" type="radio" name="memberAutority" value="ROLE_USER" checked >
 								<label for="radio-1" style="padding-left:10px; padding-right: 130px;">일반회원</label>                              
-                                <input id="radio-2" type="radio" name="hostjoin" value="host">
+                                <input id="radio-2" type="radio" name="memberAutority" value="ROLE_HOST">
 								<label for="radio-2" style="padding-left:10px;"> 호스트회원</label>                           
                             </div>
                             
