@@ -36,17 +36,12 @@
                                     	</select>
                                     </div>
                                     <div class="col-md-4">                                     
-                                        <select id="basic" class="selectpicker show-tick form-control" title="날짜">
-	                                        <option> -Status- </option>
-	                                        <option>Rent </option>
-	                                        <option>Boy</option>
-	                                        <option>used</option>  
-                                    </select>
+                                       <input type="text" class="form-control" width="270" name="proUseTime" placeholder="날짜" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')" value="${param.proUseTime}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">
 
-                                </div>                     
+                                </div>                      
                             </form>
                         </div>
                     </div>

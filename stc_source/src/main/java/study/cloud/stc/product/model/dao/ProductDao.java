@@ -20,12 +20,12 @@ public class ProductDao {
 		return sqlSession.selectList("product.selectList", vo);
 	}
 
-	public List<ProductVo> selectList(int currentPage, int limit, String proAddress) throws Exception {
-		return sqlSession.selectList("product.selectList", proAddress, new RowBounds((currentPage-1)*limit, limit));
+	public List<ProductVo> selectList(int currentPage, int limit, ProductVo vo) throws Exception {
+		return sqlSession.selectList("product.selectList", vo, new RowBounds((currentPage-1)*limit, limit));
 	}
 
-	public int selectCount(String proAddress) throws Exception {
-		return sqlSession.selectOne("product.selectOneCount", proAddress);
+	public int selectCount(ProductVo vo) throws Exception {
+		return sqlSession.selectOne("product.selectOneCount", vo);
 	}
 
 	

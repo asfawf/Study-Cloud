@@ -26,21 +26,24 @@ public class ProductController {
 	public ModelAndView productList(ModelAndView mv
 			, ProductVo vo
 			, @RequestParam(value="page", defaultValue="1") int page
-			, @RequestParam(value="proAddress", defaultValue="") String proAddress
 			) throws Exception {
 		int currentPage = page; 
-		int totalCnt= service.selectCount(proAddress); 
+		int totalCnt= service.selectCount(vo); 
 		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 8, 3); 
 		mv.addObject("pageInfo", map);
-		mv.addObject("pdList", service.selectList(currentPage, 8, proAddress));
+		mv.addObject("pdList", service.selectList(currentPage, 8, vo));
 		mv.setViewName("product/product");
 		return mv;
 	}
 	
-	
-	
-	
-	
+	@GetMapping("/map")
+	public ModelAndView productMap(ModelAndView mv
+			, ProductVo vo
+			) throws Exception {
+		mv.addObject("pdList", service.selectList(vo));
+		mv.setViewName("product/map");
+		return mv;
+	}	
 	
 	
 	

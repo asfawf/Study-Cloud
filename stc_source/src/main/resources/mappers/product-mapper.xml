@@ -13,7 +13,14 @@
          USING (PRO_NUM)
     LEFT OUTER JOIN PROTIME 
          USING (PRO_NUM)
-         WHERE PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
+   <trim prefix="WHERE" prefixOverrides="AND|OR">
+       <if test="proAddress != null and proAddress neq ''">
+         PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
+       </if>
+       <if test="proUseTime != null and proUseTime neq ''">
+         OR PRO_USE_TIME = #{proUseTime}
+       </if>
+   </trim>         
          GROUP BY (PRO_NUM, PRO_NAME, PRO_ADDRESS, PRO_PHONE)
          ORDER BY PRO_NUM
 	</select>
@@ -22,11 +29,20 @@
 	SELECT COUNT(*) CNT
 	  FROM MAP 
       LEFT OUTER JOIN PRODUCT
-     USING (PRO_NUM)     
-		<if test="proAddress != null and proAddress neq ''">
-			WHERE PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
-		</if>
-	</select>
+     USING (PRO_NUM)
+	<if test="proUseTime != null and proUseTime neq ''">
+      LEFT OUTER JOIN PROTIME 
+     USING (PRO_NUM) 
+	</if>
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+       <if test="proAddress != null and proAddress neq ''">
+         PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
+       </if>
+       <if test="proUseTime != null and proUseTime neq ''">
+         OR PRO_USE_TIME = #{proUseTime}
+       </if>
+    </trim> 
+    </select>
 	
 	
 	

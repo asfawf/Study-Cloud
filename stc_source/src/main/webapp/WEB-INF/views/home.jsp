@@ -7,8 +7,9 @@
 <title>Study Cloud</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
-<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
-<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" integrity="sha512-ygaYzcKBzf1YptDaS/7b9P2pY2LW0YCXp22l+IZYHwOjB2opJDrniEMarJ1HsckAdKirYqE9JMpKfSm6NHUcdg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/locales/bootstrap-datepicker.kr.min.js" integrity="sha512-4UPr4O3wb78N3c62jRE7Lv8LNJMSriVUvBa4fSGWAb25diqje3Yp4Uq1cK2pOwZ0F2s8R4RmWJYZhI75HJqOxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" integrity="sha512-yfvyUfCYfBN4Y16Nj3yxfTlgfOR07CpU7S4iOyIAniXmXrpxIppjaCHRZdZnVH+gn6bzyZTj5vVvMO/hqtbfxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
@@ -32,7 +33,7 @@
                         <h2><!-- Study Cloud --></h2>
                         <p><!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo! --></p>
                         <div class="search-form pulse">
-                            <form action="${pageContext.request.contextPath}/product" class="form-inline">                                
+                            <form class="form-inline">                                
                                 <div class="form-group">                                     
                                     <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="지역">
                                         <c:forEach var="v" items="${add }">
@@ -47,9 +48,11 @@
 										</c:forEach>                                        
                                     </select>
                                 </div>
-                                <input id="datepicker" width="270" />
-                                <button class="btn search-btn" type="button" onclick=" submit(); ">검색</button>
-                                <button class="btn search-btn" type="button" onclick=" location.href='product/map' ">지도</button>
+                                <div class="form-group">
+                                	<input type="text" class="form-control" width="270" name="proUseTime" placeholder="날짜" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
+                                </div>
+                                <button class="btn search-btn" type="submit" formaction="${pageContext.request.contextPath}/product">검색</button>
+                                <button class="btn search-btn" type="submit" formaction="${pageContext.request.contextPath}/product/map">지도</button>
 							</form>
                         </div>
                     </div>
@@ -58,7 +61,10 @@
         </div>
 <script>
 	$('#datepicker').datepicker({
-	    uiLibrary: 'bootstrap'
+	    uiLibrary: 'bootstrap',
+	    format: "yymmdd",
+	    language: "kr",
+	    todayHighlight: true
 	});
 </script>        
 </section>

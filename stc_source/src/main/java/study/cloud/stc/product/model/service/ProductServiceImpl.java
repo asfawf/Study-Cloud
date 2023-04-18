@@ -21,13 +21,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVo> selectList(int currentPage, int limit, String proAddress) throws Exception {
-		return dao.selectList(currentPage, limit, proAddress);
+	public List<ProductVo> selectList(int currentPage, int limit, ProductVo vo) throws Exception {
+		return dao.selectList(currentPage, limit, vo);
 	}
 
 	@Override
-	public int selectCount(String proAddress) throws Exception {
-		return dao.selectCount(proAddress);
+	public int selectCount(ProductVo vo) throws Exception {
+		return dao.selectCount(vo);
 	}
 	
 	
