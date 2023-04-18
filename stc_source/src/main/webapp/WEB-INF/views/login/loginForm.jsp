@@ -142,7 +142,7 @@ body {
 								</div>
 								<div id="rightpw" class="rightpw" style="padding-right: 3%;">
 									<h2>
-										<a href="#">비밀번호 찾기</a>
+										<a href="${pageContext.request.contextPath}/member/updatepw">비밀번호 찾기</a>
 									</h2>
 								</div>
 
