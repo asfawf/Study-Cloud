@@ -6,20 +6,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>이용약관</title>
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
-
 </head>
 
 <body>
-
-
 <!-- Header area-->
 <%@ include file="/WEB-INF/views/module/header.jsp" %> 
-
-
-
 
 <!-- Start page header --> 
 <section>
@@ -34,11 +27,9 @@
 </div>
 <!-- End page header -->
 
-
-<!-- register-area -->
+<!-- start contents-area -->
     <div class="register-area">
         <div class="container">
-
             <div class="col-md-8 col-md-offset-2">
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 register-blocks">
@@ -46,13 +37,13 @@
                             <div class="form-group"  style="padding-left: 40px; padding-top: 40px; ">
                                 <label>
                                 <input type="checkbox" id="chkAll">
-                               	 스터디클라우드 이용약관, 개인정보 수집 및 이용, 위치기반서비스에 모두 동의합니다.                        		                                
+                               	 &nbsp;스터디클라우드 이용약관, 개인정보 수집 및 이용, 위치기반서비스에 모두 동의합니다.                        		                                
                                 </label> 
                                 </div>
                             <div class="form-group"  style="padding: 40px;">    
                                 <label>
                                 <input type="checkbox" name="chk">
-                                이용약관 동의                              	
+                                &nbsp;이용약관 동의                              	
                               	</label>
                                 <textarea  rows="4" style="resize:none; " class="form-control" onfocus="this.blur();">
 여러분을 환영합니다.
@@ -92,7 +83,7 @@
                             <div class="form-group"  style="padding: 40px;">
                                 <label>
                                 <input type="checkbox" name="chk">
-                                개인정보 수집 및 이용 동의                              	
+                                &nbsp;개인정보 수집 및 이용 동의                              	
                               	</label>
                                 <textarea rows="4" style="resize:none;" class="form-control" onfocus="this.blur();">
 1. 개인정보처리방침의 의의
@@ -136,7 +127,7 @@
                             <div class="form-group"  style="padding: 40px;">
                                 <label>
                                 <input type="checkbox" name="chk">
-                                 위치기반 서비스 이용약관 동의                              	
+                                &nbsp;위치기반 서비스 이용약관 동의                              	
                               	</label>
                                 <textarea rows="4" style="resize:none;" class="form-control" onfocus="this.blur();">
 위치기반서비스 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 스터디클라우드 위치기반 서비스를 이용할 수 있습니다.
@@ -165,55 +156,71 @@
 ① 회사는 위치기반서비스사업자의 정책변경 등과 같이 회사의 제반 사정 또는 법률상의 장애 등으로 서비스를 유지할 수 없는 경우, 서비스의 전부 또는 일부를 제한, 변경하거나 중지할 수 있습니다.
 ② 제1항에 의한 서비스 중단의 경우에는 회사는 사전에 인터넷 등에 공지하거나 개인위치정보주체에게 통지합니다.                                
                                 </textarea>
-                            </div>
-                            
+                            </div>                           
                             <div class="form-group" style="padding-top: 100px; padding-bottom: 60px; padding-left: 60px; padding-right: 60px;">
-								<input class="btn btn-primary" type="button" onclick="location.href='join'" value="회원가입">
+								<input class="btn btn-primary" type="button" id="btn_join" value="회원가입">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>        
 </section>
-<!-- End register-area -->
+<!-- End contents-area -->
 
 
 <script>
-
-
-$(document).ready(function() {
-	$("#chkAll").on("ifChanged", function() {
-		if($("#chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
-		else $("input[name=chk]").prop("checked", false);
-	});
-	
-	$("input[name=chk]").on("ifChanged", function() {
-		var total = $("input[name=chk]").length;
-		var checked = $("input[name=chk]:checked").length;
 		
-		if(total !== checked) $("#chkAll").prop("checked", false);
-		else $("#chkAll").prop("checked", true); 
+	$(document).ready(function() {
+		// 체크박스 전체선택
+		$('#chkAll').on('ifChanged', function() {
+			if ($(this).prop('checked')) {
+				$('input[name=chk]').iCheck('check');
+			} else {
+				$('input[name=chk]').iCheck('uncheck');
+			}
+		});
+
+		// 체크박스 개별 선택 
+		$('input:checkbox[name=chk]').on('ifChanged', function() {
+			var total = $('input:checkbox[name=chk]').length;
+			var checked = $('input:checkbox[name=chk]:checked').length;
+
+			if (total == checked) {
+				$('#chkAll').prop('checked', true).iCheck('update');
+			} else {
+				$('#chkAll').prop('checked', false).iCheck('update');
+			}
+		});
+
+		// 모든 체크박스가 선택돼야 다음페이지로 넘어가는 이벤트
+		$("#btn_join").click(function() {
+			var checkedBoxes = $("input[name='chk']:checked");
+			var totalBoxes = $("input[name='chk']");
+
+			if (checkedBoxes.length != totalBoxes.length) {
+				alert("모두 선택하지 않으셨습니다.");
+				return false;
+			} else {
+				// 모든 체크박스가 선택되어 있으므로 다음 페이지로 이동
+				location.href = "join";
+			}
+		}).on('ifChecked ifUnchecked', 'input[name="chk"]', function() {
+			var checkedBoxes = $("input[name='chk']:checked");
+			var totalBoxes = $("input[name='chk']");
+
+			if (checkedBoxes.length == totalBoxes.length) {
+				$("#btn_join").iCheck('enable');
+			} else {
+				$("#btn_join").iCheck('disable');
+			}
+		});
 	});
-});
 </script>
-
-
-
-
-
 
 <!-- Footer area-->
    	<%@ include file="/WEB-INF/views/module/footer.jsp" %>
-
-
-
-
-
-
-
 
 </body>
 </html>
