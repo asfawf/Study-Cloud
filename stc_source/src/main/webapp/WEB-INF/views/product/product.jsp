@@ -19,12 +19,12 @@
                 <div class="row  pr0 padding-top-40 properties-page">
                     <div class="col-md-12 padding-bottom-40 large-search"> 
                         <div class="search-form pulse">
-                            <form action="" class=" form-inline">
+                            <form action="${pageContext.request.contextPath}/product" class=" form-inline">
                                 <div class="col-md-12">
                                 	<div class="col-md-4">                                     
-	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="지역" onchange="submit();">
+	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="${param.proAddress}" onchange="submit();">
 	                                        <c:forEach var="v" items="${add }">
-												<option value="${v }" ${param.proAddress eq v ? 'selected' : '' }>${v }</option>
+												<option value="${v }">${v }</option>
 											</c:forEach>
                                     	</select>
                                 	</div>
@@ -36,12 +36,12 @@
                                     	</select>
                                     </div>
                                     <div class="col-md-4">                                     
-                                       <input type="text" class="form-control" width="270" name="proUseTime" placeholder="날짜" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')" value="${param.proUseTime}"/>
+                                       <input type="text" class="form-control" width="270" name="proUseTime" placeholder="${param.proUseTime}" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">
 
-                                </div>                      
+                                </div>                     
                             </form>
                         </div>
                     </div>

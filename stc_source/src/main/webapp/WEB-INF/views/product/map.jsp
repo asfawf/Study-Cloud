@@ -61,9 +61,9 @@
                             <form action="${pageContext.request.contextPath}/product/map" class=" form-inline">
                                 <div class="col-md-12">
                                 	<div class="col-md-4">                                     
-	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="지역" onchange="submit();">
+	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="${param.proAddress}" onchange="submit();">
 	                                        <c:forEach var="v" items="${add }">
-												<option value="${v }" ${param.proAddress eq v ? 'selected' : '' }>${v }</option>
+												<option value="${v }">${v }</option>
 											</c:forEach>
                                     	</select>
                                 	</div>
@@ -75,12 +75,7 @@
                                     	</select>
                                     </div>
                                     <div class="col-md-4">                                     
-                                        <select id="basic" class="selectpicker show-tick form-control" title="날짜">
-	                                        <option> -Status- </option>
-	                                        <option>Rent </option>
-	                                        <option>Boy</option>
-	                                        <option>used</option>  
-                                    </select>
+                                       <input type="text" class="form-control" width="270" name="proUseTime" placeholder="${param.proUseTime}" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">
