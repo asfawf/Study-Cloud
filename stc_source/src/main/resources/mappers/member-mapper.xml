@@ -113,11 +113,18 @@
 	</select>
 	
 		
-	<!-- 회원전체 탈퇴수정, 차단, 차단 해제, 삭제, 조회 -->
+	<!-- 회원전체 탈퇴수정, 차단, 차단 해제, 삭제, 조회, 비밀번호 변환 -->
 	<update id="Quitupdate">		
 		UPDATE MEMBER
 		   SET MEM_QUIT = #{memQuit}
 		 WHERE MEM_ID = #{memId}
+	</update>
+	
+	<update id="mailPasswd">
+		UPDATE MEMBER
+			SET MEM_PASSWD = #{memPasswd}
+			WHERE MEM_ID= #{memId} AND
+			MEM_EMAIL = #{memEmail}
 	</update>
 	
 	<update id="memberblock">
@@ -146,5 +153,9 @@
 		SELECT COUNT(*) FROM MEMBER
 	</select>
 	
+	<select id="updatePasswd" resultType="mvo">
+		SELECT * FROM MEMBER WHERE MEM_ID= #{memId} AND MEM_EMAIL=#{memEmail} AND MEM_SNS IS null
+	</select>
+ 	 
 	
 </mapper>

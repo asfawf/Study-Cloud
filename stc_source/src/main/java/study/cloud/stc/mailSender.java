@@ -24,12 +24,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ctc.wstx.shaded.msv_core.util.Util;
 
+import study.cloud.stc.member.model.service.MemberService;
+import study.cloud.stc.member.model.vo.MemberVo;
+
 @Controller
 @RequestMapping("/sendmail")
 public class mailSender {
 	
+	@Autowired
+	MemberService service;
+	
+	@Autowired
+	MemberVo renewal; 
+	
 	@GetMapping
-	public ModelAndView changemailsend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, String division, String sendTo) throws Exception{
+	public String changemailsend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, String division, MemberVo vo) throws Exception{
 
 		String proId = WebUtil.getProperty("mail_id");
 		String proPass = WebUtil.getProperty("mail_password");
@@ -37,8 +46,11 @@ public class mailSender {
 		
 		System.out.println("proId: " + proId);
 		System.out.println("propass: " + proPass);
+		System.out.println("sendTo: "+vo.getMemEmail());
 		
+		String sendTo= vo.getMemEmail();
 		String host = "smtp.naver.com";
+		
 		final String username = proId;
 		final String password = proPass;
 		int port = 465;
@@ -53,6 +65,15 @@ public class mailSender {
 		
 		System.out.println();
 		System.out.println("pw1: "+ change);
+		
+		renewal.setMemPasswd(change);
+		renewal.setMemEmail(vo.getMemEmail());
+		renewal.setMemId(vo.getMemId());
+		
+		System.out.println(renewal);
+		
+		
+		service.mailPasswd(renewal);
 		
 		// 받는 사람
 		String recipient  = sendTo;
@@ -84,9 +105,9 @@ public class mailSender {
 	    mimeMessage.setText(body); 
 	    Transport.send(mimeMessage);
 	        
-	    mv.setViewName("/changemail");
+		/* mv.setViewName("/changemail"); */
 	    
-	   return mv;
+	    return "redirect:/login";
 		
 	}
 

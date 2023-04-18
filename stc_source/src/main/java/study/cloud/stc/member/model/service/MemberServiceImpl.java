@@ -9,42 +9,43 @@ import study.cloud.stc.member.model.dao.MemberDao;
 import study.cloud.stc.member.model.vo.MemberVo;
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDao dao;
-	
+
 	@Override
 	public List<MemberVo> selectList(MemberVo vo) throws Exception {
-		
+
 		return dao.selectList(vo);
 	}
+
 // ----------------------------------------------------------------------------------------------------------- 
 	@Override
 	public int selectCount() throws Exception {
-		
+
 		return dao.selectCount();
-		
+
 	}
-	
+
 	@Override
 	public int selectUnblockCount() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectUnblockCount();
 	}
-	
+
 	@Override
 	public int selectBlockCount() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectBlockCount();
 	}
-	
+
 	@Override
 	public int selectSnsCount() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectSnsCount();
 	}
-	
+
 // ----------------------------------------------------------------------------------------------------------- 
 	@Override
 	public List<MemberVo> selectListTest(int currentPage, int limit, MemberVo vo) throws Exception {
@@ -82,8 +83,6 @@ public class MemberServiceImpl implements MemberService{
 		return dao.selectSnskUsers(currentPage, limit, vo);
 	}
 
-	
-	
 	@Override
 	public List<MemberVo> selectListHost(int currentPage, int limit, MemberVo vo) throws Exception {
 		return dao.selectListHost(currentPage, limit, vo);
@@ -99,9 +98,8 @@ public class MemberServiceImpl implements MemberService{
 		return dao.selectBlockHost(currentPage, limit, vo);
 	}
 
-	
 // ----------------------------------------------------------------------------------------------------	
-	
+
 	@Override
 	public int selectCountHost() throws Exception {
 		return dao.selectCountHost();
@@ -117,6 +115,19 @@ public class MemberServiceImpl implements MemberService{
 		return dao.selectBlockCountHost();
 	}
 
-	
+//----------------------------------------------------------------------------------------------------	
+
+	@Override
+	public MemberVo updatePasswd(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.updatePasswd(vo);
+	}
+
+// ----------------------------------------------------------------------------------------------------
+	@Override
+	public int mailPasswd(MemberVo renewal) {
+		// TODO Auto-generated method stub
+		return dao.mailPasswd(renewal);
+	}
 
 }

@@ -44,5 +44,10 @@ public interface MemberService {
 	
 // ------------------------------------------------------------------------------------------------------------		
 	
+	public MemberVo updatePasswd(MemberVo vo) throws Exception;
+// ------------------------------------------------------------------------------------------------------------		
+
+	public int mailPasswd(MemberVo renewal);
+	
 	
 }

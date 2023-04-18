@@ -132,6 +132,21 @@ public class MemberDao {
 		return session.selectOne("memberns.selectBlockCountHost");
 	}
 
+// -----------------------------------------------------------------------------------------------------------
+
+	
+	public MemberVo updatePasswd(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("memberns.updatePasswd", vo);
+	}
+
+// -----------------------------------------------------------------------------------------------------------
+
+	public int mailPasswd(MemberVo renewal) {
+		// TODO Auto-generated method stub
+		return session.update("memberns.mailPasswd", renewal);
+	}
+
 	
 	
 	
