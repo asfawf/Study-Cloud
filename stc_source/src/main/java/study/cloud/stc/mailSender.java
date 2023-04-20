@@ -37,47 +37,45 @@ public class mailSender {
 	@Autowired
 	MemberVo renewal; 
 	
-	@GetMapping
+	@GetMapping("/password")
 	public String changemailsend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, String division, MemberVo vo) throws Exception{
 
 		String proId = WebUtil.getProperty("mail_id");
 		String proPass = WebUtil.getProperty("mail_password");
 		String proEmail = WebUtil.getProperty("mail_email"); // 보내는 사람
-		
+
 		System.out.println("proId: " + proId);
 		System.out.println("propass: " + proPass);
 		System.out.println("sendTo: "+vo.getMemEmail());
-		
+
 		String sendTo= vo.getMemEmail();
 		String host = "smtp.naver.com";
-		
+
 		final String username = proId;
 		final String password = proPass;
 		int port = 465;
-		
-		
+
 		// 메일 내용
-		
+
 		String change = "";
 		for (int i = 0; i < 12; i++) {
 			change += (char) ((Math.random() * 26) + 97);
 		}
-		
+
 		System.out.println();
 		System.out.println("pw1: "+ change);
-		
+
 		renewal.setMemPasswd(change);
 		renewal.setMemEmail(vo.getMemEmail());
 		renewal.setMemId(vo.getMemId());
-		
+
 		System.out.println(renewal);
-		
-		
+
 		service.mailPasswd(renewal);
-		
+
 		// 받는 사람
 		String recipient  = sendTo;
-		
+
 		String subject = "임시 비밀번호 발급 메일 입니다.";
 		String body = "귀하의 변경된 비밀번호는 " + change + " 입니다.";
 

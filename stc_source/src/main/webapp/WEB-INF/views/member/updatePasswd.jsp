@@ -20,7 +20,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<h2 style="">비밀번호 찾기</h2>
+						<h2 style="color: white;">비밀번호 찾기</h2>
 					</div>
 				</div>
 			</div>
@@ -32,6 +32,12 @@
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 login-blocks" name="sampleForm" id="sampleForm">
 							<form action="updateajax" name="sampleForm" method="post">
+								
+								<div style="padding-left: 60px; padding-right: 60px; padding-top: 30px; padding-bottom: 30px;">
+									<h2>Study Cloud 비밀번호 찾기</h2><br>
+									비밀번호를 이메일로 보내드립니다.
+								</div>
+								
 								<div style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
 									<h5>아이디</h5>
 									<input type="text" id="memId" name="memId" style="border-bottom: solid; border-color: #f6f6f6;">
@@ -89,7 +95,7 @@
 	            success : function(data){
 	            	if(data == 'success'){
 	            		alert('기입한 메일로 초기화 된 비밀번호가 전송되었습니다.');	
-	            		location.href="<%=request.getContextPath()%>/sendmail?memEmail="+memEmail+"&memId="+ memId;
+	            		location.href="<%=request.getContextPath()%>/sendmail/password?memEmail="+memEmail+"&memId="+ memId;
 	            	}else{
 	            		alert('존재하지 않는 회원 정보 입니다.');
 	            	}

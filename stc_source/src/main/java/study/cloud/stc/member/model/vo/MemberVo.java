@@ -21,7 +21,7 @@ public class MemberVo {
 	private String memId;
 	private String memPasswd;
 	private String memName;
-	private int memPhone;
+	private String memPhone;
 	private String memEmail;
 	private int memQuit;
 	private String memAuthority;

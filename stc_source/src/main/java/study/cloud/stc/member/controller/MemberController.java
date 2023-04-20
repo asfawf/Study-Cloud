@@ -57,15 +57,26 @@ public class MemberController {
 		return shout;
 	}
 	
-	@GetMapping("/infoid")
-	public ModelAndView infoId(ModelAndView mv) throws Exception {
+	@GetMapping("/viewaccount")
+	public ModelAndView viewfindAccount(ModelAndView mv) throws Exception {
 		
-		mv.setViewName("/member/infoId");
+		mv.setViewName("/member/findAccount");
 		return mv;
 	}
 	
 	
-	
+	@RequestMapping(value = "/findajax", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public String findAjax(
+			MemberVo vo
+			) throws Exception {
+		
+		System.out.println("memName: "+vo.getMemName());
+		System.out.println("memPhone: "+vo.getMemPhone());
+		System.out.println("memEmail: "+ vo.getMemEmail());
+		
+		return "ajax success";
+	}
 	
 	
 	
