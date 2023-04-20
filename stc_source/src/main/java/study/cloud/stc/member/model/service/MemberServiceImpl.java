@@ -147,6 +147,12 @@ public class MemberServiceImpl implements MemberService {
 	public int idcheck(String memId) {
 		return dao.idcheck(memId);
 	}
+
+	@Override
+	public MemberVo takeInfo(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.takeInfo(vo);
+	}
 	
 	
 }

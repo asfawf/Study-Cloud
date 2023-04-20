@@ -137,7 +137,7 @@ body {
 
 								<div class="leftId" id="leftId" style="padding-left: 3%;">
 									<h2>
-										<a href="#">아이디 찾기</a>
+										<a href="${pageContext.request.contextPath}/member/viewaccount">아이디 찾기</a>
 									</h2>
 								</div>
 								<div id="rightpw" class="rightpw" style="padding-right: 3%;">
@@ -155,21 +155,21 @@ body {
 							</div>
 
 							<div class="text-center"
-								style="padding-left: 3%; padding-right: 3%;">
+								style="padding-left: 3%; padding-right: 3%; padding-bottom: 5%;">
 								<a class="kakao"
 									href="https://kauth.kakao.com/oauth/authorize?client_id=94e122bfd99bcf13ff8bfa4508d639b3&redirect_uri=http://localhost:8090/stc/kakaologin&response_type=code">
 									<button type="button" class="kakaobtn"
 										style="width: 100%; border-top: 20px; color: white;">카카오로그인</button>
 								</a>
 							</div>
-							<!-- 네이버 로그인 버튼 생성 위치 -->
+							
+							<!-- 
 							<div id="naverIdLogin" style="display: none;"></div>
 							<a href="#" id="naverLogin" class="btn sns-naver" title="새창">
 								<div class="naver_i"></div>
 								<div class="naver_txt">네이버로 로그인</div>
-							</a>
-							<!-- //네이버아이디로로그인 버튼 노출 영역 -->
-						</div>
+							</a> -->
+					</div>
 
 					</div>
 				</div>

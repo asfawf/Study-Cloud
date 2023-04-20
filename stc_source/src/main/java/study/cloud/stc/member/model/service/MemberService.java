@@ -51,11 +51,13 @@ public interface MemberService {
 
 	public int mailPasswd(MemberVo renewal) throws Exception;
 	public MemberVo mailId(MemberVo vo) throws Exception;
-	
-	
-	
+		
 // ------------------------------------------------------------------------------------------------------------		
 
 	int idcheck(String memId);
+	
+	
+	
+	public MemberVo takeInfo(MemberVo vo) throws Exception;
 	
 }

@@ -1,5 +1,6 @@
 package study.cloud.stc.member.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import study.cloud.stc.member.model.service.MemberService;
+import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.product.model.service.ProductService;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
 import study.cloud.stc.qna.model.service.QnaService;
@@ -26,6 +29,9 @@ public class HostController {
 	private QnaService qservice;
 	private ProductService service;
 	
+	@Autowired
+	private MemberService mservice;
+		
 	@GetMapping
 	public ModelAndView main(ModelAndView mv) throws Exception {
 		mv.setViewName("/host/host");
@@ -98,6 +104,34 @@ public class HostController {
 	@GetMapping("/reserve/update")
 	public ModelAndView updateProduct(ModelAndView mv) throws Exception {
 		mv.setViewName("/host/product");
+		return mv;
+	}
+	
+	
+	@GetMapping("/info")
+	public ModelAndView viewHostInfo(ModelAndView mv, Principal principal, MemberVo vo) throws Exception {
+		
+		
+		System.out.println("memId: "+principal.getName());
+		vo.setMemId(principal.getName());
+		
+		System.out.println("vo:"+ vo);
+		
+		System.out.println("result: "+mservice.takeInfo(vo));
+		
+		
+		mv.addObject("mv", mservice.takeInfo(vo));
+		
+		/*
+		 * vo.setMemId(principal.getName());
+		 * 
+		 * renewal= 
+		 */
+		
+		//System.out.println("renewal:" + renewal);
+		
+		mv.setViewName("/host/info");
+		
 		return mv;
 	}
 	

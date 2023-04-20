@@ -161,6 +161,11 @@ public class MemberDao {
         return session.selectOne("memberns.selectCount", memId);
     }
 
+	public MemberVo takeInfo(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("memberns.getInfo", vo);
+	}
+
 	
 
 	

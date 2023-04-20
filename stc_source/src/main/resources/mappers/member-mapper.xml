@@ -89,6 +89,9 @@
 		SELECT MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST' AND MEM_QUIT = 0
 	</select>
 	
+	<!-- <select id="selectListHost" resultType="mvo">
+		SELECT MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST'
+	</select> -->
 	
 	<!-- 카카오연동회원 -->
 	<insert id="kakaoinsert" >
@@ -108,8 +111,8 @@
 		SELECT COUNT(*) CNT FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_SNS != 'null'
 	</select>
 	
-	<select id="selectSnsUser" resultType="mvo">
-		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_SNS != 'null'
+	<select id="getInfo" resultType="mvo">
+		select * FROM MEMBER WHERE MEM_ID = #{memId}
 	</select>
 	
 		
