@@ -15,6 +15,7 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDao dao;
 	
+	
 	@Override
 	public List<ProductVo> selectList(ProductVo vo) throws Exception {
 		return dao.selectList(vo);
@@ -34,6 +35,12 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductDetailDto selectOne(int proNum) throws Exception {
 		return dao.selectOne(proNum);
+	}
+
+	@Override
+	public int insertProduct(ProductDetailDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.insertProduct(dto);
 	}
 
 }

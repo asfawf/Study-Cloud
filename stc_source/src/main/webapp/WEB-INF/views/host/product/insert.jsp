@@ -88,7 +88,8 @@
                                     
                                 </div>
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <input type="text" class='btn btn-finish btn-primary pull-right' name='update' value='등록' />
+                                     <!-- <input type="text" class='btn btn-finish btn-primary pull-right' name='update' value='등록' /> -->
+                                   <button input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >등록</button>
                                 </div>
                                 
                             </div>

@@ -15,4 +15,7 @@ public interface ProductService {
 	
 	//상세페이지화면
 	public ProductDetailDto selectOne(int proNum) throws Exception;
+	
+	
+	public int insertProduct(ProductDetailDto dto) throws Exception;
 }
