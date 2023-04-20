@@ -130,4 +130,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.mailPasswd(renewal);
 	}
 
+// ----------------------------------------------------------------------------------------------------
+	
+	@Override
+	public int idcheck(String memId) {
+		return dao.idcheck(memId);
+	}
+	
+	
 }

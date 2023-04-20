@@ -200,11 +200,11 @@
 			var totalBoxes = $("input[name='chk']");
 
 			if (checkedBoxes.length != totalBoxes.length) {
-				alert("모두 선택하지 않으셨습니다.");
+				alert("전체 동의하지 않았습니다.");
 				return false;
 			} else {
 				// 모든 체크박스가 선택되어 있으므로 다음 페이지로 이동
-				location.href = "join";
+				location.href = '${pageContext.request.contextPath}/join';
 			}
 		}).on('ifChecked ifUnchecked', 'input[name="chk"]', function() {
 			var checkedBoxes = $("input[name='chk']:checked");

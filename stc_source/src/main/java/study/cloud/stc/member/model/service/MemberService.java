@@ -50,4 +50,8 @@ public interface MemberService {
 	public int mailPasswd(MemberVo renewal);
 	
 	
+// ------------------------------------------------------------------------------------------------------------		
+
+	int idcheck(String memId);
+	
 }

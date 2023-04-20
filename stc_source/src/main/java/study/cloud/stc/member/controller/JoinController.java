@@ -22,13 +22,13 @@ import study.cloud.stc.member.model.service.MemberService;
 
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/join")
 public class JoinController {
 	
 	@Autowired
-	private MemberDao memberDao;
+	private MemberService memberService;
 	
-	@GetMapping("/join")
+	@GetMapping
 	public ModelAndView join(ModelAndView mv) {
 		mv.setViewName("/join");
 		return mv;
@@ -43,9 +43,9 @@ public class JoinController {
 	@PostMapping("/idcheck")
 	@ResponseBody 
 	public int idcheck(String memId) {
-	    int result = memberDao.idcheck(memId);
+	    int result = memberService.idcheck(memId);
 	    return result; 
-	}
+		}
 	
 
 	
