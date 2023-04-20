@@ -437,9 +437,11 @@
           		formdata.append("memId", $("[name=memId]").val());
           		console.log(formdata);
           		
-          		$.ajax({           
-           		  url: "${pageContext.request.contextPath}/product/detail/insertqna"
-           		, type: "post" // ↓ data => form안의 들어가는 내용
+          		$.ajax({   
+                    beforeSend : function(xhr){
+                           xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); }       
+           		    , url: "${pageContext.request.contextPath}/product/detail/insertqna"
+           		    , type: "post" // ↓ data => form안의 들어가는 내용
           			, contentType: false
           			, processData: false
           			, data: {memQuestion: $("[name=memQuestion]").val(), proNum:$("[name=proNum]").val(), memId:$("[name=memId]").val()}
