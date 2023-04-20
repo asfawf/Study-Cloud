@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import study.cloud.stc.product.model.dao.ProductDao;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
@@ -37,10 +38,29 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectOne(proNum);
 	}
 
+	
+	
+	
+	//상품등록	
 	@Override
 	public int insertProduct(ProductDetailDto dto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.insertProduct(dto);
+	}
+
+	@Override
+	public int insertMap(ProductDetailDto dto) throws Exception {
+		return dao.insertProduct(dto);
+	}
+
+	@Override
+	@Transactional
+	public int insertDetail(ProductDetailDto dto) throws Exception {
+		int result = dao.insertMap(dto);
+		if(result == 1){
+			result = dao.insertProduct(dto);
+		}
+			
+		return result;
 	}
 
 }

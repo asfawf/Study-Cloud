@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,39 +45,21 @@ public class HostController {
 	}
 	
 	//상품등록
-	@RequestMapping(value = "/product/insert", method = RequestMethod.POST)
+	@PostMapping("/product/insert")
 	public ModelAndView insertProduct(
-						ModelAndView mv,
-						ProductDetailDto dto ) {
-			try {
-	        
-	        // 상품 등록
-	        Map<String, Object> map = new HashMap<String, Object>();
-	      
-	        map.put("proNum", dto.getProNum());
-	        map.put("proName", dto.getProName());
-	        map.put("proAddress", dto.getProAddress());
-	        map.put("proPhone", dto.getProPhone());
-	        map.put("proPost", dto.getProPost());
-	        map.put("proInfo", dto.getProInfo());
-	        map.put("proNotice", dto.getProNotice());
-	        map.put("proRefund", dto.getProRefund());
-	        map.put("proPrice", dto.getProPrice());
-	        //map.put("proPicOriginal", proPicOriginal.getOriginalFilename());
-
-	        int result = service.insertProduct(dto);
-
-	        mv.addObject("result", result);
-	       // mav.addObject("proId", dto.getProId());
-	        mv.setViewName("redirect:/host/product");
-
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        mv.setViewName("/error");
-	    }
-
-	    return mv;
+			ModelAndView mv,
+			@ModelAttribute("dto")
+			ProductDetailDto dto
+			) throws Exception {
+		int result = service.insertProduct(dto);
+		if(result == 2) {
+			mv.setViewName("redirect:/host/product");
+		}else {
+			mv.setViewName("/product/insert");
+		}
+		return mv;
 	}
+
 	
 	
 	@GetMapping("/review")

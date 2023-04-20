@@ -29,6 +29,9 @@ public class ProductDao {
 	}
 
 	public int insertProduct(ProductDetailDto dto) {
+		return sqlSession.insert("product.insertProduct2",dto);
+	}
+	public int insertMap(ProductDetailDto dto) {
 		return sqlSession.insert("product.insertProduct",dto);
 	}
 	

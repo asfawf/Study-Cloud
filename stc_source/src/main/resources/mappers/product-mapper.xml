@@ -4,17 +4,23 @@
 
 
 	<insert id="insertProduct" parameterType="pdto">
+		<selectKey keyProperty="nextval" resultType="int">
+	select seq_pro_num.nextval from dual
+	</selectKey>
 		insert into map values(
-    seq_pro_num.nextval,
+    #{nextval},
     #{proName},#{proAddress},#{proPhone})
 	</insert>
 
 	<insert id="insertProduct2" parameterType="pdto">
+	<selectKey keyProperty="proNum" resultType="int">
+	select seq_pro_num.nextval from dual
+	</selectKey>
 	INSERT ALL 
 	INTO PRODUCT VALUES
-	(seq_pro_num.currval, #{MemId}','#{proPost}', #{proInfo},#{proNotice},#{proRefund},#{proZipcode})
+	(#{proNum},'',#{proPost},#{proInfo},#{proNotice},#{proRefund},#{proZipcode})
 	INTO PRODUCTFILE VALUES
-	(seq_pro_num.currval, #{proPicOriginal},#{proPicRename})
+	(#{proNum}, #{proPicOriginal},#{proPicRename})
 	select * from dual
 	</insert>
 	
