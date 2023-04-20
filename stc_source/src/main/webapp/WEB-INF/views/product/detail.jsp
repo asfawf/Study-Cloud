@@ -29,26 +29,25 @@
         <div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
             <div class="container">   
 
-                <div class="clearfix padding-top-40" >
-
-                    <div class="col-md-8 single-property-content prp-style-1 ">
+                <div class="clearfix padding-top-40">
+                    <div class="col-md-8 single-property-content ">
                         <div class="row">
                             <div class="light-slide-item">            
                                 <div class="clearfix">
                                     
                                     <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                         <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property1.jpg"> 
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/hello/085436.jpg" />
+                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property1.jpg" />
                                         </li>
                                         <%-- <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property2.jpg"> 
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property3.jpg" />
+                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property2.jpg" />
                                         </li>
                                         <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property3.jpg"> 
                                             <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property3.jpg" />
                                         </li>
                                         <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property4.jpg"> 
                                             <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property4.jpg" />
-                                        </li>      --%>                                    
+                                        </li>    --%>                                      
                                     </ul>
                                 </div>
                             </div>
@@ -184,7 +183,7 @@
 												    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button>
 												    </h4>										    
 												</div>							
-												<form:form id="insertQna">
+												<form:form id="frminsertQna">
 												<div class="modal-body">													
 													<div class="mb-3">
 														<br>
@@ -197,7 +196,7 @@
 											    <div class="modal-footer">
 													<div class="button notice-btn"><button type="button" id="btnCheck">textarea값 확인</button>
 												        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-														<button form="insertQna" id="insertQna" type="submit" class="btn search-btn" >등록</button>												
+														<button form="frminsertQna" id="btninsertQna" type="button" class="btn search-btn" data-dismiss="modal">등록</button>												
 													</div> 
 												</div>										
 											</div>
@@ -211,12 +210,12 @@
                                 <section id="comments" class="comments wow fadeInRight animated"> 
                                            
                                     <div class="row comment" id="qList">
-                                        <c:forEach items="${qnaList }" var="list"> 
+                                        <c:forEach items="${qnaList }" var="qna"> 
                                         <div class="col-sm-9 col-md-10">
-                                            <h5 class="text-uppercase">${list.memId }</h5>
-                                            <p class="posted"> ${list.qnaDate }</p>
-                                            <p>${list.memQuestion }</p>
-                                            <!-- <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a> -->
+                                            <h5 class="text-uppercase">${qna.memId }</h5>
+                                            <p class="posted"> ${qna.qnaDate }</p>
+                                            <p>${qna.memQuestion }</p>
+                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
                                             </p>
                                         </div>
                                         </c:forEach>
@@ -404,62 +403,51 @@
  
 
         <script>
-            $(document).ready(function () {
-
-                $('#image-gallery').lightSlider({
-                    gallery: true,
-                    item: 1,
-                    thumbItem: 9,
-                    slideMargin: 0,
-                    speed: 500,
-                    auto: true,
-                    loop: true,
-                    onSliderLoad: function () {
-                        $('#image-gallery').removeClass('cS-hidden');
-                    }
-                });
-            });
+	        $(document).ready(function () {
+	
+	            $('#image-gallery').lightSlider({
+	                gallery: true,
+	                item: 1,
+	                thumbItem: 9,
+	                slideMargin: 0,
+	                speed: 500,
+	                auto: true,
+	                loop: true,
+	                onSliderLoad: function () {
+	                    $('#image-gallery').removeClass('cS-hidden');
+	                }
+	            });
+	        });
            $('#btnCheck').click(function() {
         		console.log("proNum = ", $("[name=proNum]").val());
         		console.log("memQuestion = ", $("[name=memQuestion]").val());
         		console.log("memId = ", $("[name=memId]").val());         		
         	});
            
-           $("#insertQna").on("click", insertQna);
+           $("#btninsertQna").on("click", insertQna);
           	function insertQna() {
-          		/* console.log($("[name=proNum]").val());
-       		console.log($("[name=memQuestion]").val());
-       		console.log($("[name=memId]").val());  */
-       		
-          		let formdata = new FormData();
-          		formdata.append("memQuestion", $("[name=memQuestion]").val());
-				formdata.append("proNum", $("[name=proNum]").val());
-          		formdata.append("memId", $("[name=memId]").val());
-          		console.log(formdata);
           		
           		$.ajax({   
-                    beforeSend : function(xhr){
-                           xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); }       
-           		    , url: "${pageContext.request.contextPath}/product/detail/insertqna"
-           		    , type: "post" // ↓ data => form안의 들어가는 내용
-          			, contentType: false
-          			, processData: false
+          			  url: "${pageContext.request.contextPath}/product/detail/qnainsert"
+           		    , type: "POST"
           			, data: {memQuestion: $("[name=memQuestion]").val(), proNum:$("[name=proNum]").val(), memId:$("[name=memId]").val()}
-          			, dataType: "json" // success에 들어오는 데이터가 json 모양일것이고 이것을 js object로 변형해서 return값으로 보내라
-          			, success: function (result) { // result => controller의 return값이 들어옴
+          			, dataType: "json"  
+          			, success: function (result) { 
           				console.log(result);
-          					/* insertQna.reset(); */
+          				frminsertQna.reset();
            				if(result.length > 0) { 
            					alert("QNA가 작성되었습니다.")
            				} else {
            					alert("QNA가 작성되지 않았습니다. 다시 작성해주세요.")
            				}
-           				// 답글 부분화면 업데이트
+           				 
            				displayQna(result);
            			}
            			, error: function () {
            				
-           			}
+           			},beforeSend : function(xhr){
+                        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+                    }
            		});
            	}
            	
@@ -468,12 +456,12 @@
            		
            		var htmlVal = '';
            		for(i = 0; i < result.length; i++){
-           			var reply = result[i];
+           			var qna = result[i];
            			htmlVal += '<div class="col-sm-9 col-md-10">';
-           			htmlVal += '<h5 class="text-uppercase">'+qnaList.memId+'</h5>';
-           			htmlVal += '<p class="posted">'+qnaList.qnaDate+'</p>';
-          			htmlVal += '<p>'+qnaList.memQuestion+'</p>';
-          			/* htmlVal += '<p class="reply"><a href="#"><i class="fa fa-reply"></i>'+Reply+'</a></p>'; */
+           			htmlVal += '<h5 class="text-uppercase">'+qna.memId+'</h5>';
+           			htmlVal += '<p class="posted">'+qna.qnaDate+'</p>';
+          			htmlVal += '<p>'+qna.memQuestion+'</p>';
+          			htmlVal += '<p class="reply"><a href="#"><i class="fa fa-reply"></i>Reply</a></p>';
           			htmlVal += '</div>';
           		}
           		$("div[id=qList]").html(htmlVal);

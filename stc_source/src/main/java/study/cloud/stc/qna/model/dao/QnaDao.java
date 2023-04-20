@@ -16,7 +16,6 @@ public class QnaDao {
 	private SqlSession sqlSession;
 	
 	public int insert(QnaVo vo) {
-		System.out.println(sqlSession.insert("product.insertQna", vo));
 		return sqlSession.insert("product.insertQna", vo);
 	}
 
