@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="product">	
+
+
+	<insert id="insertProduct" parameterType="pdto">
+		insert into map values(
+    seq_pro_num.nextval,
+    #{proName},#{proAddress},#{proPhone})
+	</insert>
+
+	<insert id="insertProduct2" parameterType="pdto">
+	INSERT ALL 
+	INTO PRODUCT VALUES
+	(seq_pro_num.currval, #{MemId}','#{proPost}', #{proInfo},#{proNotice},#{proRefund},#{proZipcode})
+	INTO PRODUCTFILE VALUES
+	(seq_pro_num.currval, #{proPicOriginal},#{proPicRename})
+	select * from dual
+	</insert>
 	
 	<select id="selectList" resultType="pdvo">
 		SELECT PRO_NUM
