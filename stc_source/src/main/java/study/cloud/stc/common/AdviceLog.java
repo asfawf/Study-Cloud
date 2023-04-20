@@ -60,7 +60,7 @@ public class AdviceLog {
 
 		Object returnObj = null;
 		
-		logger.info("▶Ctrl: "+ jp.getThis()+ jp.getSignature().getName());
+		logger.info("▶Ctrl: {} {}", jp.getThis(), jp.getSignature().getName());
 		
 		Object[] args= jp.getArgs();
 		// args ==> Locale locale, Model model, HttpSession session

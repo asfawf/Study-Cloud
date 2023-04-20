@@ -132,10 +132,41 @@ $(function () {
 	let checkName = RegExp(/^[가-힣a-zA-Z]{2,}$/);											//2자 이상의 한글 또는 영어 대/소문자로 이루어진 문자열 검사
 	let checkPhone = RegExp(/^[0-9]{11}$/);													//11자리 숫자로 이루어진 문자열 검사
 	let checkEmail = RegExp(/^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/);			//이메일 주소 형식에 맞는 패턴으로 검사
-
-
-
-//아이디 유효성
+	let statusDupId = -1;  // -1: 중복확인안한상태, 0: 중복아이디없음, 1: 중복아이디있음. 
+	function checkDulId(){
+		console.log("checkDulId");
+		console.log("memId");
+		 $.ajax({
+			    url: '${pageContext.request.contextPath}/member/idcheck',
+			    type: 'post',
+			    data: {memId: $("#memId").val()},
+	            beforeSend : function(xhr)
+	               {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+	                   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	               },
+			    //cache: false,
+			    success: function(result) {
+			        if (data == 1) {
+				    	statusDupId = 1;
+			        	$(".successId").text("사용 중인 아이디입니다.");
+			            $(".successId").css("color", "#DB0000");
+			            $("#idChk").val("false");
+			        } else {
+			        	statusDupId = 0;
+			        	$(".successId").text("사용 가능한 아이디입니다.");
+			            $(".successId").css("color", "#88B04B");
+			            $("#idChk").val("true");
+			        }
+			    },
+			    error: function() {
+			    	statusDupId = -1;
+			        console.log("실패");
+			    }
+		});
+	}
+	// 중복확인 버튼
+	$("#memIdChk").click(checkDulId);
+    //아이디 유효성
 	$("#memId").blur(function(){
 		if($("#memId").val() == "") {
 			$(".successId").text("필수 정보입니다.");
@@ -145,35 +176,16 @@ $(function () {
 			$(".successId").text("5~15자의 영문 소문자와 숫자를 사용하세요.");
 			$(".successId").css("color", "#DB0000");
 			$("#idChk").val("false");
-		 } else if(checkId.test($("#memId").val())) {
-			$(".successId").text("중복 확인 버튼을 눌러 중복 확인을 하세요.");
-			$(".successId").css("color", "#88B04B");
-			$("#idChk").val("false");		
-		} 
+		 } else if(statusDupId != 0) {
+			checkDulId();
+			//$(".successId").text("중복 확인 버튼을 눌러 중복 확인을 하세요.");
+			//$(".successId").css("color", "#88B04B");
+			//$("#idChk").val("false");		
+		 } 
 		 else {
-				 $.ajax({
-					    url: '/idcheck',
-					    type: 'post',
-					    data: {memId: memId},
-					    cache: false,
-					    success: function(result) {
-					        if (data == 0) {
-					        	$(".successId").text("사용 중인 아이디입니다.");
-					            $(".successId").css("color", "#DB0000");
-					            $("#idChk").val("false");
-					        } else {
-					        	$(".successId").text("사용 가능한 아이디입니다.");
-					            $(".successId").css("color", "#88B04B");
-					            $("#idChk").val("true");
-					            
-					        }
-					    },
-					    error: function() {
-					        console.log("실패");
-					    }
-					});
-			}
-		});
+				alert("잉 이경우는??");
+		 }
+	}); //$("#memId").blur
 	
 	//비밀번호 유효성
 	$("#memPasswd").blur(function(){
@@ -192,7 +204,7 @@ $(function () {
 				$("#pwChk").val("true");                     	
 				}
 			}
-		});
+	}); // $("#memPasswd").blur - end
 	
 	//비밀번호 재확인 유효성
 		$("#memPwChk").blur(function() {

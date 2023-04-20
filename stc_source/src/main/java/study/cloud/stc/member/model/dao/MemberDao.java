@@ -147,8 +147,12 @@ public class MemberDao {
 		return session.update("memberns.mailPasswd", renewal);
 	}
 
+// -----------------------------------------------------------------------------------------------------------
 	
-	
+	public int idcheck(String memId) {
+        return session.selectOne("memberns.selectCount", memId);
+    }
+
 	
 	
 }
