@@ -62,7 +62,6 @@
 	                    <ul class="main-nav nav navbar-nav navbar-right">
 	                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
 							<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-	                        <li><a class="chat" href="">chat</a></li>
 	                    </ul>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
@@ -70,8 +69,7 @@
 		                    <ul class="main-nav nav navbar-nav navbar-right">
 		                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
 								<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-		                        <li><a class="" href="<%=request.getContextPath() %>/chatting/list">chat(ADMIN)</a></li>
-		                    </ul>
+		                   </ul>
 	                    </sec:authorize>
 	                    <sec:authorize access="hasRole('HOST')">
 		                    <ul class="main-nav nav navbar-nav navbar-right">
@@ -83,7 +81,6 @@
 		                    <ul class="main-nav nav navbar-nav navbar-right">
 		                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice</a></li>
 								<li><a class="" href="<%=request.getContextPath() %>/contact">contact</a></li>
-		                        <li><a class="" href="<%=request.getContextPath() %>/chatting/select">chat(USER)</a></li>
 		                    </ul>
 	                    </sec:authorize> 
 					</sec:authorize>					                   

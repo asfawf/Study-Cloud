@@ -38,7 +38,7 @@ public class mailSender {
 	MemberVo renewal; 
 	
 	@GetMapping("/password")
-	public String changemailsend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, String division, MemberVo vo) throws Exception{
+	public String passwordMailSend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, MemberVo vo) throws Exception{
 
 		String proId = WebUtil.getProperty("mail_id");
 		String proPass = WebUtil.getProperty("mail_password");
@@ -78,6 +78,69 @@ public class mailSender {
 
 		String subject = "임시 비밀번호 발급 메일 입니다.";
 		String body = "귀하의 변경된 비밀번호는 " + change + " 입니다.";
+
+		Properties props = System.getProperties();
+		
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", port);
+		props.put("mail.smtp.auth", true);
+		props.put("mail.smtp.ssl.enable", true);
+		props.put("mail.smtp.ssl.trust", host);
+		
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
+            String un=username;
+            String pw=password; 
+            protected PasswordAuthentication getPasswordAuthentication() { 
+                return new PasswordAuthentication(un, pw); 
+            } 
+        });
+		session.setDebug(true);
+		
+		Message mimeMessage = new MimeMessage(session); 
+	    mimeMessage.setFrom(new InternetAddress(proEmail)); 
+	    mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
+	    mimeMessage.setSubject(subject); 
+	    mimeMessage.setText(body); 
+	    Transport.send(mimeMessage);
+	        
+		/* mv.setViewName("/changemail"); */
+	    
+	    return "redirect:/login";
+		
+	}
+	
+	@GetMapping("/id")
+	public String idMailSend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, MemberVo vo) throws Exception{
+
+		String proId = WebUtil.getProperty("mail_id");
+		String proPass = WebUtil.getProperty("mail_password");
+		String proEmail = WebUtil.getProperty("mail_email"); // 보내는 사람
+
+		System.out.println("proId: " + proId);
+		System.out.println("propass: " + proPass);
+		System.out.println("sendTo: "+vo.getMemEmail());
+
+		String sendTo= vo.getMemEmail();
+		String host = "smtp.naver.com";
+
+		final String username = proId;
+		final String password = proPass;
+		int port = 465;
+
+		// 메일 내용
+		System.out.println(vo.getMemName());
+		System.out.println(vo.getMemPhone());
+		System.out.println(vo.getMemEmail());
+
+		renewal = service.mailId(vo);
+
+		System.out.println("renewal: "+ renewal);
+		
+		// 받는 사람
+		String recipient  = sendTo;
+
+		String subject = "귀하의 아이디 입니다.";
+		String body = "귀하의 아이디는 " + renewal.getMemId() + " 입니다.";
 
 		Properties props = System.getProperties();
 		

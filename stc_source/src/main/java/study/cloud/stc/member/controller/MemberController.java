@@ -75,7 +75,19 @@ public class MemberController {
 		System.out.println("memPhone: "+vo.getMemPhone());
 		System.out.println("memEmail: "+ vo.getMemEmail());
 		
-		return "ajax success";
+		MemberVo result = service.findAccount(vo);
+		
+		System.out.println(result);
+		String shout= null;		
+		
+		if(result == null) {
+			shout= "fail";
+		}
+		else {
+			shout= "success";
+		}
+		
+		return shout;
 	}
 	
 	

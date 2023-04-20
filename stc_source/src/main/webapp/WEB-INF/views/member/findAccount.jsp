@@ -83,7 +83,7 @@
 	    	var formValues = $("form[name=sampleForm]").serialize() ;
 	    	var memName= $("#memName").val();
 	    	var memPhone= $("#memPhone").val();
-	    	var memName= $("#memName").val();
+	    	var memEmail= $("#memEmail").val();
 	    	
 	    	$.ajax({
 	    		url: 'findajax', 
@@ -99,10 +99,13 @@
 	                alert('ajax error');
 	            },
 	            success : function(data){
-	            	
-	            		alert(data);
-
-					}
+	            	if(data == 'success'){
+	            		alert('기입한 메일로 아이디가 전송되었습니다.');	
+	            		location.href="<%=request.getContextPath()%>/sendmail/id?memEmail="+memEmail+"&memName="+ memName+"&memPhone="+ memPhone;
+	            	}else{
+	            		alert('존재하지 않는 회원 정보 입니다.');
+	            	}
+				}
 			});
 
 		});

@@ -139,19 +139,31 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("memberns.updatePasswd", vo);
 	}
-
+	
+	public MemberVo findAccount(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("memberns.findAccount", vo);
+	}
 // -----------------------------------------------------------------------------------------------------------
 
 	public int mailPasswd(MemberVo renewal) {
 		// TODO Auto-generated method stub
 		return session.update("memberns.mailPasswd", renewal);
 	}
-
+	
+	public MemberVo mailId(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("memberns.mailId", vo);
+	}
 // -----------------------------------------------------------------------------------------------------------
 	
 	public int idcheck(String memId) {
         return session.selectOne("memberns.selectCount", memId);
     }
+
+	
+
+	
 
 	
 	

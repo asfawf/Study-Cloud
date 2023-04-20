@@ -45,9 +45,13 @@ public interface MemberService {
 // ------------------------------------------------------------------------------------------------------------		
 	
 	public MemberVo updatePasswd(MemberVo vo) throws Exception;
+	public MemberVo findAccount(MemberVo vo) throws Exception;
+	
 // ------------------------------------------------------------------------------------------------------------		
 
-	public int mailPasswd(MemberVo renewal);
+	public int mailPasswd(MemberVo renewal) throws Exception;
+	public MemberVo mailId(MemberVo vo) throws Exception;
+	
 	
 	
 // ------------------------------------------------------------------------------------------------------------		

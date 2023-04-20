@@ -122,12 +122,23 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.updatePasswd(vo);
 	}
-
+	
+	@Override
+	public MemberVo findAccount(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.findAccount(vo);
+	}
 // ----------------------------------------------------------------------------------------------------
 	@Override
 	public int mailPasswd(MemberVo renewal) {
 		// TODO Auto-generated method stub
 		return dao.mailPasswd(renewal);
+	}
+	
+	@Override
+	public MemberVo mailId(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.mailId(vo);
 	}
 
 // ----------------------------------------------------------------------------------------------------
