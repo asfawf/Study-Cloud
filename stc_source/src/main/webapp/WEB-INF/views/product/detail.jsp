@@ -5,17 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>product detail page</title>
-
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
+<script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 
 </head>
     <body>
         <%@ include file="/WEB-INF/views/module/header.jsp" %>
-    <section>
-        
-        <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
+    <section>       
+         
         <!-- Body content -->
         <div class="page-head"> 
             <div class="container">
@@ -170,24 +167,64 @@
                             <!-- 지도 안내 -->
 
                             <div class="section property-share"> 
-                                <h4 class="s-property-title">Q&A</h4> 
+                                <h4 class="s-property-title">Q&A
+                                <sec:authorize access="isAuthenticated()">
+								<sec:authorize access="hasRole('USER')">
+									<!-- Q&A 등록 버튼 시작 -->
+									<button id="notibtn" type="button" class="btn search-btn pull-right" data-toggle="modal" data-target="#insertQna" style="display: inline;">
+										등록
+									</button>
+									<!-- Q&A 등록 Modal -->
+									<div class="modal fade" id="insertQna" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">									
+											  	<div class="modal-header">
+												    <h4 class="modal-title text-center" id="exampleModalLabel">
+												    Q&A 등록
+												    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button>
+												    </h4>										    
+												</div>							
+												<form:form id="insertQna">
+												<div class="modal-body">													
+													<div class="mb-3">
+														<br>
+														<textarea class="form-control" name="memQuestion" placeholder="내용" style="height: 300px;"></textarea>
+														<input type="hidden" class="form-control" name="proNum" value="${detail.proNum }">
+														<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}"><br>														
+													</div>
+												</div>
+												</form:form>
+											    <div class="modal-footer">
+													<div class="button notice-btn"><button type="button" id="btnCheck">textarea값 확인</button>
+												        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+														<button form="insertQna" id="insertQna" type="submit" class="btn search-btn" >등록</button>												
+													</div> 
+												</div>										
+											</div>
+										</div>
+									</div>
+									<!-- 공지사항 등록 버튼 끝 -->
+								</sec:authorize>			
+								</sec:authorize>
+								</h4>
+								<!-- qnaList 시작 -->
                                 <section id="comments" class="comments wow fadeInRight animated"> 
                                            
-                                    <div class="row comment">
-                                        
+                                    <div class="row comment" id="qList">
+                                        <c:forEach items="${qnaList }" var="list"> 
                                         <div class="col-sm-9 col-md-10">
-                                            <h5 class="text-uppercase">Julie Alma</h5>
-                                            <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                                Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                            <h5 class="text-uppercase">${list.memId }</h5>
+                                            <p class="posted"> ${list.qnaDate }</p>
+                                            <p>${list.memQuestion }</p>
+                                            <!-- <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a> -->
                                             </p>
                                         </div>
+                                        </c:forEach>
                                     </div>
                                     <!-- /.comment -->
         
         
-                                    <div class="row comment last">
+                                    <!-- <div class="row comment last">
         
                                         <div class="col-sm-9 col-md-10">
                                             <h5 class="text-uppercase">Louise Armero</h5>
@@ -198,7 +235,7 @@
                                             </p>
                                         </div>
         
-                                    </div>
+                                    </div> -->
                                     <!-- /.comment -->
                                 </section>
                             </div>
@@ -364,25 +401,7 @@
 
             </div>
         </div>
-
-
-         
-          
-        
-        
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/vendor/modernizr-2.6.2.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery-1.10.2.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/bootstrap-select.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/bootstrap-hover-dropdown.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/easypiechart.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/owl.carousel.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/wow.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/icheck.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/price-range.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath() %>/resources/sneat/assets/js/lightslider.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/main.js"></script>
+ 
 
         <script>
             $(document).ready(function () {
@@ -400,6 +419,66 @@
                     }
                 });
             });
+           $('#btnCheck').click(function() {
+        		console.log("proNum = ", $("[name=proNum]").val());
+        		console.log("memQuestion = ", $("[name=memQuestion]").val());
+        		console.log("memId = ", $("[name=memId]").val());         		
+        	});
+           
+           $("#insertQna").on("click", insertQna);
+          	function insertQna() {
+          		/* console.log($("[name=proNum]").val());
+       		console.log($("[name=memQuestion]").val());
+       		console.log($("[name=memId]").val());  */
+       		
+          		let formdata = new FormData();
+          		formdata.append("memQuestion", $("[name=memQuestion]").val());
+				formdata.append("proNum", $("[name=proNum]").val());
+          		formdata.append("memId", $("[name=memId]").val());
+          		console.log(formdata);
+          		
+          		$.ajax({           
+           		  url: "${pageContext.request.contextPath}/product/detail/insertqna"
+           		, type: "post" // ↓ data => form안의 들어가는 내용
+          			, contentType: false
+          			, processData: false
+          			, data: {memQuestion: $("[name=memQuestion]").val(), proNum:$("[name=proNum]").val(), memId:$("[name=memId]").val()}
+          			, dataType: "json" // success에 들어오는 데이터가 json 모양일것이고 이것을 js object로 변형해서 return값으로 보내라
+          			, success: function (result) { // result => controller의 return값이 들어옴
+          				console.log(result);
+          					/* insertQna.reset(); */
+           				if(result.length > 0) { 
+           					alert("QNA가 작성되었습니다.")
+           				} else {
+           					alert("QNA가 작성되지 않았습니다. 다시 작성해주세요.")
+           				}
+           				// 답글 부분화면 업데이트
+           				displayQna(result);
+           			}
+           			, error: function () {
+           				
+           			}
+           		});
+           	}
+           	
+           	// 답글 부분화면 업데이트 함수
+           	function displayQna(result) {
+           		
+           		var htmlVal = '';
+           		for(i = 0; i < result.length; i++){
+           			var reply = result[i];
+           			htmlVal += '<div class="col-sm-9 col-md-10">';
+           			htmlVal += '<h5 class="text-uppercase">'+qnaList.memId+'</h5>';
+           			htmlVal += '<p class="posted">'+qnaList.qnaDate+'</p>';
+          			htmlVal += '<p>'+qnaList.memQuestion+'</p>';
+          			/* htmlVal += '<p class="reply"><a href="#"><i class="fa fa-reply"></i>'+Reply+'</a></p>'; */
+          			htmlVal += '</div>';
+          		}
+          		$("div[id=qList]").html(htmlVal);
+          	}
+          	
+
+
         </script>
 		</section>
 		<%@ include file="/WEB-INF/views/module/footer.jsp" %>

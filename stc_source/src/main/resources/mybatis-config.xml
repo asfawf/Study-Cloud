@@ -19,7 +19,7 @@
 			alias="pdvo" />
 		<typeAlias type="study.cloud.stc.product.model.vo.ProductDetailDto"
 			alias="pdto"/>
-	
+		<typeAlias type="study.cloud.stc.qna.model.vo.QnaVo" alias="qvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />

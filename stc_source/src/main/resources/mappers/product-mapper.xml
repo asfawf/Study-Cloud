@@ -67,4 +67,25 @@
 
 	</select>
 	
+	<!-- qna 관련 -->
+	<insert id="insertQna" parameterType="qvo">
+		INSERT INTO QNA VALUES(
+		       #{proNum}
+	    	 , (SELECT PRO_NAME FROM MAP WHERE PRO_NUM = #{proNum})
+			 , #{memId}
+		     , #{memQuestion}
+			 , (SELECT MEM_AUTHORITY FROM MEMBER WHERE MEM_ID = #{memId})
+			 , NULL
+		     , SYSDATE
+		)
+	</insert>
+	
+	<select id="selectQnaList" resultType="qvo">
+		SELECT * 
+		  FROM QNA
+	    <if test="proNum != null and proNum neq ''">
+         WHERE PRO_NUM = #{proNum}
+   	    </if>		 
+		 ORDER BY QNA_DATE DESC
+	</select>
 </mapper>

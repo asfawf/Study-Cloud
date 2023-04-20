@@ -7,16 +7,11 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
-
-
 <body>
 <%@ include file="/WEB-INF/views/module/header2.jsp" %>
 
 <section>
- 
-        <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
+
         <!-- Body content -->
 
         <div class="slider-area" >
@@ -57,64 +52,16 @@
         </tr>
     </thead>
     <tbody>
+    <c:forEach items="${qnaList }" var="list">    
         <tr>
-            <td  colspan="2"></td>
-            <td><button>삭제</button></td>
+            <td  colspan="2">${list.memId}</td>
+            <td>${list.memQuestion}<button>삭제</button></td>
             <td  colspan="1">
             <button>답변</button>
             <button>수정</button>
             <button>삭제</button></td>
         </tr>
-        <tr>
-            <td  colspan="2"></td>
-            <td><button>삭제</button></td>
-            <td  colspan="1">
-            <button>답변</button>
-            <button>수정</button>
-            <button>삭제</button></td>
-        </tr>
-        <tr>
-           <td  colspan="2"></td>
-            <td><button>삭제</button></td>
-            <td  colspan="1">
-            <button>답변</button>
-            <button>수정</button>
-            <button>삭제</button></td>
-        </tr>
-        <tr>
-             <td  colspan="2"></td>
-            <td><button>삭제</button></td>
-            <td  colspan="1">
-            <button>답변</button>
-            <button>수정</button>
-            <button>삭제</button></td>
-        </tr>
-        <tr>
-             <td  colspan="2"></td>
-            <td><button>삭제</button></td>
-            <td  colspan="1">
-            <button>답변</button>
-            <button>수정</button>
-            <button>삭제</button></td>
-
-        </tr>
-        <tr>
-             <td  colspan="2"></td>
-            <td><button>삭제</button></td>
-            <td  colspan="1">
-            <button>답변</button>
-            <button>수정</button>
-            <button>삭제</button></td>
-
-        </tr>
-        <tr>
-             <td  colspan="2"></td>
-            <td><button>삭제</button></td>
-            <td  colspan="1">
-            <button>답변</button>
-            <button>수정</button>
-            <button>삭제</button></td>
-        </tr>
+     </c:forEach>
     </tbody>
     </table>
             </div>
@@ -123,28 +70,7 @@
  
 </div>
 
-       
 
-
-        
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/modernizr-2.6.2.min.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery-1.10.2.min.js"></script> 
-        <script src="<%=request.getContextPath() %>/resources/sneat/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/bootstrap-select.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/bootstrap-hover-dropdown.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/easypiechart.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/owl.carousel.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/wow.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/icheck.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/price-range.js"></script>
-
-        <script src="assets/js/main.js"></script>
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
