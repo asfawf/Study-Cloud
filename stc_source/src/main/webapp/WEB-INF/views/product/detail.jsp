@@ -418,15 +418,17 @@
 	                }
 	            });
 	        });
-           $('#btnCheck').click(function() {
-        		console.log("proNum = ", $("[name=proNum]").val());
-        		console.log("memQuestion = ", $("[name=memQuestion]").val());
-        		console.log("memId = ", $("[name=memId]").val());         		
-        	});
            
+	       /* frminsertQna ajax */
            $("#btninsertQna").on("click", insertQna);
           	function insertQna() {
-          		
+          		var memQuestionLength = $("[name=memQuestion]").val().trim().length;
+          		if(memQuestionLength < 1) {
+          			alert("글자 수가 적으면 등록되지 않습니다. 글을 입력해주세요.")
+          			$("[name=memQuestion]").focus()
+          			$("[name=memQuestion]").val("")
+          			return false;
+          		}
           		$.ajax({   
           			  url: "${pageContext.request.contextPath}/product/detail/qnainsert"
            		    , type: "POST"
@@ -451,7 +453,7 @@
            		});
            	}
            	
-           	// 답글 부분화면 업데이트 함수
+           	/* displayQna 화면 함수 */
            	function displayQna(result) {
            		
            		var htmlVal = '';

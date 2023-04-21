@@ -50,8 +50,8 @@ public class AdviceLog {
 		
 	}
 	
-	@Pointcut("execution(public * study.cloud.stc..*ServiceImp.*(..))")
-	public void serviceImpPointCut() {
+	@Pointcut("execution(public * study.cloud.stc..*ServiceImpl.*(..))")
+	public void serviceImplPointCut() {
 		
 	}
 	
@@ -108,7 +108,7 @@ public class AdviceLog {
 		return returnObj;
 	}
 	
-	@Around("serviceImpPointCut()")
+	@Around("serviceImplPointCut()")
 	public Object aroundServicePointCut(ProceedingJoinPoint pjp) throws Throwable{
 		// @Around 는 void 가 아닌 Object 사용 + JoinPoint 가 아닌 ProceedingJoinPoint 사용
 		Object returnObj = null;
