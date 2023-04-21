@@ -40,15 +40,13 @@
 									<br> 아이디를 이메일로 보내드립니다.
 								</div>
 
-								<div
-									style="margin-left: 8%; margin-right: 17%; display: inline-block; width: 25%;">
+								<div style="margin-left: 8%; margin-right: 17%; display: inline-block; width: 25%;">
 									<h5>이름</h5>
 									<input type="text" id="memName" name="memName"
 										style="border-bottom: solid; border-color: #f6f6f6;">
 								</div>
 
-								<div
-									style="display: inline-block; margin-right: 8%; width: 40%;">
+								<div style="display: inline-block; margin-right: 8%; width: 40%;">
 									<h5 style="padding-top: 10%;">전화번호</h5>
 									<input type="text" id="memPhone" name="memPhone"
 										style="border-bottom: solid; border-color: #f6f6f6;">
