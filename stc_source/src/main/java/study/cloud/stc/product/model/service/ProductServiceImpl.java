@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import study.cloud.stc.product.model.dao.ProductDao;
+import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
 import study.cloud.stc.product.model.vo.ProductVo;
  
@@ -63,4 +64,15 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	@Override
+	public List<HostProductDto> selectList(HostProductDto dto) throws Exception {
+		return dao.selectList(dto);
+	}
+
+	@Override
+	public List<HostProductDto> selectList() throws Exception {
+		return dao.selectList();
+	}
+
+	
 }

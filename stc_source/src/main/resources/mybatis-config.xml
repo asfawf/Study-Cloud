@@ -20,6 +20,10 @@
 		<typeAlias type="study.cloud.stc.product.model.vo.ProductDetailDto"
 			alias="pdto"/>
 		<typeAlias type="study.cloud.stc.qna.model.vo.QnaVo" alias="qvo"/>
+		<typeAlias type="study.cloud.stc.product.model.vo.HostProductDto"
+			alias="hostProDto"/>
+			
+			
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />

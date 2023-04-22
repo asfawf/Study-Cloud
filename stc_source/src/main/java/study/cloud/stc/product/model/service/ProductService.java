@@ -2,10 +2,13 @@ package study.cloud.stc.product.model.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 
-
+@Service
 public interface ProductService {
 
 	public List<ProductVo> selectList(ProductVo vo) throws Exception;
@@ -20,4 +23,9 @@ public interface ProductService {
 	public int insertProduct(ProductDetailDto dto) throws Exception;
 	public int insertMap(ProductDetailDto dto) throws Exception;
 	public int insertDetail(ProductDetailDto dto) throws Exception;
+	
+	public List<HostProductDto> selectList (HostProductDto dto)throws Exception;
+	public List<HostProductDto> selectList () throws Exception;
+	
+	
 }

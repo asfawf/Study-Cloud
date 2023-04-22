@@ -2,6 +2,7 @@ package study.cloud.stc.member.controller;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.product.model.service.ProductService;
+import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
 import study.cloud.stc.qna.model.service.QnaService;
 import study.cloud.stc.qna.model.vo.QnaVo;
@@ -28,7 +30,7 @@ public class HostController {
 
 	@Autowired
 	private QnaService qservice;
-	private ProductService service;
+	private ProductService pservice;
 	
 	@Autowired
 	private MemberService mservice;
@@ -40,7 +42,12 @@ public class HostController {
 	}	
 	
 	@GetMapping("/product")
-	public ModelAndView selectProductList(ModelAndView mv) throws Exception {
+	public ModelAndView selectProductList(
+			ModelAndView mv
+			) throws Exception {
+		List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
+		
+		mv.addObject("hostlist",hostDto);
 		mv.setViewName("/host/product");
 		return mv;
 	}	
@@ -58,7 +65,7 @@ public class HostController {
 			@ModelAttribute("dto")
 			ProductDetailDto dto
 			) throws Exception {
-		int result = service.insertProduct(dto);
+		int result = pservice.insertProduct(dto);
 		if(result == 2) {
 			mv.setViewName("redirect:/host/product");
 		}else {

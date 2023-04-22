@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 
@@ -39,6 +40,14 @@ public class ProductDao {
 	
 	public ProductDetailDto selectOne(int proNum) {
 		return sqlSession.selectOne("product.proDetail",proNum);
+	}
+	
+	public List<HostProductDto> selectList(HostProductDto dto) throws Exception{
+		return sqlSession.selectList("product,hostProductList", dto);
+	}
+	
+	public List<HostProductDto> selectList() throws Exception{
+		return sqlSession.selectList("product.selectListHost");
 	}
 	
 	
