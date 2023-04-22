@@ -69,10 +69,7 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectList(dto);
 	}
 
-	@Override
-	public List<HostProductDto> selectList() throws Exception {
-		return dao.selectList();
-	}
+
 
 	
 }

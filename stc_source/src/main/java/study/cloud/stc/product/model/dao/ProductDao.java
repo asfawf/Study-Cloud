@@ -43,12 +43,9 @@ public class ProductDao {
 	}
 	
 	public List<HostProductDto> selectList(HostProductDto dto) throws Exception{
-		return sqlSession.selectList("product,hostProductList", dto);
+		return sqlSession.selectList("product.hostProductList", dto);
 	}
 	
-	public List<HostProductDto> selectList() throws Exception{
-		return sqlSession.selectList("product.selectListHost");
-	}
 	
 	
 }

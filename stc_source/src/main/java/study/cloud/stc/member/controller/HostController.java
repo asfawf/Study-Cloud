@@ -30,8 +30,8 @@ public class HostController {
 
 	@Autowired
 	private QnaService qservice;
+	@Autowired
 	private ProductService pservice;
-	
 	@Autowired
 	private MemberService mservice;
 		
@@ -44,9 +44,11 @@ public class HostController {
 	@GetMapping("/product")
 	public ModelAndView selectProductList(
 			ModelAndView mv
+			,HostProductDto dto
 			) throws Exception {
 		List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
 		
+//		mv.addObject("hostlist",pservice.selectList(dto));
 		mv.addObject("hostlist",hostDto);
 		mv.setViewName("/host/product");
 		return mv;

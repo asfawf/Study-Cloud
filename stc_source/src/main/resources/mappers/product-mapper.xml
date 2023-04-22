@@ -117,7 +117,8 @@
 	<!-- 호스트 & 어드민 상품목록 -->
 	
 	<select id="hostProductList" resultType="hostProDto">
-	select  pro_num
+	select
+		 pro_num
         ,pro_name
         ,pro_address
         ,pro_phone
@@ -128,23 +129,9 @@
         using (pro_num)
         left outer join member
         using (mem_id)
-	 
-	</select>
+	 	</select>
 	
-	<select id="selectListHost">
-	select  pro_num
-        ,pro_name
-        ,pro_address
-        ,pro_phone
-        ,mem_id
-        ,mem_authority
-        from map
-        left outer join product
-        using (pro_num)
-        left outer join member
-        using (mem_id)
 	
-	</select>
 	
 	
 	

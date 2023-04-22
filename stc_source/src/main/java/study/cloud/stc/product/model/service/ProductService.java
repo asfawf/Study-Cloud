@@ -25,7 +25,7 @@ public interface ProductService {
 	public int insertDetail(ProductDetailDto dto) throws Exception;
 	
 	public List<HostProductDto> selectList (HostProductDto dto)throws Exception;
-	public List<HostProductDto> selectList () throws Exception;
+	
 	
 	
 }
