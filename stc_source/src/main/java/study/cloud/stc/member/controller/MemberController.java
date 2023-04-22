@@ -1,5 +1,6 @@
 package study.cloud.stc.member.controller;
 
+import java.security.Principal;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private MemberVo stdVo;
 	
 	@GetMapping("/updatepw")
 	public ModelAndView viewUpdatePasswd(ModelAndView mv) throws Exception {
@@ -90,8 +94,42 @@ public class MemberController {
 		return shout;
 	}
 	
+	@GetMapping("/delete")
+	public ModelAndView memberQuit(ModelAndView mv, MemberVo vo, Principal principal) throws Exception  {
+		
+		mv.setViewName("/member/delete");
+		return mv;
+	}
 	
-	
+	@PostMapping("/delete")
+	@ResponseBody
+	public String memberQuitAjax(MemberVo vo, Principal principal) throws Exception  {
+		
+		System.out.println("vo.getMemPasswd(): "+vo.getMemPasswd());
+		// vo 는 입력한 비밀번호
+		
+		stdVo.setMemId(principal.getName());
+		
+		stdVo = service.quitStdInfo(stdVo);
+		System.out.println(stdVo);
+		
+		String shout= null;
+		
+		String division= vo.getMemPasswd();
+		String standatd= stdVo.getMemPasswd();
+		
+		System.out.println("vo.getMemPasswd(): "+vo.getMemPasswd());
+		System.out.println("stdVo.getMemPasswd(): "+stdVo.getMemPasswd());
+		
+		if(division.equals(standatd)) {
+			shout= "success";
+			service.memberblock(stdVo);
+		}else {
+			shout= "fail";
+		}
+		
+		return shout;
+	}
 	
 	
 	

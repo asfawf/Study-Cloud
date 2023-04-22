@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <%@ include file="/WEB-INF/views/module/link.jsp"%>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %> 
@@ -20,7 +20,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<h2 style="color: white;">호스트 정보</h2>
+						<h2 style="color: white;">유저 정보</h2>
 					</div>
 				</div>
 			</div>
@@ -40,7 +40,7 @@
 								
 								<div class="form-group" style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
 									<label for="memPasswd">비밀번호</label> 
-										<input type="password" class="form-control" id="memPasswd" name="memPasswd" value="${mv.memPasswd}" style="border:none ; border-bottom: solid; border-color: #f6f6f6;">
+										<input type="password" class="form-control" id="memPasswd" name="memPasswd" value="${mv.memId}" style="border:none ; border-bottom: solid; border-color: #f6f6f6;">
 											<span class="point successPw"></span> 
 											<input type="hidden" id="pwChk" value="true" />
 								</div>
@@ -125,7 +125,7 @@
 	    	if($("#emailChk").val() == 'true' && $("#phoneChk").val() == 'true' && $("#pwChk").val()  == 'true'){
 	    		
 				$.ajax({
-		    		url: 'info', 
+		    		url: 'userinfoajax', 
 		    		type: 'POST',
 		            data: formValues,
 		            beforeSend : function(xhr)
@@ -140,7 +140,7 @@
 		            success : function(data){
 		            	if(data == 'success'){
 		            		alert('회원의 정보가 수정되었습니다.');	
-		            		location.href="<%=request.getContextPath()%>/host";
+		            		location.href="<%=request.getContextPath()%>/user";
 		            	}else{
 		            		alert('서버에 오류가 생겼습니다. 다음에 시도해 주세요.');
 		            	}
@@ -241,6 +241,5 @@
 	}
 	
 	</script>
-	
 </body>
 </html>

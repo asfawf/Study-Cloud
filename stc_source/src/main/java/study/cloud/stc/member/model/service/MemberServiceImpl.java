@@ -153,6 +153,18 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.takeInfo(vo);
 	}
+
+	@Override
+	public int updateHostInfo(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.updateHostInfo(vo);
+	}
+
+	@Override
+	public MemberVo quitStdInfo(MemberVo stdVo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.quitStdInfo(stdVo);
+	}
 	
 	
 }

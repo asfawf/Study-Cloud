@@ -62,8 +62,16 @@
 		   SET MEM_PASSWD = #{memPasswd}, 
 			   MEM_NAME = #{memName}, 
 			   MEM_PHONE = #{memPhone}, 
-			   MEM_EMAIL = #{memEmail}, 
+			   MEM_EMAIL = #{memEmail} 
 		 WHERE MEM_ID = #{memId}
+	</update>
+	
+	<update id="updateHostInfo">
+		UPDATE MEMBER
+		   SET MEM_PASSWD = #{memPasswd}, 
+			   MEM_PHONE = #{memPhone}, 
+			   MEM_EMAIL = #{memEmail} 
+		 WHERE MEM_ID = #{memId} AND MEM_SNS IS null
 	</update>
 	
 	<select id="selectCountHost" resultType="_int">
@@ -87,6 +95,10 @@
 	
 	<select id="selectBlockHost" resultType="mvo">
 		SELECT MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_HOST' AND MEM_QUIT = 0
+	</select>
+	
+	<select id="quitStdInfo" resultType="mvo">
+		SELECT * FROM MEMBER WHERE MEM_ID= #{memId}
 	</select>
 	
 	<!-- <select id="selectListHost" resultType="mvo">
@@ -114,6 +126,7 @@
 	<select id="getInfo" resultType="mvo">
 		select * FROM MEMBER WHERE MEM_ID = #{memId}
 	</select>
+	
 	
 		
 	<!-- 회원전체 탈퇴수정, 차단, 차단 해제, 삭제, 조회, 비밀번호 변환 -->

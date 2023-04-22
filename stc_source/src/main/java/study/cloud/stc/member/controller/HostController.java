@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import study.cloud.stc.member.model.service.MemberService;
@@ -133,6 +134,37 @@ public class HostController {
 		mv.setViewName("/host/info");
 		
 		return mv;
+	}
+	
+	@PostMapping("/info")
+	@ResponseBody
+	public String hostInfoAjax(
+			MemberVo vo
+			) throws Exception {
+		
+		System.out.println("이건 변환 전: "+vo);
+		
+		String strphone = vo.getMemPhone();
+		String newstrPhone = strphone.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
+		
+		System.out.println("newstrPhone: "+ newstrPhone);
+		vo.setMemPhone(newstrPhone);
+		
+		System.out.println("이건 변환 후: "+vo);
+		
+		int result = 0;
+		
+		result = mservice.updateHostInfo(vo);
+
+		String shout= null;
+		
+		if(result > 0) {
+			shout = "success";
+		}else {
+			shout = "fail";
+		}
+		
+		return shout;
 	}
 	
 	

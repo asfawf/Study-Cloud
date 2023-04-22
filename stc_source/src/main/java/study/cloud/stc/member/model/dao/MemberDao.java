@@ -161,9 +161,19 @@ public class MemberDao {
         return session.selectOne("memberns.selectCount", memId);
     }
 
-	public MemberVo takeInfo(MemberVo vo) {
+	public MemberVo takeInfo(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne("memberns.getInfo", vo);
+	}
+
+	public int updateHostInfo(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.update("memberns.updateHostInfo", vo);
+	}
+
+	public MemberVo quitStdInfo(MemberVo stdVo)  throws Exception{
+		// TODO Auto-generated method stub
+		return session.selectOne("memberns.quitStdInfo", stdVo);
 	}
 
 	

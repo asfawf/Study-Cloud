@@ -55,9 +55,11 @@ public interface MemberService {
 // ------------------------------------------------------------------------------------------------------------		
 
 	int idcheck(String memId);
-	
-	
-	
+// ------------------------------------------------------------------------------------------------------------	
+
 	public MemberVo takeInfo(MemberVo vo) throws Exception;
+	public int updateHostInfo(MemberVo vo)throws Exception;
+	
+	public MemberVo quitStdInfo(MemberVo stdVo) throws Exception;
 	
 }
