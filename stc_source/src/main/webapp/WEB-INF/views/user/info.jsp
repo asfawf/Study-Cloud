@@ -40,7 +40,7 @@
 								
 								<div class="form-group" style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
 									<label for="memPasswd">비밀번호</label> 
-										<input type="password" class="form-control" id="memPasswd" name="memPasswd" value="${mv.memId}" style="border:none ; border-bottom: solid; border-color: #f6f6f6;">
+										<input type="password" class="form-control" id="memPasswd" name="memPasswd" value="${mv.memPasswd}" style="border:none ; border-bottom: solid; border-color: #f6f6f6;">
 											<span class="point successPw"></span> 
 											<input type="hidden" id="pwChk" value="true" />
 								</div>
