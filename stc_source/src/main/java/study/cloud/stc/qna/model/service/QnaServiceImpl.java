@@ -30,4 +30,29 @@ public class QnaServiceImpl implements QnaService {
 		return dao.selectQnaList(proNum);
 	}
 
+	@Override
+	public int selectCount(int proNum) throws Exception {
+		return dao.selectCount(proNum);
+	}
+
+	@Override
+	public List<QnaVo> selectQnaList(int currentPage, int limit, int proNum) throws Exception {
+		return dao.selectQnaList(currentPage, limit, proNum);
+	}
+
+	@Override
+	public int update(QnaVo vo) throws Exception {
+		return dao.update(vo);
+	}
+
+	@Override
+	public int delete(int qnaNum) throws Exception {
+		return dao.delete(qnaNum);	
+	}
+
+	@Override
+	public int updateReply(QnaVo vo) throws Exception {
+		return dao.updateReply(vo);	
+	}
+
 }

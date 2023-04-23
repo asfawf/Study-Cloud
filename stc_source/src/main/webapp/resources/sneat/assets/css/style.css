@@ -1434,7 +1434,9 @@ Asside widgets CSS
 .pagination li {
     display: inline;
 }
-
+.pagination .pagination-sm a {
+	color: #718f45;	
+}
 .pagination a,
 .pagination span {
 	color: #FDC600;

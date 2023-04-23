@@ -7,7 +7,6 @@
 <title>product detail page</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
-
 </head>
     <body>
         <%@ include file="/WEB-INF/views/module/header.jsp" %>
@@ -167,12 +166,12 @@
 
                             <div class="section property-share"> 
                                 <h4 class="s-property-title">Q&A
-                                <sec:authorize access="isAuthenticated()">
-								<sec:authorize access="hasRole('USER')">
+                                <sec:authorize var="isauth" access="isAuthenticated()">
+								<sec:authorize var="" access="hasRole('USER')">
 									<!-- Q&A 등록 버튼 시작 -->
 									<button id="notibtn" type="button" class="btn search-btn pull-right" data-toggle="modal" data-target="#insertQna" style="display: inline;">
 										등록
-									</button>
+									</button>									
 									<!-- Q&A 등록 Modal -->
 									<div class="modal fade" id="insertQna" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
@@ -194,9 +193,9 @@
 												</div>
 												</form:form>
 											    <div class="modal-footer">
-													<div class="button notice-btn"><button type="button" id="btnCheck">textarea값 확인</button>
+													<div class="button notice-btn">
 												        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-														<button form="frminsertQna" id="btninsertQna" type="button" class="btn search-btn" data-dismiss="modal">등록</button>												
+														<button form="frminsertQna" type="button" class="btn search-btn btninsertQna" data-dismiss="modal">등록</button>												
 													</div> 
 												</div>										
 											</div>
@@ -207,18 +206,110 @@
 								</sec:authorize>
 								</h4>
 								<!-- qnaList 시작 -->
-                                <section id="comments" class="comments wow fadeInRight animated"> 
+                                <section id="comments" class="comments"> 
                                            
                                     <div class="row comment" id="qList">
                                         <c:forEach items="${qnaList }" var="qna"> 
-                                        <div class="col-sm-9 col-md-10">
+                                        <div class="col-sm col-md-10" id="${qna.qnaNum}">
                                             <h5 class="text-uppercase">${qna.memId }</h5>
                                             <p class="posted"> ${qna.qnaDate }</p>
                                             <p>${qna.memQuestion }</p>
-                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                            </p>
-                                        </div>
+                                            <p class="reply"><i class="fa fa-hand-o-right"></i>${qna.hostAnswer }</p>
+                                            <p class="pull-right">
+                                            <c:if test="${detail.memId == pageContext.request.userPrincipal.name}">
+                                            	<button data-toggle="modal" data-target="#replyQna${qna.qnaNum}" type="button">답변</button>
+                                            </c:if>
+	                                        <c:if test="${qna.memId == pageContext.request.userPrincipal.name}">
+		                                        <button data-toggle="modal" data-target="#updateQna${qna.qnaNum}" type="button">수정</button>
+												<button class="delete btndeleteQna" type="button" data-qnanum="${qna.qnaNum}">삭제</button>
+	                                        </c:if>
+	                                        </p>
+                                        </div>                                        
+                                        <!-- updateQna modal -->
+										<div class="modal" id="updateQna${qna.qnaNum}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">									
+												  	<div class="modal-header">
+													    <h4 class="modal-title text-center" id="exampleModalLabel">
+													    Q&A 수정
+													    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button>
+													    </h4>										    
+													</div>							
+													<form id="frmupdateQna${qna.qnaNum}">
+													<div class="modal-body">													
+														<div class="mb-3">
+															<br>
+															<textarea class="form-control memQuestion" name="memQuestion" placeholder="내용" style="height: 300px;">${qna.memQuestion }</textarea>
+														</div>
+													</div>
+												    <div class="modal-footer">
+														<div class="button notice-btn">
+													        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+															<button form="frmupdateQna${qna.qnaNum}" type="button" class="update btnupdateQna" data-dismiss="modal" data-qnanum="${qna.qnaNum}">등록</button>												
+														</div> 
+													</div>										
+													</form>
+												</div>
+											</div>
+										</div>
+										<!-- replyQna modal -->
+										<div class="modal" id="replyQna${qna.qnaNum}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">									
+												  	<div class="modal-header">
+													    <h4 class="modal-title text-center" id="exampleModalLabel">
+													    Q&A 답변
+													    <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button>
+													    </h4>										    
+													</div>							
+													<form id="frmreplyQna${qna.qnaNum}">
+													<div class="modal-body">													
+														<div class="mb-3">
+															<br>
+															<textarea class="form-control hostAnswer" name="hostAnswer" placeholder="내용" style="height: 300px;"></textarea>
+														</div>
+													</div>
+												    <div class="modal-footer">
+														<div class="button notice-btn">
+													        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+															<button form="frmreplyQna${qna.qnaNum}" type="button" class="reply btnreplyQna" data-dismiss="modal" data-pronum="${detail.proNum}" data-qnanum="${qna.qnaNum}">등록</button>												
+														</div> 
+													</div>										
+													</form>
+												</div>
+											</div>
+										</div>                                            
                                         </c:forEach>
+                                        <!-- qna 페이징 -->
+                                        <%-- <c:if test="${!empty qna.qnaNum }"> --%>
+                                        <div class="col-md-12 clear"> 
+					                        <div class="text-center">
+					                            <div class="pagination">
+					                                <ul class="pagination-sm">
+					                                	<c:choose>
+						                               	<c:when test="${pageInfo.currentPage eq 1 }">
+						                               		<li><a class="disabled pe-7s-angle-left"></a></li>
+						                               	</c:when>
+						                               	<c:otherwise>
+						                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&page=${pageInfo.currentPage - 1 }"></a></li>
+						                               	</c:otherwise>
+					                                	</c:choose>
+						                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
+															<li><a href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&page=${page }">${page }</a></li>
+														</c:forEach>  
+														<c:choose>
+														<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
+						                               		<li><a class="disabled pe-7s-angle-right"></a></li>
+						                               	</c:when>
+						                               	<c:otherwise>
+						                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&page=${pageInfo.currentPage +1 }"></a></li>
+						                               	</c:otherwise> 
+						                               	</c:choose>                                 
+					                                </ul>
+					                            </div>
+					                        </div>                
+					                    </div>
+					                    <%-- </c:if> --%>
                                     </div>
                                     <!-- /.comment -->
         
@@ -400,7 +491,7 @@
 
             </div>
         </div>
- 
+        
 
         <script>
 	        $(document).ready(function () {
@@ -418,9 +509,9 @@
 	                }
 	            });
 	        });
-           
+
 	       /* frminsertQna ajax */
-           $("#btninsertQna").on("click", insertQna);
+           $(".btninsertQna").on("click", insertQna);
           	function insertQna() {
           		var memQuestionLength = $("[name=memQuestion]").val().trim().length;
           		if(memQuestionLength < 1) {
@@ -429,6 +520,7 @@
           			$("[name=memQuestion]").val("")
           			return false;
           		}
+          		
           		$.ajax({   
           			  url: "${pageContext.request.contextPath}/product/detail/qnainsert"
            		    , type: "POST"
@@ -441,8 +533,7 @@
            					alert("QNA가 작성되었습니다.")
            				} else {
            					alert("QNA가 작성되지 않았습니다. 다시 작성해주세요.")
-           				}
-           				 
+           				}           				 
            				displayQna(result);
            			}
            			, error: function () {
@@ -453,23 +544,172 @@
            		});
            	}
            	
-           	/* displayQna 화면 함수 */
+          	/* displayQna 화면 함수 */
            	function displayQna(result) {
            		
            		var htmlVal = '';
            		for(i = 0; i < result.length; i++){
            			var qna = result[i];
-           			htmlVal += '<div class="col-sm-9 col-md-10">';
+           			htmlVal += '<div class="col-sm col-md-10" id="'+qna.qnaNum+'">';
            			htmlVal += '<h5 class="text-uppercase">'+qna.memId+'</h5>';
            			htmlVal += '<p class="posted">'+qna.qnaDate+'</p>';
           			htmlVal += '<p>'+qna.memQuestion+'</p>';
-          			htmlVal += '<p class="reply"><a href="#"><i class="fa fa-reply"></i>Reply</a></p>';
+          			htmlVal += '<p class="reply"><i class="fa fa-hand-o-right"></i>'+qna.hostAnswer+'</p>';
+          			htmlVal += '<p class="pull-right">';
+          			if(detail.memId == '${pageContext.request.userPrincipal.name}'){
+          			htmlVal += '<button data-toggle="modal" data-target="#replyQna'+qna.qnaNum+'" type="button">답변</button>';
+          			}
+          			if(qna.memId == '${pageContext.request.userPrincipal.name}'){
+          			htmlVal += '<button data-toggle="modal" data-target="#updateQna'+qna.qnaNum+'" type="button">수정</button>';
+          			htmlVal += '<button class="delete btndeleteQna" type="button" data-qnanum="'+qna.qnaNum+'">삭제</button></p>';
+          			}
           			htmlVal += '</div>';
+          			htmlVal += '<div class="modal" id="updateQna'+qna.qnaNum+'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+          			htmlVal += '<div class="modal-dialog">';
+          			htmlVal += '<div class="modal-content">';									
+          			htmlVal += '<div class="modal-header">';
+          			htmlVal += '<h4 class="modal-title text-center" id="exampleModalLabel">Q&A 수정<button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button></h4>';			
+          			htmlVal += '</div>';
+          			htmlVal += '<form id="frmupdateQna'+qna.qnaNum+'">';
+          			htmlVal += '<div class="modal-body">';
+          			htmlVal += '<div class="mb-3"><br>';
+              		htmlVal += '<textarea class="form-control memQuestion" name="memQuestion" placeholder="내용" style="height: 300px;">'+qna.memQuestion+'</textarea>';
+              		htmlVal += '</div>';
+              		htmlVal += '</div>';              		
+           			htmlVal += '<div class="modal-footer">';
+       				htmlVal += '<div class="button notice-btn">';
+   					htmlVal += '<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>';
+   					htmlVal += '<button form="frmupdateQna'+qna.qnaNum+'" type="button" class="update btnupdateQna" data-dismiss="modal" data-qnanum="'+qna.qnaNum+'">등록</button>';												
+   					htmlVal += '</div>';
+   					htmlVal += '</div>';
+              		htmlVal += '</form>';
+   					htmlVal += '</div>';
+   					htmlVal += '</div>';
+   					htmlVal += '</div>';
+   					htmlVal += '<div class="modal" id="replyQna'+qna.qnaNum+'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+   					htmlVal += '<div class="modal-dialog">';
+   					htmlVal += '<div class="modal-content">';								
+   					htmlVal += '<div class="modal-header">';
+   					htmlVal += '<h4 class="modal-title text-center" id="exampleModalLabel">Q&A 답변';
+   					htmlVal += '<button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close"><span class="pe-7s-close"></span></button></h4>';										    
+   					htmlVal += '</div>';							
+					htmlVal += '<form id="frmreplyQna'+qna.qnaNum+'">';
+   					htmlVal += '<div class="modal-body">';													
+   					htmlVal += '<div class="mb-3"><br>';
+   					htmlVal += '<textarea class="form-control hostAnswer" name="hostAnswer" placeholder="내용" style="height: 300px;"></textarea>';
+   					htmlVal += '</div>';
+   					htmlVal += '</div>';
+   					htmlVal += '<div class="modal-footer">';
+   					htmlVal += '<div class="button notice-btn">';
+   					htmlVal += '<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>';
+   					htmlVal += '<button form="frmreplyQna'+qna.qnaNum+'" type="button" class="reply btnreplyQna" data-dismiss="modal" data-pronum="'+detail.proNum+'" data-qnanum="'+qna.qnaNum+'">등록</button>';												
+					htmlVal += '</div>'; 
+					htmlVal += '</div>';										
+					htmlVal += '</form>';
+					htmlVal += '</div>';
+					htmlVal += '</div>';
+   					htmlVal += '</div>';    
           		}
           		$("div[id=qList]").html(htmlVal);
+          		
+          		// 화면 element가 다시 생겨났으므로 event 다시 등록
+          		$(".btnupdateQna").on("click", updateQna);
+          		$(".btndeleteQna").on("click", deleteQna);
+          		$(".btnreplyQna").on("click", replyQna);
           	}
-          	
+          	// 로딩되면 event 등록
+          	/* updateQna ajax */
+          	$(".btnupdateQna").on("click", updateQna);
+          	function updateQna() {
 
+          		var qnanum = $(this).data("qnanum"); 
+
+          		$.ajax({   
+          			  url: "${pageContext.request.contextPath}/product/detail/qnaupdate"
+           		    , type: "POST"
+          			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val(), memQuestion: $(this.form.memQuestion).val()}
+          			, dataType: "json"  
+          			, success: function (result) { 
+          				console.log(result);
+
+           				if(result.length > 0) { 
+           					alert("수정되었습니다.")
+           					displayQna(result);
+           				}            				 
+           			}
+           			, error: function () {
+           				
+           			},beforeSend : function(xhr){
+                        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+                    }
+           		});
+          		
+           	}
+          	
+          	/* deleteQna ajax */
+           	$(".btndeleteQna").on("click", deleteQna);
+          	function deleteQna() {
+          		 
+          		var qnanum = $(this).data("qnanum"); 
+          		
+          		if(confirm("QNA를 삭제하시겠습니까?")){
+	          		$.ajax({   
+	          			  url: "${pageContext.request.contextPath}/product/detail/qnadelete"
+	           		    , type: "POST"
+	          			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val()}
+	          			, dataType: "json"  
+	          			, success: function (result) { 
+	          				console.log(result);
+	
+	           				if(result.length > 0) { 
+	           					alert("삭제되었습니다.")
+		           				displayQna(result);
+	           				}            				 
+	           			}
+	           			, error: function () {
+	           				
+	           			},beforeSend : function(xhr){
+	                        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+	                    }
+	           		});
+          		} else {
+          			return false;
+          		}
+           	}
+          	/* replyQna ajax */
+          	$(".btnreplyQna").on("click", replyQna);
+          	function replyQna() {
+          		var hostAnswerLength = $(this.form.hostAnswer).val().trim().length;
+          		if(hostAnswerLength < 1) {
+          			alert("글자 수가 적으면 등록되지 않습니다. 글을 입력해주세요.")
+          			$(this.form.hostAnswer).focus()
+          			$(this.form.hostAnswer).val("")
+          			return false;
+          		}
+          		var qnanum = $(this).data("qnanum");
+          		var pronum = $(this).data("pronum");
+
+          		$.ajax({   
+          			  url: "${pageContext.request.contextPath}/product/detail/qnareply"
+           		    , type: "POST"
+          			, data: {qnaNum:qnanum, proNum:pronum, hostAnswer: $(this.form.hostAnswer).val()}
+          			, dataType: "json"  
+          			, success: function (result) { 
+          				console.log(result);
+
+           				if(result.length > 0) { 
+           					alert("답변이 등록 되었습니다.")
+           					displayQna(result);
+           				}            				 
+           			}
+           			, error: function () {
+           				
+           			},beforeSend : function(xhr){
+                        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+                    }
+           		});
+          		
+           	}
 
         </script>
 		</section>

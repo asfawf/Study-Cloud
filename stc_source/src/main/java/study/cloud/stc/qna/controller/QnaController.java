@@ -15,23 +15,23 @@ import study.cloud.stc.qna.model.vo.QnaVo;
 
 
 @Controller
-@RequestMapping("/product/detail")
+//@RequestMapping("/product/detail")
 public class QnaController {
 
-	@Autowired
-	private QnaService service;
-	
-	@PostMapping("/insertqna")
-	@ResponseBody
-	public String insertQna(QnaVo vo
-			) throws Exception {
-		
-		service.insert(vo);
-
-		List<QnaVo> qnaList = service.selectQnaList(vo.getProNum());
-
-		return new Gson().toJson(qnaList);
-
-	}
+//	@Autowired
+//	private QnaService service;
+//	
+//	@PostMapping("/insertqna")
+//	@ResponseBody
+//	public String insertQna(QnaVo vo
+//			) throws Exception {
+//		
+//		service.insert(vo);
+//
+//		List<QnaVo> qnaList = service.selectQnaList(vo.getProNum());
+//
+//		return new Gson().toJson(qnaList);
+//
+//	}
 	
 }

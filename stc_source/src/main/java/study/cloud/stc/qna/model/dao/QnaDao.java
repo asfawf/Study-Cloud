@@ -2,6 +2,7 @@ package study.cloud.stc.qna.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,25 @@ public class QnaDao {
 		return sqlSession.selectList("product.selectQnaList");
 	}
 
-	public List<QnaVo> selectQnaList(int proNum) {
+	/* product/detail/qna 화면 */
+	public List<QnaVo> selectQnaList(int proNum) throws Exception{
 		return sqlSession.selectList("product.selectQnaList", proNum);
+	}
+	/* product/detail/qna 페이징 처리 화면 */
+	public int selectCount(int proNum) throws Exception{
+		return sqlSession.selectOne("product.selectQnaCount", proNum);
+	}
+	public List<QnaVo> selectQnaList(int currentPage, int limit, int proNum) throws Exception{
+		return sqlSession.selectList("product.selectQnaList", proNum, new RowBounds((currentPage-1)*limit, limit));
+	}
+
+	public int update(QnaVo vo) throws Exception{
+		return sqlSession.update("product.updateQna", vo);
+	}
+	public int delete(int qnaNum) throws Exception{
+		return sqlSession.delete("product.deleteQna", qnaNum);
+	}
+	public int updateReply(QnaVo vo) throws Exception{
+		return sqlSession.update("product.updateReply", vo);
 	}
 }

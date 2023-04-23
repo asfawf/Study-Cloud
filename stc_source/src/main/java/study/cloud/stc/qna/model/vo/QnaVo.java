@@ -1,6 +1,7 @@
 package study.cloud.stc.qna.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,7 @@ public class QnaVo {
 //	MEM_AUTHORITY	VARCHAR2(20 BYTE)	Yes		5	계정권한
 //	HOST_ANSWER	VARCHAR2(1000 BYTE)	Yes		6	호스트답글
 //	QNA_DATE	TIMESTAMP(6)	Yes		7	QNA작성시간
+//  QNA_NUM NUMBER	No             8        QNA번호
 	
 	private int proNum;
 	private String proName;
@@ -33,4 +35,5 @@ public class QnaVo {
 	private String memAuthority;
 	private String hostAnswer;
 	private Date qnaDate;
+	private int qnaNum;
 }

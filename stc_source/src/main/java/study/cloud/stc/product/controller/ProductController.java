@@ -52,24 +52,21 @@ public class ProductController {
 		mv.addObject("pdList", service.selectList(vo));
 		mv.setViewName("product/map");
 		return mv;
-	}	
-	
-	
-	
-//	@GetMapping("/detail")
-//	public ModelAndView productDetail(ModelAndView mv) {
-//		mv.setViewName("product/detail");
-//		return mv;
-//	}
+	} 
 	
 	@GetMapping("/detail")
 	public ModelAndView productDetail(
 			ModelAndView mv
-			,@RequestParam(value="proNum" ,defaultValue = "") int proNum
+			, @RequestParam(value="page", defaultValue="1") int page
+			, @RequestParam(value="proNum" ,defaultValue = "") int proNum
 			) throws Exception {
+		int currentPage = page; 
+		int totalCnt= qna_service.selectCount(proNum);
+		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
+		mv.addObject("pageInfo", map);
 		ProductDetailDto dto = service.selectOne(proNum);
 		mv.addObject("detail", dto);
-		mv.addObject("qnaList", qna_service.selectQnaList(proNum));
+		mv.addObject("qnaList", qna_service.selectQnaList(currentPage, 3, proNum));
 		mv.setViewName("product/detail");
 		return mv;
 	}
@@ -80,11 +77,44 @@ public class ProductController {
 			) throws Exception {
 
 		qna_service.insert(vo);
-
 		List<QnaVo> qnaList = qna_service.selectQnaList(vo.getProNum());
-
 		return new Gson().toJson(qnaList);
 
+	}
+	
+	@PostMapping("/detail/qnaupdate")
+	@ResponseBody
+	public String updateQna(QnaVo vo
+			,@RequestParam(value="qnaNum") int qnaNum
+			,@RequestParam(value="proNum") int proNum
+			) throws Exception {
+		
+		qna_service.update(vo);
+		List<QnaVo> qnaList = qna_service.selectQnaList(vo.getProNum());
+		return new Gson().toJson(qnaList);
+
+	}
+	
+	@PostMapping("/detail/qnadelete")
+	@ResponseBody
+	public String deleteQna(QnaVo vo
+			,@RequestParam(value="qnaNum", defaultValue = "") int qnaNum
+			,@RequestParam(value="proNum", defaultValue = "") int proNum
+			) throws Exception{
+		qna_service.delete(qnaNum);
+		List<QnaVo> qnaList = qna_service.selectQnaList(vo.getProNum());
+		return new Gson().toJson(qnaList);
+	}
+	
+	@PostMapping("/detail/qnareply")
+	@ResponseBody
+	public String replyQna(QnaVo vo
+			,@RequestParam(value="qnaNum", defaultValue = "") int qnaNum
+			,@RequestParam(value="proNum", defaultValue = "") int proNum
+			) throws Exception{
+		qna_service.updateReply(vo);
+		List<QnaVo> qnaList = qna_service.selectQnaList(vo.getProNum());
+		return new Gson().toJson(qnaList);
 	}
 	
 }
