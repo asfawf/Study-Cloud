@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -18,6 +19,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class HandlerChat extends TextWebSocketHandler {
+	
+	@Autowired
+	ChattingService service;
 	
 	// (<"room_id", 방ID>, <"session", 세션>) - (<"room_id", 방ID>, <"session", 세션>) - (<"room_id", 방ID>, <"session", 세션>) 형태 
 		private List<Map<String, Object>> sessionList = new ArrayList<Map<String, Object>>();

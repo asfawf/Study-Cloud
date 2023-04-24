@@ -22,7 +22,9 @@ public class UserController {
 	
 	
 	@GetMapping
-	public ModelAndView main(ModelAndView mv) throws Exception {
+	public ModelAndView main(ModelAndView mv,  Principal principal) throws Exception {
+		
+		mv.addObject("principal", principal.getName());
 		mv.setViewName("user/user");
 		return mv;
 	}	
