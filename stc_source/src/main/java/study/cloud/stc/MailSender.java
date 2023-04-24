@@ -34,12 +34,11 @@ public class MailSender {
 	@Autowired
 	MemberService service;
 	
-	@Autowired
-	MemberVo renewal; 
-	
 	@GetMapping("/password")
 	public String passwordMailSend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, MemberVo vo) throws Exception{
 
+		MemberVo renewal = new MemberVo();
+		
 		String proId = WebUtil.getProperty("mail_id");
 		String proPass = WebUtil.getProperty("mail_password");
 		String proEmail = WebUtil.getProperty("mail_email"); // 보내는 사람
@@ -112,6 +111,8 @@ public class MailSender {
 	@GetMapping("/id")
 	public String idMailSend(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, MemberVo vo) throws Exception{
 
+		MemberVo renewal = new MemberVo();
+		
 		String proId = WebUtil.getProperty("mail_id");
 		String proPass = WebUtil.getProperty("mail_password");
 		String proEmail = WebUtil.getProperty("mail_email"); // 보내는 사람

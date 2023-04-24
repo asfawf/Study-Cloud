@@ -17,11 +17,17 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import study.cloud.stc.chatting.model.service.ChattingService;
+import study.cloud.stc.chatting.model.vo.ChattingVo;
+
 @Component
 public class HandlerChat extends TextWebSocketHandler {
 	
 	@Autowired
 	ChattingService service;
+	
+	@Autowired
+	ChattingVo vo;
 	
 	// (<"room_id", 방ID>, <"session", 세션>) - (<"room_id", 방ID>, <"session", 세션>) - (<"room_id", 방ID>, <"session", 세션>) 형태 
 		private List<Map<String, Object>> sessionList = new ArrayList<Map<String, Object>>();
@@ -101,6 +107,9 @@ public class HandlerChat extends TextWebSocketHandler {
 				for (int i = 0; i < sessionList.size(); i++) {
 					Map<String, Object> mapSessionList = sessionList.get(i);
 					String room_id = (String) mapSessionList.get("room_id");
+					
+					System.out.println("room_id: "+room_id);
+					
 					WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
 
 					if (room_id.equals(mapReceive.get("room_id"))) {
