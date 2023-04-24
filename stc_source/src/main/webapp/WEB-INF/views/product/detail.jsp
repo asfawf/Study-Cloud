@@ -214,7 +214,9 @@
                                             <h5 class="text-uppercase">${qna.memId }</h5>
                                             <p class="posted"> ${qna.qnaDate }</p>
                                             <p>${qna.memQuestion }</p>
-                                            <p class="reply"><i class="fa fa-hand-o-right"></i>${qna.hostAnswer }</p>
+                                            <p class="reply"><i class="fa fa-hand-o-right"></i>
+                                            	<c:if test="${qna.hostAnswer != null}">${qna.hostAnswer}</c:if>
+                                            </p>
                                             <p class="pull-right">
                                             <c:if test="${detail.memId == pageContext.request.userPrincipal.name}">
                                             	<button data-toggle="modal" data-target="#replyQna${qna.qnaNum}" type="button">답변</button>
@@ -272,7 +274,7 @@
 												    <div class="modal-footer">
 														<div class="button notice-btn">
 													        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-															<button form="frmreplyQna${qna.qnaNum}" type="button" class="reply btnreplyQna" data-dismiss="modal" data-pronum="${detail.proNum}" data-qnanum="${qna.qnaNum}">등록</button>												
+															<button form="frmreplyQna${qna.qnaNum}" type="button" class="reply btnreplyQna" data-dismiss="modal" data-pronum="${qna.proNum}" data-qnanum="${qna.qnaNum}">등록</button>												
 														</div> 
 													</div>										
 													</form>
@@ -548,15 +550,19 @@
            	function displayQna(result) {
            		
            		var htmlVal = '';
-           		for(i = 0; i < result.length; i++){
+           		for(var i = 0; i < result.length; i++){
            			var qna = result[i];
            			htmlVal += '<div class="col-sm col-md-10" id="'+qna.qnaNum+'">';
            			htmlVal += '<h5 class="text-uppercase">'+qna.memId+'</h5>';
            			htmlVal += '<p class="posted">'+qna.qnaDate+'</p>';
           			htmlVal += '<p>'+qna.memQuestion+'</p>';
-          			htmlVal += '<p class="reply"><i class="fa fa-hand-o-right"></i>'+qna.hostAnswer+'</p>';
+          			htmlVal += '<p class="reply"><i class="fa fa-hand-o-right"></i>';
+          			if(qna.hostAnswer != null){
+       				htmlVal += qna.hostAnswer
+       					}
+          			htmlVal += '</p>';
           			htmlVal += '<p class="pull-right">';
-          			if(detail.memId == '${pageContext.request.userPrincipal.name}'){
+          			if('${detail.memId}' == '${pageContext.request.userPrincipal.name}'){
           			htmlVal += '<button data-toggle="modal" data-target="#replyQna'+qna.qnaNum+'" type="button">답변</button>';
           			}
           			if(qna.memId == '${pageContext.request.userPrincipal.name}'){
@@ -602,7 +608,7 @@
    					htmlVal += '<div class="modal-footer">';
    					htmlVal += '<div class="button notice-btn">';
    					htmlVal += '<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>';
-   					htmlVal += '<button form="frmreplyQna'+qna.qnaNum+'" type="button" class="reply btnreplyQna" data-dismiss="modal" data-pronum="'+detail.proNum+'" data-qnanum="'+qna.qnaNum+'">등록</button>';												
+   					htmlVal += '<button form="frmreplyQna'+qna.qnaNum+'" type="button" class="reply btnreplyQna" data-dismiss="modal" data-pronum="'+qna.proNum+'" data-qnanum="'+qna.qnaNum+'">등록</button>';												
 					htmlVal += '</div>'; 
 					htmlVal += '</div>';										
 					htmlVal += '</form>';
