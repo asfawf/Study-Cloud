@@ -29,7 +29,7 @@ import study.cloud.stc.member.model.vo.MemberVo;
 
 @Controller
 @RequestMapping("/sendmail")
-public class MailSender2 {
+public class MailSender {
 	
 	@Autowired
 	MemberService service;
