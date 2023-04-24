@@ -144,7 +144,7 @@ public class MemberServiceImpl implements MemberService {
 // ----------------------------------------------------------------------------------------------------
 	
 	@Override
-	public int idcheck(String memId) {
+	public int idCheck(String memId) {
 		return dao.idcheck(memId);
 	}
 

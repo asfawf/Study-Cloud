@@ -109,22 +109,21 @@
 								</div>
 								<div class="input-group"
 									style="padding-left: 60px; padding-right: 60px;">
-									<input type="email" class="form-control" id="memEmail"
-										name="memEmail"> <span class="input-group-btn">
-										<button class="btn btn-default" type="button">메일발송</button>
+									<input type="email" class="form-control" id="memEmail" name="memEmail"> 
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" id="email-Send-Btn">메일발송</button>
 									</span>
 								</div>
-								<div class="input-group"
-									style="padding-left: 60px; padding-right: 60px;">
-									<span class="point successEmail"></span> <input type="hidden"
-										id="emailChk" />
+								<div class="input-group" style="padding-left: 60px; padding-right: 60px;">
+									<span class="point successEmail"></span> 
+									<input type="hidden" id="emailChk" />
 								</div>
 								<div class="form-group"
 									style="padding-left: 60px; padding-right: 60px; padding-top: 30px;">
 									<label for="emailAuthCode">이메일 인증번호</label> <input type="text"
 										class="form-control" id="emailAuthCode" name="emailAuthCode">
-									<span class="point successEmailAuthCode"></span> <input
-										type="hidden" id="emailAuthCodeChk" />
+									<span class="point successEmailAuthCode"></span> 
+									<input type="hidden" id="emailAuthCodeChk" />
 								</div>
 								<div class="text-center"
 									style="padding-top: 100px; padding-bottom: 60px; padding-left: 60px; padding-right: 60px;">
@@ -155,16 +154,13 @@
 				console.log("checkDulId");
 				console.log("memId");
 				$.ajax({
-					url : '${pageContext.request.contextPath}/join/idcheck',
+					url : '${pageContext.request.contextPath}/join/idCheck',
 					type : 'post',
-					data : {
-						memId : $("#memId").val()
-					},
+					data : {memId : $("#memId").val()},
 					beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
 						xhr.setRequestHeader("${_csrf.headerName}",
 								"${_csrf.token}");
-					},
-					//cache: false,
+					},				
 					success : function(result) {
 						if (data == 1) {
 							statusDupId = 1;
@@ -305,6 +301,27 @@
 				}
 
 			});
+			
+			
+			//이메일 인증번호 발송
+			$("#email-Send-Btn").click(function() {
+				var memEmail = $("#memEmail").val();						
+				$.ajax({
+				    url: '${pageContext.request.contextPath}/join/emailCheck'+ memEmail,
+				    type: 'get',
+				    beforeSend : function(xhr) { 
+				        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				    },
+				    success : function(data) {
+				    	if(data == "error"){
+							alert("인증 번호가 전송되었습니다.");
+			        		
+			        	}
+			        }
+			    });
+			});				
+											
+							
 
 			//이메일 인증번호 유효성 
 			$("#emailAuthCode").blur(function() {
@@ -314,6 +331,7 @@
 					$("#emailAuthCodeChk").val("false");
 				}
 			});
+
 		});
 	</script>
 

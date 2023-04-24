@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.net.httpserver.Authenticator.Result;
+
 import study.cloud.stc.member.model.dao.MemberDao;
+import study.cloud.stc.member.model.service.MailSendService;
 import study.cloud.stc.member.model.service.MemberService;
 
 
@@ -27,6 +31,8 @@ public class JoinController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MailSendService mailSendService;
 	
 	@GetMapping
 	public ModelAndView join(ModelAndView mv) {
@@ -40,12 +46,22 @@ public class JoinController {
 		return mv;
 	}
 	
-	@PostMapping("/idcheck")
+	@PostMapping("/idCheck")
 	@ResponseBody 
 	public int idcheck(String memId) {
-	    int result = memberService.idcheck(memId);
+	    int result = memberService.idCheck(memId);
 	    return result; 
 		}
+	
+	@GetMapping("/emailCheck")
+	@ResponseBody
+	public String emailCheck(String memEmail) {
+		System.out.println("이메일 인증 요청");		
+		System.out.println("이메일 주소: " + memEmail);
+		return mailSendService.joinEmail(memEmail);
+	}
+
+
 	
 
 	

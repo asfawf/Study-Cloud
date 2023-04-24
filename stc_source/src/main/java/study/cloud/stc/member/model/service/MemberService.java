@@ -54,7 +54,7 @@ public interface MemberService {
 		
 // ------------------------------------------------------------------------------------------------------------		
 
-	int idcheck(String memId);
+	public int idCheck(String memId);
 // ------------------------------------------------------------------------------------------------------------	
 
 	public MemberVo takeInfo(MemberVo vo) throws Exception;
