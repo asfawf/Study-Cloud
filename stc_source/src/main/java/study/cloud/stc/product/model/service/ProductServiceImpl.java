@@ -80,6 +80,12 @@ public class ProductServiceImpl implements ProductService {
 	
 	}
 
+	// host qna select 옵션 List
+	@Override
+	public List<ProductVo> selectHostProductList(String membId) throws Exception {
+		return dao.selectHostProductList(membId);
+	}
+
 
 
 	

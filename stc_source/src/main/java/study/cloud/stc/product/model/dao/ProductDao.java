@@ -55,5 +55,10 @@ public class ProductDao {
 		public List<HostProductDto> selectList(int currentPage,int limit,HostProductDto dto) throws Exception{
 		return sqlSession.selectList("product.hostList",dto,new RowBounds((currentPage-1)*limit,limit));
 		}
+
+		
+	public List<ProductVo> selectHostProductList(String membId) {
+		return sqlSession.selectList("product.selectHostProductList", membId);
+	}
 	
 }

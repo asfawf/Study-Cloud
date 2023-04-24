@@ -16,6 +16,7 @@
 		<security:intercept-url pattern="/echo/**" access="permitAll"/>
 		<security:intercept-url pattern="/home" access="permitAll"/>
 		<security:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
+		<security:intercept-url pattern="/host/**" access="hasRole('HOST')"/>
 		<security:intercept-url pattern="/chatting" access="hasAnyRole('USER', 'ADMIN')"/>
 		
 		<!-- <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/> -->

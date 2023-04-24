@@ -55,4 +55,14 @@ public class QnaServiceImpl implements QnaService {
 		return dao.updateReply(vo);	
 	}
 
+	// host qna 페이징 List
+	@Override
+	public int selectCount(String hostId) throws Exception {
+		return dao.selectCount(hostId);
+	}
+	@Override
+	public List<QnaVo> selectHostProductQnaList(int currentPage, int limit, int proNum) throws Exception {
+		return dao.selectHostProductQnaList(currentPage, limit, proNum);
+	}
+
 }
