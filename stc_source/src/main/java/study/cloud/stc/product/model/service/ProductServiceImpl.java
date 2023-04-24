@@ -69,6 +69,17 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectList(dto);
 	}
 
+	@Override
+	public int selectCount(HostProductDto dto) throws Exception {
+		return dao.selectCount(dto);
+	}
+
+	@Override
+	public List<HostProductDto> selectList(int currentPage, int limit, HostProductDto dto) throws Exception {
+		return dao.selectList(currentPage, limit, dto);
+	
+	}
+
 
 
 	

@@ -26,6 +26,8 @@ public interface ProductService {
 	
 	public List<HostProductDto> selectList (HostProductDto dto)throws Exception;
 	
-	
+	//페이징관련
+		public int selectCount(HostProductDto dto) throws Exception;
+		public List<HostProductDto> selectList (int currentPage,int limit,HostProductDto dto) throws Exception; 
 	
 }

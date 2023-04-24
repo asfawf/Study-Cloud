@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import study.cloud.stc.common.paging.Paging;
 import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.product.model.service.ProductService;
@@ -45,12 +47,15 @@ public class HostController {
 	public ModelAndView selectProductList(
 			ModelAndView mv
 			,HostProductDto dto
+			, @RequestParam(value="page", defaultValue="1") int page
 			) throws Exception {
-		List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
-		
-//		mv.addObject("hostlist",pservice.selectList(dto));
-		mv.addObject("hostlist",hostDto);
-		mv.setViewName("/host/product");
+		 List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
+		 int currentPage = page;
+		 int totalCnt = pservice.selectCount(dto);
+		 Map<String, Integer> map= new Paging().paging(currentPage, totalCnt,10 , 10);
+		 mv.addObject("pageInfo", map);
+		 mv.addObject("hostlist",pservice.selectList(currentPage,10, dto));
+		 mv.setViewName("/host/product");
 		return mv;
 	}	
 	

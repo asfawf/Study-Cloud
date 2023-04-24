@@ -67,6 +67,37 @@
 						</div>
 
 
+				<!-- 페이징 -->
+
+					<div class="col-md-12 clear"> 
+                        <div class="pull-right">
+                            <div class="pagination">
+                                <ul>
+                                    <c:choose>
+	                               	<c:when test="${pageInfo.currentPage eq 1 }">
+	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
+	                               	</c:when>
+	                               	<c:otherwise>
+	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage - 1 }"></a></li>
+	                               	</c:otherwise>
+                                	</c:choose>
+	                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
+										<li><a href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${page }">${page }</a></li>
+									</c:forEach>  
+									<c:choose>
+									<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
+	                               		<li><a class="disabled pe-7s-angle-right"></a></li>
+	                               	</c:when>
+	                               	<c:otherwise>
+	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage +1 }"></a></li>
+	                               	</c:otherwise> 
+	                               	</c:choose>
+                                </ul>
+                            </div>
+                        </div>                
+                    </div>
+
+
 
 						<!--                         <div class="section">  -->
 						<!--                             <div class="pull-right"> -->
