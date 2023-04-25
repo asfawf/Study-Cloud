@@ -157,8 +157,8 @@ public class MemberDao {
 	}
 // -----------------------------------------------------------------------------------------------------------
 	
-	public int idcheck(String memId) {
-        return session.selectOne("memberns.selectCount", memId);
+	public int idCheck(String memId) {
+        return session.selectOne("memberns.idCheck", memId);
     }
 
 	public MemberVo takeInfo(MemberVo vo) throws Exception {

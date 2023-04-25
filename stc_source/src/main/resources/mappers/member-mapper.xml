@@ -180,4 +180,8 @@
 		SELECT * FROM MEMBER WHERE MEM_NAME= #{memName} AND MEM_PHONE=#{memPhone} AND MEM_EMAIL=#{memEmail} AND MEM_SNS IS null
 	</select>
 	
+	<select id="idCheck" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE MEM_ID = #{memId}
+	</select>
+	
 </mapper>

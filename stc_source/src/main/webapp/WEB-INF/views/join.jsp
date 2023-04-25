@@ -64,7 +64,7 @@
 									style="padding-left: 60px; padding-right: 60px;">
 									<input type="text" class="form-control" id="memId" name="memId"
 										maxlength="15"> <span class="input-group-btn">
-										<button class="btn btn-default" type="button" id="memIdChk">중복확인</button>
+										<button class="btn btn-default" type="button" id="id-dup-Btn">중복확인</button>
 									</span>
 								</div>
 								<div class="input-group"
@@ -142,66 +142,70 @@
 	<%@ include file="/WEB-INF/views/module/footer.jsp"%>
 
 
-	<script>
+<script>
+		var idDupChk = -1; //중복 있음:1, 사용 가능:0
+		
 		$(function() {
 			let checkId = RegExp(/^[a-z0-9]{5,15}$/); //5~15자의 영어 소문자와 숫자로 이루어진 문자열 검사
 			let checkPasswd = RegExp(/^(?=.*[a-z\d~!@#$%^&*()+])[a-z\d~!@#$%^&*()+]{4,}$/); //영어소문자, 숫자, 특수문자(~!@#$%^&*()_+)로 이루어진 4자리 이상 문자열 검사
 			let checkName = RegExp(/^[가-힣a-zA-Z]{2,}$/); //2자 이상의 한글 또는 영어 대/소문자로 이루어진 문자열 검사
 			let checkPhone = RegExp(/^[0-9]{11}$/); //11자리 숫자로 이루어진 문자열 검사
 			let checkEmail = RegExp(/^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/); //이메일 주소 형식에 맞는 패턴으로 검사
-			let statusDupId = -1; // -1: 중복확인안한상태, 0: 중복아이디없음, 1: 중복아이디있음. 
-			function checkDulId() {
-				console.log("checkDulId");
-				console.log("memId");
-				$.ajax({
-					url : '${pageContext.request.contextPath}/join/idCheck',
-					type : 'post',
-					data : {memId : $("#memId").val()},
-					beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-						xhr.setRequestHeader("${_csrf.headerName}",
-								"${_csrf.token}");
-					},				
-					success : function(result) {
-						if (data == 1) {
-							statusDupId = 1;
-							$(".successId").text("사용 중인 아이디입니다.");
-							$(".successId").css("color", "#DB0000");
-							$("#idChk").val("false");
-						} else {
-							statusDupId = 0;
-							$(".successId").text("사용 가능한 아이디입니다.");
-							$(".successId").css("color", "#88B04B");
-							$("#idChk").val("true");
-						}
-					},
-					error : function() {
-						statusDupId = -1;
-						console.log("실패");
-					}
-				});
-			}
-			// 중복확인 버튼
-			$("#memIdChk").click(checkDulId);
+			 
+			
 			//아이디 유효성
-			$("#memId").blur(function() {
-				if ($("#memId").val() == "") {
-					$(".successId").text("필수 정보입니다.");
-					$(".successId").css("color", "#DB0000");
-					$("#idChk").val("false");
-				} else if (!checkId.test($("#memId").val())) {
-					$(".successId").text("5~15자의 영문 소문자와 숫자를 사용하세요.");
-					$(".successId").css("color", "#DB0000");
-					$("#idChk").val("false");
-				} else if (statusDupId != 0) {
-					checkDulId();
-					//$(".successId").text("중복 확인 버튼을 눌러 중복 확인을 하세요.");
-					//$(".successId").css("color", "#88B04B");
-					//$("#idChk").val("false");		
-				} else {
-					alert("잉 이경우는??");
-				}
-			}); //$("#memId").blur
+		    $("#memId").blur(function() {
+		        if ($("#memId").val() == "") {
+		            $(".successId").text("필수 정보입니다.");
+		            $(".successId").css("color", "#DB0000");
+		            $("#idChk").val("false");
+		        } else {
+		            if (!checkId.test($("#memId").val())) {
+		                $(".successId").text("5~15자의 영문 소문자와 숫자를 사용하세요.");
+		                $(".successId").css("color", "#DB0000");
+		                $("#idChk").val("false");
+		            } else {
+		                // 유효성 검사 통과한 경우 처리
+		            }
+		        }
+		    });
+		        
+		 // 아이디 중복확인
+		    $("#id-dup-Btn").on("click", idCheck);
 
+		    function idCheck() {
+		      let memId = $('[name=memId]').val();
+		      if (!checkId.test(memId)) {
+		        alert("5~15자의 영문 소문자와 숫자를 사용하세요.");
+		        return;
+		      }
+
+		      $.ajax({
+		        url: '${pageContext.request.contextPath}/join/idcheck',
+		        type: 'post',
+		        data: { memId: memId  },
+		        beforeSend: function(xhr) {
+		          xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		        },
+		        success: function(result) {
+		          if (result == 'exist') {
+		            alert("이미 사용 중인 아이디입니다.");
+		            idDupChk = 1;
+		          } else {
+		            alert("사용 가능한 아이디입니다.");
+		            idDupChk = 0;
+		          }
+		        },
+		        error: function() {
+		          alert("오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+		        }
+		      });
+		    }
+			
+			
+			
+			
+			
 			//비밀번호 유효성
 			$("#memPasswd").blur(
 					function() {
@@ -216,13 +220,12 @@
 								$(".successPw").css("color", "#DB0000");
 								$("#pwChk").val("false");
 							} else {
-								$(".successPw").text("사용가능한 비밀번호입니다.")
+								$(".successPw").text("사용 가능한 비밀번호입니다.")
 								$(".successPw").css("color", "#88B04B");
 								$("#pwChk").val("true");
 							}
 						}
 					}); // $("#memPasswd").blur - end
-
 			//비밀번호 재확인 유효성
 			$("#memPwChk").blur(function() {
 				if ($("#memPwChk").val() == "") {
@@ -239,7 +242,6 @@
 					$("#pwDoubleChk").val("false");
 				}
 			});
-
 			//이름 유효성
 			$("#memName").blur(
 					function() {
@@ -249,8 +251,7 @@
 							$("#nameChk").val("false");
 						} else {
 							if (!checkName.test($("#memName").val())) {
-								$(".successName").text(
-										"2자 이상의 한글 조합 또는 영문으로 입력해 주세요.");
+								$(".successName").text( "2자 이상의 한글 조합 또는 영문으로 입력해 주세요.");
 								$(".successName").css("color", "#DB0000");
 								$("#nameChk").val("false");
 							} else {
@@ -260,7 +261,6 @@
 							}
 						}
 					});
-
 			//휴대전화 유효성 
 			$("#memPhone").blur(
 					function() {
@@ -279,60 +279,57 @@
 								$("#phoneChk").val("true");
 							}
 						}
-
 					});
 
-			//이메일 유효성 
+
+			// 이메일 유효성 
 			$("#memEmail").blur(function() {
-				if ($("#memEmail").val() == "") {
-					$(".successEmail").text("필수 정보입니다.");
-					$(".successEmail").css("color", "#DB0000");
-					$("#emailChk").val("false");
-				} else {
-					if (!checkEmail.test($("#memEmail").val())) {
-						$(".successEmail").text("이메일 형식에 맞춰 입력하세요.");
-						$(".successEmail").css("color", "#DB0000");
-						$("#emailChk").val("false");
-					} else {
-						$(".successEmail").text("메일발송 버튼을 클릭해 인증 메일을 전송하세요.")
-						$(".successEmail").css("color", "#88B04B");
-						$("#phoneChk").val("true");
-					}
-				}
-
+			  if ($("#memEmail").val() == "") {
+			    $(".successEmail").text("필수 정보입니다.");
+			    $(".successEmail").css("color", "#DB0000");
+			    $("#emailChk").val("false");
+			  } else {
+			    if (!checkEmail.test($("#memEmail").val())) {
+			      $(".successEmail").text("이메일 형식에 맞춰 입력하세요.");
+			      $(".successEmail").css("color", "#DB0000");
+			      $("#emailChk").val("false");
+			    } else {
+			      $(".successEmail").text("메일발송 버튼을 클릭해 인증 메일을 전송하세요.")
+			      $(".successEmail").css("color", "#88B04B");
+			      $("#phoneChk").val("true");
+			    }
+			  }
 			});
-			
-			
-			//이메일 인증번호 발송
+
+			// 이메일 인증번호 발송
 			$("#email-Send-Btn").click(function() {
-				var memEmail = $("#memEmail").val();						
-				$.ajax({
-				    url: '${pageContext.request.contextPath}/join/emailCheck'+ memEmail,
-				    type: 'get',
-				    beforeSend : function(xhr) { 
-				        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-				    },
-				    success : function(data) {
-				    	if(data == "error"){
-							alert("인증 번호가 전송되었습니다.");
-			        		
-			        	}
-			        }
-			    });
-			});				
-											
-							
-
-			//이메일 인증번호 유효성 
-			$("#emailAuthCode").blur(function() {
-				if ($("#emailAuthCode").val() == "") {
-					$(".successEmailAuthCode").text("필수 정보입니다.");
-					$(".successEmailAuthCode").css("color", "#DB0000");
-					$("#emailAuthCodeChk").val("false");
-				}
+			  var memEmail = $("#memEmail").val();
+			  $.ajax({
+			    url: '${pageContext.request.contextPath}/sendmail/joinemail?memEmail='+ memEmail,
+			    type: 'get',
+			    beforeSend: function(xhr) {
+			      xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			    },
+			    success: function(data) {
+			      if(data !== "error") {
+			        alert("인증 번호가 전송되었습니다.");
+			      }
+			    }
+			  });
 			});
 
-		});
+			// 이메일 인증번호 유효성 
+			$("#emailAuthCode").blur(function() {
+			  if ($("#emailAuthCode").val() == "") {
+			    $(".successEmailAuthCode").text("필수 정보입니다.");
+			    $(".successEmailAuthCode").css("color", "#DB0000");
+			    $("#emailAuthCodeChk").val("false");
+			  }
+			}); 
+			
+		}); 
+
+	
 	</script>
 
 </body>

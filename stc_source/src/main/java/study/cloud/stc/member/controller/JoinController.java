@@ -46,12 +46,12 @@ public class JoinController {
 		return mv;
 	}
 	
-	@PostMapping("/idCheck")
-	@ResponseBody 
-	public int idcheck(String memId) {
-	    int result = memberService.idCheck(memId);
-	    return result; 
-		}
+	@PostMapping("/idcheck")
+    @ResponseBody
+    public int idCheck(String memId) throws Exception {
+        int result = memberService.idCheck(memId);
+        return result;
+    }
 	
 	@GetMapping("/emailCheck")
 	@ResponseBody
