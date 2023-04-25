@@ -1,5 +1,7 @@
 package study.cloud.stc.chatting.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class ChattingServiceImpl implements ChattingService{
 	public int addtMessage(ChattingVo vo) {
 		// TODO Auto-generated method stub
 		return dao.addtMessage(vo);
+	}
+
+	@Override
+	public List<ChattingVo> selectListMessage(ChattingVo schvo) {
+		// TODO Auto-generated method stub
+		return dao.selectListMessage(schvo);
 	}
 
 }

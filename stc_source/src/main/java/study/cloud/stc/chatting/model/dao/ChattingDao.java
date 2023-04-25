@@ -1,5 +1,7 @@
 package study.cloud.stc.chatting.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +17,11 @@ public class ChattingDao {
 	public int addtMessage(ChattingVo vo) {
 		// TODO Auto-generated method stub
 		return session.insert("chatns.addtMessage", vo);
+	}
+
+	public List<ChattingVo> selectListMessage(ChattingVo schvo) {
+		// TODO Auto-generated method stub
+		return session.selectList("chatns.selectListMessage", schvo);
 	}
 
 }

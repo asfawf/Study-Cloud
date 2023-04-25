@@ -36,7 +36,7 @@
 			}
 			// 입장
 			else if (msgData.cmd == 'CMD_ENTER') {
-				$('#divChatData').append('<div align="center ">' + msgData.msg + '</div>');
+				$('#divEnterChatData').append('<div align="center ">' + msgData.msg + '</div>');
 			}
 			// 퇴장
 			else if (msgData.cmd == 'CMD_EXIT') {
@@ -210,7 +210,22 @@
  <div id="contentCover">
 	<div id="chatWrap">
 		<div id="chatLog" class="chatLog" style="overflow-y: scroll; ">
-			<div id="divChatData"  style="top: 10px;"></div>
+			
+			<!-- 여기가 문장 저장 되는 곳 -->
+			<div id="divChatData"  style="top: 10px;">
+				<div id="divEnterChatData"  style="top: 10px;">
+				</div>
+				<c:forEach items="${chatt }" var="chat">
+					<c:if test="${chat.memId eq standname}">
+						<div align="right"> ${chat.chaContents } </div>
+					</c:if>
+					<c:if test="${chat.memId ne standname}">
+						<div align="left"> ${chat.chaContents } </div>
+					
+					</c:if>	
+										
+				</c:forEach>
+			</div>
 		</div>
 		<div id="chatForm" class="input-group mb-3" onsubmit="return false">
 			<input type="hidden" id="division" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />

@@ -93,9 +93,10 @@ public class HandlerChat extends TextWebSocketHandler {
 				System.out.println("보낸 메세지:"+(String) mapReceive.get("msg"));
 				System.out.println("보낸 메세지 길이:"+(int) mapReceive.get("msg").length());
 				
-				vo.setChatContents((String) mapReceive.get("msg"));
+				vo.setChaContents((String) mapReceive.get("msg"));
 				vo.setMemId(division);
 				vo.setRoomId((String) mapReceive.get("room_id"));
+				
 				System.out.println("vo:"+ vo);
 				
 				// 1. RoomId 넣기
@@ -122,6 +123,7 @@ public class HandlerChat extends TextWebSocketHandler {
 				}else {
 					System.out.println("인원 있음");
 				}
+				
 				
 				// 1-2. chat 		- 절차대로
 				System.out.println("service.addtMessage(vo): "+ service.addtMessage(vo));

@@ -17,9 +17,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChattingVo {
-	private int chtNum;
-	private String chatContents;
-	private Date chtTime;
+	private int chaNum;
+	private String chaContents;
+	private Date chaTime;
 	private String memId;
 	private String roomId;
 	
