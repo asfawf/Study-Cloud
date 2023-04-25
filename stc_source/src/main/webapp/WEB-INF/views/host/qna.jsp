@@ -39,9 +39,9 @@
 					<table class="table table-striped" border="1px">
 						<thead>
 				    		<tr>
-						        <th scope="col" class="text-center">아이디</th>
-						        <th scope="col" class="text-center">Q&A 내용</th>
-						        <th scope="col" class="text-center">답변관리</th>
+						        <th colspan="1" class="text-center">아이디</th>
+						        <th colspan="4" class="text-center">Q&A 내용</th>
+						        <th colspan="1" class="text-center">답변관리</th>
 				    		</tr>
 						</thead>
 						<tbody id="qList">
@@ -108,11 +108,11 @@
 		for(var i = 0; i < result.qnaList.length; i++){
 			var qna = result.qnaList[i];
 			htmlVal += '<tr>';
-			htmlVal += '<td>'+qna.memId+'</td>';
-			htmlVal += '<td>'+qna.memQuestion+'<button>삭제</button></td>';
-			htmlVal += '<td>';
-			htmlVal += '<button>답변</button>';
-			htmlVal += '<button>수정</button>';
+			htmlVal += '<td colspan="1">'+qna.memId+'</td>';
+			htmlVal += '<td colspan="4">'+qna.memQuestion+'<button class="pull-right">삭제</button></td>';
+			htmlVal += '<td colspan="1">';
+			htmlVal += '<button>답변</button>&nbsp';
+			htmlVal += '<button>수정</button>&nbsp';
 			htmlVal += '<button>삭제</button></td>';
 			htmlVal += '</tr>';
 		}
@@ -151,6 +151,9 @@
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 <style>
+.table.table-striped {
+	table-layout:fixed;
+}
 .pagination a:hover {
 	cursor: pointer;
 }
