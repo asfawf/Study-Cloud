@@ -56,10 +56,9 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional
 	public int insertDetail(ProductDetailDto dto) throws Exception {
-		int result = dao.insertMap(dto);
-		if(result == 1){
-			result = dao.insertProduct(dto);
-		}
+		int nextValProNum = dao.insertMap(dto);
+		dto.setProNum(nextValProNum);
+		int result = dao.insertProduct(dto);
 			
 		return result;
 	}

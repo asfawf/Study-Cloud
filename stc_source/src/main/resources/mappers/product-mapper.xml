@@ -4,24 +4,18 @@
 
 
 	<insert id="insertProduct" parameterType="pdto">
-		<selectKey keyProperty="nextval" resultType="int">
-	select seq_pro_num.nextval from dual
-	</selectKey>
-		insert into map values(
-    #{nextval},
-    #{proName},#{proAddress},#{proPhone})
+		<selectKey keyProperty="proNum" resultType="int" order="BEFORE">
+			select seq_pro_num.nextval from dual
+		</selectKey>
+		insert into map values( #{proNum}, #{proName},#{proAddress},#{proPhone})
 	</insert>
 
+
 	<insert id="insertProduct2" parameterType="pdto">
-	<selectKey keyProperty="proNum" resultType="int">
-	select seq_pro_num.nextval from dual
-	</selectKey>
-	INSERT ALL 
-	INTO PRODUCT VALUES
-	(#{proNum},'',#{proPost},#{proInfo},#{proNotice},#{proRefund},#{proZipcode})
-	INTO PRODUCTFILE VALUES
-	(#{proNum}, #{proPicOriginal},#{proPicRename})
-	select * from dual
+		INSERT ALL 
+		INTO PRODUCT VALUES 	(#{proNum}, #{memId},#{proPost},#{proInfo},#{proNotice},#{proRefund},#{proZipcode})
+		INTO PRODUCTFILE VALUES	(#{proNum}, #{proPicOriginal},#{proPicRename})
+		select * from dual
 	</insert>
 	
 	<!-- productList 화면 -->

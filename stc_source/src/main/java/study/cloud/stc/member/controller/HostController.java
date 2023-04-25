@@ -72,8 +72,10 @@ public class HostController {
 			ModelAndView mv,
 			@ModelAttribute("dto")
 			ProductDetailDto dto
+			, Principal principal
 			) throws Exception {
-		int result = pservice.insertProduct(dto);
+		dto.setMemId(principal.getName());
+		int result = pservice.insertDetail(dto);
 		if(result == 2) {
 			mv.setViewName("redirect:/host/product");
 		}else {
@@ -81,6 +83,7 @@ public class HostController {
 		}
 		return mv;
 	}
+
 
 	
 	
