@@ -85,7 +85,7 @@ public class AdviceLog {
 		// @Around 는 void 가 아닌 Object 사용 + JoinPoint 가 아닌 ProceedingJoinPoint 사용
 		Object returnObj = null;
 		
-		logger.info("▶▶▶Dao: "+ pjp.getThis()+ pjp.getSignature().getName());
+		logger.info("▶▶▶Dao: {} {}", pjp.getThis(), pjp.getSignature().getName());
 		
 		Object[] args= pjp.getArgs();
 		// args ==> Locale locale, Model model, HttpSession session
@@ -113,7 +113,7 @@ public class AdviceLog {
 		// @Around 는 void 가 아닌 Object 사용 + JoinPoint 가 아닌 ProceedingJoinPoint 사용
 		Object returnObj = null;
 		
-		logger.info("▶▶Service: "+ pjp.getThis()+ pjp.getSignature().getName());
+		logger.info("▶▶Service: {} {}", pjp.getThis(), pjp.getSignature().getName());
 		
 		Object[] args= pjp.getArgs();
 		// args ==> Locale locale, Model model, HttpSession session
