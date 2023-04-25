@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memroomns">
+	<resultMap type="mervo" id="mmervo">
+		<id column="MEM_ID" property="memberId"/>
+		<result column="ROOM_ID" property="roomId"/>
+	</resultMap>
+
+	<select id="viewMemberId" resultType="mervo">
+		SELECT * FROM MEMBER_ROOM WHERE MEM_ID= #{memberId} AND ROOM_ID = #{roomId}
+	</select>
+	
+	<insert id="addMemId">
+		INSERT INTO MEMBER_ROOM(MEM_ID, ROOM_ID) VALUES(#{memberId}, #{roomId})
+	</insert>
+</mapper>

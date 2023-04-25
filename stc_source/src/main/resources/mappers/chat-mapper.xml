@@ -2,10 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="chatns">
 	<resultMap type="chtvo" id="cchtvo">
-		<id column="CHA_CONTENTS" property="chatContents"></id>
+		<id column="CHA_NUM" property="chtNum"/>
+		<result column="CHA_CONTENTS" property="chatContents"/>
 		<result column="CHA_TIME" property="chtTime"/>
 		<result column="MEM_ID" property="memId"/>
 		<result column="ROOM_ID" property="roomId"/>
 	</resultMap>
 
+	<insert id="addtMessage" parameterType="chtvo">
+		INSERT INTO CHAT (CHA_NUM, CHA_CONTENTS, CHA_TIME, MEM_ID, ROOM_ID) VALUES( (SELECT NVL(MAX(CHA_NUM), 0)+1 FROM CHAT) , #{chatContents}, SYSDATE, #{memId}, #{roomId}) 
+	</insert>
 </mapper>
