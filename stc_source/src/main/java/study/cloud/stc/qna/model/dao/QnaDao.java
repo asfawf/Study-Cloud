@@ -46,11 +46,13 @@ public class QnaDao {
 		return sqlSession.update("product.updateReply", vo);
 	}
 
-	// host qna 페이징 List
-	public int selectCount(String hostId) throws Exception {
-		return sqlSession.selectOne("product.selectHostQnaCount", hostId);
+	/* host/qna 페이징 List */
+	public int selectHostQnaCount(int proNum) throws Exception{
+		return sqlSession.selectOne("product.selectQnaCount", proNum);
 	}
-	public List<QnaVo> selectHostProductQnaList(int currentPage, int limit, int proNum) {
+	
+	public List<QnaVo> selectHostProductQnaList(int currentPage, int limit, int proNum) throws Exception{
 		return sqlSession.selectList("product.selectHostProductQnaList", proNum, new RowBounds((currentPage-1)*limit, limit));
 	}
+
 }

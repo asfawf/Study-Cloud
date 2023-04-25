@@ -123,7 +123,7 @@
 		DELETE FROM QNA WHERE QNA_NUM = #{qnaNum}
 	</delete>
 	
-	<!-- detail qna 페이징 count -->
+	<!-- detail/qna, host/qna 페이징 count -->
 	<select id="selectQnaCount" resultType="_int">
 		SELECT COUNT(*) FROM QNA WHERE PRO_NUM = #{proNum}
 	</select>
@@ -190,15 +190,6 @@
 	<select id="selectHostProductList" resultType="pdvo">
 		SELECT PRO_NUM , (select PRO_NAME from map where PRO_NUM = p.PRO_NUM) PRO_NAME, MEM_ID
 		FROM PRODUCT p WHERE MEM_ID = #{memId}
-	</select>
-	
-	<!-- host/qna 페이징 count -->
-	<select id="selectHostQnaCount" resultType="_int">
-		SELECT COUNT(*)
-		FROM PRODUCT
-		LEFT OUTER JOIN QNA
-		USING (PRO_NUM)
-		WHERE PRODUCT.mem_id = #{hostId} AND MEM_QUESTION IS NOT NULL
 	</select>
 	
 	<!-- host/qna 테이블 List -->

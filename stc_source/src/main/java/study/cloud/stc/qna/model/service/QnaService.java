@@ -21,7 +21,7 @@ public interface QnaService {
 	public int updateReply(QnaVo vo) throws Exception;
 	
 	// host qna 페이징 List 
-	public int selectCount(String hostId) throws Exception;
+	public int selectHostQnaCount(int proNum) throws Exception;
 	public List<QnaVo> selectHostProductQnaList(int currentPage, int limit, int proNum) throws Exception;
 	
 }

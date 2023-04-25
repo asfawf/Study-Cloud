@@ -13,7 +13,7 @@
 
 <section>
 	
-        <!-- selectHostProductList -->
+        <!-- selectedProNum -->
 
         <div class="slider-area" >
             <div class="slider-content">
@@ -22,34 +22,15 @@
                         <div class="">
                             <form action="" class="form-inline">
                                 <div class="form-group">                                   
-                                    <select id="lunchBegins" class="form-control" title="내 공간 목록">
-										<c:forEach items="${productList }" var="product"> 	
+                                    <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
+										<c:forEach items="${hostQna.productList }" var="product"> 	
 				                        	<option value="${product.proNum }" >${product.proName }</option>
 										</c:forEach>
                                     </select>
-		                        <script>
-		                        	// controller에서 qna 읽은 proNum 값으로 selected 로 나타냄
-		                        	var selectedProNum = '${selectedProNum}';
-		                        	$("#lunchBegins").val(selectedProNum).prop("selected", true);
-		                        	
-		                        	// select -option 바뀌면 event
-		                        	$("#lunchBegins").change(changeProNumHandler);
-		                        	function changeProNumHandler(){
-		                        		// 반드시 post 로 ajax로 동작시켜야 함. host1이 host2번의 qna를 볼수도 있으므로 
-		                        		alert($(this).val());
-		                        		location.href="${pageContext.request.contextPath}/host/qna?selectedProNum="+$(this).val();
-		                        		//$.ajax({});
-		                        		//displayQnaList();
-		                        	}
-		                        	function displayQnaList(){
-		                        		
-		                        	}
-		                        </script>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
 
 
@@ -63,59 +44,116 @@
 						        <th scope="col" class="text-center">답변관리</th>
 				    		</tr>
 						</thead>
-						<tbody>
-  
-						<c:forEach items="${qnaList }" var="qna">    
-						<tr>
-				   			<td>${qna.memId}</td>
-							<td>${qna.memQuestion}<button>삭제</button></td>
-				   			<td>
-						    <button>답변</button>
-						    <button>수정</button>
-						    <button>삭제</button></td>
-						</tr>
-						</c:forEach>
+						<tbody id="qList">
+
 						</tbody>
 					</table>
 				</div>
-			<!-- qna 페이징 -->
-                                       
-			<%-- <div class="col-md-12 clear"> 
-				<div class="text-center">
-    				<div class="pagination">
-        				<ul class="pagination-sm">
-        				<c:choose>
-						<c:when test="${pageInfo.currentPage eq 1 }">
-							<li><a class="disabled pe-7s-angle-left"></a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/host/qna?proNum=${param.proNum }&page=${pageInfo.currentPage - 1 }"></a></li>
-						</c:otherwise>
-						</c:choose>
-						<c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
-							<li><a href="${pageContext.request.contextPath}/host/qna?proNum=${param.proNum }&page=${page }">${page }</a></li>
-						</c:forEach>  
-						<c:choose>
-						<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
-						<li><a class="disabled pe-7s-angle-right"></a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/host/qna?proNum=${param.proNum }&page=${pageInfo.currentPage +1 }"></a></li>
-						</c:otherwise> 
-						</c:choose>                                 
-            			</ul>
-        			</div>
-    			</div>                
-			</div> --%>
-					                    
+				
+				<!-- qna 페이징 -->
+	            <div class="col-md-12 clear"> 
+					<div class="text-center">
+	    				<div class="pagination">
+	        				<ul class="pagination-sm">
+								<li><a class="disabled pe-7s-angle-left"></a></li>
+								<li><a class="disabled pe-7s-angle-right"></a></li>
+	            			</ul>
+	        			</div>
+	    			</div>                
+				</div>					                    
+        	</div> 
         </div>
- 
-</div>
 
+
+<script>
+	var selectedProNum = '${hostQna.selectedProNum}';
+	$("#selectedProNum").val(selectedProNum).prop("selected", true);
+	
+	getQnaListHandler();
+	
+	$("#selectedProNum").change(getQnaListHandler);
+
+	
+	function getQnaListHandler(){
+		console.log($("[name=selectedProNum]").val());
+		
+		var page = $(this).data("page");
+		if(!page){
+			page=1;
+		}
+
+		$.ajax({
+			 url: "${pageContext.request.contextPath}/host/qna"
+		   , type: "POST"
+		   , data: {selectedProNum: $("[name=selectedProNum]").val()
+					,page: page
+		   			}
+			 
+		   , dataType: "json"  
+      	   , success: function (result) { 
+      			displayQnaList(result);
+			}
+		   , error : function(request,status,error) {
+			   alert("code:" + request.status + "\n" + "message:" +
+					 request.responseText + "\n" + "error:" + error); 
+			}
+		   , beforeSend : function(xhr){
+              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+			}
+		});
+		
+	}
+	function displayQnaList(result){
+		var htmlVal = '';
+		for(var i = 0; i < result.qnaList.length; i++){
+			var qna = result.qnaList[i];
+			htmlVal += '<tr>';
+			htmlVal += '<td>'+qna.memId+'</td>';
+			htmlVal += '<td>'+qna.memQuestion+'<button>삭제</button></td>';
+			htmlVal += '<td>';
+			htmlVal += '<button>답변</button>';
+			htmlVal += '<button>수정</button>';
+			htmlVal += '<button>삭제</button></td>';
+			htmlVal += '</tr>';
+		}
+		$("tbody[id=qList]").html(htmlVal);
+		var selectedProNum = result.selectedProNum;
+		$("#selectedProNum").val(selectedProNum).prop("selected", true);
+		
+		displayPaging(result);
+	}
+	
+	function displayPaging(result){
+		var htmlVal = '';
+		htmlVal += '<ul class="pagination-sm">';
+    				if(result.pageInfo.currentPage == 1){
+		htmlVal +='				<li><a class="disabled pe-7s-angle-left"></a></li>';
+    				} else {
+		htmlVal +='				<li><a class="pe-7s-angle-left" data-pronum="'+result.selectedProNum+'" data-page="'+(result.pageInfo.currentPage - 1)+'"></a></li>';
+    				}
+    				for(var i = result.pageInfo.startPage; i <= result.pageInfo.endPage; i++){
+    					
+		htmlVal +='				<li><a data-pronum="'+result.selectedProNum+'" data-page="'+i+'">'+i+'</a></li>';
+    				}
+					if(result.pageInfo.currentPage == result.pageInfo.endPage){
+		htmlVal +='				<li><a class="disabled pe-7s-angle-right"></a></li>';
+    				} else {
+		htmlVal +='				<li><a class="pe-7s-angle-right" data-pronum="'+result.selectedProNum+'" data-page="'+(result.pageInfo.currentPage + 1)+'"></a></li>';
+    				}
+		htmlVal += '</ul>';
+		$(".pagination").html(htmlVal);
+		$(".pagination a").click(getQnaListHandler);
+	}
+	
+
+</script>
 
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
-
-
+<style>
+.pagination a:hover {
+	cursor: pointer;
+}
+</style>
 </body>
 </html>

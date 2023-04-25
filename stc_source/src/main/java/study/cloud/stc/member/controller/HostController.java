@@ -1,6 +1,7 @@
 package study.cloud.stc.member.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
- 
+
+import com.google.gson.Gson;
+
 import study.cloud.stc.common.paging.Paging;
 import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
@@ -95,64 +98,57 @@ public class HostController {
 	
 	@GetMapping("/qna")
 	public ModelAndView selectQnaList(ModelAndView mv
-			, @RequestParam(name="selectedProNum", required = false, defaultValue = "0") int proNum
 			, @RequestParam(value="page", defaultValue="1") int page
 			, Principal principal
 			) throws Exception {
- 
-		int cntPerPage = 3;  
-		
-		int currentPage = page;
-		int totalCnt= qna_service.selectCount(principal.getName());
-		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, cntPerPage, 5); 
-		mv.addObject("pageInfo", map);
-		
 		List<ProductVo> productList = pservice.selectHostProductList(principal.getName());
-		mv.addObject("productList", productList);
-
-		if(proNum == 0)
-		{
-			if(productList.size() > 0) {
-				proNum = productList.get(productList.size()-1).getProNum();
-			}
-		}
-		if(proNum > 0) {
-			mv.addObject("selectedProNum",proNum); 
-			mv.addObject("qnaList", qna_service.selectHostProductQnaList(currentPage, cntPerPage, proNum ));  // List<QnaVo> 
-		} 
+		int proNum = 0;
 		
+	    if (productList.size() > 0) {
+	        proNum = productList.get(productList.size() - 1).getProNum();
+	    }
+	    
+		Map<String, Object> hostQna = new HashMap<>();
+		hostQna.put("productList", productList);
+		hostQna.put("selectedProNum", proNum);
+
+		mv.addObject("hostQna", hostQna);
 		mv.setViewName("/host/qna");
 		return mv;
 	}
 	@PostMapping("/qna")
-	public ModelAndView selectQnaListAjax(ModelAndView mv
-			, @RequestParam(name="selectedProNum") int proNum
+	@ResponseBody
+	public String selectQnaListAjax(
+			  @RequestParam(name="selectedProNum") int proNum
 			, @RequestParam(value="page", defaultValue="1") int page
 			, Principal principal
 			) throws Exception {
-		int cntPerPage = 3;  
-		
-		int currentPage = page;
-		int totalCnt= qna_service.selectCount(principal.getName());
-		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, cntPerPage, 5); 
-		mv.addObject("pageInfo", map);
-		
-		List<ProductVo> productList = pservice.selectHostProductList(principal.getName());
-		mv.addObject("productList", productList);
 
-		if(proNum == 0)
-		{
-			if(productList.size() > 0) {
-				proNum = productList.get(productList.size()-1).getProNum();
-			}
+		int cntPerPage = 3; 
+		int currentPage = page;
+		int totalCnt = qna_service.selectHostQnaCount(proNum);
+		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, cntPerPage, 5);
+
+		List<ProductVo> productList = pservice.selectHostProductList(principal.getName());
+
+		if (proNum == 0) {
+		    if (productList.size() > 0) {
+		        proNum = productList.get(productList.size() - 1).getProNum();
+		    }
 		}
-		if(proNum > 0) {
-			mv.addObject("selectedProNum",proNum); 
-			mv.addObject("qnaList", qna_service.selectHostProductQnaList(currentPage, cntPerPage, proNum ));
-		} 
-		
-		mv.setViewName("/host/qna");
-		return mv;
+		List<QnaVo> qnaList = new ArrayList<>();
+		if (proNum > 0) {
+		    qnaList = qna_service.selectHostProductQnaList(currentPage, cntPerPage, proNum);
+		}
+
+		Map<String, Object> hostQna = new HashMap<>();
+		hostQna.put("pageInfo", map);
+		hostQna.put("productList", productList);
+		hostQna.put("selectedProNum", proNum);
+		hostQna.put("qnaList", qnaList);
+
+		return new Gson().toJson(hostQna);
+
 	}
 	
 	@GetMapping("/reserve")
