@@ -16,11 +16,8 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChattingVo {
-	private int chtNum;
-	private String chatContents;
-	private Date chtTime;
-	private String memId;
+public class ChattRoomVo {
 	private String roomId;
-	
+	private String roomContents;
+	private Date roomLastDate;
 }

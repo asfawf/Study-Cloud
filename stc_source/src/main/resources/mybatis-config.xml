@@ -24,6 +24,10 @@
 			alias="hostProDto"/>
 		<typeAlias type="study.cloud.stc.chatting.model.vo.ChattingVo" 
 			alias="chtvo"/>
+		<typeAlias type="study.cloud.stc.chatting.model.vo.MemberRoomVo" 
+			alias="mervo"/>
+		<typeAlias type="study.cloud.stc.chatting.model.vo.ChattRoomVo" 
+			alias="chrvo"/>
 			
 	</typeAliases>
 	<mappers>
@@ -34,6 +38,8 @@
 		<mapper resource="mappers/review-mapper.xml"/>
 		<mapper resource="mappers/product-mapper.xml"/>
 		<mapper resource="mappers/chat-mapper.xml"/>
+		<mapper resource="mappers/memberRoom-mapper.xml"/>
+		<mapper resource="mappers/chattroom-mapper.xml"/>
 	</mappers>
 
 </configuration>
