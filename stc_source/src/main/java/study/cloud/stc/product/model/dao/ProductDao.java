@@ -29,12 +29,17 @@ public class ProductDao {
 		return sqlSession.selectOne("product.selectOneCount", vo);
 	}
 
+
 	public int insertProduct(ProductDetailDto dto) {
 		return sqlSession.insert("product.insertProduct2",dto);
 	}
 	public int insertMap(ProductDetailDto dto) {
-		return sqlSession.insert("product.insertProduct",dto);
+		int result = sqlSession.insert("product.insertProduct",dto);
+		return dto.getProNum();
 	}
+
+	
+	
 	
 	
 	
