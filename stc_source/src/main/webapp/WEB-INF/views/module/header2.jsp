@@ -81,7 +81,7 @@
 								<li><a class="" href="<%=request.getContextPath() %>/user/reserve">내 예약</a></li>
 		                        <li><a class="" href="<%=request.getContextPath() %>/user/review">내 리뷰</a></li>
 		                        <li><a class="" href="<%=request.getContextPath() %>/user/qna">내 Q&A</a></li>
-		                        <li><a class="" href="<%=request.getContextPath() %>/user/chat">내 채팅</a></li>
+		                        <li><a class="" href="${pageContext.request.contextPath}/chatting?room_id=${pageContext.request.userPrincipal.name}">내 채팅</a></li>
 		                    </ul>
 	                    </sec:authorize>			
 					</sec:authorize>

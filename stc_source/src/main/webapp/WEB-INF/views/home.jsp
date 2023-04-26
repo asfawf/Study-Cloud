@@ -66,15 +66,14 @@
 	    language: "kr",
 	    todayHighlight: true
 	});
-</script>        
+ 	$('.chat').click(function() {	
+		alert('로그인을 해주세요');
+		location.replace("${pageContext.request.contextPath}/chatting?room_id=${pageContext.request.userPrincipal.name}");
+		return false;			
+	});
+</script>
+        
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
-<script type="text/javascript">
-$('.chat').click(function() {	
-	alert('로그인을 해주세요');
-	location.replace('<%=request.getContextPath() %>/login');
-	return false;			
-});
-</script>
 </body>
 </html>
