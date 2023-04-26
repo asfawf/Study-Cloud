@@ -101,12 +101,12 @@ public class HandlerChat extends TextWebSocketHandler {
 				
 				// 1. RoomId 넣기
 				
-				crvo.setRoomId((String) mapReceive.get("room_id"));
+				crvo.setChaRoomId((String) mapReceive.get("room_id"));
 				crvo.setRoomContents((String) mapReceive.get("msg"));
 				
 				System.out.println("crvo: "+crvo);
 				
-				mrvo.setMemberId(division);
+				mrvo.setMemId(division);
 				mrvo.setRoomId((String) mapReceive.get("room_id"));
 				
 				System.out.println("mrvo: "+mrvo);

@@ -17,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChattRoomVo {
-	private String roomId;
+	private String chaRoomId;
 	private String roomContents;
 	private Date roomLastDate;
 }

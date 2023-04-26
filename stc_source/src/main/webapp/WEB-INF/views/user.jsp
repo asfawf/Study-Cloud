@@ -8,10 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+<%@ include file="/WEB-INF/views/module/link.jsp"%>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 <body>
-
+<%@ include file="/WEB-INF/views/module/header2.jsp" %> 
+<section>
 	<form action="${pageContext.request.contextPath}/admin/user" method="get">
 		<select id="selectbox" name="selectbox" onchange="chageLangSelect(this)">
 			<option value="" selected disabled>설정을 고르세요</option>              
@@ -71,12 +74,7 @@
 	,
 	</c:if>
 	</c:forEach>
-	
-	
-
-	
-	
-	
-	
+</section>
+<%@ include file="/WEB-INF/views/module/footer.jsp"%>
 </body>
 </html>

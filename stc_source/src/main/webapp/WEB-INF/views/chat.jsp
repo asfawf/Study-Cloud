@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/WEB-INF/views/module/link.jsp"%>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <meta charset="UTF-8">
 <title>웹소켓 채팅</title>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -207,6 +212,8 @@
 
 
 <body>
+<%@ include file="/WEB-INF/views/module/header2.jsp" %> 
+<section>
  <div id="contentCover">
 	<div id="chatWrap">
 		<div id="chatLog" class="chatLog" style="overflow-y: scroll; ">
@@ -227,12 +234,14 @@
 				</c:forEach>
 			</div>
 		</div>
-		<div id="chatForm" class="input-group mb-3" onsubmit="return false">
-			<input type="hidden" id="division" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />
-			<input type="text" autocomplete="off" id="message" class="message" size="30" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
-			<input type="button" id="btnSend" class="btnSend" value="채팅 전송" onclick="webSocket.sendChat()" />			
-		</div>
-	</div>		
-</div>
+			<div id="chatForm" class="input-group mb-3" onsubmit="return false">
+				<input type="hidden" id="division" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />
+				<input type="text" autocomplete="off" id="message" class="message" size="30" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
+				<input type="button" id="btnSend" class="btnSend" value="채팅 전송" onclick="webSocket.sendChat()" />			
+			</div>
+		</div>		
+	</div>
+</section>
+<%@ include file="/WEB-INF/views/module/footer.jsp"%>
 </body>
 </html>

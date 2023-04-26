@@ -176,9 +176,6 @@ body {
 
 			</div>
 		</div>
-
-		<%@ include file="/WEB-INF/views/module/footer.jsp"%>
-
 		<!-- 네이버아디디로로그인 초기화 Script -->
 		<script type="text/javascript">
 			var naverLogin = new naver.LoginWithNaverId({
@@ -206,5 +203,6 @@ body {
 		</script>
 		<!-- // 네이버아이디로로그인 초기화 Script -->
 	</section>
+	<%@ include file="/WEB-INF/views/module/footer.jsp"%>
 </body>
 </html>

@@ -9,10 +9,10 @@
 	
 	
 	<select id="viewRoomId" resultType="chrvo">
-		SELECT * FROM CHATTROOM WHERE CHA_ROOM_ID = #{roomId}
+		SELECT * FROM CHATTROOM WHERE CHA_ROOM_ID = #{chaRoomId}
 	</select>
 	
 	<insert id="addRoomId">
-		INSERT INTO CHATTROOM (CHA_ROOM_ID) VALUES(#{roomId})
+		INSERT INTO CHATTROOM (CHA_ROOM_ID) VALUES(#{chaRoomId})
 	</insert>
 </mapper>

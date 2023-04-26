@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</section>
-
+	<%@ include file="/WEB-INF/views/module/footer.jsp"%>
 	<script>
 	$( document ).ready( function() {
 	    $( 'button[type=button]' ).click( function() {

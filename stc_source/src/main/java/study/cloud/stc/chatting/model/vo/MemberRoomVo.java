@@ -17,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberRoomVo {
-	private String memberId;
+	private String memId;
 	private String roomId;
 	
 }

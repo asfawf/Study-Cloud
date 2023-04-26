@@ -14,7 +14,7 @@
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/module/header.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header2.jsp" %> 
 	<section>
 		<div class="count-area">
 			<div class="container">
@@ -80,7 +80,7 @@
 			</div>
 		</div>
 	</section>
-	
+	<%@ include file="/WEB-INF/views/module/footer.jsp"%>
 	<script>
 	
 	const memPasswd = document.querySelector('#memPasswd');

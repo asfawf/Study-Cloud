@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/module/header.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header2.jsp" %> 
 	<section>
 		<div class="count-area">
 			<div class="container">
@@ -80,7 +80,7 @@
 			</div>
 		</div>
 	</section>
-	
+	<%@ include file="/WEB-INF/views/module/footer.jsp"%>
 	<script>
 	
 	const memPasswd = document.querySelector('#memPasswd');
