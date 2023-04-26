@@ -57,8 +57,8 @@ public class ProductController {
 	@GetMapping("/detail")
 	public ModelAndView productDetail(
 			ModelAndView mv
-			, @RequestParam(value="page", defaultValue="1") int page
-			, @RequestParam(value="proNum" ,defaultValue = "") int proNum
+			, @RequestParam(value="qnapage", defaultValue="1") int page
+			, @RequestParam(value="proNum", defaultValue = "") int proNum
 			) throws Exception {
 		int currentPage = page; 
 		int totalCnt= qna_service.selectCount(proNum);
@@ -84,7 +84,7 @@ public class ProductController {
 	
 	@PostMapping("/detail/qnaupdate")
 	@ResponseBody
-	public String updateQna(QnaVo vo
+	public String updateProductQna(QnaVo vo
 			,@RequestParam(value="qnaNum") int qnaNum
 			,@RequestParam(value="proNum") int proNum
 			) throws Exception {
@@ -97,7 +97,7 @@ public class ProductController {
 	
 	@PostMapping("/detail/qnadelete")
 	@ResponseBody
-	public String deleteQna(QnaVo vo
+	public String deleteProductQna(QnaVo vo
 			,@RequestParam(value="qnaNum", defaultValue = "") int qnaNum
 			,@RequestParam(value="proNum", defaultValue = "") int proNum
 			) throws Exception{
@@ -108,7 +108,7 @@ public class ProductController {
 	
 	@PostMapping("/detail/qnareply")
 	@ResponseBody
-	public String replyQna(QnaVo vo
+	public String replyProductQna(QnaVo vo
 			,@RequestParam(value="qnaNum", defaultValue = "") int qnaNum
 			,@RequestParam(value="proNum", defaultValue = "") int proNum
 			) throws Exception{
