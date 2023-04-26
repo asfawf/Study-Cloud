@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Q&A 관리</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 </head>
@@ -98,7 +98,7 @@
 					 request.responseText + "\n" + "error:" + error); 
 			}
 		   , beforeSend : function(xhr){
-              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+			   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
 			}
 		});
 		

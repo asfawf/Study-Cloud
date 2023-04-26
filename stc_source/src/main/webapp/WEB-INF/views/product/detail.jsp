@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>product detail page</title>
+<title>상품 상세 페이지</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 </head>
@@ -293,18 +293,18 @@
 						                               		<li><a class="disabled pe-7s-angle-left"></a></li>
 						                               	</c:when>
 						                               	<c:otherwise>
-						                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&page=${pageInfo.currentPage - 1 }"></a></li>
+						                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&qnapage=${pageInfo.currentPage - 1 }"></a></li>
 						                               	</c:otherwise>
 					                                	</c:choose>
 						                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
-															<li><a href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&page=${page }">${page }</a></li>
+															<li><a href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&qnapage=${page }">${page }</a></li>
 														</c:forEach>  
 														<c:choose>
 														<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
 						                               		<li><a class="disabled pe-7s-angle-right"></a></li>
 						                               	</c:when>
 						                               	<c:otherwise>
-						                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&page=${pageInfo.currentPage +1 }"></a></li>
+						                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&qnapage=${pageInfo.currentPage +1 }"></a></li>
 						                               	</c:otherwise> 
 						                               	</c:choose>                                 
 					                                </ul>
@@ -538,11 +538,13 @@
            				}           				 
            				displayQna(result);
            			}
-           			, error: function () {
-           				
-           			},beforeSend : function(xhr){
-                        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
-                    }
+         		   , error : function(request,status,error) {
+        			   alert("code:" + request.status + "\n" + "message:" +
+        					 request.responseText + "\n" + "error:" + error); 
+        			}
+        		   , beforeSend : function(xhr){
+                      xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+        			}
            		});
            	}
            	
@@ -643,11 +645,13 @@
            					displayQna(result);
            				}            				 
            			}
-           			, error: function () {
-           				
-           			},beforeSend : function(xhr){
-                        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
-                    }
+         		    , error : function(request,status,error) {
+        			   alert("code:" + request.status + "\n" + "message:" +
+        					 request.responseText + "\n" + "error:" + error); 
+        			}
+        		    , beforeSend : function(xhr){
+						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+        			}
            		});
           		
            	}
@@ -672,11 +676,13 @@
 		           				displayQna(result);
 	           				}            				 
 	           			}
-	           			, error: function () {
-	           				
-	           			},beforeSend : function(xhr){
-	                        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
-	                    }
+	         		    , error : function(request,status,error) {
+	        			   alert("code:" + request.status + "\n" + "message:" +
+	        					 request.responseText + "\n" + "error:" + error); 
+	        			}
+	        		    , beforeSend : function(xhr){
+								xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+	        			}
 	           		});
           		} else {
           			return false;
@@ -708,11 +714,13 @@
            					displayQna(result);
            				}            				 
            			}
-           			, error: function () {
-           				
-           			},beforeSend : function(xhr){
-                        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
-                    }
+          			, error : function(request,status,error) {
+	        			   alert("code:" + request.status + "\n" + "message:" +
+	        					 request.responseText + "\n" + "error:" + error); 
+	                }
+          			, beforeSend : function(xhr){
+								xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+          			}
            		});
           		
            	}
