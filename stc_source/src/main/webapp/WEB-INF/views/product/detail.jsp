@@ -214,8 +214,10 @@
                                             <h5 class="text-uppercase">${qna.memId }</h5>
                                             <p class="posted"> ${qna.qnaDate }</p>
                                             <p>${qna.memQuestion }</p>
-                                            <p class="reply"><i class="fa fa-hand-o-right"></i>
-                                            	<c:if test="${qna.hostAnswer != null}">${qna.hostAnswer}</c:if>
+                                            <p class="reply">
+                                            	<c:if test="${qna.hostAnswer != null}">
+                                            		<i class="fa fa-user">&nbsp${detail.memId}</i><br>${qna.hostAnswer}
+                                            	</c:if>
                                             </p>
                                             <p class="pull-right">
                                             <c:if test="${detail.memId == pageContext.request.userPrincipal.name}">
@@ -558,10 +560,10 @@
            			htmlVal += '<h5 class="text-uppercase">'+qna.memId+'</h5>';
            			htmlVal += '<p class="posted">'+qna.qnaDate+'</p>';
           			htmlVal += '<p>'+qna.memQuestion+'</p>';
-          			htmlVal += '<p class="reply"><i class="fa fa-hand-o-right"></i>';
+          			htmlVal += '<p class="reply">';
           			if(qna.hostAnswer != null){
-       				htmlVal += qna.hostAnswer
-       					}
+       				htmlVal += '<i class="fa fa-user">&nbsp${detail.memId}</i><br>'+qna.hostAnswer
+       				}
           			htmlVal += '</p>';
           			htmlVal += '<p class="pull-right">';
           			if('${detail.memId}' == '${pageContext.request.userPrincipal.name}'){
