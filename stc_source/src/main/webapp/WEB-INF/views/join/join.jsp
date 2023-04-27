@@ -33,7 +33,7 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
-							<form action="join" method="post">
+							<form action="join/join" method="post">
 								<div class="input-group" style="padding-left: 60px; padding-right: 60px; padding-top: 60px;">
 									<div>
 										<label for="id">가입 구분</label>
@@ -343,7 +343,9 @@
 		$("#join-Btn").click(function() {
 			if($("#idChk").val() == "true" && $("#pwDoubleChk").val() == "true" && $("#nameChk").val() == "true" 
 					&& $("#phoneChk").val() == "true" && $("#emailAuthChk").val() == "true" ) {
-				alert($('#memId').val()+"님 환영합니다.\n StudyCloud가입이 완료되었습니다.");			
+				alert($('#memId').val()+"님 환영합니다.\n StudyCloud가입이 완료되었습니다.");
+				$("#join-Btn").attr("action", "/join/join");
+				$("#join-Btn").submit();
 			} else {
 				alert("빈칸없이 작성하세요.");
 				return false;
