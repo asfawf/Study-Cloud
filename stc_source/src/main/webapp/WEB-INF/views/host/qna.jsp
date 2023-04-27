@@ -154,9 +154,6 @@
 .table.table-striped {
 	table-layout:fixed;
 }
-.pagination a:not(.disabled) {
-	cursor: pointer;
-}
 </style>
 </body>
 </html>

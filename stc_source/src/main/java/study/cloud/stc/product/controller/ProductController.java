@@ -57,132 +57,116 @@ public class ProductController {
 	@GetMapping("/detail")
 	public ModelAndView productDetail(
 			ModelAndView mv
-			, @RequestParam(value="qnapage", defaultValue="1") int page
+			, @RequestParam(value="qnapage", defaultValue="1") int qnapage
 			, @RequestParam(value="proNum" ,defaultValue = "") int proNum
 			) throws Exception {
-		int currentPage = page; 
-//		int totalCnt= qna_service.selectQnaCount(proNum);
-//		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
-//		mv.addObject("pageInfo", map);
+
 		ProductDetailDto dto = service.selectOne(proNum);
-		Map<String, Object> detailQna = new HashMap<>();
-		detailQna.put("detail", dto);
-//		mv.addObject("detail", dto);
-//		mv.addObject("qnaList", qna_service.selectQnaList(currentPage, 3, proNum));
+		Map<String, Object> product = new HashMap<>();
+		product.put("detail", dto);
 		
-		mv.addObject("detailQna", detailQna);
+		mv.addObject("product", product);
 		mv.setViewName("product/detail");
 		return mv;
 	}
 	@PostMapping("/detail")
 	@ResponseBody
 	public String productDetailAjax(
-			  @RequestParam(value="qnapage", defaultValue="1") int page
+			  @RequestParam(value="qnapage", defaultValue="1") int qnapage
 			, @RequestParam(value="proNum", defaultValue = "") int proNum
 			) throws Exception {
-		int currentPage = page; 
+		int currentPage = qnapage; 
 		int totalCnt= qna_service.selectQnaCount(proNum);
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
 
 		ProductDetailDto dto = service.selectOne(proNum);
 		List<QnaVo> qnaList = qna_service.selectQnaList(currentPage, 3, proNum);
 		
-		Map<String, Object> detailQna = new HashMap<>();
-		detailQna.put("detail", dto);
-		detailQna.put("pageInfo", map);
-		detailQna.put("qnaList", qnaList);
+		Map<String, Object> product = new HashMap<>();
+		product.put("detail", dto);
+		product.put("pageInfo", map);
+		product.put("qnaList", qnaList);
 		
-		return new Gson().toJson(detailQna);
+		return new Gson().toJson(product);
 	}
-	
-//	@PostMapping("/detail/qnainsert")
-//	@ResponseBody
-//	public String insertProductQna(QnaVo vo
-//			) throws Exception {
-//
-//		qna_service.insert(vo);
-//		List<QnaVo> qnaList = qna_service.selectQnaList(vo.getProNum());
-//		return new Gson().toJson(qnaList);
-//
-//	}
+
 	@PostMapping("/detail/qnainsert")
 	@ResponseBody
-	public String insertProductQna(QnaVo vo
-			, @RequestParam(value="qnapage", defaultValue="1") int page
+	public String insertProductQnaAjax(QnaVo vo
+			, @RequestParam(value="qnapage", defaultValue="1") int qnapage
 			) throws Exception {
 
-		int currentPage = page; 
+		int currentPage = qnapage; 
 		int totalCnt= qna_service.selectQnaCount(vo.getProNum());
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
 		
 		qna_service.insert(vo);
 		List<QnaVo> qnaList = qna_service.selectQnaList(currentPage, 3, vo.getProNum());
 		
-		Map<String, Object> detailQna = new HashMap<>();
-		detailQna.put("pageInfo", map);
-		detailQna.put("qnaList", qnaList);
-		return new Gson().toJson(detailQna);
-
+		Map<String, Object> product = new HashMap<>();
+		product.put("pageInfo", map);
+		product.put("qnaList", qnaList);
+		return new Gson().toJson(product);
 	}
+	
 	@PostMapping("/detail/qnaupdate")
 	@ResponseBody
-	public String updateProductQna(QnaVo vo
+	public String updateProductQnaAjax(QnaVo vo
 			, @RequestParam(value="qnaNum") int qnaNum
 			, @RequestParam(value="proNum") int proNum
-			, @RequestParam(value="qnapage", defaultValue="1") int page
+			, @RequestParam(value="qnapage", defaultValue="1") int qnapage
 			) throws Exception {
 
-		int currentPage = page; 
+		int currentPage = qnapage; 
 		int totalCnt= qna_service.selectQnaCount(vo.getProNum());
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
 		qna_service.update(vo);
 		List<QnaVo> qnaList = qna_service.selectQnaList(currentPage, 3, vo.getProNum());
 
-		Map<String, Object> detailQna = new HashMap<>();
-		detailQna.put("pageInfo", map);
-		detailQna.put("qnaList", qnaList);
-		return new Gson().toJson(detailQna);
-
+		Map<String, Object> product = new HashMap<>();
+		product.put("pageInfo", map);
+		product.put("qnaList", qnaList);
+		return new Gson().toJson(product);
 	}
 	
 	@PostMapping("/detail/qnadelete")
 	@ResponseBody
-	public String deleteProductQna(QnaVo vo
+	public String deleteProductQnaAjax(QnaVo vo
 			, @RequestParam(value="qnaNum", defaultValue = "") int qnaNum
 			, @RequestParam(value="proNum", defaultValue = "") int proNum
-			, @RequestParam(value="qnapage", defaultValue="1") int page
+			, @RequestParam(value="qnapage", defaultValue="1") int qnapage
 			) throws Exception {
 
-		int currentPage = page; 
+		int currentPage = qnapage; 
 		int totalCnt= qna_service.selectQnaCount(vo.getProNum());
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
 		qna_service.delete(qnaNum);
 		List<QnaVo> qnaList = qna_service.selectQnaList(currentPage, 3, vo.getProNum());
 
-		Map<String, Object> detailQna = new HashMap<>();
-		detailQna.put("pageInfo", map);
-		detailQna.put("qnaList", qnaList);
-		return new Gson().toJson(detailQna);
+		Map<String, Object> product = new HashMap<>();
+		product.put("pageInfo", map);
+		product.put("qnaList", qnaList);
+		return new Gson().toJson(product);
 	}
 	
 	@PostMapping("/detail/qnareply")
 	@ResponseBody
-	public String replyProductQna(QnaVo vo
+	public String replyProductQnaAjax(QnaVo vo
 			, @RequestParam(value="qnaNum", defaultValue = "") int qnaNum
 			, @RequestParam(value="proNum", defaultValue = "") int proNum
-			, @RequestParam(value="qnapage", defaultValue="1") int page
+			, @RequestParam(value="qnapage", defaultValue="1") int qnapage
 			) throws Exception {
 
-		int currentPage = page; 
+		int currentPage = qnapage; 
 		int totalCnt= qna_service.selectQnaCount(vo.getProNum());
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
 		qna_service.updateReply(vo);
 		List<QnaVo> qnaList = qna_service.selectQnaList(currentPage, 3, vo.getProNum());
 
-		Map<String, Object> detailQna = new HashMap<>();
-		detailQna.put("pageInfo", map);
-		detailQna.put("qnaList", qnaList);
-		return new Gson().toJson(detailQna);
+		Map<String, Object> product = new HashMap<>();
+		product.put("pageInfo", map);
+		product.put("qnaList", qnaList);
+		return new Gson().toJson(product);
 	}
 	
 }

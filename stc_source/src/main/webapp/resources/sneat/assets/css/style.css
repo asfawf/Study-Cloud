@@ -467,6 +467,17 @@ input[type="search"]::-webkit-search-decoration {
     padding: 0px;
 
 }
+.qna-btn{
+	background-color: #88B04B;
+    color: #333;
+    font-size: 16px;
+    border: 1px solid #EAE9E9;
+    width: 66px;
+    height: 34px;
+    color: #FFF;
+    transition: all 0.3s ease 0s; 
+    padding: 0px;
+}
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
     background-color: #EEEEEE;
     color: #999999;
@@ -1450,7 +1461,9 @@ Asside widgets CSS
     border: 1px solid #dddddd;
     border-left-width: 0;
 }
-
+.pagination a:not(.disabled) {
+	cursor: pointer;
+}
 .pagination a:hover,
 .pagination .active a,
 .pagination .active span {
