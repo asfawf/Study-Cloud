@@ -87,7 +87,7 @@ public class AdminController {
 		}	
 		
 		
-		mv.setViewName("/user");
+		mv.setViewName("/admin/user");
 		
 		
 		return mv;
@@ -138,7 +138,7 @@ public class AdminController {
 		}
 		
 		
-		mv.setViewName("/host");
+		mv.setViewName("/admin/host");
 		
 		return mv;
 		
