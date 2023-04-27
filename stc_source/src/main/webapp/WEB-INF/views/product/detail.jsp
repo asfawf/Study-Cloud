@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 상세 페이지</title>
+<title>${detailQna.detail.proName } - 상세 페이지</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 </head>
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">${detail.proName }</h1>               
+                        <h1 class="page-title">${detailQna.detail.proName }</h1>               
                     </div>
                 </div>
             </div>
@@ -54,15 +54,15 @@
 
                        <!--   <div class="single-property-wrapper">-->
                             <div class="single-property-header">                                          
-                                <h1 class="property-title pull-left">${detail.proName }</h1>
-                                <span class="property-price pull-right">${detail.proPrice}</span>
+                                <h1 class="property-title pull-left">${detailQna.detail.proName }</h1>
+                                <span class="property-price pull-right">${detailQna.detail.proPrice}</span>
                             </div>
 
                             
                             <div class="section">
                                 <h4 class="s-property-title">공간소개</h4>
                                 <div class="s-property-content">
-                                    <p>${detail.proPost }</p>
+                                    <p>${detailQna.detail.proPost }</p>
                                 </div>
                             </div>
                             <!-- End introduce area  -->
@@ -73,7 +73,7 @@
 
                                 <ul class="additional-details-list clearfix">
                                 
-                                ${detail.proInfo }
+                                ${detailQna.detail.proInfo }
 <!--                                     <li> -->
 <!--                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">영업시간</span> -->
 <!--                                         <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">0~24시</span> -->
@@ -99,7 +99,7 @@
                             <div class="section property-features">      
 
                                 <h4 class="s-property-title">유의사항</h4>   
-                                ${detail.proNotice }                         
+                                ${detailQna.detail.proNotice }                         
 <!--                                 <ul> -->
 <!--                                     <li><a>잔여시간 환불 불가</a></li><br>    -->
 <!--                                     <li><a>소품 파손시 신품가격 변상</a></li><br> -->
@@ -117,7 +117,7 @@
                             <div class="section property-features">      
 
                                 <h4 class="s-property-title">환불규정</h4>       
-                                ${detail.proRefund }                     
+                                ${detailQna.detail.proRefund }                     
 <!--                                 <ul> -->
 <!--                                     <li><a>이용 6일전 : 총 금액의 100% 환불</a></li><br>    -->
 <!--                                     <li><a>이용 5일전 : 환불 불가</a></li><br> -->
@@ -164,8 +164,9 @@
 
                             <!-- 지도 안내 -->
 
-                            <div class="section property-share"> 
-                                <h4 class="s-property-title">Q&A
+                            <div class="section property-share">
+                          		<input type="hidden" class="form-control" name="proNum" value="${detailQna.detail.proNum }">                                
+                          		<h4 class="s-property-title">Q&A
                                 <sec:authorize var="isauth" access="isAuthenticated()">
 								<sec:authorize var="" access="hasRole('USER')">
 									<!-- Q&A 등록 버튼 시작 -->
@@ -187,7 +188,7 @@
 													<div class="mb-3">
 														<br>
 														<textarea class="form-control" name="memQuestion" placeholder="내용" style="height: 300px;"></textarea>
-														<input type="hidden" class="form-control" name="proNum" value="${detail.proNum }">
+														<input type="hidden" class="form-control" name="proNum" value="${detailQna.detail.proNum }">
 														<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}"><br>														
 													</div>
 												</div>
@@ -209,18 +210,18 @@
                                 <section id="comments" class="comments"> 
                                            
                                     <div class="row comment" id="qList">
-                                        <c:forEach items="${qnaList }" var="qna"> 
+                               <%--          <c:forEach items="${detailQna.qnaList }" var="qna"> 
                                         <div class="col-sm col-md-10" id="${qna.qnaNum}">
                                             <h5 class="text-uppercase">${qna.memId }</h5>
                                             <p class="posted"> ${qna.qnaDate }</p>
                                             <p>${qna.memQuestion }</p>
                                             <p class="reply">
                                             	<c:if test="${qna.hostAnswer != null}">
-                                            		<i class="fa fa-user">&nbsp${detail.memId}</i><br>${qna.hostAnswer}
+                                            		<i class="fa fa-user">&nbsp${detailQna.detail.memId}</i><br>${qna.hostAnswer}
                                             	</c:if>
                                             </p>
                                             <p class="pull-right">
-                                            <c:if test="${detail.memId == pageContext.request.userPrincipal.name}">
+                                            <c:if test="${detailQna.detail.memId == pageContext.request.userPrincipal.name}">
                                             	<button data-toggle="modal" data-target="#replyQna${qna.qnaNum}" type="button">답변</button>
                                             </c:if>
 	                                        <c:if test="${qna.memId == pageContext.request.userPrincipal.name}">
@@ -283,14 +284,14 @@
 												</div>
 											</div>
 										</div>                                            
-                                        </c:forEach>
+                                        </c:forEach> --%>
                                         <!-- qna 페이징 -->
                                         <%-- <c:if test="${!empty qna.qnaNum }"> --%>
                                         <div class="col-md-12 clear"> 
 					                        <div class="text-center">
 					                            <div class="pagination">
 					                                <ul class="pagination-sm">
-					                                	<c:choose>
+					                                	<%-- <c:choose>
 						                               	<c:when test="${pageInfo.currentPage eq 1 }">
 						                               		<li><a class="disabled pe-7s-angle-left"></a></li>
 						                               	</c:when>
@@ -308,7 +309,7 @@
 						                               	<c:otherwise>
 						                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product/detail?proNum=${param.proNum }&qnapage=${pageInfo.currentPage +1 }"></a></li>
 						                               	</c:otherwise> 
-						                               	</c:choose>                                 
+						                               	</c:choose>  --%>                                
 					                                </ul>
 					                            </div>
 					                        </div>                
@@ -514,6 +515,38 @@
 	            });
 	        });
 
+	        getQnaListHandler();
+	        
+	        function getQnaListHandler(){
+	    		console.log($("[name=proNum]").val());
+	    		
+	    		var page = $(this).data("qnapage");
+	    		if(!page){
+	    			page=1;
+	    		}
+
+	    		$.ajax({
+	    			 url: "${pageContext.request.contextPath}/product/detail"
+	    		   , type: "POST"
+	    		   , data: {proNum:$("[name=proNum]").val()
+	    					, qnapage: page
+	    		   			}
+	    			 
+	    		   , dataType: "json"  
+	          	   , success: function (result) { 
+	          		 displayQna(result);
+	    			}
+	    		   , error : function(request,status,error) {
+	    			   alert("code:" + request.status + "\n" + "message:" +
+	    					 request.responseText + "\n" + "error:" + error); 
+	    			}
+	    		   , beforeSend : function(xhr){
+	    			   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+	    			}
+	    		});
+	    		
+	    	}
+	        
 	       /* frminsertQna ajax */
            $(".btninsertQna").on("click", insertQna);
           	function insertQna() {
@@ -528,7 +561,7 @@
           		$.ajax({   
           			  url: "${pageContext.request.contextPath}/product/detail/qnainsert"
            		    , type: "POST"
-          			, data: {memQuestion: $("[name=memQuestion]").val(), proNum:$("[name=proNum]").val(), memId:$("[name=memId]").val()}
+          			, data: {memQuestion: $("[name=memQuestion]").val(), proNum:$("[name=proNum]").val(), memId:$("[name=memId]").val(), qnapage: page}
           			, dataType: "json"  
           			, success: function (result) { 
           				console.log(result);
@@ -554,19 +587,19 @@
            	function displayQna(result) {
            		
            		var htmlVal = '';
-           		for(var i = 0; i < result.length; i++){
-           			var qna = result[i];
+           		for(var i = 0; i < result.qnaList.length; i++){
+        			var qna = result.qnaList[i];
            			htmlVal += '<div class="col-sm col-md-10" id="'+qna.qnaNum+'">';
            			htmlVal += '<h5 class="text-uppercase">'+qna.memId+'</h5>';
            			htmlVal += '<p class="posted">'+qna.qnaDate+'</p>';
           			htmlVal += '<p>'+qna.memQuestion+'</p>';
           			htmlVal += '<p class="reply">';
           			if(qna.hostAnswer != null){
-       				htmlVal += '<i class="fa fa-user">&nbsp${detail.memId}</i><br>'+qna.hostAnswer
+       				htmlVal += '<i class="fa fa-user">&nbsp${detailQna.detail.memId}</i><br>'+qna.hostAnswer
        				}
           			htmlVal += '</p>';
           			htmlVal += '<p class="pull-right">';
-          			if('${detail.memId}' == '${pageContext.request.userPrincipal.name}'){
+          			if('${detailQna.detail.memId}' == '${pageContext.request.userPrincipal.name}'){
           			htmlVal += '<button data-toggle="modal" data-target="#replyQna'+qna.qnaNum+'" type="button">답변</button>';
           			}
           			if(qna.memId == '${pageContext.request.userPrincipal.name}'){
@@ -621,12 +654,47 @@
    					htmlVal += '</div>';    
           		}
           		$("div[id=qList]").html(htmlVal);
-          		
+          		displayQnaPaging(result);
           		// 화면 element가 다시 생겨났으므로 event 다시 등록
           		$(".btnupdateQna").on("click", updateQna);
           		$(".btndeleteQna").on("click", deleteQna);
           		$(".btnreplyQna").on("click", replyQna);
           	}
+          	
+          	/* qna 페이징 ajax */
+           	function displayQnaPaging(result){
+        		var htmlVal = '';
+        		htmlVal += `
+        		<div class="col-md-12 clear"> 
+                <div class="text-center">
+                    <div class="pagination">
+                        <ul class="pagination-sm">
+                        `;
+            				if(result.pageInfo.currentPage == 1){
+        		htmlVal +='				<li><a class="disabled pe-7s-angle-left"></a></li>';
+            				} else {
+        		htmlVal +='				<li><a class="pe-7s-angle-left" data-pronum="'+result.proNum+'" data-qnapage="'+(result.pageInfo.currentPage - 1)+'"></a></li>';
+            				}
+            				for(var i = result.pageInfo.startPage; i <= result.pageInfo.endPage; i++){
+            					
+        		htmlVal +='				<li><a data-pronum="'+result.proNum+'" data-qnapage="'+i+'">'+i+'</a></li>';
+            				}
+        					if(result.pageInfo.currentPage == result.pageInfo.endPage){
+        		htmlVal +='				<li><a class="disabled pe-7s-angle-right"></a></li>';
+            				} else {
+        		htmlVal +='				<li><a class="pe-7s-angle-right" data-pronum="'+result.proNum+'" data-qnapage="'+(result.pageInfo.currentPage + 1)+'"></a></li>';
+            				}
+        		htmlVal += `
+                    </ul>
+            		</div> 
+        			</div>
+        			</div>
+                            `;
+        		//$(".pagination-sm").html(htmlVal);
+        		$("div[id=qList]").append(htmlVal);
+        		$(".pagination a:not(.disabled)").click(getQnaListHandler);
+        	}
+          	
           	// 로딩되면 event 등록
           	/* updateQna ajax */
           	$(".btnupdateQna").on("click", updateQna);
@@ -637,15 +705,16 @@
           		$.ajax({   
           			  url: "${pageContext.request.contextPath}/product/detail/qnaupdate"
            		    , type: "POST"
-          			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val(), memQuestion: $(this.form.memQuestion).val()}
+          			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val(), memQuestion: $(this.form.memQuestion).val(), qnapage: page}
           			, dataType: "json"  
           			, success: function (result) { 
           				console.log(result);
 
-           				if(result.length > 0) { 
+           				if(result.qnaList.length > 0) { 
            					alert("수정되었습니다.")
            					displayQna(result);
-           				}            				 
+           				}  
+           				
            			}
          		    , error : function(request,status,error) {
         			   alert("code:" + request.status + "\n" + "message:" +
@@ -668,7 +737,7 @@
 	          		$.ajax({   
 	          			  url: "${pageContext.request.contextPath}/product/detail/qnadelete"
 	           		    , type: "POST"
-	          			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val()}
+	          			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val(), qnapage: page}
 	          			, dataType: "json"  
 	          			, success: function (result) { 
 	          				console.log(result);
@@ -706,7 +775,7 @@
           		$.ajax({   
           			  url: "${pageContext.request.contextPath}/product/detail/qnareply"
            		    , type: "POST"
-          			, data: {qnaNum:qnanum, proNum:pronum, hostAnswer: $(this.form.hostAnswer).val()}
+          			, data: {qnaNum:qnanum, proNum:pronum, hostAnswer: $(this.form.hostAnswer).val(), qnapage: page}
           			, dataType: "json"  
           			, success: function (result) { 
           				console.log(result);
@@ -730,6 +799,10 @@
         </script>
 		</section>
 		<%@ include file="/WEB-INF/views/module/footer.jsp" %>
-		
-    </body>
+<style>
+.pagination a:not(.disabled) {
+	cursor: pointer;
+}
+</style>
+</body>
 </html>

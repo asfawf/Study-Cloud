@@ -31,8 +31,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public int selectCount(int proNum) throws Exception {
-		return dao.selectCount(proNum);
+	public int selectQnaCount(int proNum) throws Exception {
+		return dao.selectQnaCount(proNum);
 	}
 
 	@Override

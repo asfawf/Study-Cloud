@@ -55,8 +55,8 @@
 					<div class="text-center">
 	    				<div class="pagination">
 	        				<ul class="pagination-sm">
-								<li><a class="disabled pe-7s-angle-left"></a></li>
-								<li><a class="disabled pe-7s-angle-right"></a></li>
+								<!-- <li><a class="disabled pe-7s-angle-left"></a></li>
+								<li><a class="disabled pe-7s-angle-right"></a></li> -->
 	            			</ul>
 	        			</div>
 	    			</div>                
@@ -142,7 +142,7 @@
     				}
 		htmlVal += '</ul>';
 		$(".pagination").html(htmlVal);
-		$(".pagination a").click(getQnaListHandler);
+		$(".pagination a:not(.disabled)").click(getQnaListHandler);
 	}
 	
 
@@ -154,7 +154,7 @@
 .table.table-striped {
 	table-layout:fixed;
 }
-.pagination a:hover {
+.pagination a:not(.disabled) {
 	cursor: pointer;
 }
 </style>

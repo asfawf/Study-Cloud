@@ -29,7 +29,7 @@ public class QnaDao {
 		return sqlSession.selectList("product.selectQnaList", proNum);
 	}
 	/* product/detail/qna 페이징 처리 화면 */
-	public int selectCount(int proNum) throws Exception{
+	public int selectQnaCount(int proNum) throws Exception{
 		return sqlSession.selectOne("product.selectQnaCount", proNum);
 	}
 	public List<QnaVo> selectQnaList(int currentPage, int limit, int proNum) throws Exception{
