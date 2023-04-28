@@ -181,10 +181,10 @@ public class HostController {
 	@PostMapping("/product/update")
 	public ModelAndView updateProduct(
 			ModelAndView mv,
-		//	@RequestParam("proNum") int proNum,
+		// 	@RequestParam("proNum") int proNum,
 			ProductDetailDto pd
 			) throws Exception {
-		// pd = service.selectOne(proNum);
+		//   pd = pservice.selectOne(proNum);
 		int result = pservice.updateProduct(pd);  // TODO ProductDetailDto으로 수정
 		if(result == 4) {
 			mv.setViewName("redirect:/host/product");
