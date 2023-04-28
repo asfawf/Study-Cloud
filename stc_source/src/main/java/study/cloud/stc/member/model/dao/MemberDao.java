@@ -17,8 +17,21 @@ public class MemberDao {
 	private SqlSession session;
 	
 	
+	// 회원가입
+	public int idCheck(String memId) {
+        return session.selectOne("memberns.idCheck", memId);
+    }
+	
+	
+	
+	public int insertJoin(MemberVo vo) {
+		return session.insert("memberns.insertJoin", vo);
+	}
+
+	
+// -----------------------------------------------------------------------------------------------------------
+	
 	public List<MemberVo> selectList(MemberVo vo) throws Exception {
-		
 		return session.selectList("memberns.SelectListUser", vo);
 	}
 
@@ -157,10 +170,6 @@ public class MemberDao {
 	}
 // -----------------------------------------------------------------------------------------------------------
 	
-	public int idCheck(String memId) {
-        return session.selectOne("memberns.idCheck", memId);
-    }
-
 	public MemberVo takeInfo(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne("memberns.getInfo", vo);
@@ -175,6 +184,11 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("memberns.quitStdInfo", stdVo);
 	}
+
+	
+	
+
+	
 
 	
 

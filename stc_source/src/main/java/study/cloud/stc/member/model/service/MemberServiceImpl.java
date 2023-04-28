@@ -14,6 +14,22 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao dao;
 
+	
+	// 회원가입
+	@Override
+	public int insertJoin(MemberVo vo) throws Exception {
+		return dao.insertJoin(vo);
+	}
+	
+	
+	
+	@Override
+	public int idCheck(String memId) throws Exception{
+		return dao.idCheck(memId);
+	}
+	
+// ----------------------------------------------------------------------------------------------------------- 	
+	
 	@Override
 	public List<MemberVo> selectList(MemberVo vo) throws Exception {
 
@@ -142,14 +158,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 // ----------------------------------------------------------------------------------------------------
-	
-	@Override
-	public int idCheck(String memId) throws Exception{
-		return dao.idCheck(memId);
-	}
-
-// ----------------------------------------------------------------------------------------------------
-	
+		
 	@Override
 	public MemberVo takeInfo(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub

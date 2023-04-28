@@ -204,7 +204,7 @@
 				return false;
 			} else {
 				// 모든 체크박스가 선택되어 있으므로 다음 페이지로 이동
-				location.href = '${pageContext.request.contextPath}/join';
+				location.href = '${pageContext.request.contextPath}/join/joinForm';
 			}
 		}).on('ifChecked ifUnchecked', 'input[name="chk"]', function() {
 			var checkedBoxes = $("input[name='chk']:checked");

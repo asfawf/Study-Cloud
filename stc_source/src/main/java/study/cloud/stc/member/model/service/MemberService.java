@@ -6,6 +6,13 @@ import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.notice.model.vo.NoticeVo;
 
 public interface MemberService {
+	
+	//회원가입
+	public int idCheck(String memId) throws Exception;
+	public int insertJoin(MemberVo vo) throws Exception;
+	
+// ------------------------------------------------------------------------------------------------------------	
+	
 	public List<MemberVo> selectList(MemberVo vo) throws Exception;
 // ----------------------------------------------------------------------------------------------------------- 
 	public int selectCount() throws Exception;
@@ -53,10 +60,6 @@ public interface MemberService {
 	public MemberVo mailId(MemberVo vo) throws Exception;
 		
 // ------------------------------------------------------------------------------------------------------------		
-
-	public int idCheck(String memId) throws Exception;
-	
-// ------------------------------------------------------------------------------------------------------------	
 
 	public MemberVo takeInfo(MemberVo vo) throws Exception;
 	public int updateHostInfo(MemberVo vo)throws Exception;

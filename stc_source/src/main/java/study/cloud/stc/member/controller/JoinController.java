@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import study.cloud.stc.member.model.service.MailSendService;
 import study.cloud.stc.member.model.service.MemberService;
+import study.cloud.stc.member.model.vo.MemberVo;
 
 
 
@@ -25,15 +28,24 @@ public class JoinController {
 	@Autowired
 	private MailSendService mailSendService;
 	
-	@GetMapping
-	public ModelAndView join(ModelAndView mv) {
-		mv.setViewName("/join");
+	@GetMapping("/joinForm")
+	public ModelAndView joinForm(ModelAndView mv) {
+		mv.setViewName("/join/joinForm");
 		return mv;
 	}
 	
+	
+	@PostMapping("/insert")
+	public ModelAndView insertJoin(MemberVo memberVo, ModelAndView mv) throws Exception {
+		memberService.insertJoin(memberVo);
+		mv.setViewName("redirect:/"); 
+		return mv;
+	}
+			
+	
 	@GetMapping("/jointerms")
 	public ModelAndView jointerms(ModelAndView mv) {
-		mv.setViewName("/jointerms");
+		mv.setViewName("/join/jointerms");
 		return mv;
 	}
 	
