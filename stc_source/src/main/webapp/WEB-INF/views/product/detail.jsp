@@ -55,7 +55,7 @@
                        <!--   <div class="single-property-wrapper">-->
                             <div class="single-property-header">                                          
                                 <h1 class="property-title pull-left">${product.detail.proName }</h1>
-                                <span class="property-price pull-right">${product.detail.proPrice}</span>
+                                <span class="property-price pull-right"><fmt:formatNumber value="${product.detail.proPrice }" type="currency" /></span>
                             </div>
 
                             
@@ -429,7 +429,7 @@
 					htmlVal += '<form id="frmreplyQna'+qna.qnaNum+'">';
    					htmlVal += '<div class="modal-body">';													
    					htmlVal += '<div class="mb-3"><br>';
-   					htmlVal += '<textarea class="form-control hostAnswer" name="hostAnswer" placeholder="내용" style="height: 300px;"></textarea>';
+   					htmlVal += '<textarea class="form-control hostAnswer" name="hostAnswer" placeholder="내용" style="height: 300px;">'+qna.hostAnswer+'</textarea>';
    					htmlVal += '</div>';
    					htmlVal += '</div>';
    					htmlVal += '<div class="modal-footer">';
