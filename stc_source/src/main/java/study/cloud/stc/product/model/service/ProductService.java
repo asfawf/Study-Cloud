@@ -26,6 +26,12 @@ public interface ProductService {
 	
 	public List<HostProductDto> selectList (HostProductDto dto)throws Exception;
 	
+	//업데이트
+		public int updateProduct(ProductDetailDto dto) throws Exception;
+		//삭제
+		public int deleteProduct(int proNum) throws Exception;
+		
+	
 	//페이징관련
 		public int selectCount(HostProductDto dto) throws Exception;
 		public List<HostProductDto> selectList (int currentPage,int limit,HostProductDto dto) throws Exception; 

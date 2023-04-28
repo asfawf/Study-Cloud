@@ -1,5 +1,6 @@
 package study.cloud.stc.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
+import study.cloud.stc.product.model.service.ProductService;
+import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.common.paging.Paging;
 
 @Controller
@@ -24,6 +27,8 @@ public class AdminController {
 
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private ProductService pservice;
 	private final static int BOARD_LIMIT = 5;
 	private final static int PAGE_LIMIT = 5;
 	
@@ -216,10 +221,22 @@ public class AdminController {
 	//-------------------------------------------------------
 
 	@GetMapping("/product")
-	public ModelAndView adminselectProductList(ModelAndView mv) {
-		mv.setViewName("/admin/product");
+	public ModelAndView adminselectProductList(
+			ModelAndView mv
+			,HostProductDto dto	
+			, @RequestParam(value="page", defaultValue="1") int page
+			
+			) throws Exception {
+		
+		 List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
+		 int currentPage = page;
+		 int totalCnt = pservice.selectCount(dto);
+		 Map<String, Integer> map= new Paging().paging(currentPage, totalCnt,10 , 10);
+		 mv.addObject("pageInfo", map);
+		 mv.addObject("hostlist",pservice.selectList(currentPage, 10, dto));
+		 mv.setViewName("/admin/product");
 		return mv;
-	}
+	}	
 	
 	
 }

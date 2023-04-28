@@ -11,119 +11,119 @@
 
 <%@ include file="/WEB-INF/views/module/header2.jsp" %>
 <section>
-  <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
-        <!-- Body content -->
+  <!-- Body content -->
+		<div class="slider-area" style="height:250px;">
+			<div class="slider-content">
+					<h2>호스트 공간 목록</h2>
+					<!-- <div class="search-form wow pulse" data-wow-delay="0.8s"> -->
+						<form action="" class=" form-inline">
+							<div class="form-group">
+								<select id="lunchBegins" class="form-control"
+									data-live-search="true" data-live-search-style="begins"
+									title="Select your city">
+									<option>New york, CA</option>
+									<option>Paris</option>
+									<option>Casablanca</option>
+									<option>Tokyo</option>
+									<option>Marraekch</option>
+									<option>kyoto , shibua</option>
+								</select>
+							</div>
+							<button class="btn search-btn" type="submit">
+								<i class="fa fa-search"></i>
+							</button>
+							<div style="display: none;" class="search-toggle">
+								<button class="btn search-btn prop-btm-sheaerch" type="submit">
+									<i class="fa fa-search"></i>
+								</button>
+							</div>
+						</form>
+					</div>
+			</div>
+		</div>
+				<!-- property area -->
+				<!-- property area -->
+		<div class="content-area recent-property"
+			style="background-color: #FFF; top-margin:1px ">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-12 pr-25 padding-top-40 properties-page user-properties">
+
+						<div class="section">
+							<c:forEach items="${hostlist}" var="list">
+								<div id="list-type" class="proerty-th-list">
+
+									<div class="col-md-4 p0">
+
+										<div class="box-two proerty-item" style="height: 170px">
+											<div class="item-thumb">
+												<a
+													href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }"><img
+													src="assets/img/demo/property-3.jpg"></a>
+											</div>
+											<div class="item-entry overflow">
+												<h5>
+													<a
+														href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }">${list.proName }</a>
+												</h5>
+												<div class="dot-hr"></div>
+												<span class="pull-left"><b>${list.proPhone }</span>
+												<p style="display: none;">${list.proAddress }</p>
+												<div class="dealer-action pull-right">
+													<a href="${pageContext.request.contextPath}/host/product/update?proNum=${list.proNum}" class="button">Edit </a> <a
+														href="#" class="button delete_user_car">Delete</a>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+
+	
+			<!-- 			페이징 -->
+		
+					<div class="col-md-12 clear"> 
+                        <div class="pull-right">
+                            <div class="pagination">
+                                <ul>
+                                    <c:choose>
+	                               	<c:when test="${pageInfo.currentPage eq 1 }">
+	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
+	                               	</c:when>
+	                               	<c:otherwise>
+	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage - 1 }"></a></li>
+	                               	</c:otherwise>
+                                	</c:choose>
+	                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
+										<li><a href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${page }">${page }</a></li>
+									</c:forEach>  
+									<c:choose>
+									<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
+	                               		<li><a class="disabled pe-7s-angle-right"></a></li>
+	                               	</c:when>
+	                               	<c:otherwise>
+	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage +1 }"></a></li>
+	                               	</c:otherwise> 
+	                               	</c:choose>
+                                </ul>
+                            </div>
+                        </div>                
+                    </div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+			
+			
+			
+		
 
 
-        <div class="slider-area">
-           
-            <div class="slider-content">
-                <div class="row">
-                    
-                        <h2>공간 목록</h2>
-                       
-                        <div class="search-form wow pulse" data-wow-delay="0.8s">
-                            <form action="" class=" form-inline">
-                                
-                                <div class="form-group">                                   
-                                    <select id="lunchBegins" class="form-control" data-live-search="true" data-live-search-style="begins" title="Select your city">
-
-                                        <option>New york, CA</option>
-                                        <option>Paris</option>
-                                        <option>Casablanca</option>
-                                        <option>Tokyo</option>
-                                        <option>Marraekch</option>
-                                        <option>kyoto , shibua</option>
-                                    </select>
-                                </div>
-                                
-                                <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
-                                <div style="display: none;" class="search-toggle">
-                                                              
-                                    <button class="btn search-btn prop-btm-sheaerch" type="submit"><i class="fa fa-search"></i></button>  
-                                </div>                    
-                            </form>
-                        </div>
-                </div>
-
-                <!-- property area -->
-       
-            <div class="container" style="color: black; margin-top: 40px;" >
-                <table class="table table-striped" border="1px">
-                   <thead>
-                    <tr>
-                        <th colspan="2">공간이름</th>
-                        <th>호스트 이름</th>
-                        <th>주소</th>
-                        <th colspan="2">관리</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td  colspan="2">헬로강남</td>
-                        <td>호스트1</td>
-                        <td>서울시 강남구 강남대로 12-24</td>
-                        <td><button>수정</button>
-                            <button>삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td  colspan="2">헬로성수</td>
-                        <td>호스트2</td>
-                        <td>서울시 마포수 와우산로 12-24</td>
-                        <td><button>수정</button>
-                            <button>삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td  colspan="2">헬로홍대</td>
-                        <td>호스트3</td>
-                        <td>동작구 대방로 12-24</td>
-                        <td><button>수정</button>
-                            <button>삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td  colspan="2">헬로동작</td>
-                        <td>호스트4</td>
-                        <td>동작구 대방로 12-24</td>
-                        <td><button>수정</button>
-                            <button>삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td  colspan="2"></td>
-                        <td></td>
-                        <td></td>
-                        <td><button>수정</button>
-                            <button>삭제</button></td>
-
-                    </tr>
-                    <tr>
-                        <td  colspan="2"></td>
-                        <td></td>
-                        <td></td>
-                        <td><button>수정</button>
-                            <button>삭제</button></td>
-
-                    </tr>
-                    <tr>
-                        <td  colspan="2"></td>
-                        <td></td>
-                        <td></td>
-                        <td><button>수정</button>
-                            <button>삭제</button></td>
-
-                    </tr>
-
-                </tbody>
-
-                  </table>
-            </div>
-            </div>
-        </div>
-        
-        
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/modernizr-2.6.2.min.js"></script>
+		<script src="<%=request.getContextPath() %>/resources/sneat/assets/js/modernizr-2.6.2.min.js"></script>
 
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery-1.10.2.min.js"></script> 
         <script src="<%=request.getContextPath() %>/resources/sneat/bootstrap/js/bootstrap.min.js"></script>
@@ -134,12 +134,14 @@
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script>
 
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/owl.carousel.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/wow.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/sneat/assets/js/wow.js"></script>
 
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/icheck.min.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/sneat/assets/js/icheck.min.js"></script>
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/price-range.js"></script>
 
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/main.js"></script>
+	
+		
 
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>

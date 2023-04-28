@@ -79,14 +79,18 @@ public class HostController {
 			) throws Exception {
 		dto.setMemId(principal.getName());
 		int result = pservice.insertDetail(dto);
-		if(result == 2) {
+		if(result == 4) {
+			mv.setViewName("redirect:/host/product");
+		}else if(result == 3) {
+			mv.setViewName("redirect:/host/product");
+		}else if(result == 2) {
 			mv.setViewName("redirect:/host/product");
 		}else {
-			mv.setViewName("/product/insert");
+			mv.addObject("message","등록");
+			mv.setViewName("/host/product/insert");
 		}
 		return mv;
 	}
-
 
 	
 	
@@ -164,14 +168,34 @@ public class HostController {
 	}
 	
 	@GetMapping("/product/update")
-	public ModelAndView updateProductPage(ModelAndView mv) throws Exception {
+	public ModelAndView updateProductPage(
+			ModelAndView mv
+				,@RequestParam("proNum") int proNum
+			) throws Exception {
+		ProductDetailDto pd = pservice.selectOne(proNum);
+		mv.addObject("productDetail", pd);
 		mv.setViewName("/host/product/update");
 		return mv;
 	}
 	
-	@GetMapping("/reserve/update")
-	public ModelAndView updateProduct(ModelAndView mv) throws Exception {
-		mv.setViewName("/host/product");
+	@PostMapping("/product/update")
+	public ModelAndView updateProduct(
+			ModelAndView mv,
+		//	@RequestParam("proNum") int proNum,
+			ProductDetailDto pd
+			) throws Exception {
+		// pd = service.selectOne(proNum);
+		int result = pservice.updateProduct(pd);  // TODO ProductDetailDto으로 수정
+		if(result == 4) {
+			mv.setViewName("redirect:/host/product");
+		}else if(result == 3) {
+			mv.setViewName("redirect:/host/product");
+		}else if(result == 2) {
+			mv.setViewName("redirect:/host/product");
+		}else {
+//			mv.addObject("message","업데이트 실패");
+			mv.setViewName("redirect:/host/product");
+		}
 		return mv;
 	}
 	

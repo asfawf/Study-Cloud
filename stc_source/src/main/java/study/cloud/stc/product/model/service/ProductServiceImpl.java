@@ -85,6 +85,30 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectHostProductList(membId);
 	}
 
+	@Override
+	public int updateProduct(ProductDetailDto dto) throws Exception {
+		int result = dao.updateMap(dto);
+		if(result == 1) {
+			result = dao.updateProduct(dto);
+		}if(result == 1) {
+			result = dao.updateProtime(dto);
+		}if(result ==1) {
+			result = dao.updateProductFile(dto);
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteProduct(int proNum) throws Exception {
+		int result = dao.deleteProductFile(proNum);
+		if(result == 1) {
+			result = dao.deleteProduct(proNum);
+		}if(result == 1) {
+			result = dao.deleteMap(proNum);
+		}
+		return result;
+	}
+	
 
 
 	

@@ -38,8 +38,34 @@ public class ProductDao {
 		return dto.getProNum();
 	}
 
+	//게시물 수정
+		public int updateMap(ProductDetailDto dto) throws Exception{
+			return sqlSession.update("product.updateMap",dto);
+		}
+		public int updateProduct(ProductDetailDto dto) throws Exception{
+			/*
+			 * int result = sqlSession.insert("product.updateProduct",dto); return
+			 * dto.getProNum();
+			 */
+			return sqlSession.update("product.updateProduct", dto);
+		}
+		public int updateProtime(ProductDetailDto dto) throws Exception{
+			return sqlSession.update("product.updateProTime",dto);
+		}
+		public int updateProductFile(ProductDetailDto dto) throws Exception{
+			return sqlSession.update("product.updateProductFile",dto);
+		}
 	
-	
+		//게시물 삭제
+		public int deleteProductFile(int proNum) throws Exception{
+			return sqlSession.delete("product.deleteProductfile", proNum);
+		}
+		public int deleteProduct(int proNum) throws Exception{
+			return sqlSession.delete("product.deleteProduct", proNum);
+		}
+		public int deleteMap(int proNum) throws Exception{
+			return sqlSession.delete("product.deleteMap", proNum);
+		}
 	
 	
 	

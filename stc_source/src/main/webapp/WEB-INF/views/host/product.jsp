@@ -13,15 +13,21 @@
 	<section>
 
 
-		<div class="page-head">
-			<div class="container">
-				<div class="row">
-					<div class="page-head-content">
-						<h1 class="page-title" style="text-align: center">내 공간</h1>
-					</div>
-				</div>
-			</div>
-		</div>
+ 	<div class="properties-area recent-property" style="background-color: #FFF;">
+            <div class="container"> 
+					<div class="col-md-12 padding-bottom-40 large-search">
+                        <div class="search-form pulse">
+                            <form action="${pageContext.request.contextPath}/host/product" class=" form-inline">
+                                <div class="col-md-12">
+	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="${param.proAddress}" onchange="submit();">
+	                                        <c:forEach var="v" items="${add }">
+												<option value="${v }">${v }</option>
+											</c:forEach>
+                                    	</select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 		<!-- End page header -->
 
 
@@ -44,7 +50,7 @@
 											<div class="item-thumb">
 												<a
 													href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }"><img
-													src="assets/img/demo/property-3.jpg"></a>
+													src="${list.proPicOriginal }"></a>
 											</div>
 											<div class="item-entry overflow">
 												<h5>
@@ -55,8 +61,8 @@
 												<span class="pull-left"><b>${list.proPhone }</span>
 												<p style="display: none;">${list.proAddress }</p>
 												<div class="dealer-action pull-right">
-													<a href="submit-property.html" class="button">Edit </a> <a
-														href="#" class="button delete_user_car">Delete</a>
+													<a href="${pageContext.request.contextPath}/host/product/update?proNum=${list.proNum}" class="button">Edit </a> 
+													<!-- <a href="#" class="button delete_user_car">Delete</a> -->
 												</div>
 											</div>
 
@@ -67,8 +73,8 @@
 						</div>
 
 
-				<!-- 페이징 -->
-
+		
+		
 					<div class="col-md-12 clear"> 
                         <div class="pull-right">
                             <div class="pagination">
@@ -99,21 +105,6 @@
 
 
 
-						<!--                         <div class="section">  -->
-						<!--                             <div class="pull-right"> -->
-						<!--                                 <div class="pagination"> -->
-						<!--                                     <ul> -->
-						<!--                                         <li><a href="#">Prev</a></li> -->
-						<!--                                         <li><a href="#">1</a></li> -->
-						<!--                                         <li><a href="#">2</a></li> -->
-						<!--                                         <li><a href="#">3</a></li> -->
-						<!--                                         <li><a href="#">4</a></li> -->
-						<!--                                         <li><a href="#">Next</a></li> -->
-						<!--                                     </ul> -->
-						<!--                                 </div> -->
-						<!--                             </div>                 -->
-						<!--                         </div> -->
-
 
 						<div class="d-grid gap-2">
 							<button class="btn btn-primary" type="button">
@@ -125,26 +116,33 @@
 			</div>
 		</div>
 
+	<script type="text/javascript">
+	
+	</script>
 
 
 
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/vendor/modernizr-2.6.2.min.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js//jquery-1.10.2.min.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/bootstrap/js/bootstrap.min.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/bootstrap-select.min.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/bootstrap-hover-dropdown.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/easypiechart.min.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/owl.carousel.min.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/wow.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/icheck.min.js"></script>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/vendor/modernizr-2.6.2.min.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js//jquery-1.10.2.min.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/bootstrap/js/bootstrap.min.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/bootstrap-select.min.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/bootstrap-hover-dropdown.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/easypiechart.min.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/owl.carousel.min.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/wow.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/icheck.min.js"></script> --%>
 
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/price-range.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.validate.min.js"></script>
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/wizard.js"></script>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/price-range.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.validate.min.js"></script> --%>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/wizard.js"></script> --%>
 
-		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/main.js"></script>
+<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/main.js"></script> --%>
+		
+		</div>
+		
+		</div>
 	</section>
 	<%@ include file="/WEB-INF/views/module/footer.jsp"%>
 </body>

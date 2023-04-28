@@ -23,5 +23,8 @@ public class HostProductDto {
     private int proNum;
     private String memId;
     private String memAuthority;
+    
+    private String proPicOriginal;
+	private String proPicRename;
 
 }

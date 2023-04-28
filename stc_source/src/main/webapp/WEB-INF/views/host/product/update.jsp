@@ -15,16 +15,13 @@
             <div id="status">&nbsp;</div>
         </div>
         <!-- Body content -->
-
-        
-
         
 
         <div class="page-head"> 
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title"><span class="orange strong">수정 page</span></h1>               
+                        <h1 class="page-title"><span class="orange strong">공간수정 page</span></h1>               
                     </div>
                 </div>
             </div>
@@ -36,71 +33,63 @@
             <div class="container">   
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1 profiel-container">
-
-                        <form action="insert" method="post">
-
+                        <form action="update" method="post">
                             <div class="profiel-header">
                                 <h3>
-                                    <b>공간수정<br>
+                                    <b>수정</b><br>
                                 </h3>
                                 <hr>
                             </div>
-
                             <div class="clear">
-
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>공간이름</label>
-                                        <input name="proName" type="text" class="form-control">
+                                        <input name="proName" type="text" class="form-control" value="${productDetail.proName }">
                                     </div>
                                     <div class="form-group">
                                         <label>상품소개 :</label>
-                                        <input name="proPost" type="text" class="form-control">
+                                        <input name="proPost" type="text" class="form-control" value="${productDetail.proPost }">
                                     </div> 
                                     <div class="form-group">
                                         <label>시설안내 :</label>
-                                        <input name="proInfo" type="text" class="form-control">
+                                        <input name="proInfo" type="text" class="form-control" value="${productDetail.proInfo }">
                                     </div> 
                                     <div class="form-group">
                                         <label>유의사항 :</label>
-                                        <input name="proNotice"type="text" class="form-control">
+                                        <input name="proNotice"type="text" class="form-control" value="${productDetail.proNotice }">
                                     </div> 
                                     <div class="form-group">
                                         <label>환불정책 :</label>
-                                        <input name="proRefund" type="text" class="form-control">
+                                        <input name="proRefund" type="text" class="form-control" value="${productDetail.proRefund }">
                                     </div> 
                                     <div class="form-group">
                                         <label>가격(시간당) :</label>
-                                        <input name="proPrice" type="text" class="form-control">
+                                        <input name="proPrice" type="text" class="form-control" value="${productDetail.proPrice }">
                                     </div> 
                                     <div class="form-group">
                                         <label>주소 : </label>
-                                        <input name="proAddress" type="text" class="form-control">
+                                        <input name="proAddress" type="text" class="form-control" value="${productDetail.proAddress }">
                                     </div> 
                                     <div class="form-group">
                                         <label>전화번호 :</label>
-                                        <input name="proPhone" type="text" class="form-control">
+                                        <input name="proPhone" type="text" class="form-control" value="${productDetail.proPhone }">
                                     </div> 
                                     <div class="form-group">
                                         <label>이미지 :</label>
                                         <input name="proPicOriginal" type="file" class="form-control">
                                     </div>
-                                    
                                 </div>
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <input type="text" class='btn btn-finish btn-primary pull-right' name='update' value='등록' />
+                                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                   <input type="hidden" name="proNum" value="${productDetail.proNum }">
+                                   <button type="submit">수정</button>
+                                   
+                                   <button type="submit" name="delete">삭제하기</button>
                                 </div>
-                                
                             </div>
- 
-                    
-                            
-                            
                          </form>
-
                     </div>
                 </div><!-- end row -->
-
              </div>
         </div>
 
@@ -124,6 +113,16 @@
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/price-range.js"></script>
 
         <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/main.js"></script>
+        
+        <script>
+    $(function(){
+        var responseMessage = "<c:out value="${message}" />";
+        if(responseMessage != ""){
+            alert(responseMessage)
+        }
+    }) 
+</script>
+        
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>

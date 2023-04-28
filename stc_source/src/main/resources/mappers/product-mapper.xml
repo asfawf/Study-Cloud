@@ -186,6 +186,70 @@
 	 
 	</select>
 	
+	
+	<!-- update -->
+	
+	<update id="updateMap">
+	update map
+	set
+	 PRO_NAME = #{proName}
+	,PRO_ADDRESS = #{proAddress}
+	,PRO_PHONE = #{proPhone}
+	
+	 WHERE PRO_NUM = #{proNum}
+	
+	</update>
+	
+	<update id="updateProduct">
+	update product
+    set
+     pro_post=#{proPost}
+    ,pro_info=#{proInfo}
+    ,pro_notice=#{proNotice}
+    ,pro_refund=#{proRefund}
+     WHERE PRO_NUM = #{proNum}
+    
+	</update>
+	
+	<update id="updateProTime">
+	update protime
+	set
+	pro_price=#{proPrice}
+	where pro_num = #{proNum}
+	</update>
+	
+	<update id="updateProductFile">
+	update productfile
+	set
+	pro_pic_original = #{proPicOriginal}
+	,pro_pic_rename = #{proPicRename}
+	where pro_num = #{proNum}
+
+	</update>
+	
+	
+	<delete id="deleteProductfile">
+	delete from productfile
+	where pro_num = #{proNum}
+	</delete>
+	
+	<delete id="deleteProduct">
+	delete from product
+         where pro_num = #{proNum}
+	</delete>
+	
+	<delete id="deleteMap">
+	delete from map 
+         where pro_num = #{proNum}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- host/qna List select 옵션 -->	
 	<select id="selectHostProductList" resultType="pdvo">
 		SELECT PRO_NUM , (select PRO_NAME from map where PRO_NUM = p.PRO_NUM) PRO_NAME, MEM_ID
