@@ -258,10 +258,17 @@
 	
 	<!-- host/qna 테이블 List -->
 	<select id="selectHostProductQnaList" resultType="qvo">
-		SELECT 	MEM_ID	, MEM_QUESTION	, QNA_DATE	, QNA_NUM
+		SELECT 	MEM_ID	, MEM_QUESTION	, QNA_DATE	, QNA_NUM , HOST_ANSWER
 		FROM QNA 
 		WHERE PRO_NUM = #{proNum}
 		  AND MEM_QUESTION IS NOT NULL
 		ORDER BY QNA_DATE DESC
 	</select>
+	
+	<!-- host/qna replyDeleteQna 관리자 답변 삭제 -->
+	<update id="replyDeleteQna" parameterType="qvo">
+		UPDATE QNA
+   		   SET HOST_ANSWER = null
+         WHERE QNA_NUM = #{qnaNum}
+	</update>
 </mapper>

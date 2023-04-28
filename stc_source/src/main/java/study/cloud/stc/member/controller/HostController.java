@@ -154,6 +154,113 @@ public class HostController {
 		return new Gson().toJson(hostQna);
 
 	}
+	@PostMapping("/qna/delete")
+	@ResponseBody
+	public String deleteQnaAjax(
+			  @RequestParam(name="selectedProNum") int proNum
+			, @RequestParam(value="page", defaultValue="1") int page
+			, @RequestParam(value="qnaNum") int qnaNum
+			, Principal principal
+			) throws Exception {
+
+		int cntPerPage = 3; 
+		int currentPage = page;
+		int totalCnt = qna_service.selectHostQnaCount(proNum);
+		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, cntPerPage, 5);
+
+		List<ProductVo> productList = pservice.selectHostProductList(principal.getName());
+
+		if (proNum == 0) {
+		    if (productList.size() > 0) {
+		        proNum = productList.get(productList.size() - 1).getProNum();
+		    }
+		}
+		List<QnaVo> qnaList = new ArrayList<>();
+		if (proNum > 0) {
+			qna_service.delete(qnaNum);
+		    qnaList = qna_service.selectHostProductQnaList(currentPage, cntPerPage, proNum);
+		}
+
+		Map<String, Object> hostQna = new HashMap<>();
+		hostQna.put("pageInfo", map);
+		hostQna.put("productList", productList);
+		hostQna.put("selectedProNum", proNum);
+		hostQna.put("qnaList", qnaList);
+
+		return new Gson().toJson(hostQna);
+	}
+	
+	@PostMapping("/qna/reply/update")
+	@ResponseBody
+	public String replyUpdateQnaAjax(QnaVo vo
+			, @RequestParam(name="selectedProNum") int proNum
+			, @RequestParam(value="page", defaultValue="1") int page
+			, @RequestParam(value="qnaNum") int qnaNum
+			, Principal principal
+			) throws Exception {
+
+		int cntPerPage = 3; 
+		int currentPage = page;
+		int totalCnt = qna_service.selectHostQnaCount(proNum);
+		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, cntPerPage, 5);
+
+		List<ProductVo> productList = pservice.selectHostProductList(principal.getName());
+
+		if (proNum == 0) {
+		    if (productList.size() > 0) {
+		        proNum = productList.get(productList.size() - 1).getProNum();
+		    }
+		}
+		List<QnaVo> qnaList = new ArrayList<>();
+		if (proNum > 0) {
+			qna_service.updateReply(vo);
+		    qnaList = qna_service.selectHostProductQnaList(currentPage, cntPerPage, proNum);
+		}
+
+		Map<String, Object> hostQna = new HashMap<>();
+		hostQna.put("pageInfo", map);
+		hostQna.put("productList", productList);
+		hostQna.put("selectedProNum", proNum);
+		hostQna.put("qnaList", qnaList);
+
+		return new Gson().toJson(hostQna);
+	}
+	
+	@PostMapping("/qna/reply/delete")
+	@ResponseBody
+	public String replyDeleteQnaAjax(
+			  @RequestParam(name="selectedProNum") int proNum
+			, @RequestParam(value="page", defaultValue="1") int page
+			, @RequestParam(value="qnaNum") int qnaNum
+			, Principal principal
+			) throws Exception {
+
+		int cntPerPage = 3; 
+		int currentPage = page;
+		int totalCnt = qna_service.selectHostQnaCount(proNum);
+		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, cntPerPage, 5);
+
+		List<ProductVo> productList = pservice.selectHostProductList(principal.getName());
+
+		if (proNum == 0) {
+		    if (productList.size() > 0) {
+		        proNum = productList.get(productList.size() - 1).getProNum();
+		    }
+		}
+		List<QnaVo> qnaList = new ArrayList<>();
+		if (proNum > 0) {
+			qna_service.deleteReply(qnaNum);
+		    qnaList = qna_service.selectHostProductQnaList(currentPage, cntPerPage, proNum);
+		}
+
+		Map<String, Object> hostQna = new HashMap<>();
+		hostQna.put("pageInfo", map);
+		hostQna.put("productList", productList);
+		hostQna.put("selectedProNum", proNum);
+		hostQna.put("qnaList", qnaList);
+
+		return new Gson().toJson(hostQna);
+	}
 	
 	@GetMapping("/reserve")
 	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {

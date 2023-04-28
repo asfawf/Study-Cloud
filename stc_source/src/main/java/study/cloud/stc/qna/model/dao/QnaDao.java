@@ -54,5 +54,9 @@ public class QnaDao {
 	public List<QnaVo> selectHostProductQnaList(int currentPage, int limit, int proNum) throws Exception{
 		return sqlSession.selectList("product.selectHostProductQnaList", proNum, new RowBounds((currentPage-1)*limit, limit));
 	}
+	// host/qna 호스트 답변 삭제
+	public int deleteReply(int qnaNum) throws Exception{
+		return sqlSession.update("product.replyDeleteQna", qnaNum);
+	}
 
 }

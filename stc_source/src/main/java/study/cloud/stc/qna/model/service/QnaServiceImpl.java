@@ -66,5 +66,10 @@ public class QnaServiceImpl implements QnaService {
 		return dao.selectHostProductQnaList(currentPage, limit, proNum);
 	}
 
+	@Override
+	public int deleteReply(int qnaNum) throws Exception {
+		return dao.deleteReply(qnaNum);	
+	}
+
 
 }

@@ -23,5 +23,6 @@ public interface QnaService {
 	// host qna 페이징 List 
 	public int selectHostQnaCount(int proNum) throws Exception;
 	public List<QnaVo> selectHostProductQnaList(int currentPage, int limit, int proNum) throws Exception;
+	public int deleteReply(int qnaNum) throws Exception;
 	
 }
