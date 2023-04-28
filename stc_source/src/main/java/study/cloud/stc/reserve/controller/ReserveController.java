@@ -12,7 +12,7 @@ public class ReserveController {
 	
 	@GetMapping("/reserve")
 	public ModelAndView reserve(ModelAndView mv) {
-		mv.setViewName("/reserve");
+		mv.setViewName("/reserve/reserve");
 		return mv;
 	}
 	@GetMapping("/reservecheck")

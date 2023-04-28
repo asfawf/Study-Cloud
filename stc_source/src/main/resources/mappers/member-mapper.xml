@@ -18,6 +18,24 @@
 	<insert id="insertUser">
 		INSERT INTO MEMBER VALUES(#{memId},#{memPasswd},#{memName},#{memPhone},#{memEmail}, 1 ,'ROLE_USER','null')
 	</insert>
+	
+	<insert id="insertJoin">
+    INSERT INTO MEMBER (memId, memPasswd, memName, memPhone, memEmail, memQuit, memAuthority, memSns) 
+    VALUES (
+        #{memId},
+        #{memPasswd},
+        #{memName},
+        #{memPhone},
+        #{memEmail},
+        1,
+        <choose>
+            <when test="memAuthority == 'ROLE_USER'">'ROLE_USER'</when>
+            <otherwise>'ROLE_HOST'</otherwise>
+        </choose>,
+        'null'
+        )
+	</insert>
+	
 			
 	<update id="updateUser">
 		UPDATE MEMBER
