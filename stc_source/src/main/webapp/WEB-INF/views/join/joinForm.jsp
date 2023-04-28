@@ -102,7 +102,7 @@
 								    </div>
 								</div>
 								<div class="input-group" style="padding-left: 60px; padding-right: 60px;">
-									<input type="text" class="form-control" id="emailAuthCode" name="emailAuthCode" placeholder="인증코드를 입력하세요." disabled required> 
+									<input type="text" class="form-control" id="emailAuthCode" name="emailAuthCode" placeholder="인증코드를 입력하세요."> 
 									<span class="input-group-btn">
 										<button class="btn btn-default" type="button" id="email-auth-Btn">인증하기</button>
 									</span>
@@ -116,7 +116,7 @@
 									<input class="btn btn-primary" type="submit" id="join-Btn" value="가입하기"/>
 								</div>
 							</form>
-						</div>
+						</div>`
 					</div>
 				</div>
 			</div>
@@ -287,28 +287,31 @@
 			
 			// 이메일 인증번호 발송		
 			var change = "";
+			var preemail = $("memEmail").val();
+			
 			$("#email-send-Btn").click(function() {
 				var memEmail = $("#memEmail").val();
 				$.ajax({
 				url : '${pageContext.request.contextPath}/sendmail/joinemail?memEmail='+ memEmail,
-				type : 'get',
+				type : 'post',
 				beforeSend : function(xhr) { 
 					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 					},
 				success:function(data){
-		        	if(data !== checkEmail){
-		        		alert("이메일 주소를 다시 확인해주세요.");
-						$("#memEmail").attr("autofocus",true);
-						$(".successEmail").text("유효한 이메일 주소를 입력해주세요.");
-						$(".successEmail").css("color","#DB0000");
-		        	}else{	        		
-						alert("인증코드가 발송되었습니다.");
-		        		$("#memEmail").attr("disabled",false);		        		
-		        		$(".successEmailAuthChk").text("인증코드를 입력한 뒤 인증하기를 클릭해주세요.");
-		        		$(".successEmailAuthChk").css("color","#88B04B");
+		        	if(data == preemail ){
+		        		alert("인증코드가 발송되었습니다.");
+		        		$("#memEmail").attr("disabled",false);
+		        		$("#emailAuthCode").attr("disabled", false);
+		                $("#emailAuthCode").focus();
+		        		$(".successEmail").text("인증코드를 입력한 뒤 인증하기를 클릭해주세요.");
+		        		$(".successEmail").css("color","#88B04B");
 		        		change = data;
+		        	}else{	        		
+						alert("이메일 주소를 다시 확인해주세요.");
+						$("#memEmail").attr("autofocus",true);
 			        	}
 		        	}
+					
 			    });
 			});
 									

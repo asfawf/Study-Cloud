@@ -23,8 +23,10 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ctc.wstx.shaded.msv_core.util.Util;
@@ -39,7 +41,8 @@ public class MailSender {
     @Autowired
     MemberService service;
 
-    @GetMapping("/joinemail")
+    @PostMapping("/joinemail")
+    @ResponseBody
 	public String joinemail(ModelAndView mv,HttpServletRequest request, HttpServletResponse response, @RequestParam("memEmail") String memEmail) throws Exception{
 		
 		String proId = WebUtil.getProperty("mail_id");
@@ -73,8 +76,8 @@ public class MailSender {
 		String recipient  = sendTo;
 
 		String subject = "StudyCloud 회원가입 인증 코드입니다.";
-		String body = "StudyCloud를 방문해 주셔서 감사합니다.<br><br>" +
-                		"인증 코드는 " + change + "입니다.<br>" +
+		String body = "StudyCloud를 방문해 주셔서 감사합니다.\n\n" +
+                		"인증 코드는 " + change + "입니다.\n" +
                 		"인증 코드를 이메일 인증 코드란에 기입하세요.";
 
 
@@ -102,7 +105,10 @@ public class MailSender {
 	    mimeMessage.setText(body); 
 	    Transport.send(mimeMessage);
 	  
-	    return "";
+	    
+	    System.out.println("memEmail: " + memEmail);
+	    
+	    return memEmail;
 		
 	}
 	
