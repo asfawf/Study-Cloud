@@ -5,21 +5,39 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/reserve")
 public class ReserveController {
-	
-	@GetMapping("/reserve")
+	@GetMapping
 	public ModelAndView reserve(ModelAndView mv) {
 		mv.setViewName("/reserve/reserve");
 		return mv;
 	}
+	
 	@GetMapping("/reservecheck")
 	public ModelAndView reservecheck(ModelAndView mv) {
-		mv.setViewName("/reservecheck");
+		mv.setViewName("/reserve/reservecheck");
 		return mv;
 	}
+	
+	@GetMapping("/host/reservelist")
+	public ModelAndView hostReserveInfo(ModelAndView mv) {
+	    mv.setViewName("/host/reserve/reservelist");
+	    return mv;
+	}
+
+	@GetMapping("/user/reservelist")
+	public ModelAndView userReserveInfo(ModelAndView mv) {
+	    mv.setViewName("/user/resrve/reservelist");
+	    return mv;
+	}
+	
+	
 	 
 	
 

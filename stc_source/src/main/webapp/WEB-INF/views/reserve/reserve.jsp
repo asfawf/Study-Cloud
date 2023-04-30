@@ -45,16 +45,17 @@
 				</div>
 				<div class="panel-body recent-property-widget">
 					<div class="datepicker" id="datepicker"></div>
+					<input type="hidden" name="rsvDate" id="rsvDate">
 				</div>
 			</div>
 			<div class="panel panel-default sidebar-menu">
-				<div class="panel-heading">
+				<div class="panel-heading" style="padding-bottom: 15px;">
 					<h3 class="panel-title">
 						<b>시간선택</b>
 					</h3>
 				</div>
-				<div class="panel-body recent-property-widget">
-					<select class="selectpicker form-control" multiple data-size="10" title="시간선택">								
+				<div class="panel panel-default sidebar-menu">
+					<select class="selectpicker form-control" multiple data-size="10" title="시간선택" id="rsvTime" name="rsvTime">								
 					    <optgroup label="오전">
 							<c:forEach var="i" begin="0" end="11">
 								<option value="${i+1}"> ${i+1 < 10 ? '0' : ''}${i+1}:00
@@ -78,12 +79,12 @@
 				<div class="panel-body recent-property-widget">
 					<div class="input-group">
 						<span class="input-group-btn">
-							<button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quantity">
+							<button type="button" class="btn btn-default btn-number" data-type="minus" data-field="rsvPerson">
 								<span class="glyphicon glyphicon-minus"></span>
 							</button>
 								</span> 
-								<input type="text" id="quantity" name="quantity" class="form-control input-number text-center" value="1" min="1" max="10"> <span class="input-group-btn">
-							<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity">
+								<input type="text" id="rsvPerson" name="rsvPerson" class="form-control input-number text-center" value="1" min="1" max="10"> <span class="input-group-btn">
+							<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="rsvPerson">
 								<span class="glyphicon glyphicon-plus"></span>
 							</button>
 						</span>
@@ -93,7 +94,7 @@
 		</aside>
 		<aside class="sidebar sidebar-property blog-asside-right"
 			style="padding-bottom: 0px; padding-right: 0px; padding-left: 0px; ">
-			<button class="btn btn-primary" style="width: 100%; height: 55px;">결제하기</button>
+			<button id=rsv-Btn class="btn btn-primary" style="width: 100%; height: 55px;">예약하기</button>
 		</aside>
 	</div>
 <!-- stop contents -->				
@@ -107,6 +108,38 @@
 		    format: "yyyy-mm-dd",
 		    language: "kr",
 		    todayHighlight: true
+		});
+		
+		
+		
+
+		//시간선택
+		$(document).ready(function(){
+	    $('.selectpicker').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+	        var selectedValues = $(this).val();
+	        console.log(selectedValues);
+	   		});
+	    });
+		
+		// 예약 시간 선택 select 요소에서 선택된 값을 가져옴
+		var selectedValues = [];
+		$("select[name=rstTime] option:selected").each(function() {
+		    selectedValues.push($(this).val());
+		});
+				
+		// AJAX를 사용하여 선택된 값을 서버로 전송하고 저장
+		$.ajax({
+		    url: "save_reservation_time.php",  
+		    method: "POST",
+		    data: {timeValues: selectedValues},  // 선택된 값들을 배열 형태로 전송
+		    success: function(response) {
+		        console.log("선택된 시간이 저장되었습니다.");
+		        console.log("서버 응답:", response);
+		    },
+		    error: function(xhr, status, error) {
+		        console.error("시간 저장에 실패했습니다.");
+		        console.error("서버 응답:", xhr.responseText);
+		    }
 		});
 		
 		
@@ -138,5 +171,12 @@
 		});	
 	
 	</script>
+	<!-- stop script -->
+	
+	
+	<style>
+	.panel.sidebar-menu {    
+    margin: 0 0 60px;
+    }
+	</style>
 </body>
-<!-- stop script -->
