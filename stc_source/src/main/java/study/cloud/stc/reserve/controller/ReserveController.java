@@ -25,17 +25,7 @@ public class ReserveController {
 		return mv;
 	}
 	
-	@GetMapping("/host/reservelist")
-	public ModelAndView hostReserveInfo(ModelAndView mv) {
-	    mv.setViewName("/host/reserve/reservelist");
-	    return mv;
-	}
-
-	@GetMapping("/user/reservelist")
-	public ModelAndView userReserveInfo(ModelAndView mv) {
-	    mv.setViewName("/user/resrve/reservelist");
-	    return mv;
-	}
+	
 	
 	
 	 

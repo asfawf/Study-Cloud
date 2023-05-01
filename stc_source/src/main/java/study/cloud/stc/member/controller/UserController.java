@@ -86,4 +86,24 @@ public class UserController {
 		
 		return shout;
 	}
+	
+	
+	
+	//내 예약
+	@GetMapping("/reserve")
+	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+		mv.setViewName("/user/reserve/reserve");
+		return mv;
+	}
+	
+	@GetMapping("/reserve/delete")
+	public ModelAndView deleteReservePage(ModelAndView mv) throws Exception {
+		mv.setViewName("/user/reserve/delete");
+		return mv;
+	}
+	
+	
+	
+	
+	
 }

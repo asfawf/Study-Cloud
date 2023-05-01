@@ -264,7 +264,13 @@ public class HostController {
 	
 	@GetMapping("/reserve")
 	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
-		mv.setViewName("/host/reserve");
+		mv.setViewName("/host/reserve/reserve");
+		return mv;
+	}
+	
+	@GetMapping("/reserve/rsvprotime")
+	public ModelAndView selectRsvProtime(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve/rsvprotime");
 		return mv;
 	}
 	

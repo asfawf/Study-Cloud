@@ -24,9 +24,9 @@
 					<p class="side-info" style="padding-top: 20px; padding-bottom: 20px;">강남역 도보 5분, 당신을 위한 프라이빗 룸.</p>
 					<div class="clear">
 						<ul class="dealer-contacts">
-							<li><i class="pe-7s-map-marker strong"> </i> 서울 서초구 서초동 1308-16 1009호</li>
+							<li><i class="pe-7s-map-marker strong"> </i> ${product.detail.proAddress }</li>
 							<li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-							<li><i class="pe-7s-call strong"> </i> 010-1234-5678</li>
+							<li><i class="pe-7s-call strong"> </i> ${product.detail.proPhone }</li>
 							<li><i class="pe-7s-up-arrow strong"> </i> 11층</li>
 							<li><i class="pe-7s-car strong"> </i> 주차가능</li>
 							<li><i class="pe-7s-signal strong"> </i> 와이파이</li>
