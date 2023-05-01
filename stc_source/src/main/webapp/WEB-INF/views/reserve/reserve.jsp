@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!-- start link  -->
-<%@ include file="/WEB-INF/views/module/link.jsp" %>
-<script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 <!-- datepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" integrity="sha512-ygaYzcKBzf1YptDaS/7b9P2pY2LW0YCXp22l+IZYHwOjB2opJDrniEMarJ1HsckAdKirYqE9JMpKfSm6NHUcdg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/locales/bootstrap-datepicker.kr.min.js" integrity="sha512-4UPr4O3wb78N3c62jRE7Lv8LNJMSriVUvBa4fSGWAb25diqje3Yp4Uq1cK2pOwZ0F2s8R4RmWJYZhI75HJqOxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
@@ -55,17 +52,19 @@
 					</h3>
 				</div>
 				<div class="panel panel-default sidebar-menu">
-					<select class="selectpicker form-control" multiple data-size="10" title="시간선택" id="rsvTime" name="rsvTime">								
-					    <optgroup label="오전">
-							<c:forEach var="i" begin="0" end="11">
-								<option value="${i+1}"> ${i+1 < 10 ? '0' : ''}${i+1}:00
-									~ ${i+2 < 10 ? '0' : ''}${i+2}:00</option>
+					<select class="selectpicker form-control" multiple data-size="10"
+						title="시간선택" id="rsvTime" name="rsvTime">
+						<optgroup label="오전">
+							<c:forEach var="i" begin="1" end="12">
+								<option value="${i}">${i < 10 ? '0' : ''}${i}:00~ ${i+1 < 10 ? '0' : ''}${i+1}:00</option>
 							</c:forEach>
+							<option value="11">11:00 ~ 12:00</option>
 						</optgroup>
 						<optgroup label="오후">
-							<c:forEach var="i" begin="12" end="23">
-								<option value="${i+1}"> ${i-11}:00 ~ ${i+1 < 10 ? '0' : ''}${i+1}:00</option>
+							<c:forEach var="i" begin="0" end="10">
+								<option value="${i + 12}">${i + 12}:00~${i + 13}:00</option>
 							</c:forEach>
+							<option value="23">23:00~24:00</option>
 						</optgroup>
 					</select>
 				</div>
@@ -103,32 +102,39 @@
 <!-- start script -->	
 	<script>
 		//datepicker
+		var selectedDate;
 		$('#datepicker').datepicker({
-		    uiLibrary: 'bootstrap',
-		    format: "yyyy-mm-dd",
-		    language: "kr",
-		    todayHighlight: true
-		});
+			  uiLibrary: 'bootstrap',
+			  format: "yyyy-mm-dd",
+			  language: "kr",
+			  todayHighlight: true,
+			  startDate: new Date(),
+			  endDate: new Date(new Date().setMonth(new Date().getMonth() + 3))
+			}).on('changeDate', function(e) {
+				selectedDate = e.format();
+				console.log(e.format());
+			});
 		
 		
-		
-
 		//시간선택
-		$(document).ready(function(){
-	    $('.selectpicker').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-	        var selectedValues = $(this).val();
-	        console.log(selectedValues);
-	   		});
-	    });
-		
-		// 예약 시간 선택 select 요소에서 선택된 값을 가져옴
-		var selectedValues = [];
-		$("select[name=rstTime] option:selected").each(function() {
-		    selectedValues.push($(this).val());
-		});
-				
+		$(document).ready(function() {
+			  var selectedValues = []; // 초기화
+			
+			  $('.selectpicker').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
+			    selectedValues = $(this).val();
+			    console.log(selectedValues);
+			  });
+			
+			  $("select[name=rstTime]").change(function() {
+			    selectedValues = []; // 초기화
+			    $("select[name=rstTime] option:selected").each(function() {
+			      selectedValues.push($(this).val());
+			    });
+			    console.log(selectedValues);
+			  });
+			});
 		// AJAX를 사용하여 선택된 값을 서버로 전송하고 저장
-		$.ajax({
+		/* $.ajax({
 		    url: "save_reservation_time.php",  
 		    method: "POST",
 		    data: {timeValues: selectedValues},  // 선택된 값들을 배열 형태로 전송
@@ -140,7 +146,7 @@
 		        console.error("시간 저장에 실패했습니다.");
 		        console.error("서버 응답:", xhr.responseText);
 		    }
-		});
+		}); */
 		
 		
 	
