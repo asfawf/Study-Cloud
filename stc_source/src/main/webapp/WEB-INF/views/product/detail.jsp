@@ -16,8 +16,7 @@
         <div class="page-head"> 
             <div class="container">
                 <div class="row">
-                    <div class="page-head-content">
-                        <h1 class="page-title">${product.detail.proName }</h1>               
+                         <h1 class="property-title pull-left">${product.detail.proName }</h1>              
                     </div>
                 </div>
             </div>
@@ -35,18 +34,41 @@
                                 <div class="clearfix">
                                     
                                     <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                                        <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property1.jpg"> 
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property1.jpg" />
-                                        </li>
-                                        <%-- <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property2.jpg"> 
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property2.jpg" />
-                                        </li>
-                                        <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property3.jpg"> 
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property3.jpg" />
-                                        </li>
-                                        <li data-thumb="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property4.jpg"> 
-                                            <img src="<%=request.getContextPath() %>/resources/sneat/assets/img/property-1/property4.jpg" />
-                                        </li>    --%>                                      
+                                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="${pageContext.request.contextPath}/resources/sneat/assets/img/hello/085538.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="${pageContext.request.contextPath}/resources/sneat/assets/img/hello/085528.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    ...
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>                                  
                                     </ul>
                                 </div>
                             </div>
