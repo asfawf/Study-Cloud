@@ -102,7 +102,7 @@ public class HandlerChat extends TextWebSocketHandler {
 				// 1. RoomId 넣기
 				
 				crvo.setChaRoomId((String) mapReceive.get("room_id"));
-				crvo.setRoomContents((String) mapReceive.get("msg"));
+				crvo.setRoomContents((String) mapReceive.get("msg"));				
 				
 				System.out.println("crvo: "+crvo);
 				
@@ -125,8 +125,11 @@ public class HandlerChat extends TextWebSocketHandler {
 				}
 				
 				
-				// 1-2. chat 		- 절차대로
+				// 1-2. chat 		- 절차대로 진행이 되었을 경우 chat 테이블에 문자 저장됨 
 				System.out.println("service.addtMessage(vo): "+ service.addtMessage(vo));
+				
+				System.out.println("crvo 이거이거: " + crvo);
+				crservice.updateChattRoom(crvo);
 				
 				System.out.println("\n");
 			}

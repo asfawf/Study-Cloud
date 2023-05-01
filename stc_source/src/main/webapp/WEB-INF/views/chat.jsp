@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <meta charset="UTF-8">
-<title>웹소켓 채팅</title>
+<title>관리자와의 채팅</title>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
@@ -139,7 +139,7 @@
 } */
 
 .page-head{
-	background: #f6f6f6;
+	background-color: rgb(227,229,232);
 }
 
 
@@ -209,7 +209,7 @@
 <script>
 
 	$( document ).ready( function() {
-	    $( 'input[type=button]' ).click( function() {
+	    $( 'button[type=button]' ).click( function() {
 	      $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
 	    } );
 	  } );
@@ -226,12 +226,12 @@
 
 <body>
 <%@ include file="/WEB-INF/views/module/header2.jsp" %> 
-<section style="background: #f6f6f6;">
-	<div class="count-area" style="background: #f6f6f6;">
-		<div class="container" style="background: #f6f6f6;">
+<section style="background-color: rgb(227,229,232);">
+	<div class="count-area" style="background-color: rgb(227,229,232);">
+		<div class="container" style="background-color: rgb(227,229,232);">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-					<h2 style="">채팅</h2>
+					<h2 style="">관리자와의 채팅</h2>
 				</div>
 			</div>
 		</div>
@@ -239,21 +239,41 @@
 	<div class="register-area">
 		<div class="container">
 			<sec:authorize access="hasRole('ADMIN')">
-				<div class="col-md-4" style="background-color: red;">
-					<div class="box-for overflow row">
-						<div class="col-md-12 col-xs-12 container">
-							<div class="room-list-head row">
-								<div class="col-md-6" style="background-color: blue;">s</div>
-								<div class="col-md-6" style="background-color: yellow;">참여한 대화 방 개수</div>
-								<div class="col" style="background-color: green;">c</div>
-							</div>
-							<div class="room-list">
-							</div>
-						</div>
-					</div>
+				<div class="col-md-4" style="">
+					<div class="col-xs-6" style="background-color:rgb(62,162,255); border-right-color: rgb(58,152,240); height: 100px;">.col-xs-6</div>
+  					<div class="col-xs-6" style="background-color:rgb(62,162,255) ; border-color: rgb(58,152,240); height: 100px;">
+	  						<h5 style="">개설된 채팅방</h3>
+	  						<p style="font-size: 50px; padding-left: 30%;">${roomCount }</p>
+  					</div>
+  					<!-- <div class="col-xs-12" style="padding-left: 15px; padding-bottom: 5px ; padding-top: 5px; background-color: rgb(62,162,255); height: 60px;">
+						<input style="background-color: rgb(81,171,255); height: 100%; " type="text">
+					</div> -->
+					<div class="input-group col-xs-12" style="padding-left: 15px; padding-right: 15px; padding-bottom: 5px ; padding-top: 20px; background-color: rgb(62,162,255); height: 60px; margin-bottom: 10px;">
+				      <input type="text" class="form-control" style="width: 100%; height: 100%; background-color: rgb(81,171,255); color: white; border-color:rgb(58,152,240) ;" placeholder="Search for...">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" style="width: 100%; height: 100%; background-color: rgb(81,171,255); color: rgb(138,208,255); border-color:rgb(58,152,240) ;" type="button">
+				        	<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+				        </button>
+				      </span>
+				    </div>
+				    <div style=" overflow-y: scroll; height: 400px;">
+					    <ul style="list-style:none; padding-left: 0px;">				    
+						    <c:forEach items="${chrlist }" var="list">
+								<li style="width: 100%;">
+								   	<div class="list-group" style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
+										<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}" class="list-group-item active" style="background-color: white;">
+											<h4 class="list-group-item-heading" style="color: black; margin-bottom: 15px;">채팅 건의자 : ${list.chaRoomId }</h4>
+											<p class="list-group-item-text">채팅 미리보기: ${list.roomContents }</p>
+									  	</a>
+									</div>				    
+								</li>
+							</c:forEach>
+					    </ul>
+				    </div>
+				    
 				</div>
-				<div class="col-md-8">
-				<div class="box-for overflow">
+				<div class="col-md-8" style="background-color: rgb(227, 229, 232);">
+				<div class="box-for overflow" style="background-color: rgb(240,242,245);">
 					<div class="col-md-12 col-xs-12 login-blocks">
 						 <hr>
 						 <div id="chatLog" class="chatLog" style="overflow-y: scroll; ">
@@ -293,11 +313,12 @@
 						</div>
 						<div id="chatForm" style="" class="container" onsubmit="return false">
 								<div style="margin-top: 10px;">								
-									<div style="display: inline-block; width: 80%;" > 
-										<input style="width: 100%;" type="text" autocomplete="off" id="message" class="message " size="30" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />						
+									<div style="display: inline-block; width: 90%;" > 
+										<input style="width: 100%; background-color: rgb(240,242,245); " type="text" autocomplete="off" id="message" class="message " size="30" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />						
 									</div>
-									<div style="display: inline-block; width: 20%; float: right;">
-										<input style="width: 100%; background-color: white; color: #0000ff;" type="button"  id="btnSend" class="btnSend" value="채팅전송" onclick="webSocket.sendChat()" />							
+									<div style="display: inline-block; width: 10%; float: right;">
+									<!-- 	<input style="width: 100%; background-color: rgb(240,242,245); color: #0000ff;" type="button"  id="btnSend" class="btnSend" value="채팅전송" onclick="webSocket.sendChat()" /> -->	
+										<button type="button" id="btnSend" class="btnSend"  onclick="webSocket.sendChat()"  style="width: 100%; background-color: rgb(240,242,245);"> <span class="glyphicon glyphicon-play" aria-hidden="true"></span> </button>						
 									</div>
 								</div>
 								<input type="hidden" id="division" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />			
@@ -309,8 +330,8 @@
 			
 			
 			<sec:authorize access="hasRole('USER')">
-				<div class="col-md-8 col-md-offset-2">
-				<div class="box-for overflow">
+				<div class="col-md-8 col-md-offset-2" style="background-color: rgb(227, 229, 232);">
+				<div class="box-for overflow" style="background-color: rgb(240,242,245);">
 					<div class="col-md-12 col-xs-12 login-blocks container">
 						 <hr>
 						 <div id="chatLog" class="chatLog" style="overflow-y: scroll; ">
@@ -351,10 +372,11 @@
 						<div id="chatForm" style="" class="container" onsubmit="return false">
 								<div style="margin-top: 10px;">								
 									<div style="display: inline-block; width: 80%;" > 
-										<input style="width: 100%;" type="text" autocomplete="off" id="message" class="message " size="30" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />						
+										<input style="width: 100%; background-color: rgb(240,242,245); " type="text" autocomplete="off" id="message" class="message " size="30" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />						
 									</div>
 									<div style="display: inline-block; width: 20%; float: right;">
-										<input style="width: 100%; background-color: white; color: #0000ff;" type="button"  id="btnSend" class="btnSend" value="채팅전송" onclick="webSocket.sendChat()" />							
+										<!-- <input style="width: 100%; background-color: white; color: #0000ff;" type="button"  id="btnSend" class="btnSend" value="채팅전송" onclick="webSocket.sendChat()" /> -->
+										<button type="button" id="btnSend" class="btnSend"  onclick="webSocket.sendChat()"  style="width: 100%; background-color: rgb(240,242,245);"> <span class="glyphicon glyphicon-play" aria-hidden="true"></span> </button>							
 									</div>
 								</div>
 								<input type="hidden" id="division" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" value="${standname }" />			
