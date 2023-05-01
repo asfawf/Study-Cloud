@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <meta name="description" content="GARO is a real-estate template">
 <meta name="author" content="Kimarotec">
 <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -27,4 +27,4 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/sneat/assets/css/owl.transitions.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/sneat/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/sneat/assets/css/responsive.css">
- 
+<spring:eval var="appkey" expression="@appkey.getProperty('appkey')"/>

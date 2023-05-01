@@ -58,7 +58,7 @@
                             <!-- 지도 api -->
                             <div id="map" style="width:100%;height:350px;"></div>
 
-							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=050dabb6b9a1019a9050e1301f2edd4c"></script>
+							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${appkey }"></script>
 							<script>
 							var mapContainer = document.getElementById('map'), 
 							    mapOption = { 
@@ -68,13 +68,24 @@
 							
 							var map = new kakao.maps.Map(mapContainer, mapOption); 
 							
-							var markerPosition  = new kakao.maps.LatLng(37.49904375002841, 127.03288038765064); 
+							var imageSrc = '${pageContext.request.contextPath}/resources/sneat/assets/img/marker.png',  
+							    imageSize = new kakao.maps.Size(56, 61), 
+							    imageOption = {offset: new kakao.maps.Point(27, 69)}; 
+							
+							var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+								markerPosition  = new kakao.maps.LatLng(37.49904375002841, 127.03288038765064); 
 							
 							var marker = new kakao.maps.Marker({
-							    position: markerPosition
+							    position: markerPosition,
+							    image: markerImage
 							});
 							
-							marker.setMap(map);    
+							marker.setMap(map);
+							
+							map.setZoomable(false);
+							kakao.maps.event.addListener(map, 'click', (mouseEvent) => {
+								map.setZoomable(true);
+							});
 							</script>
                         </div>
                     </div>    

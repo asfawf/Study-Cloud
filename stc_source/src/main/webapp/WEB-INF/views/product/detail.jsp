@@ -7,6 +7,12 @@
 <title>${product.detail.proName } - 상세 페이지</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${appkey }&libraries=services"></script>
+<style>
+.customoverlay {position:relative;display:block;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;background:#fff;text-align:center;font-size:14px;font-weight:bold;padding:10px 15px;}
+.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+</style>
 </head>
     <body>
         <%@ include file="/WEB-INF/views/module/header.jsp" %>
@@ -159,26 +165,8 @@
 
                                 <h4 class="s-property-title">위치</h4>                            
                                <!-- 지도 api -->
-                            <div id="map" style="width:100%;height:350px;"></div>
-
-							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=050dabb6b9a1019a9050e1301f2edd4c"></script>
-							<script>
-							var mapContainer = document.getElementById('map'), 
-							    mapOption = { 
-							        center: new kakao.maps.LatLng(37.50055486252025, 127.02501560915026), 
-							        level: 3
-							    };
+                            	<div id="map" style="width:100%;height:350px;"></div>
 							
-							var map = new kakao.maps.Map(mapContainer, mapOption); 
-							
-							var markerPosition  = new kakao.maps.LatLng(37.50055486252025, 127.02501560915026); 
-							
-							var marker = new kakao.maps.Marker({
-							    position: markerPosition
-							});
-							
-							marker.setMap(map);    
-							</script>
 
                             </div>                      
                             
@@ -618,7 +606,54 @@
           		
            	}
 
-        </script>
+          	
+			/* 지도 */
+ 			var mapContainer = document.getElementById('map'), 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(37.50055486252025, 127.02501560915026), 
+		        level: 3
+		    };
+		
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			
+			var imageSrc = '${pageContext.request.contextPath}/resources/sneat/assets/img/marker.png',  
+			    imageSize = new kakao.maps.Size(56, 61), 
+			    imageOption = {offset: new kakao.maps.Point(27, 69)}; 
+			
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+				geocoder = new kakao.maps.services.Geocoder(); 
+								
+			geocoder.addressSearch('${product.detail.proAddress}', function(result, status) {
+
+			    if (status === kakao.maps.services.Status.OK) {
+			        var markerPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+			        var marker = new kakao.maps.Marker({
+			            position: markerPosition,
+			            image: markerImage
+			        });
+
+			        marker.setMap(map); 
+			        
+			        var content= '<div class="customoverlay">${product.detail.proName}</div>';
+
+			        map.setCenter(markerPosition);
+					
+			        var customOverlay = new kakao.maps.CustomOverlay({
+					    map: map,
+					    position: markerPosition,
+					    content: content,
+					    yAnchor: 1 
+					});
+			    } 
+			});
+			
+			map.setZoomable(false);
+			kakao.maps.event.addListener(map, 'click', (mouseEvent) => {
+				map.setZoomable(true);
+			});   
+
+			</script>
 	</section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>
