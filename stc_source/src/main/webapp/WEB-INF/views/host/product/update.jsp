@@ -36,7 +36,7 @@
             <div class="container">   
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1 profiel-container">
-                        <form action="update" method="post">
+                        <form action="update" method="post" enctype="multipart/form-data">
                             <div class="profiel-header">
                                 <h3>
                                     <b>수정</b><br>
