@@ -41,7 +41,8 @@
 	<select id="selectList" resultType="pdvo">
 		SELECT PRO_NUM
       		 , PRO_NAME
-             , SUBSTR(PRO_ADDRESS,3) AS PRO_ADDRESS
+<!--              , SUBSTR(PRO_ADDRESS,3) AS PRO_ADDRESS -->
+             , PRO_ADDRESS
              , PRO_PHONE
              , MIN(PRO_PRICE) AS PRO_PRICE
 		  FROM MAP 
