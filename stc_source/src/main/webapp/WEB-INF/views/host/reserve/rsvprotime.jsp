@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>호스트예약관리</title>
+<title>공간 시간 설정</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
@@ -31,12 +31,8 @@
 				<div class="clearfix padding-top-40">
 					<div class="col-md-12 single-property-content ">
 						<div class="row">
-
-
 							<div class="form-group" style="padding: 50px;">
-								<input type="text" class="form-control" id="dateInput"
-									name="proUseTime" placeholder="날짜" onfocus="(this.type='date')"
-									onfocusout="(this.type='text')" />
+								<input type="text" class="form-control" id="proDate" name="proDate" placeholder="날짜" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
 							</div>
 							<div class="form-group">							
 								<table>
@@ -49,10 +45,9 @@
 									<tbody>
 										<c:forEach var="i" begin="0" end="23">
 											<tr>
-												<td><input type="checkbox" id="timechk${i}"
-													name="timechk" value="${i-12}" /> &nbsp;&nbsp;&nbsp;${i < 10 ? '0' : ''}${i}:00
-													~ ${i < 10 ? '0' : ''}${i}:00</td>
-												<td><select id="priceselect${i}" name="priceselect"
+												<td><input type="checkbox" id="proTime${i}" name="proTime" value="${i-12}" /> 
+												&nbsp;&nbsp;&nbsp;${i < 10 ? '0' : ''}${i}:00 ~ ${i < 10 ? '0' : ''}${i}:00</td>
+												<td><select id="proPrice${i}" name="proPrice"
 													onchange="updateValues(${i})">
 														<option value="" disabled selected>가격선택</option>
 														<option value="1000">1000원</option>
@@ -82,7 +77,7 @@
 	
 	
 	//날짜 선택
-	const dateInput = document.getElementById("dateInput");
+	const dateInput = document.getElementById("proDate");
     let selectedDate;
 
     dateInput.addEventListener("change", function() {
@@ -97,11 +92,11 @@
 	
 	function updateValues(time) {
 	  // checkbox 선택 여부 확인
-	  var checkbox = document.getElementById('timechk' + time);
+	  var checkbox = document.getElementById('proTime' + time);
 	  var isChecked = checkbox.checked;
 	
 	  
-	  var selectBox = document.getElementById('priceselect' + time);
+	  var selectBox = document.getElementById('proPrice' + time);
 	  var selectedOption = selectBox.options[selectBox.selectedIndex];
 	  var selectedValue = selectedOption.value;
 	
@@ -128,14 +123,15 @@
 
 
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
+
 <style>
-td {
-    padding-right: 20px;
-    padding-bottom: 10px;
-  }
-  table {
-    margin: 0 auto;
-  }
+	td {
+	    padding-right: 20px;
+	    padding-bottom: 10px;
+	  }
+	  table {
+	    margin: 0 auto;
+	  }
 </style>
 </body>
 </html>

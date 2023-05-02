@@ -14,6 +14,13 @@
 	<result column="pro_Notice" property="proNotice"/>
 	<result column="pro_Refund" property="proRefund"/>
 	<result column="pro_Zipcode" property="proZipcode"/>
+	
+	<result column="pro_Date" property="proDate"/>
+	<result column="pro_Price" property="proPrice"/>
+	<result column="pro_Time" property="proTime"/>
+	
+	
+	
 <!-- 	<collection column="pro_Num" property="proPicList" ofType="study.cloud.stc.product.model.vo.ProductDetailDto">
 	<result column="pro_Pic_Original" property="proPicOriginal"/>
 	<result column="pro_Pic_Rename" property="proPicRename"/>
@@ -291,4 +298,26 @@
    		   SET HOST_ANSWER = null
          WHERE QNA_NUM = #{qnaNum}
 	</update>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 상품운영시간  -->
+	<!-- <insert id="insertProTime" parameterType="Ptvo">
+		INSERT ALL 
+		INTO PRODUCT VALUES (#{proDate}, #{proNum},#{proPrice},#{RsvNum},#{proTime})
+		select * from dual
+	</insert> -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
