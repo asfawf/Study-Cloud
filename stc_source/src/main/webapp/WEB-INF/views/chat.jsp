@@ -209,7 +209,7 @@
 <script>
 
 	$( document ).ready( function() {
-	    $( 'button[type=button]' ).click( function() {
+	    $( '.btnSend' ).click( function() {
 	      $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
 	    } );
 	  } );
@@ -221,6 +221,68 @@
 	$(document).height()  
 	$('.chatLog')[0].scrollHeight
 	*/
+	
+	var row = document.getElementById('btnSend');
+	
+	$( document).ready (function(){
+		$('.allRoom').click( function(){
+			$.ajax({
+	    		url: '#', 
+	    		type: 'post',
+	            data: row,
+	            beforeSend : function(xhr)
+	               {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+	                   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	               },
+	    		//data : {memId:memId, memEmail:memEmail},
+	            datatype : 'json',
+	            error: function(xhr, status, error){
+	                alert('ajax error');
+	                document.getElementById("chtroomList").style.display = "none";
+	                document.getElementById("chtroomList2").style.display = "block";
+	            },
+	            success : function(data){
+	            	if(data == 'success'){
+	            		alert('회원의 정보가 수정되었습니다.');	
+	            		location.href="<%=request.getContextPath()%>/host";
+	            	}else{
+	            		alert('서버에 오류가 생겼습니다. 다음에 시도해 주세요.');
+	            	}
+	                
+	            }
+	        });
+		});	
+	});
+	
+	$( document).ready (function(){
+		$('.searchRoom').click( function(){
+			
+			document.getElementById("chtroomList").style.display = "none";
+            document.getElementById("chtroomList2").style.display = "block";
+			
+			$.ajax({
+	    		url: 'chatting/searchroom',
+	    		type: 'post',
+	            data: {"searchKeyword" : $('.searchKeyword').val()},
+	            beforeSend : function(xhr)
+	               {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+	                   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	               },
+	    		//data : {memId:memId, memEmail:memEmail},
+	            datatype : 'json',
+	            success : function(data){
+
+	            		 $(data).each(function(index, item) {
+	            			 alert('더하기 시작');
+	                         $('.chtroomList2').append('<div>'+ item.chaRoomId + ', ' + item.roomContents + ', ' + item.roomLastDate +'</div>');
+	                     });
+	            },
+	        });
+            
+		});
+		
+		 
+	});
 </script>
 
 
@@ -240,7 +302,11 @@
 		<div class="container">
 			<sec:authorize access="hasRole('ADMIN')">
 				<div class="col-md-4" style="">
-					<div class="col-xs-6" style="background-color:rgb(62,162,255); border-right-color: rgb(58,152,240); height: 100px;">.col-xs-6</div>
+					<div class="col-xs-6" style="background-color:rgb(62,162,255); border-right-color: rgb(58,152,240); height: 100px;">
+						<button type="button" id="allRoom" class="allRoom" style="background-color:rgb(62,162,255);">
+							<span style="background-color:rgb(62,162,255);" class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+						</button>
+					</div>
   					<div class="col-xs-6" style="background-color:rgb(62,162,255) ; border-color: rgb(58,152,240); height: 100px;">
 	  						<h5 style="">개설된 채팅방</h3>
 	  						<p style="font-size: 50px; padding-left: 30%;">${roomCount }</p>
@@ -249,29 +315,56 @@
 						<input style="background-color: rgb(81,171,255); height: 100%; " type="text">
 					</div> -->
 					<div class="input-group col-xs-12" style="padding-left: 15px; padding-right: 15px; padding-bottom: 5px ; padding-top: 20px; background-color: rgb(62,162,255); height: 60px; margin-bottom: 10px;">
-				      <input type="text" class="form-control" style="width: 100%; height: 100%; background-color: rgb(81,171,255); color: white; border-color:rgb(58,152,240) ;" placeholder="Search for...">
+				      <input type="text" class="form-control searchKeyword" id="searchKeyword" style="width: 100%; height: 100%; background-color: rgb(81,171,255); color: white; border-color:rgb(58,152,240) ;" placeholder="Search for...">
 				      <span class="input-group-btn">
-				        <button class="btn btn-default" style="width: 100%; height: 100%; background-color: rgb(81,171,255); color: rgb(138,208,255); border-color:rgb(58,152,240) ;" type="button">
+				        <button class="btn btn-default searchRoom" id="searchRoom" style="width: 100%; height: 100%; background-color: rgb(81,171,255); color: rgb(138,208,255); border-color:rgb(58,152,240) ;" type="button">
 				        	<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
 				        </button>
 				      </span>
 				    </div>
-				    <div style=" overflow-y: scroll; height: 400px;">
-					    <ul style="list-style:none; padding-left: 0px;">				    
-						    <c:forEach items="${chrlist }" var="list">
-								<li style="width: 100%;">
-								   	<div class="list-group" style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
-										<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}" class="list-group-item active" style="background-color: white;">
-											<h4 class="list-group-item-heading" style="color: black; margin-bottom: 15px;">채팅 건의자 : ${list.chaRoomId }</h4>
-											<p class="list-group-item-text">채팅 미리보기: ${list.roomContents }</p>
-									  	</a>
-									</div>				    
-								</li>
-							</c:forEach>
-					    </ul>
-				    </div>
-				    
-				</div>
+						<div id="chtroomList" class="chtroomList" style="overflow-y: scroll; height: 400px; display: block;">
+							<ul style="list-style: none; padding-left: 0px;">
+								<c:forEach items="${chrlist }" var="list">
+									<li style="width: 100%;">
+										<div class="list-group"
+											style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
+											<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}"
+												class="list-group-item active"
+												style="background-color: white;">
+												<h4 class="list-group-item-heading"
+													style="color: black; margin-bottom: 15px;">채팅 건의자 :
+													${list.chaRoomId }</h4>
+												<p class="list-group-item-text">채팅 미리보기:
+													${list.roomContents }</p>
+											</a>
+										</div>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+						<div id="chtroomList2" class="chtroomList2" style="overflow-y: scroll; height: 400px; display: none;">
+							<%-- <ul style="list-style: none; padding-left: 0px;">
+								<c:forEach items="${chrlists }" var="list">
+									<li style="width: 100%;">
+										<div class="list-group"
+											style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
+											<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}"
+												class="list-group-item active"
+												style="background-color: white;">
+												<h4 class="list-group-item-heading"
+													style="color: black; margin-bottom: 15px;">이건 숨긴 div :
+													${list.chaRoomId }</h4>
+												<p class="list-group-item-text">이건 숨긴 div:
+													${list.roomContents }</p>
+											</a>
+										</div>
+									</li>
+								</c:forEach>
+							</ul> --%>
+							이게 위치
+							
+						</div>
+					</div>
 				<div class="col-md-8" style="background-color: rgb(227, 229, 232);">
 				<div class="box-for overflow" style="background-color: rgb(240,242,245);">
 					<div class="col-md-12 col-xs-12 login-blocks">

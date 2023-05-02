@@ -44,4 +44,10 @@ public class ChattRoomServiceImpl implements ChattRoomService{
 		return dao.selectCount();
 	}
 
+	@Override
+	public List<ChattRoomVo> searchListChattRoom() {
+		// TODO Auto-generated method stub
+		return dao.searchListChattRoom();
+	}
+
 }

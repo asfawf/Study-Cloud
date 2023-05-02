@@ -40,4 +40,9 @@ public class ChattRoomDao {
 		return  session.selectOne("chroom.selectCount");
 	}
 
+	public List<ChattRoomVo> searchListChattRoom() {
+		// TODO Auto-generated method stub
+		return session.selectList("chroom.searchListChattRoom");
+	}
+
 }

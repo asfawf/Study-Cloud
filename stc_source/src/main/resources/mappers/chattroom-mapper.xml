@@ -24,6 +24,10 @@
 		SELECT * FROM CHATTROOM 
 	</select>
 	
+	<select id="searchListChattRoom" resultType="chrvo">
+		SELECT *  FROM CHATTROOM WHERE CHA_ROOM_ID LIKE '%admin%'
+	</select>
+	
 	<select id="selectCount" resultType="_int">
 		SELECT COUNT(*) CNT FROM CHATTROOM
 	</select>

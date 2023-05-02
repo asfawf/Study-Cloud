@@ -17,4 +17,6 @@ public interface ChattRoomService {
 
 	public int selectCount();
 
+	public List<ChattRoomVo> searchListChattRoom();
+
 }
