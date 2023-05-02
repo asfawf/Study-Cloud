@@ -64,10 +64,10 @@
                                         <input name="proRefund" type="text" class="form-control">
                                     </div>
                                    
-                                    <div class="form-group">
+                                   <!--  <div class="form-group">
                                         <label>가격(시간당) :</label>
                                         <input name="proPrice" type="text" class="form-control">
-                                    </div> 
+                                    </div>  -->
                                     <div class="form-group">
                                         <label>주소 : </label>
                                         <input name="proAddress" type="text" class="form-control">
