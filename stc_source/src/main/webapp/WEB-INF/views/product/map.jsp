@@ -8,6 +8,11 @@
 <title>키워드로 장소검색하고 목록으로 표출하기</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+<style>
+.customoverlay {position:relative;display:block;bottom:50px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;background:#fff;text-align:center;font-size:14px;font-weight:bold;padding:10px 15px;}
+.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
@@ -27,12 +32,9 @@
 	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" 
 	                                    	title="${param.proAddress}" onchange="submit();">
 	                                        <c:forEach var="v" items="${add }">
-												<option value="${v }">${v }</option>
+												<option value="${v }" ${param.proAddress eq v ? 'selected' : '' }>${v }</option>
 											</c:forEach>
-                                    	</select>
-                                    	<script>
-                                    	$("[name=proAddress]").val("${param.proAddress}").prop("selected", true);
-                                    	</script>
+                                    	</select>                                    	
                                 	</div>
                                     <div class="col-md-4">                                   
                                         <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="인원">
@@ -53,7 +55,7 @@
                     </div>
                     <div>
                     <c:forEach var="product" items="${pdList }">
-				   		<div class="pdList" data-proname="${product.proName }" data-proaddress="${product.proAddress }">${product.proName }, ${product.proAddress }</div>
+				   		<div class="pdList" data-proname="${product.proName }" data-proaddress="${product.proAddress }"></div>
 					</c:forEach>
 					</div>
                     <div class="map_wrap" style="padding: 25px 25px 40px">
@@ -67,7 +69,7 @@
 console.log($("select[name=proAddress]").val());
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 mapOption = { 
-    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    center: new kakao.maps.LatLng(37.564214, 127.001699), // 지도의 중심좌표
     level: 6 // 지도의 확대 레벨
 };
 
@@ -101,28 +103,37 @@ $(".pdList").each(function(){
     var latlng = geocoder.addressSearch(posObj.address,  callback);
 });
 console.log(positions);
-
+//지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+var bounds = new kakao.maps.LatLngBounds();    
 function displayMarker(positionObj){
-	//마커 이미지의 이미지 주소입니다
-	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 	
+	var imageSize = new kakao.maps.Size(24, 35); 
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 	
-	//for (var i = 0; i < positions.length; i ++) {
+	// 마커를 생성합니다
+	var marker = new kakao.maps.Marker({
+	    map: map, // 마커를 표시할 지도
+	    position: positionObj.latlng, // 마커를 표시할 위치
+	    title : positionObj.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	    image : markerImage // 마커 이미지 
+	});
 	
-		// 마커 이미지의 이미지 크기 입니다
-		var imageSize = new kakao.maps.Size(24, 35); 
-		
-		// 마커 이미지를 생성합니다    
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-		
-		// 마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-		    map: map, // 마커를 표시할 지도
-		    position: positionObj.latlng, // 마커를 표시할 위치
-		    title : positionObj.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-		    image : markerImage // 마커 이미지 
-		});
-		map.setCenter(positionObj.latlng);
-	//}
+	// 마커 위 말풍선
+	var content= '<div class="customoverlay">'+positionObj.title+'</div>';
+       
+	var customOverlay = new kakao.maps.CustomOverlay({
+		map: map,
+		position: positionObj.latlng,
+		content: content,
+		yAnchor: 1 
+	});
+	// LatLngBounds 객체에 좌표를 추가합니다
+    bounds.extend(positionObj.latlng);
+
+   	// LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+    map.setBounds(bounds);
+
 }
 
 map.setZoomable(false);
