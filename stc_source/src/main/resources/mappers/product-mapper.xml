@@ -34,8 +34,8 @@
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
        </if>
-       <if test="proUseTime != null and proUseTime neq ''">
-         OR PRO_USE_TIME = #{proUseTime}
+       <if test="proDate != null and proDate neq ''">
+         OR PRO_DATE = #{proDate}
        </if>
    </trim>         
          GROUP BY (PRO_NUM, PRO_NAME, PRO_ADDRESS, PRO_PHONE)
@@ -48,7 +48,7 @@
 	  FROM MAP 
       LEFT OUTER JOIN PRODUCT
      USING (PRO_NUM)
-	<if test="proUseTime != null and proUseTime neq ''">
+	<if test="proDate != null and proDate neq ''">
       LEFT OUTER JOIN PROTIME 
      USING (PRO_NUM) 
 	</if>
@@ -56,8 +56,8 @@
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
        </if>
-       <if test="proUseTime != null and proUseTime neq ''">
-         OR PRO_USE_TIME = #{proUseTime}
+       <if test="proDate != null and proDate neq ''">
+         OR PRO_DATE = #{proDate}
        </if>
     </trim> 
     </select>

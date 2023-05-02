@@ -21,9 +21,8 @@
         <!-- Body content -->
         <div class="page-head"> 
             <div class="container">
-                <div class="row">
-                         <h1 class="property-title pull-left">${product.detail.proName }</h1>              
-                    </div>
+                <div class="row" style="color: #777;">
+                	<h1 class="property-title pull-left">${product.detail.proName }</h1>              
                 </div>
             </div>
         </div>
@@ -82,7 +81,7 @@
 
                        <!--   <div class="single-property-wrapper">-->
                             <div class="single-property-header">                                          
-                                <h1 class="property-title pull-left">${product.detail.proName }</h1>
+                                <h1 class="property-title pull-left">${product.detail.proAddress }</h1>
                                 <span class="property-price pull-right"><fmt:formatNumber value="${product.detail.proPrice }" type="currency" /></span>
                             </div>
 

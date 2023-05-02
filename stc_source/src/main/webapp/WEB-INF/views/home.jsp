@@ -49,7 +49,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                	<input type="text" class="form-control" width="270" name="proUseTime" placeholder="날짜" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
+                                	<input type="text" class="form-control" width="270" name="proDate" placeholder="날짜" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
                                 </div>
                                 <button class="btn search-btn" type="submit" formaction="${pageContext.request.contextPath}/product">검색</button>
                                 <button class="btn search-btn" type="submit" formaction="${pageContext.request.contextPath}/product/map">지도</button>

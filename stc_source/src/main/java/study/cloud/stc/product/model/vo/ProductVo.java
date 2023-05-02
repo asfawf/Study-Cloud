@@ -22,12 +22,12 @@ public class ProductVo {
 //	PRO_ADDRESS          VARCHAR2(100) 
 //	PRO_PHONE            VARCHAR2(20)  
 //	PRO_PRICE   NOT NULL NUMBER 
-//  PRO_USE_TIME         Date
+//  PRO_DATE         Date
 	
 	private int proNum;
 	private String proName;
 	private String proAddress;
 	private String proPhone;
 	private int proPrice;
-	private String proUseTime;
+	private String proDate;
 }

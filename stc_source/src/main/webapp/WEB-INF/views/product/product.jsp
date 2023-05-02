@@ -36,7 +36,7 @@
                                     	</select>
                                     </div>
                                     <div class="col-md-4">                                     
-                                       <input type="text" class="form-control" width="270" name="proUseTime" placeholder="${param.proUseTime}" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
+                                       <input type="text" class="form-control" width="270" name="proDate" placeholder="${param.proDate}" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">
