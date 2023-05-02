@@ -62,6 +62,7 @@
 												<p style="display: none;">${list.proAddress }</p>
 												<div class="dealer-action pull-right">
 													<a href="${pageContext.request.contextPath}/host/product/update?proNum=${list.proNum}" class="button">Edit </a> 
+													<a href="${pageContext.request.contextPath}/host/reserve/rsvprotime?proNum=${list.proNum}" class="button">ReserveTime EDIT </a> 
 													<!-- <a href="#" class="button delete_user_car">Delete</a> -->
 												</div>
 											</div>
