@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import study.cloud.stc.common.file.FileUtil;
 import study.cloud.stc.common.paging.Paging;
 import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
@@ -40,6 +45,10 @@ public class HostController {
 	private ProductService pservice;
 	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
+	@Qualifier("fileUtil")
+	private FileUtil fileUtil;
 		
 	@GetMapping
 	public ModelAndView main(ModelAndView mv) throws Exception {
@@ -72,12 +81,24 @@ public class HostController {
 	//상품등록
 	@PostMapping("/product/insert")
 	public ModelAndView insertProduct(
-			ModelAndView mv,
-			@ModelAttribute("dto")
-			ProductDetailDto dto
-			, Principal principal
+			ModelAndView mv
+			, @RequestParam(name = "uploadfile", required = false) MultipartFile multi
+			, HttpServletRequest request
+			,String proName
+			,String proAddress
+			,String proPhone
+			,ProductDetailDto dto
+			,Principal principal
 			) throws Exception {
 		dto.setMemId(principal.getName());
+		Map<String, String> filePath;
+		try {
+			filePath = fileUtil.saveFile(multi, request, null);
+			dto.setProPicOriginal(filePath.get("original"));
+			dto.setProPicRename(filePath.get("rename"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		int result = pservice.insertDetail(dto);
 		if(result == 4) {
 			mv.setViewName("redirect:/host/product");
