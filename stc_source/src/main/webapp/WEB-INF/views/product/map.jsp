@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 <style>
 .customoverlay {position:relative;display:block;bottom:50px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;background:#fff;text-align:center;font-size:14px;font-weight:bold;padding:10px 15px;}
+.customoverlay a {color: #777;}
 .customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
 .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
 </style>
@@ -55,7 +56,7 @@
                     </div>
                     <div>
                     <c:forEach var="product" items="${pdList }">
-				   		<div class="pdList" data-proname="${product.proName }" data-proaddress="${product.proAddress }"></div>
+				   		<div class="pdList" data-proname="${product.proName }" data-proaddress="${product.proAddress }" data-pronum="${product.proNum }"></div>
 					</c:forEach>
 					</div>
                     <div class="map_wrap" style="padding: 25px 25px 40px">
@@ -77,13 +78,15 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 
 // 주소의 좌표를 구하는 함수
 var geocoder = new kakao.maps.services.Geocoder();
-
+var bounds = new kakao.maps.LatLngBounds();  
 var callback = function(result, status) {
     if (status === kakao.maps.services.Status.OK) {
     	posObjList.forEach(function(element){
     		if(element.address.indexOf(result[0].address_name)  >= 0 ){
-		    	positions.push({title: element.title, latlng: new kakao.maps.LatLng(result[0].y, result[0].x)});
-		    	displayMarker({title: element.title, latlng: new kakao.maps.LatLng(result[0].y, result[0].x)});
+		    	positions.push({title: element.title, latlng: new kakao.maps.LatLng(result[0].y, result[0].x), num: element.num});
+		    	displayMarker({title: element.title, latlng: new kakao.maps.LatLng(result[0].y, result[0].x), num: element.num});
+		    	bounds.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
+		    	map.setBounds(bounds);
 		    	result;
     		}
     	});
@@ -97,14 +100,14 @@ var positions = [];
 let posObjList = [];
 
 $(".pdList").each(function(){
-	var posObj = {title: $(this).data("proname"), latlng: null, address:  $(this).data("proaddress")};
+	var posObj = {title: $(this).data("proname"), latlng: null, address: $(this).data("proaddress"), num: $(this).data("pronum")};
 	posObjList.push(posObj);
 	
     var latlng = geocoder.addressSearch(posObj.address,  callback);
 });
 console.log(positions);
 //지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-var bounds = new kakao.maps.LatLngBounds();    
+  
 function displayMarker(positionObj){
 	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 	
 	var imageSize = new kakao.maps.Size(24, 35); 
@@ -119,7 +122,7 @@ function displayMarker(positionObj){
 	});
 	
 	// 마커 위 말풍선
-	var content= '<div class="customoverlay">'+positionObj.title+'</div>';
+	var content= '<div class="customoverlay"><a href="${pageContext.request.contextPath}/product/detail?proNum='+positionObj.num+'">'+positionObj.title+'</a></div>';
        
 	var customOverlay = new kakao.maps.CustomOverlay({
 		map: map,
@@ -127,12 +130,6 @@ function displayMarker(positionObj){
 		content: content,
 		yAnchor: 1 
 	});
-	// LatLngBounds 객체에 좌표를 추가합니다
-    bounds.extend(positionObj.latlng);
-
-   	// LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
-    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
-    map.setBounds(bounds);
 
 }
 
