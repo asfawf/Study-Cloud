@@ -38,4 +38,7 @@ public class ProductDetailDto {
 	private String rsvNum;
 	private String ProTime;
 	
+	
+	private String proPicOriginalOld;
+	private String proPicRenameOld;
 }

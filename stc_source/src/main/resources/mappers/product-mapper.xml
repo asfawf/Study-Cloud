@@ -44,6 +44,14 @@
 		select * from dual
 	</insert>
 	
+	
+	<insert id="insertProductFile" parameterType="pdto">
+	insert into productfile
+	values
+	(#{proNum}, #{proPicOriginal},#{proPicRename})
+	
+	</insert>
+		
 	<!-- productList 화면 -->
 	<select id="selectList" resultType="pdvo">
 		SELECT PRO_NUM
@@ -264,7 +272,6 @@
 	pro_pic_original = #{proPicOriginal}
 	,pro_pic_rename = #{proPicRename}
 	where pro_num = #{proNum}
-
 	</update>
 	
 	

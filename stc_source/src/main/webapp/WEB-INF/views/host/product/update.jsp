@@ -66,10 +66,6 @@
                                         <input name="proRefund" type="text" class="form-control" value="${productDetail.proRefund }">
                                     </div> 
                                     <div class="form-group">
-                                        <label>가격(시간당) :</label>
-                                        <input name="proPrice" type="text" class="form-control" value="${productDetail.proPrice }">
-                                    </div> 
-                                    <div class="form-group">
                                         <label>주소 : </label>
                                         <input name="proAddress" type="text" class="form-control" value="${productDetail.proAddress }">
                                     </div> 
@@ -79,7 +75,10 @@
                                     </div> 
                                     <div class="form-group">
                                         <label>이미지 :</label>
-                                        <input name="uploadfile" type="file" class="form-control">
+                                        <input name="uploadfile" type="file" class="form-control" >
+                                        <input type="hidden" name="proPicOriginalOld" value="${productDetail.proPicOriginal }">
+                                        <input type="hidden" name="proPicRenameOld" value="${productDetail.proPicRename }">
+                                    	<img alt="" src="../{productDetail.proPicRename }">
                                     </div>
                                 </div>
                                 <div class="col-sm-10 col-sm-offset-1">

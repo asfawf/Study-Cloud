@@ -93,7 +93,15 @@ public class ProductServiceImpl implements ProductService {
 		if(result == 1) {
 			result = dao.updateProduct(dto);
 		}if(result ==1) {
-			result = dao.updateProductFile(dto);
+			if(dto.getProPicRenameOld() != null && !dto.getProPicRenameOld().equals("")) {
+				if(dto.getProPicRename() != null && !dto.getProPicRename().equals("")) {
+					result = dao.updateProductFile(dto);
+				}
+			}else {
+				if(dto.getProPicRename() != null && !dto.getProPicRename().equals("")) {
+					result = dao.insertProductFile(dto);
+				}
+			}
 		}
 		return result;
 	}

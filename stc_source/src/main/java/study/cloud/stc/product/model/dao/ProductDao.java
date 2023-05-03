@@ -37,6 +37,10 @@ public class ProductDao {
 		int result = sqlSession.insert("product.insertProduct",dto);
 		return dto.getProNum();
 	}
+	
+	public int insertProductFile(ProductDetailDto dto) {
+		return sqlSession.insert("product.insertProductFile", dto);
+	}
 
 	//게시물 수정
 		public int updateMap(ProductDetailDto dto) throws Exception{

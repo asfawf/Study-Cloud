@@ -314,6 +314,7 @@ public class HostController {
 	@PostMapping("/product/update")
 	public ModelAndView updateProduct(
 			ModelAndView mv
+//		  , @RequestParam(name = "uploadfile", required = false) MultipartFile[] multifiles
 		  , @RequestParam(name = "uploadfile", required = false) MultipartFile multi
 			,ProductDetailDto pd
 			,Principal principal
@@ -323,9 +324,14 @@ public class HostController {
 		//   pd = pservice.selectOne(proNum);
 		Map<String, String> filePath;
 		try {
-			filePath = fileUtil.saveFile(multi, request, null);
-			pd.setProPicOriginal(filePath.get("original"));
-			pd.setProPicRename(filePath.get("rename"));
+//			if(multifiles != null) {
+//				for(int i=0; i<multifiles.length; i++) {
+//					MultipartFile multi = multifiles[i];
+					filePath = fileUtil.saveFile(multi, request, null);
+						pd.setProPicOriginal(filePath.get("original"));
+						pd.setProPicRename(filePath.get("rename"));
+//				}
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
