@@ -48,9 +48,8 @@
 
 										<div class="box-two proerty-item" style="height: 170px">
 											<div class="item-thumb">
-												<a
-													href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }"><img
-													src="${list.proPicOriginal }"></a>
+												<a	href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }">
+													<img src="${pageContext.request.contextPath }/resources/uploadfiles/${list.proPicRename}"/></a>
 											</div>
 											<div class="item-entry overflow">
 												<h5>

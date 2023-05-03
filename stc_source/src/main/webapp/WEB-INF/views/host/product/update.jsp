@@ -79,7 +79,7 @@
                                     </div> 
                                     <div class="form-group">
                                         <label>이미지 :</label>
-                                        <input name="proPicOriginal" type="file" class="form-control">
+                                        <input name="uploadfile" type="file" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-10 col-sm-offset-1">

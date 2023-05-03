@@ -57,6 +57,7 @@
          USING (PRO_NUM)
     LEFT OUTER JOIN PROTIME 
          USING (PRO_NUM)
+         
    <trim prefix="WHERE" prefixOverrides="AND|OR">
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
@@ -82,7 +83,7 @@
 	<trim prefix="WHERE" prefixOverrides="AND|OR">
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
-       </if>
+       </if> 
        <if test="proDate != null and proDate neq ''">
          OR PRO_DATE = #{proDate}
        </if>
@@ -117,6 +118,8 @@
 	LEFT OUTER JOIN PRODUCT
 	     USING (PRO_NUM)
 	LEFT OUTER JOIN PROTIME 
+	     USING (PRO_NUM)
+	     LEFT OUTER JOIN PRODUCTFILE 
 	     USING (PRO_NUM)
 	     WHERE PRO_NUM = #{proNum}
 	</select>
@@ -177,11 +180,15 @@
         ,pro_phone
         ,mem_id
         ,mem_authority
+        ,pro_pic_Original
+        ,pro_pic_Rename
         from map
         left outer join product
         using (pro_num)
         left outer join member
         using (mem_id)
+        LEFT OUTER JOIN PRODUCTFILE 
+	     USING (PRO_NUM)
 	 	</select>
 	<select id="productOneCnt" resultType="_int">
 
@@ -191,6 +198,8 @@
         USING (PRO_NUM)     
     	LEFT OUTER JOIN MEMBER
         USING (MEM_ID)
+        LEFT OUTER JOIN PRODUCTFILE 
+	     USING (PRO_NUM)
         WHERE PRO_NUM = #{proNum}
 	
 	</select>
@@ -201,11 +210,15 @@
         ,pro_phone
         ,mem_id
         ,mem_authority
+        ,pro_pic_Original
+        ,pro_pic_Rename
         from map
         left outer join product
         using (pro_num)
         left outer join member
         using (mem_id)
+        LEFT OUTER JOIN PRODUCTFILE 
+	     USING (PRO_NUM)
          <if test="proNum != null and proNum neq ''">
          WHERE PRO_NUM = #{proNum}
    	    </if>		

@@ -84,9 +84,6 @@ public class HostController {
 			ModelAndView mv
 			, @RequestParam(name = "uploadfile", required = false) MultipartFile multi
 			, HttpServletRequest request
-			,String proName
-			,String proAddress
-			,String proPhone
 			,ProductDetailDto dto
 			,Principal principal
 			) throws Exception {
@@ -100,16 +97,16 @@ public class HostController {
 			e.printStackTrace();
 		}
 		int result = pservice.insertDetail(dto);
-		if(result == 4) {
-			mv.setViewName("redirect:/host/product");
-		}else if(result == 3) {
-			mv.setViewName("redirect:/host/product");
-		}else if(result == 2) {
-			mv.setViewName("redirect:/host/product");
-		}else {
+//		if(result == 4) {
+//			mv.setViewName("redirect:/host/product");
+//		}else if(result == 3) {
+//			mv.setViewName("redirect:/host/product");
+//		}else if(result == 2) {
+//			mv.setViewName("redirect:/host/product");
+//		}else {
 			mv.addObject("message","등록");
 			mv.setViewName("/host/product/insert");
-		}
+		
 		return mv;
 	}
 
@@ -304,7 +301,9 @@ public class HostController {
 	@GetMapping("/product/update")
 	public ModelAndView updateProductPage(
 			ModelAndView mv
-				,@RequestParam("proNum") int proNum
+			,@RequestParam("proNum") int proNum
+			,ProductDetailDto dto
+			,Principal principal
 			) throws Exception {
 		ProductDetailDto pd = pservice.selectOne(proNum);
 		mv.addObject("productDetail", pd);
@@ -314,11 +313,22 @@ public class HostController {
 	
 	@PostMapping("/product/update")
 	public ModelAndView updateProduct(
-			ModelAndView mv,
-		// 	@RequestParam("proNum") int proNum,
-			ProductDetailDto pd
+			ModelAndView mv
+		  , @RequestParam(name = "uploadfile", required = false) MultipartFile multi
+			,ProductDetailDto pd
+			,Principal principal
+			, HttpServletRequest request
+			// 	@RequestParam("proNum") int proNum,
 			) throws Exception {
 		//   pd = pservice.selectOne(proNum);
+		Map<String, String> filePath;
+		try {
+			filePath = fileUtil.saveFile(multi, request, null);
+			pd.setProPicOriginal(filePath.get("original"));
+			pd.setProPicRename(filePath.get("rename"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		int result = pservice.updateProduct(pd);  // TODO ProductDetailDto으로 수정
 		if(result == 4) {
 			mv.setViewName("redirect:/host/product");
@@ -332,6 +342,7 @@ public class HostController {
 		}
 		return mv;
 	}
+	
 	
 	
 	@GetMapping("/info")

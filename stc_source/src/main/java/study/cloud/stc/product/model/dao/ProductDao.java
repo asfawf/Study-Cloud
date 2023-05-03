@@ -49,9 +49,9 @@ public class ProductDao {
 			 */
 			return sqlSession.update("product.updateProduct", dto);
 		}
-		public int updateProtime(ProductDetailDto dto) throws Exception{
-			return sqlSession.update("product.updateProTime",dto);
-		}
+//		public int updateProtime(ProductDetailDto dto) throws Exception{
+//			return sqlSession.update("product.updateProTime",dto);
+//		}
 		public int updateProductFile(ProductDetailDto dto) throws Exception{
 			return sqlSession.update("product.updateProductFile",dto);
 		}

@@ -87,12 +87,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Transactional
 	public int updateProduct(ProductDetailDto dto) throws Exception {
 		int result = dao.updateMap(dto);
 		if(result == 1) {
 			result = dao.updateProduct(dto);
-		}if(result == 1) {
-			result = dao.updateProtime(dto);
 		}if(result ==1) {
 			result = dao.updateProductFile(dto);
 		}
@@ -100,6 +99,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Transactional
 	public int deleteProduct(int proNum) throws Exception {
 		int result = dao.deleteProductFile(proNum);
 		if(result == 1) {

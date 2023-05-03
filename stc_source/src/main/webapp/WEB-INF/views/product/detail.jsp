@@ -49,19 +49,27 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="${pageContext.request.contextPath}/resources/sneat/assets/img/hello/085538.jpg" alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    <div class="item">
-      <img src="${pageContext.request.contextPath}/resources/sneat/assets/img/hello/085528.jpg" alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
+<!--     <div class="item active"> -->
+<%--       <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.proPicRename}"  alt="..."> --%>
+<!--       <div class="carousel-caption"> -->
+<!--         ... -->
+<!--       </div> -->
+<!--     </div> -->
+<!--     <div class="item"> -->
+<%--       <img src="${pageContext.request.contextPath}/resources/sneat/assets/img/hello/085528.jpg" alt="..."> --%>
+<!--       <div class="carousel-caption"> -->
+<!--         ... -->
+<!--       </div> -->
+<!--     </div> -->
     ...
+    
+ <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.proPicRename}"/>   
+    
+    
+    
+    
+    
+    
   </div>
 
   <!-- Controls -->
