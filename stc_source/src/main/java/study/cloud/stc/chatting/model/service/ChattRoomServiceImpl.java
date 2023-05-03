@@ -50,4 +50,28 @@ public class ChattRoomServiceImpl implements ChattRoomService{
 		return dao.searchListChattRoom();
 	}
 
+	@Override
+	public List<ChattRoomVo> allListChattRoom() {
+		// TODO Auto-generated method stub
+		return dao.allListChattRoom(); 
+	}
+
+	@Override
+	public List<ChattRoomVo> searchAllListChattRoom() {
+		// TODO Auto-generated method stub
+		return dao.searchAllListChattRoom();
+	}
+
+	@Override
+	public List<ChattRoomVo> searchReqChattRoom(String chaRoomId) {
+		// TODO Auto-generated method stub
+		return dao.searchReqChattRoom(chaRoomId);
+	}
+
+	@Override
+	public int searchRoomCount(String chaRoomId) {
+		// TODO Auto-generated method stub
+		return dao.searchRoomCount(chaRoomId);
+	}
+
 }

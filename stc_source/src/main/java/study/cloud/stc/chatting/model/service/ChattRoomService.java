@@ -19,4 +19,12 @@ public interface ChattRoomService {
 
 	public List<ChattRoomVo> searchListChattRoom();
 
+	public List<ChattRoomVo> allListChattRoom();
+
+	public List<ChattRoomVo> searchAllListChattRoom();
+
+	public List<ChattRoomVo> searchReqChattRoom(String chaRoomId);
+
+	public int searchRoomCount(String chaRoomId);
+
 }

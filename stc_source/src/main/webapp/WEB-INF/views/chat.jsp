@@ -33,10 +33,12 @@
 			// 정의된 CMD 코드에 따라서 분기 처리
 			if (msgData.cmd == 'CMD_MSG_SEND') {
 				if(msgData.division!= "${standname }" ){
-					$('#divChatData').append('<div align="left" class="wrap" >' + msgData.sender + '<div class="messageformleft" style="max-width: 300px;">' + msgData.msg + '</div>' + '<div class="chatTime">'+ msgData.formatedNow+'</div>' +'</div>');	
+					$( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
+					$('#divChatData').append('<div align="left" class="wrap" >' + msgData.sender + '<div class="messageformleft" style="max-width: 300px;">' + msgData.msg + '</div>' + '<div class="chatTime">'+ msgData.formatedNow+'</div>' +'</div>');
 				}
 				else if(msgData.division== "${standname }" ){
-					$('#divChatData').append('<div align="right" class="wrap">'+ msgData.sender +'<div class="chatTime">'+ msgData.formatedNow + '</div>' + '<div class="messageformright" style="max-width: 300px;">' + msgData.msg +'</div>' +'</div>');	
+					$( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
+					$('#divChatData').append('<div align="right" class="wrap">'+ msgData.sender +'<div class="chatTime">'+ msgData.formatedNow + '</div>' + '<div class="messageformright" style="max-width: 300px;">' + msgData.msg +'</div>' +'</div>');
 				}
 			}
 			// 입장
@@ -238,8 +240,6 @@
 	            datatype : 'json',
 	            error: function(xhr, status, error){
 	                alert('ajax error');
-	                document.getElementById("chtroomList").style.display = "none";
-	                document.getElementById("chtroomList2").style.display = "block";
 	            },
 	            success : function(data){
 	            	if(data == 'success'){
@@ -257,11 +257,8 @@
 	$( document).ready (function(){
 		$('.searchRoom').click( function(){
 			
-			document.getElementById("chtroomList").style.display = "none";
-            document.getElementById("chtroomList2").style.display = "block";
-			
 			$.ajax({
-	    		url: 'chatting/searchroom',
+	    		url: '${pageContext.request.contextPath}/chatting/searchroom',
 	    		type: 'post',
 	            data: {"searchKeyword" : $('.searchKeyword').val()},
 	            beforeSend : function(xhr)
@@ -269,25 +266,74 @@
 	                   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 	               },
 	    		//data : {memId:memId, memEmail:memEmail},
-	            datatype : 'json',
-	            success : function(data){
-
-	            		 $(data).each(function(index, item) {
-	            			 alert('더하기 시작');
-	                         $('.chtroomList2').append('<div>'+ item.chaRoomId + ', ' + item.roomContents + ', ' + item.roomLastDate +'</div>');
-	                     });
-	            },
+	            dataType : 'json',
+	            success : function(result){
+	            	
+					$('.fix-li').remove();
+					$('.instance-li').remove();
+					
+					updateCount($('.searchKeyword').val());
+					
+					$(result).each(function(index, item) {
+	            		$('.fix-stand').append(
+		            		'<li style=/"width: 100%;/" class=\"instance-li\" id=\"instance-li\">'+
+		            			'<div class=\"list-group\" style=\"background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;\">' +
+		            				'<a href= \"<%=request.getContextPath()%>/chatting?room_id='+ item.chaRoomId+ '\" class=\"list-group-item active\" style=\"background-color: white;\">' +
+		            					'<h4 class=\"list-group-item-heading\" style=\" color: black; margin-bottom: 15px;\">' + '채팅 건의자 : ' +  item.chaRoomId  +'</h4>'+
+		            					'<p class=\"list-group-item-text\">채팅 미리보기:' + item.roomContents + '</p>'+
+		            				'</a>'+
+		            			'</div>'+
+		            		'</li>'
+		            	);
+	            	});
+	            }
 	        });
             
 		});
 		
 		 
 	});
+	
+	function updateCount(chaRoomId) {
+		$.ajax({
+			url: '${pageContext.request.contextPath}/chatting/updatecount',
+    		type: 'post',
+			data: {"chaRoomId" : chaRoomId },
+			beforeSend : function(xhr)
+            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+                
+            },
+            success : function(seacou){
+            	
+            	$('.fix-room').remove();
+            	$('.instance-room').remove(); 
+            	$('.instance-alert').remove();
+            	
+            	if(seacou == '0'){
+	            	$('.roomCountdiv').append(
+	            			'<h5 id=\"instance-room\" class=\"instance-room\">검색된 채팅방</h3>'+
+	            			'<p style=\"font-size: 50px; padding-left: 30%;\" id=\"fix-room\" class=\"fix-room\">' + seacou + '</p>'
+	            	);
+	            	
+	            	$('.alertmsg').append(
+	            			'<div style=\"width: 100%; height: 100%; \" class="instance-alert" id="instance-alert">'+ 
+		            			'<p style=\"font-size:100%; padding-top: 25%;\" align=\"center\">검색어와 유사한 결과가 없습니다.<br> 다시 검색해 주세요.</p>'+	            			
+	            			'</div>'
+	            	);
+	            }else{
+            		$('.roomCountdiv').append(
+	            			'<h5 id=\"instance-room\" class=\"instance-room\">검색된 채팅방</h3>'+
+	            			'<p style=\"font-size: 50px; padding-left: 30%;\" id=\"fix-room\" class=\"fix-room\">' + seacou + '</p>'
+	            	);
+            	}
+            }
+		});
+	}
 </script>
 
-
 <body>
-<%@ include file="/WEB-INF/views/module/header2.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header2.jsp"%> 
 <section style="background-color: rgb(227,229,232);">
 	<div class="count-area" style="background-color: rgb(227,229,232);">
 		<div class="container" style="background-color: rgb(227,229,232);">
@@ -304,12 +350,12 @@
 				<div class="col-md-4" style="">
 					<div class="col-xs-6" style="background-color:rgb(62,162,255); border-right-color: rgb(58,152,240); height: 100px;">
 						<button type="button" id="allRoom" class="allRoom" style="background-color:rgb(62,162,255);">
-							<span style="background-color:rgb(62,162,255);" class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+							<span style="display:inline-block; width: 50%;  background-color:rgb(62,162,255);" class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 						</button>
 					</div>
-  					<div class="col-xs-6" style="background-color:rgb(62,162,255) ; border-color: rgb(58,152,240); height: 100px;">
-	  						<h5 style="">개설된 채팅방</h3>
-	  						<p style="font-size: 50px; padding-left: 30%;">${roomCount }</p>
+  					<div class="col-xs-6 roomCountdiv" style="background-color:rgb(62,162,255) ; border-color: rgb(58,152,240); height: 100px;" id="roomCountdiv">
+	  						<h5 id="fix-room" class="fix-room">개설된 채팅방</h3>
+	  						<p style="font-size: 50px; padding-left: 30%;" id="fix-room" class="fix-room">${roomCount }</p>
   					</div>
   					<!-- <div class="col-xs-12" style="padding-left: 15px; padding-bottom: 5px ; padding-top: 5px; background-color: rgb(62,162,255); height: 60px;">
 						<input style="background-color: rgb(81,171,255); height: 100%; " type="text">
@@ -322,15 +368,12 @@
 				        </button>
 				      </span>
 				    </div>
-						<div id="chtroomList" class="chtroomList" style="overflow-y: scroll; height: 400px; display: block;">
-							<ul style="list-style: none; padding-left: 0px;">
+						<div id="chtroomList alertmsg" class="chtroomList alertmsg" style="overflow-y: scroll; height: 400px; display: block;">
+							<ul style="list-style: none; padding-left: 0px;" class="fix-stand" id="fix-stand">
 								<c:forEach items="${chrlist }" var="list">
-									<li style="width: 100%;">
-										<div class="list-group"
-											style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
-											<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}"
-												class="list-group-item active"
-												style="background-color: white;">
+									<li style="width: 100%;" class="fix-li" id="fix-li">
+										<div class="list-group" style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
+											<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}" class="list-group-item active" style="background-color: white;">
 												<h4 class="list-group-item-heading"
 													style="color: black; margin-bottom: 15px;">채팅 건의자 :
 													${list.chaRoomId }</h4>
@@ -341,28 +384,6 @@
 									</li>
 								</c:forEach>
 							</ul>
-						</div>
-						<div id="chtroomList2" class="chtroomList2" style="overflow-y: scroll; height: 400px; display: none;">
-							<%-- <ul style="list-style: none; padding-left: 0px;">
-								<c:forEach items="${chrlists }" var="list">
-									<li style="width: 100%;">
-										<div class="list-group"
-											style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
-											<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}"
-												class="list-group-item active"
-												style="background-color: white;">
-												<h4 class="list-group-item-heading"
-													style="color: black; margin-bottom: 15px;">이건 숨긴 div :
-													${list.chaRoomId }</h4>
-												<p class="list-group-item-text">이건 숨긴 div:
-													${list.roomContents }</p>
-											</a>
-										</div>
-									</li>
-								</c:forEach>
-							</ul> --%>
-							이게 위치
-							
 						</div>
 					</div>
 				<div class="col-md-8" style="background-color: rgb(227, 229, 232);">
@@ -403,7 +424,7 @@
 							</c:forEach>
 							<!-- 여기가 문장 저장 되는 곳 -->
 							<div id="divChatData" ></div>
-						</div>
+						</div>						
 						<div id="chatForm" style="" class="container" onsubmit="return false">
 								<div style="margin-top: 10px;">								
 									<div style="display: inline-block; width: 90%;" > 

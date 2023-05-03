@@ -24,6 +24,10 @@
 		SELECT * FROM CHATTROOM 
 	</select>
 	
+	<select id="searchReqChattRoom" resultType="chrvo">
+		SELECT *  FROM CHATTROOM WHERE CHA_ROOM_ID LIKE '%'||#{chaRoomId}||'%'
+	</select>
+	
 	<select id="searchListChattRoom" resultType="chrvo">
 		SELECT *  FROM CHATTROOM WHERE CHA_ROOM_ID LIKE '%admin%'
 	</select>
@@ -31,4 +35,19 @@
 	<select id="selectCount" resultType="_int">
 		SELECT COUNT(*) CNT FROM CHATTROOM
 	</select>
+	
+	<select id="allListChattRoom" resultType="chrvo">
+		SELECT *  FROM CHATTROOM 
+	</select>
+	
+	<select id="searchAllListChattRoom" resultType="chrvo">
+		SELECT *  FROM CHATTROOM 
+	</select>
+	
+	
+	<select id="searchRoomCount" resultType="_int" >
+		SELECT COUNT(*) cnt FROM CHATTROOM where CHA_ROOM_ID LIKE '%'||#{chaRoomId}||'%'
+	</select>
+	
+	
 </mapper>

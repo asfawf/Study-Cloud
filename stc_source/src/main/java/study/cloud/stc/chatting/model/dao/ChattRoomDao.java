@@ -45,4 +45,24 @@ public class ChattRoomDao {
 		return session.selectList("chroom.searchListChattRoom");
 	}
 
+	public List<ChattRoomVo> allListChattRoom() {
+		// TODO Auto-generated method stub
+		return session.selectList("chroom.allListChattRoom");
+	}
+
+	public List<ChattRoomVo> searchAllListChattRoom() {
+		// TODO Auto-generated method stub
+		return session.selectList("chroom.searchAllListChattRoom");
+	}
+
+	public List<ChattRoomVo> searchReqChattRoom(String chaRoomId) {
+		// TODO Auto-generated method stub
+		return  session.selectList("chroom.searchReqChattRoom", chaRoomId);
+	}
+
+	public int searchRoomCount(String chaRoomId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("chroom.searchRoomCount", chaRoomId);
+	}
+
 }

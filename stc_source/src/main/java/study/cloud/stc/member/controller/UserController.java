@@ -33,13 +33,7 @@ public class UserController {
 	public ModelAndView viewUserInfo(ModelAndView mv, Principal principal, MemberVo vo) throws Exception {
 		
 		
-		System.out.println("memId: "+principal.getName());
 		vo.setMemId(principal.getName());
-		
-		System.out.println("vo:"+ vo);
-		
-		System.out.println("result: "+mservice.takeInfo(vo));
-		
 		
 		mv.addObject("mv", mservice.takeInfo(vo));
 		
@@ -69,8 +63,6 @@ public class UserController {
 		
 		System.out.println("newstrPhone: "+ newstrPhone);
 		vo.setMemPhone(newstrPhone);
-		
-		System.out.println("이건 변환 후: "+vo);
 		
 		int result = 0;
 		

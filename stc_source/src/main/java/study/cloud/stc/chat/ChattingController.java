@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import study.cloud.stc.chatting.model.service.ChattRoomService;
 import study.cloud.stc.chatting.model.service.ChattingService;
 import study.cloud.stc.chatting.model.vo.ChattRoomVo;
@@ -54,8 +56,6 @@ public class ChattingController {
 			schvo.setRoomId(room_id);
 
 			// 해당 방의 대화
-			System.out.println("service.selectListMessage(schvo): "+ service.selectListMessage(schvo));
-
 			String standname = principal.getName();
 			System.out.println("standname: "+standname);
 
@@ -64,11 +64,7 @@ public class ChattingController {
 			request.setAttribute("standname", standname);
 			request.setAttribute("chrlist", crService.selectListChattRoom(crvo));
 			
-			System.out.println("crService.selectCount(): "+ crService.selectCount());
-			
 			request.setAttribute("roomCount", crService.selectCount());
-			
-			System.out.println(" crService.selectListChattRoom(crvo): 이거 봐"+  crService.selectListChattRoom(crvo));
 			
 			return "chat";
 		}
@@ -77,15 +73,39 @@ public class ChattingController {
 		@ResponseBody
 		public List<ChattRoomVo> userInfoAjax(
 				HttpServletRequest req,
-				@RequestParam(value="searchKeyword", defaultValue="1") String searchKeyword
+				@RequestParam(value="searchKeyword", defaultValue="valueIsNull") String chaRoomId
 			) throws Exception {
 			
-			System.out.println("searchKeyword : "+ searchKeyword);
 			
-			System.out.println("crService.searchListChattRoom(): "+crService.searchListChattRoom());
+			// 이 때는 전체 방이 나오게 하기
+			if(chaRoomId.equals("valueIsNull")) {
+				System.out.println("searchKeyword : "+ chaRoomId);
+				return crService.searchAllListChattRoom();
+			}
 			
-			
-			return crService.searchListChattRoom();
+			// 하단의 경우에서 부터는 조건에 맞춰서 찾기
+//			return new Gson().toJson(crService.searchListChattRoom());
+			return crService.searchReqChattRoom(chaRoomId);
 		}
+		
+		@PostMapping("/updatecount")
+		@ResponseBody
+		public String updateCount(
+			@RequestParam(value="chaRoomId", defaultValue="valueIsNull") String chaRoomId
+				) throws Exception {
+			
+			System.out.println("검색어 관련 update Controller chaRoomId:" + chaRoomId);
+			
+			if(chaRoomId.equals("valueIsNull")) {
+				String nullcount = String.valueOf( crService.selectCount());
+				
+				return nullcount;
+			}
+			
+			String roomCount = String.valueOf( crService.searchRoomCount(chaRoomId));
+			
+			return roomCount;
+		}
+		
 
 }

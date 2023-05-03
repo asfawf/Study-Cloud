@@ -19,6 +19,7 @@ import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.product.model.service.ProductService;
 import study.cloud.stc.product.model.vo.HostProductDto;
+import study.cloud.stc.chatting.model.service.ChattRoomService;
 import study.cloud.stc.common.paging.Paging;
 
 @Controller
@@ -31,6 +32,9 @@ public class AdminController {
 	private ProductService pservice;
 	private final static int BOARD_LIMIT = 5;
 	private final static int PAGE_LIMIT = 5;
+	
+	@Autowired
+	ChattRoomService crService;
 	
 	@GetMapping
 	public ModelAndView main(ModelAndView mv) throws Exception {
@@ -238,5 +242,28 @@ public class AdminController {
 		return mv;
 	}	
 	
+	//-------------------------------------------------------
 	
+	@GetMapping("chatting/list")
+	public ModelAndView chatRoomList(
+			ModelAndView mv
+			, HttpServletRequest req
+			, @RequestParam(value = "page", defaultValue="1") int page
+			) throws Exception {
+		
+		mv.addObject("roomList", crService.allListChattRoom());
+		mv.setViewName("admin/chatlist");
+		
+		//
+		
+		/*
+		 * int currentPage = page; int totalCnt= crService.selectCount(); Map<String,
+		 * Integer> map= new Paging().paging(currentPage, totalCnt, BOARD_LIMIT,
+		 * PAGE_LIMIT); mv.addObject("pageInfo", map);
+		 */
+		
+		//
+
+		return mv;
+	}
 }

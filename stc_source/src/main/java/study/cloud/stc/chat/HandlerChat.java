@@ -87,29 +87,18 @@ public class HandlerChat extends TextWebSocketHandler {
 			// 전송했을 당시 + 메세지가 빈 공간이 아닐 경우 움직이게 함
 			if(mapReceive.get("cmd").equals("CMD_MSG_SEND") && (int) mapReceive.get("msg").length() > 0) {
 				
-				System.out.println("\n전송자: "+division);
-				System.out.println("로그인 아이디: "+session.getPrincipal().getName());
-				System.out.println("지금 방: "+(String) mapReceive.get("room_id"));
-				System.out.println("보낸 메세지:"+(String) mapReceive.get("msg"));
-				System.out.println("보낸 메세지 길이:"+(int) mapReceive.get("msg").length());
-				
 				vo.setChaContents((String) mapReceive.get("msg"));
 				vo.setMemId(division);
 				vo.setRoomId((String) mapReceive.get("room_id"));
-				
-				System.out.println("vo:"+ vo);
 				
 				// 1. RoomId 넣기
 				
 				crvo.setChaRoomId((String) mapReceive.get("room_id"));
 				crvo.setRoomContents((String) mapReceive.get("msg"));				
 				
-				System.out.println("crvo: "+crvo);
 				
 				mrvo.setMemId(division);
 				mrvo.setRoomId((String) mapReceive.get("room_id"));
-				
-				System.out.println("mrvo: "+mrvo);
 				
 				// 1-0. chattRoom 	- select 해서  있는지 없는지 확인 없으면 insert 있으면 넘기기  
 				if(crservice.viewRoomId(crvo) == null) {
@@ -118,20 +107,15 @@ public class HandlerChat extends TextWebSocketHandler {
 				
 				// 1-1. MemberRoom 	- division 사용해서 해당 id 와, 상단에서 기입한 정보와 같은걸 기입
 				if(mrservice.viewMemberId(mrvo) == null) {
-					System.out.println("\n인원 없음");
 					mrservice.addMemId(mrvo);
 				}else {
 					System.out.println("인원 있음");
 				}
 				
 				
-				// 1-2. chat 		- 절차대로 진행이 되었을 경우 chat 테이블에 문자 저장됨 
-				System.out.println("service.addtMessage(vo): "+ service.addtMessage(vo));
-				
-				System.out.println("crvo 이거이거: " + crvo);
+				// 1-2. chat 		- 절차대로 진행이 되었을 경우 chat 테이블에 문자 저장됨
+				service.addtMessage(vo);
 				crservice.updateChattRoom(crvo);
-				
-				System.out.println("\n");
 			}
 			
 			

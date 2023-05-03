@@ -62,7 +62,7 @@
 		                        <li><a class="" href="<%=request.getContextPath() %>/admin/user">일반회원 관리</a></li>
 								<li><a class="" href="<%=request.getContextPath() %>/admin/host">호스트 관리</a></li>
 		                        <li><a class="" href="<%=request.getContextPath() %>/admin/product">공간 관리</a></li>
-		                        <li><a class="" href="<%=request.getContextPath() %>/chatting">채팅 관리</a></li>
+		                        <li><a class="" href="<%=request.getContextPath() %>/admin/chatting/list">채팅 관리</a></li>
 		                        <li><a class="" href="<%=request.getContextPath() %>/notice">notice 관리</a></li>
 		                    </ul>
 	                    </sec:authorize>			
