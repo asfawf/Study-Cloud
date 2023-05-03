@@ -36,7 +36,6 @@ public class ProductDetailDto {
 	private Date proDate;
 	private int proPrice;
 	private String rsvNum;
-	private String ProTime;
 	
 	
 	private String proPicOriginalOld;

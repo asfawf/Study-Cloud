@@ -45,23 +45,26 @@
 									<tbody>
 										<c:forEach var="i" begin="0" end="23">
 											<tr>
-												<td><input type="checkbox" id="proTime${i}" name="proTime" value="${i-12}" /> 
-												&nbsp;&nbsp;&nbsp;${i < 10 ? '0' : ''}${i}:00 ~ ${i < 10 ? '0' : ''}${i}:00</td>
-												<td><select id="proPrice${i}" name="proPrice"
-													onchange="updateValues(${i})">
+												<td>
+												<input type="checkbox" data-protime="${i}" name="proTime" value="${i}" /> 
+												&nbsp;&nbsp;&nbsp;${i < 10 ? '0' : ''}${i}:00 ~ ${i < 10 ? '0' : ''}${i}:00
+												</td>
+												<td>
+												<select data-proprice="${i}" name="proPrice">
 														<option value="" disabled selected>가격선택</option>
 														<option value="1000">1000원</option>
 														<option value="1500">1500원</option>
 														<option value="2000">2000원</option>
 														<option value="2500">2500원</option>
 														<option value="3000">3000원</option>
-												</select></td>
+												</select>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 								<div class= "form-group" style="padding: 50px;">
-								<input type="submit" class="btn btn-primary rsvProTime-btn" id="rsvProTime-btn" name="rsvProTime-btn" value="저장">
+								<input type="button" class="btn btn-primary rsvProTime-btn" id="rsvProTime-btn" value="저장">
 								</div>								
 							</div>
 						</div>
@@ -69,53 +72,167 @@
 				</div>
 			</div>
 		</div>
-
-
 	</section>
 
 	<script>
 	
-	
-	//날짜 선택
+	// 날짜 선택
 	const dateInput = document.getElementById("proDate");
-    let selectedDate;
+	let selectedDate;
+	
+	dateInput.addEventListener("change", function() {
+	    selectedDate = this.value;
+	    console.log("날짜:", selectedDate);
+	});
+	
+	// 저장 버튼 클릭		
+	$("#rsvProTime-btn").click(updateValues);
+	 
+	 // checkbox, select 선택된 값 배열에 담기
+	 let selectedValues = [];
+	 
+	 
+	 function updateValues() {
+		 $("[name=proTime]:checked").each(function(){
+			 var i = $(this).data("protime");
+			 var time = $(this).val();
+			 var price = 0;
+			 $("[name=proPrice]").each(function(){
+				 var j = $(this).data("proprice");
+				 if(i==j){
+					 price = $(this).val();
+				 }
+			 });
+			 selectedValues.push({ time: time, price: price });
+		 });
+	    
+	    console.log("시간,가격:", selectedValues);
+		    
+		// selectedDate문자와 selectedValues배열을 오브젝트 형식으로 담기
+		const selectedData = {
+				proNum: '${proNum}',
+				date: selectedDate,
+				values: selectedValues				
+		};
+		
+		console.log("객체담긴 배열:", selectedData);
+		
 
-    dateInput.addEventListener("change", function() {
-        selectedDate = this.value;
-        console.log("날짜:", selectedDate);
-    });
-	
-	
-	
-	//chekcbox,select선택된 값 배열에 담기
-	var selectedValues = [];
-	
-	function updateValues(time) {
-	  // checkbox 선택 여부 확인
-	  var checkbox = document.getElementById('proTime' + time);
-	  var isChecked = checkbox.checked;
-	
+	 	// selectedData 직렬화
+	 	var jsonData = JSON.stringify(selectedData);
+	 	
+	 	console.log(jsonData);
+	 	
+	   	$.ajax({
+	   		url: '${pageContext.request.contextPath}/host/reserve/rsvprotime',
+	   		type: 'post',
+	   		//traditional: true,
+	   		contentType: "application/json; charset=utf-8",
+	   		data: jsonData,  
+	   		
+	   		dataType: 'json',
+	   		success: function(result) {
+	   			console.log(result);
+	   			alert("ajax보냄")
+	   		},
+	   		error: function(error) {
+	   			alert(error.errorMsg);
+	   		}
+	   	 	, beforeSend : function(xhr){
+             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+			}
+	   		
+	   	}); 
+	}
+	 
+
+ 
+ 
+   	
 	  
-	  var selectBox = document.getElementById('proPrice' + time);
-	  var selectedOption = selectBox.options[selectBox.selectedIndex];
-	  var selectedValue = selectedOption.value;
+	  
+	/*   
+   	function updateValues() {
+		 $("[name=proTime]:checked").each(function(){
+			 var i = $(this).data("protime");
+			 var time = $(this).val();
+			 var price = 0;
+			 $("[name=proPrice]").each(function(){
+				 var j = $(this).data("proprice");
+				 if(i==j){
+					 price = $(this).val();
+				 }
+			 });
+			 selectedValues.push({ time: time, price: price });
+		 });
+		 
+	    // checkbox 선택 여부 확인
+	    var checkbox = document.getElementById('proTime' + time);
+	    var isChecked = checkbox ? checkbox.checked : false;
+	  
+	    var selectBox = document.getElementById('proPrice' + time);
+	    var selectedOption = selectBox.options[selectBox.selectedIndex];
+	    var selectedValue = selectedOption.value;
 	
-	  // 선택된 값이 있다면 배열에 저장
-	  if (isChecked && selectedValue) {
-	    selectedValues.push({ time: time, price: selectedValue });
-	  } else {
-	    // 선택된 값이 없다면 배열에서 제거
-	    for (var i = 0; i < selectedValues.length; i++) {
-	      if (selectedValues[i].time === time) {
-	        selectedValues.splice(i, 1);
-	        break;
-	      }
+	    // 선택된 값이 있다면 배열에 저장
+	    if (isChecked && selectedValue) {
+	        selectedValues.push({ time: time, price: selectedValue });
+	    } else {
+	        // 선택된 값이 없다면 배열에서 제거
+	        for (var i = 0; i < selectedValues.length; i++) {
+	            if (selectedValues[i].time === time) {
+	                selectedValues.splice(i, 1);
+	                break;
+	            }
+	        }
 	    }
-	  }
-	
-	  console.log("시간,가격:", selectedValues);
-	} 
-	
+	    
+	    console.log("시간,가격:", selectedValues);
+		    
+		    
+		    
+		// selectedDate문자와 selectedValues배열을 오브젝트 형식으로 담기
+		const selectedData = {
+				proNum: '${proNum}',
+				date: selectedDate,
+				values: selectedValues				
+		};
+		
+		console.log("객체담긴 배열:", selectedData);
+	}
+	  */
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	 /*  
+	  //날짜 그리고 시간과 가격 배열을 객체로 만들어 새로운 배열에 저장
+	  const selecteData = {
+			  date: selectedDate,
+			  values: selecteValue
+	  };
+	  
+	  console.log("선택한 데이터:", selecteData);
+
+	}
+	  
+	   */
+	  
+	  
+	  
+	  
+	  
 	  
 	</script>
 

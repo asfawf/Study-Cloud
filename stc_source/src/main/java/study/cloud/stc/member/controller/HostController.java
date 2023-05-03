@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import study.cloud.stc.common.file.FileUtil;
 import study.cloud.stc.common.paging.Paging;
@@ -278,25 +280,7 @@ public class HostController {
 		hostQna.put("qnaList", qnaList);
 
 		return new Gson().toJson(hostQna);
-	}
-	
-	@GetMapping("/reserve")
-	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
-		mv.setViewName("/host/reserve/reserve");
-		return mv;
-	}
-	
-	@GetMapping("/reserve/rsvprotime")
-	public ModelAndView selectRsvProtime(ModelAndView mv) throws Exception {
-		mv.setViewName("/host/reserve/rsvprotime");
-		return mv;
-	}
-	
-	@GetMapping("/reserve/delete")
-	public ModelAndView deleteReservePage(ModelAndView mv) throws Exception {
-		mv.setViewName("/host/reserve/delete");
-		return mv;
-	}
+	}	
 	
 	@GetMapping("/product/update")
 	public ModelAndView updateProductPage(
@@ -407,6 +391,58 @@ public class HostController {
 		}
 		
 		return shout;
+	}
+	
+	
+	
+	
+	//예약관리
+
+	
+	@GetMapping("/reserve")
+	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve/reserve");
+		return mv;
+	}
+	
+	@GetMapping("/reserve/rsvprotime")
+	public ModelAndView selectRsvProtime(ModelAndView mv
+			,String proNum
+			) throws Exception {
+		mv.addObject("proNum", proNum);
+		mv.setViewName("/host/reserve/rsvprotime");
+		return mv;
+	}
+	
+	@GetMapping("/reserve/delete")
+	public ModelAndView deleteReservePage(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve/delete");
+		return mv;
+	}
+	
+	
+	@PostMapping("/reserve/rsvprotime")
+	@ResponseBody 
+	public String seletedValues(@RequestBody Map<String, Object> jsonData) {
+		
+		//new Gson().fromJson(jsonData, Map<String, Object>);
+		
+		System.out.println(jsonData.get("proNum"));
+		System.out.println(jsonData.get("values"));
+		System.out.println(((List<Map<String, Object>>)jsonData.get("values")).size());
+		
+		//직렬화된 오브젝트 배열을 JSONArray형식으로 
+		//JsonArray array = JsonArray.(jsonData);
+		
+		List<Map<String, Object>> values = (List<Map<String, Object>>)jsonData.get("values");
+		for(Map<String, Object> map : values) {
+			System.out.println(map.get("price"));
+		}
+		
+		
+		return "OK";
+		
+		
 	}
 	
 	

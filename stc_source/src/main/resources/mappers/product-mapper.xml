@@ -17,7 +17,6 @@
 	
 	<result column="pro_Date" property="proDate"/>
 	<result column="pro_Price" property="proPrice"/>
-	<result column="pro_Time" property="proTime"/>
 	
 	
 	
@@ -328,7 +327,7 @@
 	<!-- 상품운영시간  -->
 	<!-- <insert id="insertProTime" parameterType="Ptvo">
 		INSERT ALL 
-		INTO PRODUCT VALUES (#{proDate}, #{proNum},#{proPrice},#{RsvNum},#{proTime})
+		INTO PRODUCT VALUES (#{proDate}, #{proNum},#{proPrice},#{RsvNum})
 		select * from dual
 	</insert> -->
 	
