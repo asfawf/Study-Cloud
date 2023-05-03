@@ -14,6 +14,6 @@
 	</insert>
 	
 	<select id="selectListMessage" resultType="chtvo">
-		SELECT CHA_NUM, CHA_CONTENTS,CHA_TIME, MEM_ID ,ROOM_ID FROM CHAT WHERE ROOM_ID = #{roomId}
+		SELECT CHA_NUM, CHA_CONTENTS,CHA_TIME, MEM_ID ,ROOM_ID FROM CHAT WHERE ROOM_ID = #{roomId} ORDER BY CHA_NUM ASC
 	</select>
 </mapper>

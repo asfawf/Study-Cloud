@@ -114,6 +114,7 @@ public class HandlerChat extends TextWebSocketHandler {
 				
 				
 				// 1-2. chat 		- 절차대로 진행이 되었을 경우 chat 테이블에 문자 저장됨
+				System.out.println("저장되는 메세지 : "+ vo);
 				service.addtMessage(vo);
 				crservice.updateChattRoom(crvo);
 			}

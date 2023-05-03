@@ -33,12 +33,25 @@
 			// 정의된 CMD 코드에 따라서 분기 처리
 			if (msgData.cmd == 'CMD_MSG_SEND') {
 				if(msgData.division!= "${standname }" ){
-					$( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
-					$('#divChatData').append('<div align="left" class="wrap" >' + msgData.sender + '<div class="messageformleft" style="max-width: 300px;">' + msgData.msg + '</div>' + '<div class="chatTime">'+ msgData.formatedNow+'</div>' +'</div>');
+					
+					var chatLog = $('#chatLog');
+
+					/* $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight); */
+					$('#divChatData').append('<div align=\"left\" class=\"wrap\" >' + msgData.sender + '<div class=\"messageformleft\" style=\"max-width: 300px;\">' + msgData.msg + '</div>' + '<div class=\"chatTime\">'+ msgData.formatedNow+'</div>' +'</div>');
+
+					chatLog.scrollTop(chatLog.prop('scrollHeight'));
 				}
 				else if(msgData.division== "${standname }" ){
-					$( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
-					$('#divChatData').append('<div align="right" class="wrap">'+ msgData.sender +'<div class="chatTime">'+ msgData.formatedNow + '</div>' + '<div class="messageformright" style="max-width: 300px;">' + msgData.msg +'</div>' +'</div>');
+					
+					var chatLog = $('#chatLog');
+					
+					/* var divChatData = $('#divChatData');
+					 */
+					/* $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight); */
+					$('#divChatData').append('<div align=\"right\" class=\"wrap\">'+ msgData.sender +'<div class=\"chatTime\">'+ msgData.formatedNow + '</div>' + '<div class=\"messageformright\" style=\"max-width: 300px;\">' + msgData.msg +'</div>' +'</div>');
+
+					chatLog.scrollTop(chatLog.prop('scrollHeight'));
+					
 				}
 			}
 			// 입장
@@ -147,9 +160,10 @@
 
  #chatLog {
  	padding-right:2%;
- 	padding-bottom:90px;
+ 	padding-bottom:20px;
     height: 700px;
-    overflow-y: auto;
+    overflow-y: scroll;
+    
 } 
 
 #chatForm {
@@ -210,14 +224,16 @@
 
 <script>
 
-	$( document ).ready( function() {
-	    $( '.btnSend' ).click( function() {
-	      $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
+	/* $( document ).ready( function() {
+	    $( '.btnSend' ).click( function() {	    	
+	    	$( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
 	    } );
 	  } );
-	
+	 */
 	$( document ).ready( function() {
-	      $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight);
+		var chatLog = $('#chatLog');
+		chatLog.scrollTop(chatLog.prop('scrollHeight'));
+		/* $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight); */
 	  } );
 	/*
 	$(document).height()  
@@ -368,7 +384,7 @@
 				        </button>
 				      </span>
 				    </div>
-						<div id="chtroomList alertmsg" class="chtroomList alertmsg" style="overflow-y: scroll; height: 400px; display: block;">
+						<div id="chtroomList alertmsg" class="chtroomList alertmsg" style="overflow-y: auto; height: 400px; display: block;">
 							<ul style="list-style: none; padding-left: 0px;" class="fix-stand" id="fix-stand">
 								<c:forEach items="${chrlist }" var="list">
 									<li style="width: 100%;" class="fix-li" id="fix-li">
@@ -390,7 +406,7 @@
 				<div class="box-for overflow" style="background-color: rgb(240,242,245);">
 					<div class="col-md-12 col-xs-12 login-blocks">
 						 <hr>
-						 <div id="chatLog" class="chatLog" style="overflow-y: scroll; ">
+						 <div id="chatLog" class="chatLog">
 						 	<div id="divEnterChatData" ></div>
 							<c:forEach items="${chatt }" var="chat">
 								<c:if test="${chat.memId eq standname}">
@@ -424,6 +440,8 @@
 							</c:forEach>
 							<!-- 여기가 문장 저장 되는 곳 -->
 							<div id="divChatData" ></div>
+							
+							
 						</div>						
 						<div id="chatForm" style="" class="container" onsubmit="return false">
 								<div style="margin-top: 10px;">								
@@ -448,7 +466,7 @@
 				<div class="box-for overflow" style="background-color: rgb(240,242,245);">
 					<div class="col-md-12 col-xs-12 login-blocks container">
 						 <hr>
-						 <div id="chatLog" class="chatLog" style="overflow-y: scroll; ">
+						 <div id="chatLog" class="chatLog">
 						 	<div id="divEnterChatData" ></div>
 							<c:forEach items="${chatt }" var="chat">
 								<c:if test="${chat.memId eq standname}">
