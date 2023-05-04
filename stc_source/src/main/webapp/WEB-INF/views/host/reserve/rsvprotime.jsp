@@ -88,11 +88,11 @@
 	// 저장 버튼 클릭		
 	$("#rsvProTime-btn").click(updateValues);
 	 
-	 // checkbox, select 선택된 값 배열에 담기
-	 let selectedValues = [];
 	 
 	 
 	 function updateValues() {
+		 // checkbox, select 선택된 값 배열에 담기
+		 var selectedValues = [];
 		 $("[name=proTime]:checked").each(function(){
 			 var i = $(this).data("protime");
 			 var time = $(this).val();
@@ -111,7 +111,7 @@
 		// selectedDate문자와 selectedValues배열을 오브젝트 형식으로 담기
 		const selectedData = {
 				proNum: '${proNum}',
-				date: selectedDate,
+				proDate: selectedDate,
 				values: selectedValues				
 		};
 		
@@ -130,7 +130,7 @@
 	   		contentType: "application/json; charset=utf-8",
 	   		data: jsonData,  
 	   		
-	   		dataType: 'json',
+	   		//dataType: 'json',
 	   		success: function(result) {
 	   			console.log(result);
 	   			alert("ajax보냄")

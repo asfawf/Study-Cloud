@@ -32,6 +32,7 @@ import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.product.model.service.ProductService;
 import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 import study.cloud.stc.qna.model.service.QnaService;
 import study.cloud.stc.qna.model.vo.QnaVo;
@@ -423,20 +424,23 @@ public class HostController {
 	
 	@PostMapping("/reserve/rsvprotime")
 	@ResponseBody 
-	public String seletedValues(@RequestBody Map<String, Object> jsonData, ProductDetailDto dto) throws Exception {
+	public String seletedValues(
+			//@RequestBody Map<String, Object> jsonData
+			 @RequestBody ProductTimeReqDto reqDto
+			) throws Exception {
+		
+//		System.out.println(jsonData.get("proNum"));
+//		System.out.println(jsonData.get("values"));
+//		System.out.println(((List<Map<String, Object>>)jsonData.get("values")).size());
 		
 		
-		System.out.println(jsonData.get("proNum"));
-		System.out.println(jsonData.get("values"));
-		System.out.println(((List<Map<String, Object>>)jsonData.get("values")).size());
-		
-		
-		List<Map<String, Object>> values = (List<Map<String, Object>>)jsonData.get("values");
-		for(Map<String, Object> map : values) {
-			//pservice.insertProTime(map);
-			System.out.println(map.get("price"));
-		}
-		
+//		List<Map<String, Object>> values = (List<Map<String, Object>>)jsonData.get("values");
+//		for(Map<String, Object> map : values) {
+//			//pservice.insertProTime(map);
+//			System.out.println(map.get("price"));
+//		}
+//		
+		pservice.insertProTime(reqDto);
 		
 		return "OK";
 		

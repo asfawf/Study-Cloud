@@ -1,11 +1,13 @@
 package study.cloud.stc.product.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 
 @Service
@@ -40,5 +42,6 @@ public interface ProductService {
 	public List<ProductVo> selectHostProductList(String membId) throws Exception;
 	
 	//상품운영시간
-	public int insertProTime(ProductDetailDto dto) throws Exception;
+	public int insertProTime(ProductTimeReqDto dto) throws Exception;
+	public int insertProTime(Map<String, Object> map) throws Exception;
 }

@@ -1,6 +1,7 @@
 package study.cloud.stc.product.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import study.cloud.stc.product.model.dao.ProductDao;
 import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.product.model.vo.ProductVo;
  
 @Service
@@ -121,8 +123,13 @@ public class ProductServiceImpl implements ProductService {
 	
 	//상품운영시간
 	@Override
-	public int insertProTime(ProductDetailDto dto) throws Exception {
+	public int insertProTime(ProductTimeReqDto dto) throws Exception {
 		return dao.insertProTime(dto);
+	}
+	@Override
+	public int insertProTime(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

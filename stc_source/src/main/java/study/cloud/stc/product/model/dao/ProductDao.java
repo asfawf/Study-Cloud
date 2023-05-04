@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 
 @Repository
@@ -98,10 +99,8 @@ public class ProductDao {
 	
 	
 	//상품운영시간
-	public int insertProTime(ProductDetailDto dto) throws Exception{
-		return sqlSession.insert("product.insertProTime", dto);
-		
-		
+	public int insertProTime(ProductTimeReqDto dto) throws Exception{
+		return sqlSession.insert("product.insertProTime", dto);	
 	}
 	
 }

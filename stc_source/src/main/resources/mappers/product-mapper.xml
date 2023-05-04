@@ -325,8 +325,13 @@
 	
 	
 	<!-- 상품운영시간  -->
-	<insert id="insertProTime" parameterType="pdto">
-		INSERT INTO PROTIME VALUES(#{proDate}, #{proNum}, #{proPrice}, NULL)
+	<insert id="insertProTime" parameterType="study.cloud.stc.product.model.vo.ProductTimeReqDto">
+		INSERT all
+		<foreach collection="values" item="value">
+		INTO PROTIME VALUES( to_date(#{proDate}||#{value.time}, 'yyyy-mm-ddhh24')
+					, #{proNum}, #{value.price}, NULL)		
+		</foreach>
+		select * from dual
 	</insert>
 	
 	
