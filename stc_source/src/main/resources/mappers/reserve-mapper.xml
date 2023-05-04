@@ -7,22 +7,18 @@
 		<result column="RSV_DATE" property="rsvDate" />
 		<result column="RSV_PERSON" property="rsvPerson" />
 		<result column="MEM_ID" property="memId" />
-		<result column="RSV_METHOD" property="rsvMethod" />
-		<result column="RSV_PAY_DATE" property="rsvPayDate" />
 		<result column="RSV_AMOUNT" property="rsvAmount" />
 		<result column="RSV_STATUS" property="rsvStatus" />
 	</resultMap>
 
 	<insert id="rsvinsert">
-		INSERT INTO reserve VALUES (
-		#{rsvNum}
+		INSERT INTO RESERVE VALUES (
+		(SELECT NVL(MAX(NOTI_NUM), 0)+1 FROM RESERVE)
 		, #{rsvDate}
 		, #{rsvPerson}
 		, #{memId}
-		, #{rsvMethod}
-		, #{rsvPayDate}
 		, #{rsvAmount}
-		, #{rsvStatus})
+		, NULL)
 	</insert>
 
 	<update id="rsvupdate">

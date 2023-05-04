@@ -52,11 +52,10 @@
 					</h3>
 				</div>
 				<div class="panel panel-default sidebar-menu">
-					<select class="selectpicker form-control" multiple data-size="10"
-						title="시간선택" id="rsvTime" name="rsvTime">
+					<select class="selectpicker form-control" multiple data-size="10" title="시간선택" id="rsvTime" name="rsvTime">
 						<optgroup label="오전">
 							<c:forEach var="i" begin="1" end="12">
-								<option value="${i}">${i < 10 ? '0' : ''}${i}:00~ ${i+1 < 10 ? '0' : ''}${i+1}:00</option>
+								<option value="${i}">${i < 10 ? '0' : ''}${i}:00~ ${i+1 < 10 ? '0' : ''}${i+1}:00 &ensp;</option>
 							</c:forEach>
 							<option value="11">11:00 ~ 12:00</option>
 						</optgroup>
@@ -89,7 +88,20 @@
 						</span>
 					</div>
 				</div>
-			</div>			
+			</div>	
+			<div class="panel panel-default sidebar-menu">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<b>결제금액</b>
+					</h3>
+				</div>
+				<div class="panel-body recent-property-widget">
+					<div class="amount" id="rsvAmount" name="rsvAmount" style="display: flex;">
+						<h3 style="margin-left: auto;">계산된금액</h3>
+					</div>
+					<input type="hidden" name="rsvDate" id="rsvDate">
+				</div>
+			</div>		
 		</aside>
 		<aside class="sidebar sidebar-property blog-asside-right"
 			style="padding-bottom: 0px; padding-right: 0px; padding-left: 0px; ">
@@ -133,20 +145,6 @@
 			    console.log(selectedValues);
 			  });
 			});
-		// AJAX를 사용하여 선택된 값을 서버로 전송하고 저장
-		/* $.ajax({
-		    url: "save_reservation_time.php",  
-		    method: "POST",
-		    data: {timeValues: selectedValues},  // 선택된 값들을 배열 형태로 전송
-		    success: function(response) {
-		        console.log("선택된 시간이 저장되었습니다.");
-		        console.log("서버 응답:", response);
-		    },
-		    error: function(xhr, status, error) {
-		        console.error("시간 저장에 실패했습니다.");
-		        console.error("서버 응답:", xhr.responseText);
-		    }
-		}); */
 		
 		
 	
@@ -176,6 +174,19 @@
 			});
 		});	
 	
+		
+		
+		//결제금액
+		$(document).ready(function() {
+			
+		}
+		
+		
+		
+		
+		
+		
+		
 	</script>
 	<!-- stop script -->
 	

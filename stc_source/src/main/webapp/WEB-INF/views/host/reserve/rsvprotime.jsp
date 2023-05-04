@@ -32,7 +32,7 @@
 					<div class="col-md-12 single-property-content ">
 						<div class="row">
 							<div class="form-group" style="padding: 50px;">
-								<input type="text" class="form-control" id="proDate" name="proDate" placeholder="날짜" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
+								<input type="text" class="form-control" id="proDate" name="proDate" placeholder="날짜선택" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
 							</div>
 							<div class="form-group">							
 								<table>
