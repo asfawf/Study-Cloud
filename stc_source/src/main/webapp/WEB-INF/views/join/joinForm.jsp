@@ -33,7 +33,7 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
-							<form action="join/join" method="post">
+							<form:form action="prev" method="post">
 								<div class="input-group" style="padding-left: 60px; padding-right: 60px; padding-top: 60px;">
 									<div>
 										<label for="id">가입 구분</label>
@@ -104,7 +104,7 @@
 								<div class="input-group" style="padding-left: 60px; padding-right: 60px;">
 									<input type="text" class="form-control" id="emailAuthCode" name="emailAuthCode" placeholder="인증코드를 입력하세요."> 
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="button" id="email-auth-Btn">인증하기</button>
+										<button class="btn btn-default invalid-code" type="button" id="email-auth-Btn">인증하기</button>
 									</span>
 								</div>
 								<div class="input-group" style="padding-left: 60px; padding-right: 60px;">
@@ -115,7 +115,7 @@
 								<div class="text-center" style="padding-top: 100px; padding-bottom: 60px; padding-left: 60px; padding-right: 60px;">
 									<input class="btn btn-primary" type="submit" id="join-Btn" value="가입하기"/>
 								</div>
-							</form>
+							</form:form>
 						</div>`
 					</div>
 				</div>
@@ -298,18 +298,12 @@
 					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 					},
 				success:function(data){
-		        	if(data == preemail ){
-		        		alert("인증코드가 발송되었습니다.");
-		        		$("#memEmail").attr("disabled",false);
-		        		$("#emailAuthCode").attr("disabled", false);
-		                $("#emailAuthCode").focus();
-		        		$(".successEmail").text("인증코드를 입력한 뒤 인증하기를 클릭해주세요.");
-		        		$(".successEmail").css("color","#88B04B");
-		        		change = data;
-		        	}else{	        		
-						alert("이메일 주소를 다시 확인해주세요.");
-						$("#memEmail").attr("autofocus",true);
-			        	}
+					
+					alert("이메일이 전송 되었습니다.");
+					
+					console.log(data);	
+					
+					$('.invalid-code').attr("value", data);
 		        	}
 					
 			    });
@@ -328,17 +322,18 @@
 			
 			// 이메일 인증코드 체크
 			$("#email-auth-Btn").click(function(){
-				if($("#emailAuthCode").val() == change){
-					$(".successEmailAuth").text("인증코드가 일치합니다.");
-					$(".successEmailAuth").css("color","#88B04B");
-					$("#emailAuthChk").val("true");
-					$("#emailAuthCode").attr("disabled",true);
-				} else {
-					$(".successEmailAuth").text("인증코드가 일치하지 않습니다. 다시 입력하세요.");
-					$(".successEmailAuth").css("color","#DB0000");
-					$("#emailAuthChk").val("false");
-					$("#emailAuthCode").attr("autofocus",true);
-					}
+				var invalidCode = $('.invalid-code').val();
+				console.log("인증하기 버튼 : "+invalidCode);
+				
+				if( $('#emailAuthCode').val() == invalidCode){
+					alert("인증코드가 일치합니다");
+					$('#emailAuthChk').attr('value', true);
+					
+				}else{
+					alert("인증코드가 일치하지 않습니다.");
+				}
+				
+				
 				});
 			});
 		
