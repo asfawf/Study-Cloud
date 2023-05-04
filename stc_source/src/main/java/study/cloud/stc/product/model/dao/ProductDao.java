@@ -96,4 +96,12 @@ public class ProductDao {
 		return sqlSession.selectList("product.selectHostProductList", membId);
 	}
 	
+	
+	//상품운영시간
+	public int insertProTime(ProductDetailDto dto) throws Exception{
+		return sqlSession.insert("product.insertProTime", dto);
+		
+		
+	}
+	
 }

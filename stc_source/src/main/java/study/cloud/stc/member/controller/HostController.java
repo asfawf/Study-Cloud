@@ -423,19 +423,17 @@ public class HostController {
 	
 	@PostMapping("/reserve/rsvprotime")
 	@ResponseBody 
-	public String seletedValues(@RequestBody Map<String, Object> jsonData) {
+	public String seletedValues(@RequestBody Map<String, Object> jsonData, ProductDetailDto dto) throws Exception {
 		
-		//new Gson().fromJson(jsonData, Map<String, Object>);
 		
 		System.out.println(jsonData.get("proNum"));
 		System.out.println(jsonData.get("values"));
 		System.out.println(((List<Map<String, Object>>)jsonData.get("values")).size());
 		
-		//직렬화된 오브젝트 배열을 JSONArray형식으로 
-		//JsonArray array = JsonArray.(jsonData);
 		
 		List<Map<String, Object>> values = (List<Map<String, Object>>)jsonData.get("values");
 		for(Map<String, Object> map : values) {
+			//pservice.insertProTime(map);
 			System.out.println(map.get("price"));
 		}
 		

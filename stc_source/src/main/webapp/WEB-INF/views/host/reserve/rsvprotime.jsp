@@ -148,92 +148,10 @@
 
  
  
-   	
-	  
-	  
-	/*   
-   	function updateValues() {
-		 $("[name=proTime]:checked").each(function(){
-			 var i = $(this).data("protime");
-			 var time = $(this).val();
-			 var price = 0;
-			 $("[name=proPrice]").each(function(){
-				 var j = $(this).data("proprice");
-				 if(i==j){
-					 price = $(this).val();
-				 }
-			 });
-			 selectedValues.push({ time: time, price: price });
-		 });
-		 
-	    // checkbox 선택 여부 확인
-	    var checkbox = document.getElementById('proTime' + time);
-	    var isChecked = checkbox ? checkbox.checked : false;
-	  
-	    var selectBox = document.getElementById('proPrice' + time);
-	    var selectedOption = selectBox.options[selectBox.selectedIndex];
-	    var selectedValue = selectedOption.value;
-	
-	    // 선택된 값이 있다면 배열에 저장
-	    if (isChecked && selectedValue) {
-	        selectedValues.push({ time: time, price: selectedValue });
-	    } else {
-	        // 선택된 값이 없다면 배열에서 제거
-	        for (var i = 0; i < selectedValues.length; i++) {
-	            if (selectedValues[i].time === time) {
-	                selectedValues.splice(i, 1);
-	                break;
-	            }
-	        }
-	    }
-	    
-	    console.log("시간,가격:", selectedValues);
-		    
-		    
-		    
-		// selectedDate문자와 selectedValues배열을 오브젝트 형식으로 담기
-		const selectedData = {
-				proNum: '${proNum}',
-				date: selectedDate,
-				values: selectedValues				
-		};
-		
-		console.log("객체담긴 배열:", selectedData);
-	}
-	  */
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	 /*  
-	  //날짜 그리고 시간과 가격 배열을 객체로 만들어 새로운 배열에 저장
-	  const selecteData = {
-			  date: selectedDate,
-			  values: selecteValue
-	  };
-	  
-	  console.log("선택한 데이터:", selecteData);
 
-	}
-	  
-	   */
-	  
-	  
-	  
-	  
-	  
-	  
+	 
+	 
+	 
 	</script>
 
 

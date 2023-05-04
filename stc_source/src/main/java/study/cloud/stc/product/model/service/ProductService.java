@@ -38,4 +38,7 @@ public interface ProductService {
 		
 	// host qna select 옵션 List
 	public List<ProductVo> selectHostProductList(String membId) throws Exception;
+	
+	//상품운영시간
+	public int insertProTime(ProductDetailDto dto) throws Exception;
 }

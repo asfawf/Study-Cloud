@@ -146,8 +146,36 @@ INSERT INTO NOTICE VALUES(
  
 -- desc RESERVE;
 -- SELECT * FROM RESERVE;
--- 예시
-insert into RESERVE values('주문번호', '예약날짜', 예약인원, '아이디', '결제수단', '결제시간', 총금액, 주문상태);
+INSERT INTO RESERVE VALUES(
+       (SELECT NVL(MAX(RSV_NUM), 0) + 1 FROM RESERVE),
+        TO_DATE('2023-05-04', 'YYYY-MM-DD'), 
+        3, 
+        'user1', 
+        4500, 
+        NULL
+);
+
+
+INSERT INTO RESERVE VALUES(
+       (SELECT NVL(MAX(RSV_NUM), 0) + 1 FROM RESERVE),
+        TO_DATE('2023-05-05', 'YYYY-MM-DD'), 
+        3, 
+        'user1', 
+        4500, 
+        NULL
+);
+
+
+INSERT INTO RESERVE VALUES(
+       (SELECT NVL(MAX(RSV_NUM), 0) + 1 FROM RESERVE),
+        TO_DATE('2023-05-05', 'YYYY-MM-DD'), 
+        1, 
+        'user1', 
+        1000, 
+        NULL
+);
+
+
 -- update RESERVE set MEM_QUESTION = '사용자문의글 수정내용' where RSV_NUM = 1;
 -- DELETE FROM RESERVE WHERE RSV_NUM = 5;
  

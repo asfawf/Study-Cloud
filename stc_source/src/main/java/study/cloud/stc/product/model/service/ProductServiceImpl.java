@@ -117,6 +117,16 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return result;
 	}
+
+	
+	//상품운영시간
+	@Override
+	public int insertProTime(ProductDetailDto dto) throws Exception {
+		return dao.insertProTime(dto);
+	}
+	
+	
+	
 	
 
 

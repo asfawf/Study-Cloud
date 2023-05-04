@@ -325,11 +325,9 @@
 	
 	
 	<!-- 상품운영시간  -->
-	<!-- <insert id="insertProTime" parameterType="Ptvo">
-		INSERT ALL 
-		INTO PRODUCT VALUES (#{proDate}, #{proNum},#{proPrice},#{RsvNum})
-		select * from dual
-	</insert> -->
+	<insert id="insertProTime" parameterType="pdto">
+		INSERT INTO PROTIME VALUES(#{proDate}, #{proNum}, #{proPrice}, NULL)
+	</insert>
 	
 	
 	
