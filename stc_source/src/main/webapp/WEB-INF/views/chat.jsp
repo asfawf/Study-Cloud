@@ -25,7 +25,8 @@
 			$('#message').val('');
 		},
 		sendEnter : function() {
-			this._sendMessage('${param.room_id}', 'CMD_ENTER', $('#message').val(), $('#division').val() );
+			this._sendMessage('${param.room_id}', 'CMD_ENTER', $('#message').val(), $('#division').val());
+			
 			$('#message').val('');
 		},
 		receiveMessage : function(msgData) {
@@ -33,6 +34,10 @@
 			// 정의된 CMD 코드에 따라서 분기 처리
 			if (msgData.cmd == 'CMD_MSG_SEND') {
 				if(msgData.division!= "${standname }" ){
+					
+					// 메세지 전송 시 참고해야하는 값 
+					console.log('이건 변동 값: '+msgData.division);
+					console.log('이건 고정 값: '+'${standname }');
 					
 					var chatLog = $('#chatLog');
 
@@ -44,6 +49,9 @@
 				else if(msgData.division== "${standname }" ){
 					
 					var chatLog = $('#chatLog');
+					
+					console.log('이건 변동 값: '+msgData.division);
+					console.log('이건 고정 값: '+'${standname }');
 					
 					/* var divChatData = $('#divChatData');
 					 */
@@ -57,10 +65,18 @@
 			// 입장
 			else if (msgData.cmd == 'CMD_ENTER') {
 				$('#divEnterChatData').append('<div align="center ">' + msgData.msg + '</div>');
+				
+				// 입장 시 참조 값
+				console.log('입장 한 사람: '+msgData.enterId );
+				
+				$('.enter-'+msgData.enterId).remove();
 			}
 			// 퇴장
 			else if (msgData.cmd == 'CMD_EXIT') {
 				$('#divChatData').append('<div align="center ">' + msgData.msg + '</div>');
+				
+				// 퇴장 시 참조 값
+				console.log('퇴장 한 사람: '+msgData.exitId );
 			}
 		},
 		closeMessage : function(str) {
@@ -81,15 +97,18 @@
 				webSocket.closeMessage(JSON.parse(evt.data));
 			}
 		},
-		_sendMessage : function(room_id, cmd, msg, division, formatedNow, sender) {
+		_sendMessage : function(room_id, cmd, msg, division, formatedNow, sender, enterId, exitId) {
 			var msgData = {
 				room_id : room_id,
 				cmd : cmd,
 				msg : msg,
 				division : division,
 				formatedNow : formatedNow,
-				sender : sender
+				sender : sender,
+				enterId : enterId,
+				exitId : exitId
 			};
+			
 			var jsonData = JSON.stringify(msgData);
 			this._socket.send(jsonData);
 		}
@@ -109,6 +128,12 @@
 
 <style>
 
+.none-scroll{
+   -ms-overflow-style: none;
+}
+.none-scroll::-webkit-scrollbar{
+  display:none;
+}
 
 .chatTime {
   display: inline-block;
@@ -242,6 +267,7 @@
 	
 	var row = document.getElementById('btnSend');
 	
+	// 상단 상태바의 좌측 부분 
 	$( document).ready (function(){
 		$('.allRoom').click( function(){
 			$.ajax({
@@ -270,6 +296,8 @@
 		});	
 	});
 	
+	
+	// 채팅방 리스트
 	$( document).ready (function(){
 		$('.searchRoom').click( function(){
 			
@@ -328,8 +356,8 @@
             	
             	if(seacou == '0'){
 	            	$('.roomCountdiv').append(
-	            			'<h5 id=\"instance-room\" class=\"instance-room\">검색된 채팅방</h3>'+
-	            			'<p style=\"font-size: 50px; padding-left: 30%;\" id=\"fix-room\" class=\"fix-room\">' + seacou + '</p>'
+	            			'<h5 id=\"instance-room\" class=\"instance-room\" style=\" color: white; \" >검색된 채팅방</h3>'+
+	            			'<p style=\"font-size: 50px; color: white; padding-left: 30%;\" id=\"fix-room\" class=\"fix-room\">' + seacou + '</p>'
 	            	);
 	            	
 	            	$('.alertmsg').append(
@@ -339,8 +367,8 @@
 	            	);
 	            }else{
             		$('.roomCountdiv').append(
-	            			'<h5 id=\"instance-room\" class=\"instance-room\">검색된 채팅방</h3>'+
-	            			'<p style=\"font-size: 50px; padding-left: 30%;\" id=\"fix-room\" class=\"fix-room\">' + seacou + '</p>'
+	            			'<h5 id=\"instance-room\" class=\"instance-room\" style=\" color: white; \">검색된 채팅방</h3>'+
+	            			'<p style=\"font-size: 50px; padding-left: 30%;  color: white; \" id=\"fix-room\" class=\"fix-room\">' + seacou + '</p>'
 	            	);
             	}
             }
@@ -370,8 +398,8 @@
 						</button>
 					</div>
   					<div class="col-xs-6 roomCountdiv" style="background-color:rgb(62,162,255) ; border-color: rgb(58,152,240); height: 100px;" id="roomCountdiv">
-	  						<h5 id="fix-room" class="fix-room">개설된 채팅방</h3>
-	  						<p style="font-size: 50px; padding-left: 30%;" id="fix-room" class="fix-room">${roomCount }</p>
+	  						<h5 id="fix-room" class="fix-room" style="color: white;">개설된 채팅방</h3>
+	  						<p style="font-size: 50px; color: white; padding-left: 30%;" id="fix-room" class="fix-room">${roomCount }</p>
   					</div>
   					<!-- <div class="col-xs-12" style="padding-left: 15px; padding-bottom: 5px ; padding-top: 5px; background-color: rgb(62,162,255); height: 60px;">
 						<input style="background-color: rgb(81,171,255); height: 100%; " type="text">
@@ -384,24 +412,38 @@
 				        </button>
 				      </span>
 				    </div>
-						<div id="chtroomList alertmsg" class="chtroomList alertmsg" style="overflow-y: auto; height: 400px; display: block;">
-							<ul style="list-style: none; padding-left: 0px;" class="fix-stand" id="fix-stand">
-								<c:forEach items="${chrlist }" var="list">
-									<li style="width: 100%;" class="fix-li" id="fix-li">
-										<div class="list-group" style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
-											<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}" class="list-group-item active" style="background-color: white;">
-												<h4 class="list-group-item-heading"
-													style="color: black; margin-bottom: 15px;">채팅 건의자 :
-													${list.chaRoomId }</h4>
-												<p class="list-group-item-text">채팅 미리보기:
-													${list.roomContents }</p>
-											</a>
-										</div>
-									</li>
-								</c:forEach>
-							</ul>
-						</div>
+					<div id="chtroomList alertmsg" class="chtroomList alertmsg" style="overflow-y: auto; height: 400px; display: block;">
+						<ul style="list-style: none; padding-left: 0px;" class="fix-stand" id="fix-stand">
+							<c:forEach items="${chrlist }" var="list">
+								<li style="width: 100%;" class="fix-li" id="fix-li">
+									<div class="list-group" style="background-color: white; margin-bottom: 0px; word-break: break-all; word-wrap: normal;">
+										<a href="<%=request.getContextPath()%>/chatting?room_id=${list.chaRoomId}" class="list-group-item active" style="background-color: white;">
+											<h4 class="list-group-item-heading"
+												style="color: black; margin-bottom: 15px;">채팅 건의자 :
+												${list.chaRoomId }</h4>
+											<p class="list-group-item-text">채팅 미리보기:
+												${list.roomContents }</p>
+										</a>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
 					</div>
+					<div class="input-group col-xs-12" style="padding-left: 15px; padding-right: 15px; padding-bottom: 5px ; padding-top: 10px; padding-bottom: 10px; margin-top: 20px; background-color: rgb(240,242,245); height: 60px; margin-bottom: 10px; height: 208px; ">
+						<ul style="height: 45%; padding-left: 0px; overflow: auto; list-style: none;" class="none-scroll">
+							<c:forEach items="${adminEntry }" var="entry"> 
+								<li class="list-group-item list-group-item-primary">${entry.memId }  <span class="glyphicon glyphicon-remove-circle enter-${entry.memId}" style=" float: right; color: red;" aria-hidden="true">오프라인</span> </li>								
+							</c:forEach>
+															<li class="list-group-item list-group-item-primary">온라인 예시  <span class="glyphicon glyphicon-ok-circle ${entry.memId  }" style=" float: right; color: green;" aria-hidden="true">온라인</span> </li>
+						</ul>
+						<ul style=" height: 45%; padding-left: 0px; overflow: auto; list-style: none;" class="none-scroll">
+							<c:forEach items="${userEntry }" var="entry"> 
+								<li class="list-group-item list-group-item-primary">${entry.memId } <span class="glyphicon glyphicon-remove-circle status ${entry.memId  }" style="float: right; color: red;" aria-hidden="true"></span> </li>								
+							</c:forEach>
+						</ul>
+						
+					</div>
+				</div>
 				<div class="col-md-8" style="background-color: rgb(227, 229, 232);">
 				<div class="box-for overflow" style="background-color: rgb(240,242,245);">
 					<div class="col-md-12 col-xs-12 login-blocks">
@@ -519,8 +561,44 @@
 			</sec:authorize>
  			
 		</div>
-	</div>
+	</div> 
+	<style>
 	
+	.goupbtnUp {
+	  top: 80%;
+	  left: 88%;
+	  width: 50px;
+	  height: 50px;
+	  border-radius: 80%;
+	  background-color: white;
+	  border: black 3px solid;
+	  position: fixed;
+	  z-index: 2;
+	}
+	
+	.goupbtnDown {
+	  top: 88%;
+	  left: 88%;
+	  width: 50px;
+	  height: 50px;
+	  border-radius: 80%;
+	  background-color: white;
+	  border: black 3px solid;
+	  position: fixed;
+	  z-index: 2;
+	}
+	
+	</style>
+	
+	<script>
+		function clickmeUp() {
+		  window.scrollTo({top:0, behavior:'smooth'});
+		}
+		
+		function clickmeDown() {
+			  window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'});
+			}
+	</script>
  	<%-- <div id="contentCover">
 		<div id="chatWrap">
 			<div id="chatLog" class="chatLog" style="overflow-y: scroll; ">
@@ -544,6 +622,8 @@
 			</div>
 		</div>		
 	</div> --%>
+	<button class="goupbtnUp" type="button"  onclick="clickmeUp()">  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> </button>
+	<button class="goupbtnDown" type="button"  onclick="clickmeDown()">  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> </button>
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp"%>
 </body>

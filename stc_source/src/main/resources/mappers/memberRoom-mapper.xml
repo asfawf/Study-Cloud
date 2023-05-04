@@ -13,4 +13,26 @@
 	<insert id="addMemId">
 		INSERT INTO MEMBER_ROOM(MEM_ID, ROOM_ID) VALUES(#{memId}, #{roomId})
 	</insert>
+	
+	<select id="selectAdminEntry"  resultType="mervo">
+		SELECT  a.MEM_ID
+	    ,   a.ROOM_ID
+	    FROM MEMBER_ROOM a
+	    INNER JOIN MEMBER b
+			ON	a.MEM_ID = b.MEM_ID
+	    WHERE	a.ROOM_ID = #{roomId}
+	    AND		a.MEM_ID = b.MEM_ID
+	    AND		b.MEM_AUTHORITY = 'ROLE_ADMIN'	
+	</select>
+	
+	<select id="selectUserEntry"  resultType="mervo">
+		SELECT  a.MEM_ID
+	    ,   a.ROOM_ID
+	    FROM MEMBER_ROOM a
+	    INNER JOIN MEMBER b
+			ON	a.MEM_ID = b.MEM_ID
+	    WHERE	a.ROOM_ID = #{roomId}
+	    AND		a.MEM_ID = b.MEM_ID
+	    AND		b.MEM_AUTHORITY = 'ROLE_USER'	
+	</select>
 </mapper>

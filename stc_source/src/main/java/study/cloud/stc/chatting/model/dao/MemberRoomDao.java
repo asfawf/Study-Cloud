@@ -1,5 +1,7 @@
 package study.cloud.stc.chatting.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,6 +22,16 @@ public class MemberRoomDao {
 	public int addMemId(MemberRoomVo mrvo) {
 		// TODO Auto-generated method stub
 		return session.insert("memroomns.addMemId", mrvo);
+	}
+
+	public List<MemberRoomVo> selectAdminEntry(String room_id) {
+		// TODO Auto-generated method stub
+		return session.selectList("memroomns.selectAdminEntry", room_id);
+	}
+
+	public List<MemberRoomVo> selectUserEntry(String room_id) {
+		// TODO Auto-generated method stub
+		return session.selectList("memroomns.selectUserEntry", room_id);
 	}
 
 }

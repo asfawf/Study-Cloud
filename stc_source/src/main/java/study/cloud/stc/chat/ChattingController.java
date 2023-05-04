@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 
 import study.cloud.stc.chatting.model.service.ChattRoomService;
 import study.cloud.stc.chatting.model.service.ChattingService;
+import study.cloud.stc.chatting.model.service.MemberRoomService;
 import study.cloud.stc.chatting.model.vo.ChattRoomVo;
 import study.cloud.stc.chatting.model.vo.ChattingVo;
 import study.cloud.stc.member.model.vo.MemberVo;
@@ -36,6 +37,9 @@ public class ChattingController {
 	
 	@Autowired
 	ChattRoomService crService;
+	
+	@Autowired
+	MemberRoomService mrservice;
 	
 	// 채팅방 입장
 		@GetMapping
@@ -52,18 +56,23 @@ public class ChattingController {
 			ChattingVo schvo = new ChattingVo();
 			ChattRoomVo crvo = new ChattRoomVo();
 
-			System.out.println("채팅 컨트롤러 에서의 room_id: "+ room_id);
 			schvo.setRoomId(room_id);
 
-			// 해당 방의 대화
+			// 전송자 구분 용 
 			String standname = principal.getName();
-			System.out.println("standname: "+standname);
 
+			//참가자 리스트 (관리자)
+			request.setAttribute("adminEntry", mrservice.selectAdminEntry(room_id)); 
+			
+			//참가자 리스트 (유저)
+			request.setAttribute("userEntry", mrservice.selectUserEntry(room_id)); 
+			
 			// 대화 그리고 분류용 정보
 			request.setAttribute("chatt", service.selectListMessage(schvo));
 			request.setAttribute("standname", standname);
 			request.setAttribute("chrlist", crService.selectListChattRoom(crvo));
 			
+			// 입장시 보여지는 개설 된 전체 방 개수
 			request.setAttribute("roomCount", crService.selectCount());
 			
 			return "chat";
@@ -105,6 +114,13 @@ public class ChattingController {
 			String roomCount = String.valueOf( crService.searchRoomCount(chaRoomId));
 			
 			return roomCount;
+		}
+		
+		@RequestMapping("/addChatUser")
+		@ResponseBody
+		public String addChatUser() {
+			
+			return "success";
 		}
 		
 

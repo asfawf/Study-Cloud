@@ -144,6 +144,10 @@ public class HandlerChat extends TextWebSocketHandler {
 						mapToSend.put("cmd", "CMD_ENTER");
 						mapToSend.put("msg", session.getPrincipal().getName() +  "님이 입장 했습니다.");
 						
+						
+						// 입장 한 사람 구분 
+						mapToSend.put("enterId", session.getPrincipal().getName());
+						
 						String jsonStr = objectMapper.writeValueAsString(mapToSend);
 						sess.sendMessage(new TextMessage(jsonStr));
 					}
@@ -220,7 +224,10 @@ public class HandlerChat extends TextWebSocketHandler {
 					mapToSend.put("room_id", room_id);
 					mapToSend.put("cmd", "CMD_EXIT");
 					mapToSend.put("msg", session.getPrincipal().getName() + "님이 퇴장 했습니다.");
-
+					
+					//퇴장 한 사람 구분 
+					mapToSend.put("exitId", session.getPrincipal().getName());
+					
 					String jsonStr = objectMapper.writeValueAsString(mapToSend);
 					sess.sendMessage(new TextMessage(jsonStr));
 				}

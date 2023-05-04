@@ -1,5 +1,7 @@
 package study.cloud.stc.chatting.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,18 @@ public class MemberRoomServiceImpl implements MemberRoomService {
 	public int addMemId(MemberRoomVo mrvo) {
 		// TODO Auto-generated method stub
 		return dao.addMemId(mrvo);
+	}
+
+	@Override
+	public List<MemberRoomVo> selectAdminEntry(String room_id) {
+		// TODO Auto-generated method stub
+		return dao.selectAdminEntry(room_id);
+	}
+
+	@Override
+	public List<MemberRoomVo> selectUserEntry(String room_id) {
+		// TODO Auto-generated method stub
+		return dao.selectUserEntry(room_id);
 	}
 
 }
