@@ -34,12 +34,18 @@ public class JoinController {
 		return mv;
 	}
 	
-	
-	@PostMapping("/insert")
-	public ModelAndView insertJoin(MemberVo memberVo, ModelAndView mv) throws Exception {
+	@PostMapping("/prev")
+	public String insertJoin(
+			MemberVo memberVo
+			, ModelAndView mv
+		) throws Exception {
+		
 		memberService.insertJoin(memberVo);
-		mv.setViewName("redirect:/"); 
-		return mv;
+		
+		System.out.println("memberVo:" + memberVo);
+		
+		
+		return "redirect:/";
 	}
 			
 	

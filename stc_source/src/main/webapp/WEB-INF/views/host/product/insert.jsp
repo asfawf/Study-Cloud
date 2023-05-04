@@ -44,64 +44,75 @@
                             <div class="clear">
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
-                                        <label>공간이름</label>
-                                        <input name="proName" type="text" class="form-control">
+                                        <label>상품이름</label>
+                                        <input name="proName" type="text" class="form-control" placeholder="상품이름">
                                     </div>
                                     <div class="form-group">
                                         <label>상품소개 :</label>
-                                        <input name="proPost" type="text" class="form-control">
+                                        <input name="proPost" type="text" class="form-control" placeholder="상품소개">
                                     </div> 
                                     <div class="form-group">
                                         <label>시설안내 :</label>
-                                        <input name="proInfo" type="text" class="form-control">
+                                        <input name="proInfo" type="text" class="form-control" placeholder="시설안내">
                                     </div> 
                                     <div class="form-group">
                                         <label>유의사항 :</label>
-                                        <input name="proNotice"type="text" class="form-control">
+                                        <input name="proNotice"type="text" class="form-control" placeholder="유의사항"> 
                                     </div> 
                                     <div class="form-group">
                                         <label>환불정책 :</label>
-                                        <input name="proRefund" type="text" class="form-control">
+                                        <input name="proRefund" type="text" class="form-control" placeholder="환불정책">
                                     </div>
                                    
                                    <!--  <div class="form-group">
                                         <label>가격(시간당) :</label>
                                         <input name="proPrice" type="text" class="form-control">
                                     </div>  -->
-                                    <div class="form-group">
-                                        <label>주소 : </label>
-                                        <input name="proAddress" type="text" class="form-control">
-                                    </div> 
+<!--                                     <div class="form-group"> -->
+<!--                                         <label>주소 : </label> -->
+<!--                                         <input name="proAddress" type="text" class="form-control"> -->
+<!--                                     </div>  -->
                                     <div class="form-group">
                                         <label>전화번호 :</label>
-                                        <input name="proPhone" type="text" class="form-control">
-                                    </div> 
-                                     <div class="form-group">
-                                        <label>우편번호 :</label>
-                                        <input name="proZipcode" type="text" class="form-control">
+                                        <input name="proPhone" type="text" class="form-control" placeholder="전화번호">
                                     </div> 
                                     <div class="form-group">
                                         <label>이미지 :</label>
+                                        <input name="uploadfile" type="file" class="form-control" >
+                                    </div>
+                                      <div class="form-group">
+                                        <label>이미지 :</label>
                                         <input name="uploadfile" type="file" class="form-control">
                                     </div>
+                                      <div class="form-group">
+                                        <label>이미지 :</label>
+                                        <input name="uploadfile" type="file" class="form-control" >
+                                    </div>
+                                      <div class="form-group">
+                                        <label>이미지 :</label>
+                                        <input name="uploadfile" type="file" class="form-control" >
+                                    </div>
                                    
+<!--                                      <div class="form-group"> -->
+<!--                                         <input name="proZipcode" type="text" class="form-control"> -->
+<!--                                     </div>  -->
+									<input type="button" onclick="findPostCode()" value="주소 검색"><br>
+									<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                                     <div class="form-group">
-                                    <input type="text" id="postcode" placeholder="우편번호">
-									</div>
+                                        <label>우편번호 :</label>
+                                    <input type="text" name="proZipcode" id="postcode" placeholder="우편번호" readonly>
+									
 <!-- 									<div class="form-group"> -->
 <!-- 									<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br> -->
 <!-- 									</div> -->
 									
-									<input type="button" onclick="execDaumPostcode()" value="주소 검색"><br>
-									<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 									
-									<input type="text" id="roadAddress" placeholder="도로명주소">
-									<input type="text" id="jibunAddress" placeholder="지번주소">
+									<input type="text" name="proAddress" id="roadAddress" placeholder="도로명주소" readonly>
 									<span id="guide" style="color:#999;display:none"></span>
-									<input type="text" id="detailAddress" placeholder="상세주소">
-									<input type="text" id="extraAddress" placeholder="참고항목">
+									<input type="text" id="detailAddress" placeholder="상세주소를 입력해주세요">
+									<input type="text" id="extraAddress" placeholder="참고항목" readonly>
                                     
-                                    
+                                    </div>
                                   
                                     
                                     
@@ -172,7 +183,6 @@
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('postcode').value = data.zonecode;
             document.getElementById("roadAddress").value = roadAddr;
-            document.getElementById("jibunAddress").value = data.jibunAddress;
             
             // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
             if(roadAddr !== ''){
@@ -188,10 +198,10 @@
                 guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
                 guideTextBox.style.display = 'block';
 
-            } else if(data.autoJibunAddress) {
-                var expJibunAddr = data.autoJibunAddress;
-                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                guideTextBox.style.display = 'block';
+//             } else if(data.autoJibunAddress) {
+//                 var expJibunAddr = data.autoJibunAddress;
+//                 guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+//                 guideTextBox.style.display = 'block';
             } else {
                 guideTextBox.innerHTML = '';
                 guideTextBox.style.display = 'none';
