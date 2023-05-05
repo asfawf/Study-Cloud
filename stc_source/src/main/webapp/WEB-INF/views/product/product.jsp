@@ -10,7 +10,7 @@
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
 <c:set var="add">
-	종로구,중구,용산구,성동구,광진구,동대문구,중랑구,성북구,강북구,도봉구,노원구,은평구,서대문구,마포구,양천구,강서구,구로구,금천구,영등포구,동작구,관악구,서초구,강남구,송파구,강동구
+	종로구,중구,용산구,성동구,광진구,동대문구,중랑구,성북구,강북구,도봉구,노원구,은평구,서대문구,마포구,양천구,강서구,구로구,금천구,영등포구,동작구,관악구,서초구,강남구,송파구,강동구,수원시,성남시,의정부시,안양시,부천시,광명시,평택시,동두천시,안산시,고양시,과천시,의왕시,구리시,남양주시,오산시,시흥시,군포시,하남시,용인시,파주시,이천시,안성시,김포시,화성시,광주시,양주시,포천시,여주시
 </c:set>
 <section>
 	<!-- property area -->
@@ -22,7 +22,7 @@
                             <form action="${pageContext.request.contextPath}/product" class=" form-inline">
                                 <div class="col-md-12">
                                 	<div class="col-md-4">                                     
-	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="${param.proAddress}" onchange="submit();">
+	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" data-size="10" title="${param.proAddress}" onchange="submit();">
 	                                        <c:forEach var="v" items="${add }">
 												<option value="${v }">${v }</option>
 											</c:forEach>
