@@ -8,12 +8,6 @@
 <title>키워드로 장소검색하고 목록으로 표출하기</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
-<style>
-.customoverlay {position:relative;display:block;bottom:50px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;background:#fff;text-align:center;font-size:14px;font-weight:bold;padding:10px 15px;}
-.customoverlay a {color: #777;}
-.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
-.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
