@@ -75,6 +75,9 @@ public class ProductDao {
 	
 	
 	public ProductDetailDto selectOne(int proNum) {
+//		ProductDetailDto test = sqlSession.selectOne("product.proDetail",proNum);
+//		System.out.println(test.getPicList().size());
+//		System.out.println(test.getTimePriceList().size());
 		return sqlSession.selectOne("product.proDetail",proNum);
 	}
 	
@@ -83,13 +86,12 @@ public class ProductDao {
 	}
 	
 	//페이징
-	
 		public int selectCount(HostProductDto dto) throws Exception{
 			return sqlSession.selectOne("product.productOneCnt",dto);
 		}
 		
 		public List<HostProductDto> selectList(int currentPage,int limit,HostProductDto dto) throws Exception{
-		return sqlSession.selectList("product.hostList",dto,new RowBounds((currentPage-1)*limit,limit));
+			return sqlSession.selectList("product.hostList",dto,new RowBounds((currentPage-1)*limit,limit));
 		}
 
 		

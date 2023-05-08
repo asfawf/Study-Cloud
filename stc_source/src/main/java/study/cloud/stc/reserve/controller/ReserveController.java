@@ -1,27 +1,71 @@
 package study.cloud.stc.reserve.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import study.cloud.stc.reserve.model.service.ReserveService;
+import study.cloud.stc.reserve.model.vo.MapVo;
+import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
+import study.cloud.stc.reserve.model.vo.ReserveVo;
+
 @Controller
 @RequestMapping("/reserve")
 public class ReserveController {
+	
+	
+	//예약 -> 예약한 사람의 아이디(고유값): 어떻게 줄건지....
+	@Autowired
+	private ReserveService reserveservice;
+	@Autowired
+	private ReserveTimeReqDto rtDto;
+
+	
 	@GetMapping
 	public ModelAndView reserve(ModelAndView mv) {
 		mv.setViewName("/reserve/reserve");
 		return mv;
 	}
 	
+	//예약하기
+	@PostMapping("/reserve")
+	@ResponseBody
+	public String selectedValues(@RequestBody ReserveTimeReqDto rtDto) throws Exception {
+		this.rtDto = rtDto;
+		System.out.println("rtDto: " + this.rtDto);
+		reserveservice.insertReserve(rtDto);
+		return "ok";
+		
+	}
+	
 	@GetMapping("/reservecheck")
-	public ModelAndView reservecheck(ModelAndView mv) {
+	public ModelAndView reservecheck(
+			HttpServletRequest request, 
+			HttpServletResponse response, 
+			ModelAndView mv) throws Exception {
 		mv.setViewName("/reserve/reservecheck");
+		System.out.println("rtDto: " + rtDto);
+		
+		MapVo mapVo = reserveservice.selectProName(rtDto);
+		
+		request.setAttribute("rtDto", rtDto);
+		request.setAttribute("mapVo", mapVo);
+		
 		return mv;
 	}
 	

@@ -62,13 +62,9 @@
 <!--       </div> -->
 <!--     </div> -->
     ...
-    
- <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.proPicRename}"/>   
-    
-    
-    
-    
-    
+  <c:forEach items="${product.detail.picList }" var="pic" varStatus="s">
+  <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/>   
+  </c:forEach>
     
   </div>
 
@@ -90,7 +86,11 @@
                        <!--   <div class="single-property-wrapper">-->
                             <div class="single-property-header">                                          
                                 <h1 class="property-title pull-left">${product.detail.proAddress }</h1>
-                                <span class="property-price pull-right"><fmt:formatNumber value="${product.detail.proPrice }" type="currency" /></span>
+                                <c:forEach items="${product.detail.timePriceList }" var="timeprice" varStatus="s">
+                                <c:if test="${s.count==1 }">
+                                <span class="property-price pull-right"><fmt:formatNumber value="${timeprice.price }" type="currency" /></span>
+                                </c:if>
+                                </c:forEach>
                             </div>
 
                             

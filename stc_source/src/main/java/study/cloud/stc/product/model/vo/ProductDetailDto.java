@@ -1,6 +1,7 @@
 package study.cloud.stc.product.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -32,12 +33,15 @@ public class ProductDetailDto {
 	
 	private String proPicOriginal;
 	private String proPicRename;
-	
-	private Date proDate;
-	private int proPrice;
-	private String rsvNum;
-	
-	
 	private String proPicOriginalOld;
 	private String proPicRenameOld;
+	
+	private List<ProductPicDto> picList;
+	
+	private List<ProductTimePriceDto> timePriceList;
+	
+//	private Date proDate;
+//	private int proPrice;
+//	private String rsvNum;
+
 }
