@@ -64,7 +64,10 @@ public class HostController {
 			ModelAndView mv
 			,HostProductDto dto
 			, @RequestParam(value="page", defaultValue="1") int page
+			,Principal principal
 			) throws Exception {
+		String memId = principal.getName();
+		 dto.setMemId(memId);
 		 List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
 		 int currentPage = page;
 		 int totalCnt = pservice.selectCount(dto);

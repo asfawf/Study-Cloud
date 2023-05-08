@@ -196,6 +196,7 @@
         using (mem_id)
         LEFT OUTER JOIN PRODUCTFILE 
 	     USING (PRO_NUM)
+	     WHERE MEM_ID = #{memId}
 	 	</select>
 	<select id="productOneCnt" resultType="_int">
 
