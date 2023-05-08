@@ -38,4 +38,16 @@ public class MemberRoomServiceImpl implements MemberRoomService {
 		return dao.selectUserEntry(room_id);
 	}
 
+	@Override
+	public int onlineUser(MemberRoomVo mrvo) {
+		// TODO Auto-generated method stub
+		return dao.onlineUser(mrvo);
+	}
+
+	@Override
+	public int offlineUser(MemberRoomVo mrvo) {
+		// TODO Auto-generated method stub
+		return dao.offlineUser(mrvo);
+	}
+
 }

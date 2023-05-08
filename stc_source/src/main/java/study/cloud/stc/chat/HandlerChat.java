@@ -91,31 +91,14 @@ public class HandlerChat extends TextWebSocketHandler {
 				vo.setMemId(division);
 				vo.setRoomId((String) mapReceive.get("room_id"));
 				
-				// 1. RoomId 넣기
-				
-				crvo.setChaRoomId((String) mapReceive.get("room_id"));
-				crvo.setRoomContents((String) mapReceive.get("msg"));				
-				
-				
-				mrvo.setMemId(division);
-				mrvo.setRoomId((String) mapReceive.get("room_id"));
-				
-				// 1-0. chattRoom 	- select 해서  있는지 없는지 확인 없으면 insert 있으면 넘기기  
-				if(crservice.viewRoomId(crvo) == null) {
-					crservice.addRoomId(crvo);
-				}
-				
-				// 1-1. MemberRoom 	- division 사용해서 해당 id 와, 상단에서 기입한 정보와 같은걸 기입
-				if(mrservice.viewMemberId(mrvo) == null) {
-					mrservice.addMemId(mrvo);
-				}else {
-					System.out.println("인원 있음");
-				}
-				
-				
-				// 1-2. chat 		- 절차대로 진행이 되었을 경우 chat 테이블에 문자 저장됨
+				// 1-2. chat 		- 저장 방식의 변화로 그냥 바로 문자 저장 가능
 				System.out.println("저장되는 메세지 : "+ vo);
 				service.addtMessage(vo);
+				
+				
+				// 채팅 미리보기 데이터 세팅 값
+				crvo.setChaRoomId((String) mapReceive.get("room_id"));
+				crvo.setRoomContents((String) mapReceive.get("msg"));
 				crservice.updateChattRoom(crvo);
 			}
 			
@@ -198,6 +181,8 @@ public class HandlerChat extends TextWebSocketHandler {
 			ObjectMapper objectMapper = new ObjectMapper();
 			String now_room_id = "";
 			
+			MemberRoomVo mrvo= new MemberRoomVo();
+			
 			// 사용자 세션을 리스트에서 제거
 			for (int i = 0; i < sessionList.size(); i++) {
 				Map<String, Object> map = sessionList.get(i);
@@ -207,6 +192,12 @@ public class HandlerChat extends TextWebSocketHandler {
 				if(session.equals(sess)) {
 					now_room_id = room_id;
 					sessionList.remove(map);
+					
+					mrvo.setMemId( session.getPrincipal().getName());
+					mrvo.setRoomId(room_id);
+					mrservice.offlineUser(mrvo);
+					
+					
 					break;
 				}	
 			}
@@ -227,6 +218,7 @@ public class HandlerChat extends TextWebSocketHandler {
 					
 					//퇴장 한 사람 구분 
 					mapToSend.put("exitId", session.getPrincipal().getName());
+					
 					
 					String jsonStr = objectMapper.writeValueAsString(mapToSend);
 					sess.sendMessage(new TextMessage(jsonStr));

@@ -19,5 +19,6 @@ import lombok.ToString;
 public class MemberRoomVo {
 	private String memId;
 	private String roomId;
+	private String connectStatus;
 	
 }

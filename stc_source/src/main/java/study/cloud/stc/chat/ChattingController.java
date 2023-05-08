@@ -26,6 +26,7 @@ import study.cloud.stc.chatting.model.service.ChattingService;
 import study.cloud.stc.chatting.model.service.MemberRoomService;
 import study.cloud.stc.chatting.model.vo.ChattRoomVo;
 import study.cloud.stc.chatting.model.vo.ChattingVo;
+import study.cloud.stc.chatting.model.vo.MemberRoomVo;
 import study.cloud.stc.member.model.vo.MemberVo;
 
 @Controller
@@ -62,6 +63,7 @@ public class ChattingController {
 			String standname = principal.getName();
 
 			//참가자 리스트 (관리자)
+			
 			request.setAttribute("adminEntry", mrservice.selectAdminEntry(room_id)); 
 			
 			//참가자 리스트 (유저)
@@ -88,7 +90,6 @@ public class ChattingController {
 			
 			// 이 때는 전체 방이 나오게 하기
 			if(chaRoomId.equals("valueIsNull")) {
-				System.out.println("searchKeyword : "+ chaRoomId);
 				return crService.searchAllListChattRoom();
 			}
 			
@@ -103,8 +104,6 @@ public class ChattingController {
 			@RequestParam(value="chaRoomId", defaultValue="valueIsNull") String chaRoomId
 				) throws Exception {
 			
-			System.out.println("검색어 관련 update Controller chaRoomId:" + chaRoomId);
-			
 			if(chaRoomId.equals("valueIsNull")) {
 				String nullcount = String.valueOf( crService.selectCount());
 				
@@ -116,12 +115,62 @@ public class ChattingController {
 			return roomCount;
 		}
 		
-		@RequestMapping("/addChatUser")
+		@RequestMapping("/onlinestatus")
 		@ResponseBody
-		public String addChatUser() {
+		public String addChatUser(
+			HttpServletRequest req ,
+			@RequestParam(value="enterId", defaultValue="nullId") String enterId,
+			@RequestParam(value="roomId", defaultValue="nullRoom") String roomId
+				) {
+			
+			MemberRoomVo mrvo= new MemberRoomVo();
+			ChattRoomVo crvo = new ChattRoomVo();
+					
+			// 1. RoomId 넣기
+			crvo.setChaRoomId(roomId);
+			mrvo.setMemId(enterId);
+			mrvo.setRoomId(roomId);
+			
+			
+			// 1-0. chattRoom 	- select 해서  있는지 없는지 확인 없으면 insert 있으면 넘기기  
+			//crvo에 들어있는건 : 방 아이디
+			if(crService.viewRoomId(crvo) == null) {
+				crService.addRoomId(crvo);
+			}
+			
+			// 1-1. MemberRoom 	- division 사용해서 해당 id 와, 상단에서 기입한 정보와 같은걸 기입
+			//mrvo에 들어있는건 : 입장한 사람의 아이디, 방 아이디
+			if(mrservice.viewMemberId(mrvo) == null) {
+				mrservice.addMemId(mrvo);
+			}else {
+				System.out.println("인원 있음");
+			}
+			
+			// 인원 접속 상태 실시간 변경 + ajax 변경
+			mrservice.onlineUser(mrvo);
 			
 			return "success";
 		}
 		
-
+		@RequestMapping("/offlinestatus")
+		@ResponseBody
+		public String offlinestatus(
+				HttpServletRequest req ,
+				@RequestParam(value="exitId", defaultValue="nullId") String exitId,
+				@RequestParam(value="roomId", defaultValue="nullRoom") String roomId
+				) {
+			
+			MemberRoomVo mrvo= new MemberRoomVo();
+			/*
+			 * System.out.println("이거 퇴장한 사람 아이디 + exitId:" + exitId);
+			 * System.out.println("이거 퇴장한 방 + roomId"+ roomId);
+			 */
+			mrvo.setMemId(exitId);
+			mrvo.setRoomId(roomId);
+			
+			// 인원 접속 상태 실시간 변경 + ajax 변경
+			mrservice.offlineUser(mrvo);
+			
+			return "DigiXross";
+		}
 }

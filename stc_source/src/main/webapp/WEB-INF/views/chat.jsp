@@ -14,6 +14,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
 <script type="text/javascript">
 	var webSocket = {
 		init : function(param) {
@@ -69,7 +70,37 @@
 				// 입장 시 참조 값
 				console.log('입장 한 사람: '+msgData.enterId );
 				
+				$('.exiter-'+msgData.enterId).remove();
 				$('.enter-'+msgData.enterId).remove();
+				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/chatting/onlinestatus',
+					type: 'post',
+					data: {"enterId" : msgData.enterId, "roomId" : msgData.room_id },
+					beforeSend : function(xhr){
+
+		                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+		                
+		            },
+		            success : function(data){
+		            	
+		            	console.log('ENTER CONSOLE ');
+		            	
+		            	$('.exit-'+msgData.enterId).append(
+		            		
+		            		'<span class=\"glyphicon glyphicon-ok-circle enter-'+msgData.enterId+'\" style=\" float: right; color: green;\" aria-hidden=\"true\">ONLINE</span>'
+		            			
+		            	);
+		            	
+		            	$('.entry-'+msgData.enterId).append(
+			            		
+			            		'<span class=\"glyphicon glyphicon-ok-circle enter-'+msgData.enterId+'\" style=\" float: right; color: green;\" aria-hidden=\"true\">ONLINE</span>'
+			            			
+			            	);
+		            	
+		            }
+				});
+				
 			}
 			// 퇴장
 			else if (msgData.cmd == 'CMD_EXIT') {
@@ -77,7 +108,31 @@
 				
 				// 퇴장 시 참조 값
 				console.log('퇴장 한 사람: '+msgData.exitId );
-			}
+				
+				$('.enter-'+msgData.exitId).remove();
+				$('.exiter-'+msgData.exitId).remove();
+				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/chatting/offlinestatus',
+					type: 'post',
+					data: {"exitId" : msgData.exitId, "roomId" : msgData.room_id },
+					beforeSend : function(xhr){
+	
+		                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+		                
+		            },
+		            success : function(data){
+		            	console.log(data);
+		            	$('.entry-'+msgData.exitId).append(
+		            			'<span class=\"glyphicon glyphicon-remove-circle exiter-' + msgData.exitId + '\" style=\" float: right; color: red;\" aria-hidden=\"true\">OFFLINE</span>'		            	
+		            	);		
+		            	$('.exit-'+msgData.exitId).append(
+		            			'<span class=\"glyphicon glyphicon-remove-circle exiter-' + msgData.exitId + '\" style=\" float: right; color: red;\" aria-hidden=\"true\">OFFLINE</span>'		            	
+		            	);	
+		            }
+					
+				});
+ 			}
 		},
 		closeMessage : function(str) {
 			$('#divChatData').append('<div align="center ">' + '연결 끊김 : ' + str + '</div>');
@@ -127,6 +182,14 @@
 </head>
 
 <style>
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 200,
+  'opsz' 48
+}
 
 .none-scroll{
    -ms-overflow-style: none;
@@ -267,36 +330,6 @@
 	
 	var row = document.getElementById('btnSend');
 	
-	// 상단 상태바의 좌측 부분 
-	$( document).ready (function(){
-		$('.allRoom').click( function(){
-			$.ajax({
-	    		url: '#', 
-	    		type: 'post',
-	            data: row,
-	            beforeSend : function(xhr)
-	               {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-	                   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	               },
-	    		//data : {memId:memId, memEmail:memEmail},
-	            datatype : 'json',
-	            error: function(xhr, status, error){
-	                alert('ajax error');
-	            },
-	            success : function(data){
-	            	if(data == 'success'){
-	            		alert('회원의 정보가 수정되었습니다.');	
-	            		location.href="<%=request.getContextPath()%>/host";
-	            	}else{
-	            		alert('서버에 오류가 생겼습니다. 다음에 시도해 주세요.');
-	            	}
-	                
-	            }
-	        });
-		});	
-	});
-	
-	
 	// 채팅방 리스트
 	$( document).ready (function(){
 		$('.searchRoom').click( function(){
@@ -392,10 +425,12 @@
 		<div class="container">
 			<sec:authorize access="hasRole('ADMIN')">
 				<div class="col-md-4" style="">
-					<div class="col-xs-6" style="background-color:rgb(62,162,255); border-right-color: rgb(58,152,240); height: 100px;">
-						<button type="button" id="allRoom" class="allRoom" style="background-color:rgb(62,162,255);">
-							<span style="display:inline-block; width: 50%;  background-color:rgb(62,162,255);" class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-						</button>
+					<div class="col-xs-6" style="background-color:rgb(62,162,255); border-right-color: rgb(58,152,240); padding-top: 20px; height: 100px;">			
+						<div style="text-align: center;">
+							<button type="button" style="background-color:rgb(62,162,255);" onclick="QuitRoom()">
+								<i class="fa fa-sign-out fa-5x" aria-hidden="true"></i>						
+							</button>
+						</div>			
 					</div>
   					<div class="col-xs-6 roomCountdiv" style="background-color:rgb(62,162,255) ; border-color: rgb(58,152,240); height: 100px;" id="roomCountdiv">
 	  						<h5 id="fix-room" class="fix-room" style="color: white;">개설된 채팅방</h3>
@@ -431,14 +466,27 @@
 					</div>
 					<div class="input-group col-xs-12" style="padding-left: 15px; padding-right: 15px; padding-bottom: 5px ; padding-top: 10px; padding-bottom: 10px; margin-top: 20px; background-color: rgb(240,242,245); height: 60px; margin-bottom: 10px; height: 208px; ">
 						<ul style="height: 45%; padding-left: 0px; overflow: auto; list-style: none;" class="none-scroll">
-							<c:forEach items="${adminEntry }" var="entry"> 
-								<li class="list-group-item list-group-item-primary">${entry.memId }  <span class="glyphicon glyphicon-remove-circle enter-${entry.memId}" style=" float: right; color: red;" aria-hidden="true">오프라인</span> </li>								
-							</c:forEach>
-															<li class="list-group-item list-group-item-primary">온라인 예시  <span class="glyphicon glyphicon-ok-circle ${entry.memId  }" style=" float: right; color: green;" aria-hidden="true">온라인</span> </li>
+							<c:forEach items="${adminEntry }" var="aentry">
+								<c:choose>
+									<c:when test="${aentry.connectStatus == 'ONLINE' }">
+										<li class="list-group-item list-group-item-primary entry-${aentry.memId }">${aentry.memId }<span class="glyphicon glyphicon-ok-circle enter-${aentry.memId}" style=" float: right; color: green;" aria-hidden="true">${aentry.connectStatus }</span> </li>
+									</c:when>
+									<c:otherwise>
+										<li class="list-group-item list-group-item-primary exit-${aentry.memId }">${aentry.memId }<span class="glyphicon glyphicon-remove-circle exiter-${aentry.memId  }" style=" float: right; color: red;" aria-hidden="true">${aentry.connectStatus }</span> </li>
+									</c:otherwise>
+								</c:choose> 	
+							</c:forEach>															
 						</ul>
 						<ul style=" height: 45%; padding-left: 0px; overflow: auto; list-style: none;" class="none-scroll">
-							<c:forEach items="${userEntry }" var="entry"> 
-								<li class="list-group-item list-group-item-primary">${entry.memId } <span class="glyphicon glyphicon-remove-circle status ${entry.memId  }" style="float: right; color: red;" aria-hidden="true"></span> </li>								
+							<c:forEach items="${userEntry }" var="uentry"> 
+								<c:choose>
+									<c:when test="${uentry.connectStatus == 'ONLINE' }">
+										<li class="list-group-item list-group-item-primary entry-${uentry.memId }">${uentry.memId } <span class="glyphicon glyphicon-ok-circle status enter-${uentry.memId}" style="float: right; color: green;" aria-hidden="true">${uentry.connectStatus }</span> </li>
+									</c:when>
+									<c:otherwise>
+										<li class="list-group-item list-group-item-primary exit-${uentry.memId }">${uentry.memId } <span class="glyphicon glyphicon-remove-circle status exiter-${uentry.memId}" style="float: right; color: red;" aria-hidden="true">${uentry.connectStatus }</span> </li>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 						</ul>
 						
@@ -598,6 +646,10 @@
 		function clickmeDown() {
 			  window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'});
 			}
+		
+		function QuitRoom(){
+			location.href="${pageContext.request.contextPath}/";
+		}
 	</script>
  	<%-- <div id="contentCover">
 		<div id="chatWrap">

@@ -14,4 +14,8 @@ public interface MemberRoomService {
 
 	public List<MemberRoomVo> selectUserEntry(String room_id);
 
+	public int onlineUser(MemberRoomVo mrvo);
+
+	public int offlineUser(MemberRoomVo mrvo);
+
 }

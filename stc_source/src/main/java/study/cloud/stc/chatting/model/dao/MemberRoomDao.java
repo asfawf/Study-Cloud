@@ -34,4 +34,14 @@ public class MemberRoomDao {
 		return session.selectList("memroomns.selectUserEntry", room_id);
 	}
 
+	public int onlineUser(MemberRoomVo mrvo) {
+		// TODO Auto-generated method stub
+		return session.update("memroomns.onlineUser", mrvo);
+	}
+
+	public int offlineUser(MemberRoomVo mrvo) {
+		// TODO Auto-generated method stub
+		return session.update("memroomns.offlineUser", mrvo);
+	}
+
 }
