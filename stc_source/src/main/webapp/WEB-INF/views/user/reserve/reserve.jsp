@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>호스트예약관리</title>
+<title>${pageContext.request.userPrincipal.name}님 예약 확인하기</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 
@@ -62,106 +62,18 @@
 		<table class="table table-striped" border="1px">
 			<thead>
 				<tr>
-					<th>이용시간</th>
-					<th>이름</th>
-					<th>전화번호</th>
-					<th>가격</th>
-					<th>인원</th>
-					<th>상태</th>
-					<th>관리</th>
+					<th>공간이름</th>
+					<th>관리</th>				
 				</tr>
 			</thead>
 			<tbody>
+			
+			<c:forEach items="${mapVo}" var="product">				
 				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
+					<td><a href="/reserve/reservecheck?proNum=${product.proNum}&proName=${product.proName}">${product.proName}</a></td>					
+					<td><button class="btn delete-btn" formaction="${pageContext.request.contextPath}/user/reserve/delete">취소하기</button></td>
 				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
-				<tr>
-					<td>12:00 ~ 17:00</td>
-					<td>홍길동</td>
-					<td>010-1234-5678</td>
-					<td>50,000</td>
-					<td>5명</td>
-					<td>결제완료</td>
-					<td><button>삭제</button></td>
-				</tr>
+			</c:forEach>				
 			</tbody>
 		</table>
 	</div>

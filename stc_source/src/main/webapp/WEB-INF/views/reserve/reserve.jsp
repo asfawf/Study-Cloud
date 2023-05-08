@@ -4,7 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" integrity="sha512-ygaYzcKBzf1YptDaS/7b9P2pY2LW0YCXp22l+IZYHwOjB2opJDrniEMarJ1HsckAdKirYqE9JMpKfSm6NHUcdg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/locales/bootstrap-datepicker.kr.min.js" integrity="sha512-4UPr4O3wb78N3c62jRE7Lv8LNJMSriVUvBa4fSGWAb25diqje3Yp4Uq1cK2pOwZ0F2s8R4RmWJYZhI75HJqOxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" integrity="sha512-yfvyUfCYfBN4Y16Nj3yxfTlgfOR07CpU7S4iOyIAniXmXrpxIppjaCHRZdZnVH+gn6bzyZTj5vVvMO/hqtbfxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- selectpicker -->
+ <!-- selectpicker -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
 <!-- stop link  -->
 
@@ -41,8 +41,9 @@
 					</h3>
 				</div>
 				<div class="panel-body recent-property-widget">
-					<div class="datepicker" id="datepicker"></div>
-					<input type="hidden" name="rsvDate" id="rsvDate">
+					<div class="datepicker" id="rsvDate">						
+					
+
 				</div>
 			</div>
 			<div class="panel panel-default sidebar-menu">
@@ -81,7 +82,8 @@
 								<span class="glyphicon glyphicon-minus"></span>
 							</button>
 								</span> 
-								<input type="text" id="rsvPerson" name="rsvPerson" class="form-control input-number text-center" value="1" min="1" max="10"> <span class="input-group-btn">
+								<input type="text" id="rsvPerson" name="rsvPerson" class="form-control input-number text-center" value="1" min="1" max="10"> 
+								<span class="input-group-btn">
 							<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="rsvPerson">
 								<span class="glyphicon glyphicon-plus"></span>
 							</button>
@@ -92,97 +94,153 @@
 			<div class="panel panel-default sidebar-menu">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<b>결제금액</b>
+						<b>시간가격(임시)</b>
 					</h3>
 				</div>
 				<div class="panel-body recent-property-widget">
-					<div class="amount" id="rsvAmount" name="rsvAmount" style="display: flex;">
-						<h3 style="margin-left: auto;">계산된금액</h3>
+					<div class="input-group" style="display: flex;">
+							<input id="proPrice" name="proPrice" value="1000">
+							
+						</div>
 					</div>
-					<input type="hidden" name="rsvDate" id="rsvDate">
 				</div>
-			</div>		
+				<div class="panel panel-default sidebar-menu">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<b>총가격</b>
+					</h3>
+				</div>
+				<div class="panel-body recent-property-widget">
+					<div class="input-group" style="display: flex;">
+							<div class="calculator" id="rsvAmount" name="rsvAmount">
+							<h3 class="price"></h3>
+						</div>
+					</div>
+				</div>			
 		</aside>
 		<aside class="sidebar sidebar-property blog-asside-right"
 			style="padding-bottom: 0px; padding-right: 0px; padding-left: 0px; ">
-			<button id=rsv-Btn class="btn btn-primary" style="width: 100%; height: 55px;">예약하기</button>
+			<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
 		</aside>
 	</div>
 <!-- stop contents -->				
 
 
-<!-- start script -->	
+<!-- start script -->
 	<script>
 		//datepicker
 		var selectedDate;
-		$('#datepicker').datepicker({
-			  uiLibrary: 'bootstrap',
-			  format: "yyyy-mm-dd",
-			  language: "kr",
-			  todayHighlight: true,
-			  startDate: new Date(),
-			  endDate: new Date(new Date().setMonth(new Date().getMonth() + 3))
-			}).on('changeDate', function(e) {
-				selectedDate = e.format();
-				console.log(e.format());
-			});
+		var selectedTime = []; 
+		$("input[name='rsvPerson']").val(1);
+	
+		$('#rsvDate').datepicker({
+		  format: "yyyy-mm-dd",
+		  language: "kr",
+		  calendarWeeks: false,
+		  todayHighlight: true,
+		  startDate: new Date(),
+		  endDate: new Date(new Date().setMonth(new Date().getMonth() + 3))
+		}).on('changeDate', function(e) {
+		  selectedDate = e.format();
+		  console.log(e.format());
+		});
+	
+		// 시간선택,인원수카운트하여 총금액 구하기
+		$('.selectpicker').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
+		  selectedTime = $(this).val();
+		  totalAmount();
+		});
+	
+		$("select[name=rsvTime]").change(function() {
+		  selectedTime = [];
+		  $("select[name=rsvTime] option:selected").each(function() {
+		    selectedTime.push($(this).val());
+		  });
+		  console.log(selectedTime);
+		  totalAmount();
+		});
+	
+		$('.btn-number').click(function(e) {
+		  e.preventDefault();
+	
+		  var fieldName = $(this).attr('data-field');
+		  var type = $(this).attr('data-type');
+		  var input = $("input[name='" + fieldName + "']");
+		  var selectedPerson = parseInt(input.val());
+	
+		  if (!isNaN(selectedPerson)) {
+		    if (type == 'minus') {
+		      if (selectedPerson > input.attr('min')) {
+		        input.val(selectedPerson - 1).change();
+		      }
+		    } else if (type == 'plus') {
+		      if (selectedPerson < input.attr('max')) {
+		        input.val(selectedPerson + 1).change();
+		      }
+		    }
+		    selectedPerson = parseInt(input.val());
+		    console.log(input.val());
+		    totalAmount();
+		  } else {
+		    input.val(0);
+		  }
+		});
+	
+		function totalAmount() {
+		  var rsvPerson = parseInt($("input[name='rsvPerson']").val());
+		  var timeMultiplier = selectedTime.length;
+		  var proPrice = parseInt($("#proPrice").val());
+		  var rsvAmount = rsvPerson * timeMultiplier * proPrice;
+	
+		  $("#rsvAmount .price").text(rsvAmount.toLocaleString() + "원");
+		};
 		
 		
-		//시간선택
-		$(document).ready(function() {
-			  var selectedValues = []; // 초기화
-			
-			  $('.selectpicker').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
-			    selectedValues = $(this).val();
-			    console.log(selectedValues);
+		
+		$("#rsv-Btn").click(function() {    
+			  // 시간 선택 배열 생성
+			  var selectedTime = [];
+			  $("select[name='rsvTime'] option:selected").each(function() {
+			    selectedTime.push($(this).val());
 			  });
-			
-			  $("select[name=rstTime]").change(function() {
-			    selectedValues = []; // 초기화
-			    $("select[name=rstTime] option:selected").each(function() {
-			      selectedValues.push($(this).val());
-			    });
-			    console.log(selectedValues);
-			  });
-			});
-		
-		
+			  
+			  const urlParams = new URL(location.href).searchParams;
+			  const proNum = urlParams.get('proNum');
+			  console.log(proNum);
+			  
+			  // 날짜, 시간, 인원, 총가격 객체 생성
+			  const rsvData = {
+			    rsvDate: selectedDate,
+			    rsvTime: selectedTime,
+			    rsvPerson: parseInt($("input[name='rsvPerson']").val()),
+			    rsvAmount: parseInt($("#proPrice").val()) * selectedTime.length * parseInt($("input[name='rsvPerson']").val()),
+			    proNum : proNum
+			  };
 	
-		//인원수카운트
-		$(document).ready(function() {
-			$('.btn-number').click(function(e) {
-				e.preventDefault();
-	
-				var fieldName = $(this).attr('data-field');
-				var type = $(this).attr('data-type');
-				var input = $("input[name='" + fieldName + "']");
-				var currentVal = parseInt(input.val());
-	
-				if (!isNaN(currentVal)) {
-					if (type == 'minus') {
-						if (currentVal > input.attr('min')) {
-							input.val(currentVal - 1).change();
-						}
-					} else if (type == 'plus') {
-						if (currentVal < input.attr('max')) {
-							input.val(currentVal + 1).change();
-						}
-					}
-				} else {
-					input.val(0);
-				}
-			});
-		});	
-	
-		
-		
-		//결제금액
-		$(document).ready(function() {
-			
-		}
-		
-		
-		
+		  		console.log("객체생성:", rsvData);
+		  
+		  
+		  // rsvData 직렬화, 서버 전송
+		  var jsonData = JSON.stringify(rsvData);
+		  
+		  $.ajax({
+			  url: '${pageContext.request.contextPath}/reserve/reserve',
+			  type: 'post',
+			  contentType: "application/json; charset=utf-8",
+			  data: jsonData,
+			  success: function(result) {
+				  console.log(result);
+				  alert("예약 성공");
+				  location.href='${pageContext.request.contextPath}/reserve/reservecheck';
+				  },
+			  error: function(error){
+				  alert(error.errorMsg);
+				  },
+			  beforeSend : function(xhr){
+				  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				  }
+				  });
+		  });
 		
 		
 		

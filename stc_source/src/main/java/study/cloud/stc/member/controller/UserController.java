@@ -1,6 +1,10 @@
 package study.cloud.stc.member.controller;
 
 import java.security.Principal;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
+import study.cloud.stc.reserve.model.service.ReserveService;
+import study.cloud.stc.reserve.model.vo.MapVo;
+import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
+import study.cloud.stc.reserve.model.vo.ReserveVo;
 
 @Controller
 @RequestMapping("/user")
@@ -19,6 +27,8 @@ public class UserController {
 
 	@Autowired
 	private MemberService mservice;
+	@Autowired
+	private ReserveService reserveService;
 	
 	
 	@GetMapping
@@ -79,12 +89,25 @@ public class UserController {
 		return shout;
 	}
 	
-	
-	
 	//내 예약
 	@GetMapping("/reserve")
-	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+	public ModelAndView selectreserveList(
+			HttpServletRequest request, 
+			HttpServletResponse response,
+			ModelAndView mv, 
+			Principal principal) throws Exception {
+		
 		mv.setViewName("/user/reserve/reserve");
+		
+		ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
+		rtDto.setMemId(principal.getName());
+				
+		List<ReserveVo> reserveVo = reserveService.selectReserveList(rtDto);
+		List<MapVo> mapVo = reserveService.selectProNameList();
+		
+		request.setAttribute("reserveVo", reserveVo);
+		request.setAttribute("mapVo", mapVo);
+				
 		return mv;
 	}
 	

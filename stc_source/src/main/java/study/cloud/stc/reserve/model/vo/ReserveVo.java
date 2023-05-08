@@ -24,19 +24,16 @@ public class ReserveVo {
 //	RSV_DATE    NOT NULL DATE 
 //	RSV_PERSON  NOT NULL NUMBER       
 //	MEM_ID      NOT NULL VARCHAR2(20) 
-//	RSV_METHOD  NOT NULL VARCHAR2(4)
-//	RSV_PAY_DATE         TIMESTAMP
 //	RSV_AMOUNT           NUMBER
 //	RSV_STATUS           NUMBER
-
+//  RSV_TIME	         NUMBER
 	
 	private int rsvNum;
     private Date rsvDate;
     private int rsvPerson;
     private String memId;
-    private String rsvMethod;
-    private Timestamp rsvPayDate;
     private int rsvAmount;
     private int rsvStatus;
- 
+    private int rsvTime;
+    private String proNum;
 }

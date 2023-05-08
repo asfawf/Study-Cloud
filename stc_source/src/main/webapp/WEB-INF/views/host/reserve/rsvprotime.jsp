@@ -107,8 +107,8 @@
 		 });
 	    
 	    console.log("시간,가격:", selectedValues);
-		    
-		// selectedDate문자와 selectedValues배열을 오브젝트 형식으로 담기
+		
+	    // selectedData 객체 생성
 		const selectedData = {
 				proNum: '${proNum}',
 				proDate: selectedDate,
@@ -117,8 +117,8 @@
 		
 		console.log("객체담긴 배열:", selectedData);
 		
-
-	 	// selectedData 직렬화
+	
+	 	// selectedData 직렬화, 서버 전송
 	 	var jsonData = JSON.stringify(selectedData);
 	 	
 	 	console.log(jsonData);
@@ -128,23 +128,20 @@
 	   		type: 'post',
 	   		//traditional: true,
 	   		contentType: "application/json; charset=utf-8",
-	   		data: jsonData,  
-	   		
-	   		//dataType: 'json',
+	   		data: jsonData,  	   		
 	   		success: function(result) {
 	   			console.log(result);
-	   			alert("ajax보냄")
+	   			alert("공간 설정이 저장되었습니다.")
 	   		},
 	   		error: function(error) {
-	   			alert(error.errorMsg);
+	   			alert("다시 설정해 주세요.");
 	   		}
 	   	 	, beforeSend : function(xhr){
-             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
 			}
-	   		
-	   	}); 
-	}
-	 
+	   	 	});
+	   	}
+		 
 
  
  

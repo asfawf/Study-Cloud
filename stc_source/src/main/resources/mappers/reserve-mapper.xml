@@ -6,42 +6,53 @@
 		<id column="RSV_NUM" property="rsvNum" />
 		<result column="RSV_DATE" property="rsvDate" />
 		<result column="RSV_PERSON" property="rsvPerson" />
-		<result column="MEM_ID" property="memId" />
 		<result column="RSV_AMOUNT" property="rsvAmount" />
 		<result column="RSV_STATUS" property="rsvStatus" />
+		<result column="RSV_TIME" property="rsvTime" />
+		<result column="PRO_NUM" property="proNum" />
 	</resultMap>
-
-	<insert id="rsvinsert">
-		INSERT INTO RESERVE VALUES (
-		(SELECT NVL(MAX(NOTI_NUM), 0)+1 FROM RESERVE)
-		, #{rsvDate}
+	
+	<!-- 예약하기 -->
+	<insert id="insertReservation" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
+		INSERT ALL
+		<foreach collection="rsvTime" item="rsvTime" index="index">
+		INTO RESERVE VALUES (
+		(SELECT (NVL(MAX(RSV_NUM),0) + #{index} + 1) FROM RESERVE)
+		, to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
 		, #{rsvPerson}
 		, #{memId}
 		, #{rsvAmount}
-		, NULL)
+		, NULL
+		, #{rsvTime}
+		, sysdate
+		,#{proNum})
+		</foreach>
+		select * from dual
 	</insert>
-
-	<update id="rsvupdate">
-
-	</update>
+	
+	<select id="selectProName" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="study.cloud.stc.reserve.model.vo.MapVo">
+		select pro_num, pro_name, pro_phone from map where pro_num = #{proNum}
+	</select>
+	
+	<select id="selectProNameList" resultType="study.cloud.stc.reserve.model.vo.MapVo">
+		select pro_num, pro_name from map where pro_num in (select distinct pro_num from reserve)
+	</select>
 
 	<delete id="rsvdelete">
 		DELETE FROM reserve WHERE RSV_NUM = #{rsvNum}
 	</delete>
 
 	<select id="rsvselectOne" resultType="rsvvo">
-		SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_METHOD, RSV_PAY_DATE, RSV_AMOUNT, RSV_STATUS
-		FROM reserve WHERE RSV_NUM = #{rsvNum} order by RSV_NUM
+		SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_AMOUNT, RSV_STATUS, RSV_TIME
+		FROM reserve WHERE MEM_ID='${memId}' order by RSV_NUM
 	</select>
 
-	<select id="rsvselectList" resultType="rsvvo">
-		SELECT RSV_NUM, RSV_DATE,
-		RSV_PERSON, MEM_ID, RSV_METHOD, RSV_PAY_DATE, RSV_AMOUNT, RSV_STATUS
-		FROM reserve order by RSV_NUM
+	<select id="selectReserveList" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="rsvvo">
+		SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_AMOUNT, RSV_STATUS, RSV_TIME, PRO_NUM
+		FROM RESERVE WHERE MEM_ID='${memId}' AND RSV_DATE >= TO_DATE(SYSDATE, 'yyyy-mm-dd') ORDER BY RSV_NUM
 	</select>
 
 	<select id="rsvselectCount" resultType="_int">
 		SELECT COUNT(*) FROM reserve
 	</select>
-
 </mapper>

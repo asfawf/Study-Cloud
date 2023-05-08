@@ -328,7 +328,8 @@
 	<insert id="insertProTime" parameterType="study.cloud.stc.product.model.vo.ProductTimeReqDto">
 		INSERT all
 		<foreach collection="values" item="value">
-		INTO PROTIME VALUES( to_date(#{proDate}||#{value.time}, 'yyyy-mm-ddhh24')
+		
+		INTO PROTIME VALUES( to_date(#{proDate}||''||#{value.time}, 'yyyy-mm-ddhh24')
 					, #{proNum}, #{value.price}, NULL)		
 		</foreach>
 		select * from dual

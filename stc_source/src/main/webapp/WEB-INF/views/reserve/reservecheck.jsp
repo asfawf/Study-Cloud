@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1 profiel-container">
 						<div class="profiel-header" >
-						    <h3> 강남역 스터디카페 헬로강남 <br>
+						    <h3> ${mapVo.proName } <br>
 						    </h3>						    
 						</div>
 						<div class="container">
@@ -43,11 +43,11 @@
 						        <div class="group-left">
 						            <div class="info-item">
 						                <div class="label">예약 번호</div>
-						                <div class="value">4897</div>
+						                <div class="value"><span></span></div>
 						            </div>
 						            <div class="info-item">
 						                <div class="label">예약 날짜</div>
-						                <div class="value">2023년 05월 01일</div>
+						                <div class="value"><span>${rtDto.rsvDate }</span></div>
 						            </div>
 						            <div class="info-item">
 						                <div class="label">이용 시간</div>
@@ -57,15 +57,15 @@
 						        <div class="group-right">
 						            <div class="info-item">
 						                <div class="label">예약 인원</div>
-						                <div class="value">3명</div>
+						                <div class="value"><span>${rtDto.rsvPerson }명</span></div>
 						            </div>
 						            <div class="info-item">
 						                <div class="label">공간 전화번호</div>
-						                <div class="value">453-5634</div>
+						                <div class="value"><span>${mapVo.proPhone }</span></div>
 						            </div>
 						            <div class="info-item">
 						                <div class="label">가격</div>
-						                <div class="value">15,000원</div>
+						                <div class="value"><span>${rtDto.rsvAmount }</span>원</div>
 						            </div>
 						        </div>
 						    </div>

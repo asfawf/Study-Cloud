@@ -398,8 +398,6 @@ public class HostController {
 	
 	
 	//예약관리
-
-	
 	@GetMapping("/reserve")
 	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
 		mv.setViewName("/host/reserve/reserve");
@@ -421,7 +419,7 @@ public class HostController {
 		return mv;
 	}
 	
-	
+	//공간시간,가격설정
 	@PostMapping("/reserve/rsvprotime")
 	@ResponseBody 
 	public String seletedValues(
