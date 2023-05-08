@@ -41,10 +41,11 @@
 					</h3>
 				</div>
 				<div class="panel-body recent-property-widget">
-					<div class="datepicker" id="rsvDate">						
+					<div class="input-group">
+					<div class="datepicker" id="rsvDate">
+					</div>
 					
-
-				</div>
+					</div>
 			</div>
 			<div class="panel panel-default sidebar-menu">
 				<div class="panel-heading" style="padding-bottom: 15px;">
@@ -55,10 +56,9 @@
 				<div class="panel panel-default sidebar-menu">
 					<select class="selectpicker form-control" multiple data-size="10" title="시간선택" id="rsvTime" name="rsvTime">
 						<optgroup label="오전">
-							<c:forEach var="i" begin="1" end="12">
-								<option value="${i}">${i < 10 ? '0' : ''}${i}:00~ ${i+1 < 10 ? '0' : ''}${i+1}:00 &ensp;</option>
-							</c:forEach>
-							<option value="11">11:00 ~ 12:00</option>
+							<c:forEach items="${product.detail.timePriceList }" var="timeprice" varStatus="s">                            
+                                <option value="${timeprice.time } ${timeprice.price }">${timeprice.time }&nbsp;&nbsp;<fmt:formatNumber value="${timeprice.price }" /></option>                              
+                                </c:forEach>							
 						</optgroup>
 						<optgroup label="오후">
 							<c:forEach var="i" begin="0" end="10">
@@ -143,6 +143,9 @@
 		}).on('changeDate', function(e) {
 		  selectedDate = e.format();
 		  console.log(e.format());
+		  // 선택된 날짜의 time과 price, 그리고 예약상태를 알아오기
+		  getTimePrice(selectedDate);
+		  
 		});
 	
 		// 시간선택,인원수카운트하여 총금액 구하기
@@ -243,8 +246,66 @@
 		  });
 		
 		
+	// 선택된 날짜의 time과 price, 그리고 예약상태를 알아오기  
+	function getTimePrice(selectedDate){  // selectedDate yyyy-mm-dd
+		  var proNum =  '${product.detail.proNum }';
+		  console.log(proNum)
+		 $.ajax({
+			  url: '${pageContext.request.contextPath}/reserve/timePriceRsv',
+			  type: 'get',
+			  data: {proDate: selectedDate, proNum: proNum},
+			  
+			  dataType:"json",
+			  success: function(result) {
+				  console.log(result);
+				  console.log(result.length);
+				  console.log(result[0].time);
+				  disaplyTimePriceRsv(result);
+				  },
+			  error: function(error){
+				  alert(error.errorMsg);
+				  },
+			  beforeSend : function(xhr){
+				  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				  }
+		});
+	}
+		  
 		
+	function disaplyTimePriceRsv(data){
+		var htmlval = '';
+		//htmlval += '  ';
+		//htmlval += '<select class="selectpicker form-control" multiple data-size="10" title="시간선택" id="rsvTime" name="rsvTime">';  
+		for(var i=0; i<24; i++){
+			var timeprice = data[i];
+			if(i==0){
+			 	htmlval += '<optgroup label="오전">';
+			} else if(i==12){
+	         	htmlval += '<optgroup label="오후">';
+			}
+			if(!timeprice){
+				// 예약 불가능시간
+				//var formatedTime = timeprice.time+':00-'+(timeprice.time+1)+':00'
+				//htmlval += '         <option value="'+timeprice.time+'" disabled >'+i+'&nbsp;&nbsp; '+0+'</option>';   
+			}else {
+				if(!timeprice.rsvNum){
+					// 이미 예약된 상태
+					// disabled 
+				} else {
+					var formatedTime = timeprice.time+':00-'+(timeprice.time+1)+':00'
+					htmlval += '         <option value="'+timeprice.time+'">'+timeprice.time+'&nbsp;&nbsp; '+timeprice.price+'</option>';
+				}
+			}
+			if(i==0){
+				htmlval += '</optgroup>';
+			} else if(i==12){
+				htmlval += '</optgroup>';
+			}
+		}                       
+//		htmlval += '		<option value="${i + 12}">${i + 12}:00~${i + 13}:00</option>';
 		
+	   $("#rsvTime").html(htmlval);
+	}
 	</script>
 	<!-- stop script -->
 	

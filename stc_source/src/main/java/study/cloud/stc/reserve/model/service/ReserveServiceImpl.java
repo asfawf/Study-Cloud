@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import study.cloud.stc.product.model.vo.ProductTimePriceDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.reserve.model.dao.ReserveDao;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
@@ -23,20 +25,22 @@ public class ReserveServiceImpl implements ReserveService{
 
 	@Override
 	public List<ReserveVo> selectReserveList(ReserveTimeReqDto rtDto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectReserveList(rtDto);
 	}
 
 	@Override
 	public MapVo selectProName(ReserveTimeReqDto rtDto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectProName(rtDto);
 	}
 	
 	@Override
 	public List<MapVo> selectProNameList() throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectProNameList();
+	}
+
+	@Override
+	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
+		return dao.selectTimePriceRsvList(dto);
 	}
 
 }

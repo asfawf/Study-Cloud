@@ -15,4 +15,5 @@ import lombok.ToString;
 public class ProductTimePriceDto {
 	private String time;
 	private String price;
+	private String rsvNum;
 }

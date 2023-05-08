@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import study.cloud.stc.product.model.vo.ProductTimePriceDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
@@ -24,6 +26,9 @@ public interface ReserveService {
 	
 	//상품이름리스트
 	public List<MapVo> selectProNameList() throws Exception;
+	
+	//선택된 날짜의 time과 price, 그리고 예약상태를 알아오기
+	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception;
 
 	
 }

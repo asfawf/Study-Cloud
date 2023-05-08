@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import study.cloud.stc.product.model.vo.ProductTimePriceDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.reserve.model.service.ReserveService;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
@@ -29,7 +31,6 @@ import study.cloud.stc.reserve.model.vo.ReserveVo;
 public class ReserveController {
 	
 	
-	//예약 -> 예약한 사람의 아이디(고유값): 어떻게 줄건지....
 	@Autowired
 	private ReserveService reserveservice;
 	@Autowired
@@ -49,7 +50,7 @@ public class ReserveController {
 		this.rtDto = rtDto;
 		System.out.println("rtDto: " + this.rtDto);
 		reserveservice.insertReserve(rtDto);
-		return "ok";
+		return "OK";
 		
 	}
 	
@@ -70,7 +71,14 @@ public class ReserveController {
 	}
 	
 	
-	
+	//선택된 날짜의 time과 price, 그리고 예약상태를 알아오기 
+	@GetMapping("/timePriceRsv")
+	@ResponseBody
+	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
+		List<ProductTimePriceDto> timePriceRsvList =  reserveservice.selectTimePriceRsvList(dto);
+		return timePriceRsvList;  // json 형태임. springframework
+	}
+		
 	
 	 
 	

@@ -55,4 +55,9 @@
 	<select id="rsvselectCount" resultType="_int">
 		SELECT COUNT(*) FROM reserve
 	</select>
+	
+	<select id="selectTimePriceRsvList" resultType="study.cloud.stc.product.model.vo.ProductTimePriceDto">
+		SELECT to_char(pro_date, 'hh24') time, pro_price price, rsv_num, PRO_NUM FROM PROTIME  where PRO_NUM =#{proNum} and trunc(pro_date) =  #{proDate}
+	</select>
+	
 </mapper>

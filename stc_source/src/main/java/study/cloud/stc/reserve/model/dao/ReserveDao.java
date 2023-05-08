@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import study.cloud.stc.product.model.vo.ProductTimePriceDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
@@ -35,7 +37,11 @@ public class ReserveDao {
 	}
 	
 	//상품이름리스트
-		public List<MapVo> selectProNameList() throws Exception{
-			return sqlSession.selectList("reserve.selectProNameList");	
-		}
+	public List<MapVo> selectProNameList() throws Exception{
+		return sqlSession.selectList("reserve.selectProNameList");	
+	}
+	
+	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
+		return sqlSession.selectList("reserve.selectTimePriceRsvList", dto);
+	}
 }
