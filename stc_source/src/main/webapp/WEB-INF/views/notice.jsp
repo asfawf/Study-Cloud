@@ -11,8 +11,6 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
-<c:set var="cpath" value="${pageContext.request.contextPath }"/>
-<c:set var="uploadpath" value="/resources/uploadfiles/"/>
 <section>
 	<div class="count-area"> 
 	    <div class="container">
@@ -43,7 +41,7 @@
 		                        <sec:authorize access="isAuthenticated()">
 								<sec:authorize access="hasRole('ADMIN')">
 									<!-- 공지사항 등록 버튼 시작 -->
-									<button type="button" class="btn search-btn" data-toggle="modal" data-target="#insertNotice" style="display: inline;">
+									<button id="notibtn" type="button" class="btn search-btn" data-toggle="modal" data-target="#insertNotice" style="display: inline;">
 										등록
 									</button>
 									<!-- 공지사항 등록 Modal -->
@@ -59,7 +57,7 @@
 												<form:form id="insertForm" action="${pageContext.request.contextPath}/notice/insert" method="POST" enctype="multipart/form-data">
 												<div class="modal-body">
 													<div class="row">
-														<div class="col-sm-4"> 
+														<div class="col-sm-4">
 														<select name="notiIdx" class="selectpicker show-tick form-control" title="-전체-" >
 															<option> -전체- </option>
 															<option value="공지">공지</option>
@@ -69,12 +67,12 @@
 														</select>													
 														</div>
 														<div class="col-sm-8">
-															<input type="text" class="form-control" name="notiTitle" placeholder="제목" >
+															<input type="text" class="form-control notiTitle" name="notiTitle" placeholder="제목">
 														</div>
 													</div>
 													<div class="mb-3">
 														<br>
-														<textarea class="form-control" id="notiContents" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
+														<textarea class="form-control ckeditor" id="insertNotiContents" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
 														<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}"><br>
 														<input type="file" class="form-control" name="report" placeholder="첨부파일">
 													</div>
@@ -83,7 +81,7 @@
 											    <div class="modal-footer">
 													<div class="button notice-btn">
 												        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-														<button form="insertForm" type="submit" class="btn search-btn" >등록</button>												
+														<button form="insertForm" type="button" class="btn search-btn" onclick="ckinsertForm();">등록</button>												
 													</div> 
 												</div>										
 											</div>
@@ -114,21 +112,21 @@
 							                    ${notice.notiContents }  
 							                    <c:choose>
 				                               	<c:when test="${notice.renameFilename ne null }">
-				                               		<img src="${cpath}${uploadpath}${notice.renameFilename }">  
+				                               		<img src="${pageContext.request.contextPath }/resources/uploadfiles/${notice.renameFilename }">  
 				                               	</c:when>
 				                               	</c:choose>							                    
 							                </ol>		
 							                					                
-							                <div class="button notice-btn">
+							                <div class="button notice-btn updelete">
                                             	<sec:authorize access="isAuthenticated()">
 												<sec:authorize access="hasRole('ADMIN')">
 													<!-- 공지사항 수정 버튼 시작 -->
-													<button type="button" class="btn search-btn" data-toggle="modal" data-target="#updateNotice${notice.notiNum }">
+													<button id="notibtn" type="button" data-toggle="modal" data-target="#updateNotice${notice.notiNum }">
 														수정
-													</button>
+													</button>&nbsp;
 													<!-- 공지사항 삭제 버튼 -->
 													<form:form id="deleteForm${notice.notiNum }" action="${pageContext.request.contextPath}/notice/delete?notiNum=${notice.notiNum }" method="POST">
-													<button form="deleteForm${notice.notiNum }" class="btn search-btn" type="button" onclick=" submit(); ">삭제</button>
+													<button form="deleteForm${notice.notiNum }" type="button" onclick=" ckdeleteForm(this.form); ">삭제</button>
 													</form:form>
 													<!-- 공지사항 수정 Modal -->													 
 													<form:form id="updateForm${notice.notiNum }" action="${pageContext.request.contextPath}/notice/update?notiNum=${notice.notiNum }" method="POST" enctype="multipart/form-data">
@@ -154,11 +152,11 @@
 																	</div>
 																	<div class="mb-3">
 																		<br>
-																		<textarea class="form-control" id="#notiContents" name="notiContents" placeholder="내용" style="height: 300px;">
+																		<textarea class="form-control ckeditor" id="#notiContents" name="notiContents" placeholder="내용" style="height: 300px;">
 																			${notice.notiContents }
 																			<c:choose>
 											                               	<c:when test="${notice.renameFilename ne null }">
-											                               		<img src="${cpath}${uploadpath}${notice.renameFilename }">  
+											                               		<img src="${pageContext.request.contextPath }/resources/uploadfiles/${notice.renameFilename }">  
 											                               	</c:when>
 											                               	</c:choose>
 										                               	</textarea>
@@ -169,7 +167,7 @@
 																<div class="modal-footer">
 																	<div class="button notice-btn">
 																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>																	
-																		<button form="updateForm${notice.notiNum }" type="submit" class="btn search-btn" >등록</button>
+																		<button form="updateForm${notice.notiNum }" type="button" class="btn search-btn" onclick=" ckupdateForm(this.form); ">등록</button>
 																	</div> 
 																</div>
 															</div>
@@ -189,51 +187,77 @@
                     </div>
                 </div>
                 <!-- noticeList 끝 -->
-                
-                
-					<div class="col-md-12 clear"> 
-                        <div class="text-center">
-                            <div class="pagination">
-                                <ul>
-                                	<c:choose>
-	                               	<c:when test="${pageInfo.currentPage eq 1 }">
-	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
-	                               	</c:when>
-	                               	<c:otherwise>
-	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/notice?notiIdx=${param.notiIdx }&page=${pageInfo.currentPage - 1 }"></a></li>
-	                               	</c:otherwise>
-                                	</c:choose>
-	                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
-										<li><a href="${pageContext.request.contextPath}/notice?notiIdx=${param.notiIdx }&page=${page }">${page }</a></li>
-									</c:forEach>  
-									<c:choose>
-									<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
-	                               		<li><a class="disabled pe-7s-angle-right"></a></li>
-	                               	</c:when>
-	                               	<c:otherwise>
-	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/notice?notiIdx=${param.notiIdx }&page=${pageInfo.currentPage +1 }"></a></li>
-	                               	</c:otherwise> 
-	                               	</c:choose>                                 
-                                </ul>
-                            </div>
-                        </div>                
-                    </div>                     
+				<div class="col-md-12 clear"> 
+		        	<div class="text-center">
+		            	<div class="pagination">
+		                	<ul>
+		                    	<c:choose>
+		                        <c:when test="${pageInfo.currentPage eq 1 }">
+		                        	<li><a class="disabled pe-7s-angle-left"></a></li>
+		                        </c:when>
+		                        <c:otherwise>
+		                        	<li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/notice?notiIdx=${param.notiIdx }&page=${pageInfo.currentPage - 1 }"></a></li>
+		                        </c:otherwise>
+		                        </c:choose>
+		                        <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
+									<li><a href="${pageContext.request.contextPath}/notice?notiIdx=${param.notiIdx }&page=${page }">${page }</a></li>
+								</c:forEach>  
+								<c:choose>
+								<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
+		                        	<li><a class="disabled pe-7s-angle-right"></a></li>
+		                        </c:when>
+		                        <c:otherwise>
+		                        	<li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/notice?notiIdx=${param.notiIdx }&page=${pageInfo.currentPage +1 }"></a></li>
+		                        </c:otherwise> 
+		                        </c:choose>                                 
+		                	</ul>
+						</div>
+		        	</div>                
+				</div>                     
             </div>
         </div>
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 	
 <script>
-	CKEDITOR.replace( 'notiContents'
-			, {
-				filebrowserUploadUrl: 'imageUpload.do'
-				// ckfinder 추가하여 이미지 찾기도 가능함
-			   }
-	); 
-	$(document).ready(function() {
-	    CKEDITOR.replace('#notiContents');
-	});
+	/* updateForm */
+	function ckupdateForm(form){
+		alert("수정되었습니다.");
+		form.submit();
+	}
 	
+	/* deleteForm */
+	function ckdeleteForm(form){
+		if(confirm("공지사항을 삭제하시겠습니까?")){ // 확인 버튼을 눌렀을 때
+			alert("삭제되었습니다.");
+			form.submit();
+	     }else{  // 취소 버튼을 눌렀을 때
+	    	location.replace('<%=request.getContextPath() %>/notice');
+	    	return false;
+	     }
+	}
+	
+	/* insertForm 유효성 체크 */
+	function ckinsertForm() {
+		var insertForm = $('#insertForm')
+		var notiTitleLength = $(".notiTitle").val().trim().length;
+		var notiContents = CKEDITOR.instances['insertNotiContents'];
+		if(notiTitleLength < 1){
+			alert("제목을 입력하세요.");
+			$(".notiTitle").focus();
+			$(".notiTitle").val("");
+		} else if (notiContents.getData() == '' || notiContents.getData().length < 22) {
+  			alert("글자 수가 적으면 등록되지 않습니다. 내용을 입력하세요.")
+  			console.log(notiContents.getData());
+  			notiContents.focus();
+  			notiContents.setData('');
+  			return false;
+	  	} else {
+  			insertForm.submit();
+	  	}	
+		
+	}
+
 </script>
     </body>
 </html>

@@ -1,6 +1,8 @@
 package study.cloud.stc.notice.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import study.cloud.stc.common.file.FileUtil;
 import study.cloud.stc.common.paging.Paging;
@@ -29,7 +34,7 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService service;
-	private final static int BOARD_LIMIT = 5;
+	private final static int BOARD_LIMIT = 10;
 	private final static int PAGE_LIMIT = 5;
 	
 	@Autowired
@@ -41,14 +46,24 @@ public class NoticeController {
 		  , NoticeVo vo
 		  , @RequestParam(value="page", defaultValue="1") int page
 		  , @RequestParam(value="notiIdx", defaultValue="") String notiIdx
-		  ) throws Exception{
-
+//		  , @RequestParam(name = "report", required = false) MultipartFile multi
+//		  , HttpServletRequest request
+			) throws Exception {
+//		Map<String, String> filePath;
+//		try {
+//			filePath = fileUtil.saveFile(multi, request, null);
+//			vo.setOriginalFilename(filePath.get("original"));
+//			vo.setRenameFilename(filePath.get("rename"));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		int currentPage = page; 
 		int totalCnt= service.selectCount(notiIdx); 
 		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT); 
 		mv.addObject("pageInfo", map);
 		mv.addObject("noticeList", service.selectList(currentPage, BOARD_LIMIT, notiIdx));
 		mv.setViewName("notice");
+
 		return mv;
 	}
 	
@@ -70,7 +85,7 @@ public class NoticeController {
 		mv.setViewName("redirect:/notice");
 		return mv;
 	}
-	
+
 	@PostMapping("/update")
 	public ModelAndView updateNotice(ModelAndView mv
 			, NoticeVo vo
@@ -89,17 +104,14 @@ public class NoticeController {
 		mv.setViewName("redirect:/notice");
 		return mv;
 	}
-	
+ 
 	@PostMapping("/delete")
 	public ModelAndView deleteNotice(ModelAndView mv
 			, int notiNum) throws Exception{
 		service.delete(notiNum);
 		mv.setViewName("redirect:/notice");
 		return mv;
-	}
-	
-	
-	
+	}	
 	
 	
 	
