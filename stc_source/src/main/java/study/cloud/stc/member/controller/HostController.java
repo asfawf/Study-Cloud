@@ -88,6 +88,7 @@ public class HostController {
 	@PostMapping("/product/insert")
 	public ModelAndView insertProduct(
 			ModelAndView mv
+//			, @RequestParam(name = "uploadfile", required = false) MultipartFile[] multifiles
 			, @RequestParam(name = "uploadfile", required = false) MultipartFile multi
 			, HttpServletRequest request
 			,ProductDetailDto dto
@@ -96,6 +97,9 @@ public class HostController {
 		dto.setMemId(principal.getName());
 		Map<String, String> filePath;
 		try {
+//			if(multifiles != null) {
+//			for(int i=0; i<multifiles.length; i++) {
+//				MultipartFile multi = multifiles[i];
 			filePath = fileUtil.saveFile(multi, request, null);
 			dto.setProPicOriginal(filePath.get("original"));
 			dto.setProPicRename(filePath.get("rename"));
