@@ -54,8 +54,8 @@
 					</h3>
 				</div>
 				<div class="panel panel-default sidebar-menu">
-					<select class="selectpicker form-control" multiple data-size="10" title="시간선택" id="rsvTime" name="rsvTime">
-						<optgroup label="오전">
+					<select class="selectpicker form-control" multiple data-size="10" data-html="true" title="시간선택" id="rsvTime" name="rsvTime">
+						<%-- <optgroup label="오전">
 							<c:forEach items="${product.detail.timePriceList }" var="timeprice" varStatus="s">                            
                                 <option value="${timeprice.time } ${timeprice.price }">${timeprice.time }&nbsp;&nbsp;<fmt:formatNumber value="${timeprice.price }" /></option>                              
                                 </c:forEach>							
@@ -65,7 +65,7 @@
 								<option value="${i + 12}">${i + 12}:00~${i + 13}:00</option>
 							</c:forEach>
 							<option value="23">23:00~24:00</option>
-						</optgroup>
+						</optgroup> --%>
 					</select>
 				</div>
 			</div>
@@ -113,7 +113,7 @@
 				<div class="panel-body recent-property-widget">
 					<div class="input-group" style="display: flex;">
 							<div class="calculator" id="rsvAmount" name="rsvAmount">
-							<h3 class="price"></h3>
+							<h3><span class="price"></span></h3>
 						</div>
 					</div>
 				</div>			
@@ -131,6 +131,7 @@
 		//datepicker
 		var selectedDate;
 		var selectedTime = []; 
+		var rsvPrice;
 		$("input[name='rsvPerson']").val(1);
 	
 		$('#rsvDate').datepicker({
@@ -148,20 +149,29 @@
 		  
 		});
 	
-		// 시간선택,인원수카운트하여 총금액 구하기
+		// 시간선택,인원수카운트하여 총금액 구하기 (사용안함. 확인필)
 		$('.selectpicker').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
 		  selectedTime = $(this).val();
 		  totalAmount();
 		});
 	
 		$("select[name=rsvTime]").change(function() {
+		  rsvPrice = 0;
 		  selectedTime = [];
 		  $("select[name=rsvTime] option:selected").each(function() {
+			  rsvPrice += parseInt($(this).attr('value2'));
+				console.log("this:" + $(this).attr('value2'));
 		    selectedTime.push($(this).val());
 		  });
 		  console.log(selectedTime);
-		  totalAmount();
+		  rsvAmount()
 		});
+		
+		function rsvAmount(){
+			var rsvPerson = parseInt($("input[name='rsvPerson']").val());
+			var rsvAmount = (rsvPerson * rsvPrice);
+			$("#rsvAmount .price").text(rsvAmount.toLocaleString());
+		}
 	
 		$('.btn-number').click(function(e) {
 		  e.preventDefault();
@@ -183,21 +193,11 @@
 		    }
 		    selectedPerson = parseInt(input.val());
 		    console.log(input.val());
-		    totalAmount();
+		    rsvAmount();
 		  } else {
 		    input.val(0);
 		  }
 		});
-	
-		function totalAmount() {
-		  var rsvPerson = parseInt($("input[name='rsvPerson']").val());
-		  var timeMultiplier = selectedTime.length;
-		  var proPrice = parseInt($("#proPrice").val());
-		  var rsvAmount = rsvPerson * timeMultiplier * proPrice;
-	
-		  $("#rsvAmount .price").text(rsvAmount.toLocaleString() + "원");
-		};
-		
 		
 		
 		$("#rsv-Btn").click(function() {    
@@ -217,7 +217,8 @@
 			    rsvTime: selectedTime,
 			    rsvPerson: parseInt($("input[name='rsvPerson']").val()),
 			    rsvAmount: parseInt($("#proPrice").val()) * selectedTime.length * parseInt($("input[name='rsvPerson']").val()),
-			    proNum : proNum
+			    proNum : proNum,
+			    memId : '${pageContext.request.userPrincipal.name}'
 			  };
 	
 		  		console.log("객체생성:", rsvData);
@@ -283,28 +284,38 @@
 			} else if(i==12){
 	         	htmlval += '<optgroup label="오후">';
 			}
+						
 			if(!timeprice){
 				// 예약 불가능시간
 				//var formatedTime = timeprice.time+':00-'+(timeprice.time+1)+':00'
 				//htmlval += '         <option value="'+timeprice.time+'" disabled >'+i+'&nbsp;&nbsp; '+0+'</option>';   
 			}else {
-				if(!timeprice.rsvNum){
+				if(timeprice.rsvNum){
 					// 이미 예약된 상태
 					// disabled 
+					var num = Number(timeprice.time) + 1;
+					var time = (num < 10) ? "0" + num : num.toString();
+					var formatedTime = timeprice.time+':00 ~ '+ time +':00'
+					htmlval += '         <option value="'+timeprice.time+'" value2="'+timeprice.price+'" disabled >'+i+'&nbsp;&nbsp; '+ 0 +'</option>'; 
 				} else {
-					var formatedTime = timeprice.time+':00-'+(timeprice.time+1)+':00'
-					htmlval += '         <option value="'+timeprice.time+'">'+timeprice.time+'&nbsp;&nbsp; '+timeprice.price+'</option>';
+					console.log(timeprice.time);
+					var num = Number(timeprice.time) + 1;
+					var time = (num < 10) ? "0" + num : num.toString();
+					var formatedTime = timeprice.time+':00 ~ '+ time +':00'
+					htmlval += '         <option value="'+timeprice.time+'" value2="'+timeprice.price+'">'+formatedTime+'&nbsp;&nbsp; '+timeprice.price+'</option>';
 				}
 			}
-			if(i==0){
+			if(i==11){
 				htmlval += '</optgroup>';
-			} else if(i==12){
+			} else if(i==23){
 				htmlval += '</optgroup>';
 			}
 		}                       
 //		htmlval += '		<option value="${i + 12}">${i + 12}:00~${i + 13}:00</option>';
-		
-	   $("#rsvTime").html(htmlval);
+		console.log(htmlval);
+
+	   	$('#rsvTime').append(htmlval);
+	   	$('#rsvTime').selectpicker('refresh');
 	}
 	</script>
 	<!-- stop script -->

@@ -50,6 +50,7 @@ public class ReserveController {
 		this.rtDto = rtDto;
 		System.out.println("rtDto: " + this.rtDto);
 		reserveservice.insertReserve(rtDto);
+		reserveservice.updateRsvNumToProTime(rtDto);
 		return "OK";
 		
 	}

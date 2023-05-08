@@ -22,13 +22,21 @@
 		, #{rsvPerson}
 		, #{memId}
 		, #{rsvAmount}
-		, NULL
+		, 0
 		, #{rsvTime}
 		, sysdate
 		,#{proNum})
 		</foreach>
 		select * from dual
 	</insert>
+	
+	<update id="updateRsvNumToProTime" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
+		<foreach collection="rsvTime" item="rsvTime">
+		update protime 
+		set rsv_num = (select rsv_num from reserve where rsv_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24'))
+		where pro_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
+		</foreach>
+	</update>
 	
 	<select id="selectProName" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="study.cloud.stc.reserve.model.vo.MapVo">
 		select pro_num, pro_name, pro_phone from map where pro_num = #{proNum}
@@ -57,7 +65,10 @@
 	</select>
 	
 	<select id="selectTimePriceRsvList" resultType="study.cloud.stc.product.model.vo.ProductTimePriceDto">
-		SELECT to_char(pro_date, 'hh24') time, pro_price price, rsv_num, PRO_NUM FROM PROTIME  where PRO_NUM =#{proNum} and trunc(pro_date) =  #{proDate}
+		SELECT to_char(pro_date, 'hh24') time, pro_price price, rsv_num, PRO_NUM 
+		FROM PROTIME  
+		where PRO_NUM =#{proNum} and trunc(pro_date) =  #{proDate}
+		order by time
 	</select>
 	
 </mapper>

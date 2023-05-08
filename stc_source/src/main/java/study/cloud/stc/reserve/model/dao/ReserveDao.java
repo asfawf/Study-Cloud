@@ -44,4 +44,9 @@ public class ReserveDao {
 	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
 		return sqlSession.selectList("reserve.selectTimePriceRsvList", dto);
 	}
+	
+	//예약번호추가
+	public int updateRsvNumToProTime(ReserveTimeReqDto rtDto) throws Exception{
+		return sqlSession.update("reserve.updateRsvNumToProTime", rtDto);	
+	}
 }
