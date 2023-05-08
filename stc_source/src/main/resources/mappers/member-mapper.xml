@@ -20,7 +20,7 @@
 	</insert>
 	
 	<insert id="insertJoin">
-    INSERT INTO MEMBER (memId, memPasswd, memName, memPhone, memEmail, memQuit, memAuthority, memSns) 
+    INSERT INTO MEMBER (MEM_ID, MEM_PASSWD, MEM_NAME, MEM_PHONE, MEM_EMAIL, MEM_QUIT, MEM_AUTHORITY) 
     VALUES (
         #{memId},
         #{memPasswd},
@@ -31,8 +31,7 @@
         <choose>
             <when test="memAuthority == 'ROLE_USER'">'ROLE_USER'</when>
             <otherwise>'ROLE_HOST'</otherwise>
-        </choose>,
-        'null'
+        </choose>
         )
 	</insert>
 	

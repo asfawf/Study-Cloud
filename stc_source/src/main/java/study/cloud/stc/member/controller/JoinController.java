@@ -39,10 +39,23 @@ public class JoinController {
 			MemberVo memberVo
 			, ModelAndView mv
 		) throws Exception {
+		/* 현재 들어오는 데이터 모양 
+		 * 
+		 * TODO : 전화번호 - 제거 후 set 하기
+		 * 
+		 * MemberVo(
+		 * memId=sacscsacs, 
+		 * memPasswd=1223, 
+		 * memName=cccccccccccccc,
+		 * memPhone=010-9586-9586, 
+		 * memEmail=sscscc@fawwvav, 
+		 * memQuit=0,
+		 * memAuthority=ROLE_USER, 
+		 * memSns=null)
+		 */
 		
 		memberService.insertJoin(memberVo);
 		
-		System.out.println("memberVo:" + memberVo);
 		
 		
 		return "redirect:/";
