@@ -67,6 +67,7 @@
     LEFT OUTER JOIN PROTIME 
          USING (PRO_NUM)
          
+         
    <trim prefix="WHERE" prefixOverrides="AND|OR">
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
