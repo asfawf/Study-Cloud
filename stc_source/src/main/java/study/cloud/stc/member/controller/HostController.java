@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -66,8 +67,8 @@ public class HostController {
 			, @RequestParam(value="page", defaultValue="1") int page
 			,Principal principal
 			) throws Exception {
-		//String memId = principal.getName();
-		 dto.setMemId(principal.getName());
+		String memId = principal.getName();
+		 dto.setMemId(memId);
 		 List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
 		 int currentPage = page;
 		 int totalCnt = pservice.selectCount(dto);
@@ -90,6 +91,7 @@ public class HostController {
 			ModelAndView mv
 //			, @RequestParam(name = "uploadfile", required = false) MultipartFile[] multifiles
 			, @RequestParam(name = "uploadfile", required = false) MultipartFile multi
+//			, @RequestParam(name = "uploadfile", required = false) MultipartHttpServletRequest multiReq
 			, HttpServletRequest request
 			,ProductDetailDto dto
 			,Principal principal
@@ -100,6 +102,7 @@ public class HostController {
 //			if(multifiles != null) {
 //			for(int i=0; i<multifiles.length; i++) {
 //				MultipartFile multi = multifiles[i];
+//			filePath = fileUtil.saveFile(multi, request, null);
 			filePath = fileUtil.saveFile(multi, request, null);
 			dto.setProPicOriginal(filePath.get("original"));
 			dto.setProPicRename(filePath.get("rename"));
@@ -120,7 +123,46 @@ public class HostController {
 		return mv;
 	}
 
-
+//	//상품등록
+//		@PostMapping("/product/insert")
+//		public ModelAndView insertProduct(
+//				ModelAndView mv
+//				, @RequestParam(name = "uploadfile", required = false) MultipartHttpServletRequest multiReq
+//				, HttpServletRequest request
+//				,ProductDetailDto dto
+//				,Principal principal
+//				) throws Exception {
+//			dto.setMemId(principal.getName());
+//			Map<String, String> filePath;
+//			try {
+//				if(multiReq != null) {
+//				for(int i=0; i<multiReq.length; i++) {
+//					MultipartFile multi = multiReq[i];
+//				filePath = fileUtil.saveFile(multi, request, null);
+//				filePath = fileUtil.saveFileList(multiReq, request, null);
+//				dto.setProPicOriginal(filePath.get("original"));
+//				dto.setProPicRename(filePath.get("rename"));
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			int result = pservice.insertDetail(dto);
+////			if(result == 4) {
+////				mv.setViewName("redirect:/host/product");
+////			}else if(result == 3) {
+////				mv.setViewName("redirect:/host/product");
+////			}else if(result == 2) {
+////				mv.setViewName("redirect:/host/product");
+////			}else {
+//				mv.addObject("message","등록");
+//				mv.setViewName("/host/product/insert");
+//			
+//			return mv;
+//		}
+//	
+//	
+	
+	
+	
 	@GetMapping("/product/update")
 	public ModelAndView updateProductPage(
 			ModelAndView mv

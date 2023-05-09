@@ -107,9 +107,10 @@
 <!-- 									</div> -->
 									
 									
-									<input type="text" name="proAddress" id="roadAddress" placeholder="도로명주소" readonly>
+									<input type="hidden" name="proAddress" id="proAddress" value="">
+									<input type="text" name="pre_proAddress" id="roadAddress" placeholder="도로명주소" readonly>
 									<span id="guide" style="color:#999;display:none"></span>
-									<input type="text" id="detailAddress" placeholder="상세주소를 입력해주세요">
+									<input type="text" id="detailAddress" name="pre_proAddress"  placeholder="상세주소를 입력해주세요">
 									<input type="text" id="extraAddress" placeholder="참고항목" readonly>
                                     
                                     </div>
@@ -153,6 +154,8 @@
           <script> 	 
           
           $("#btnSubmit").click(function(){
+        	// ctrl로 전달된 데이터는 roadAddr + ' ' + extraRoadAddr 형태
+  			document.getElementById("proAddress").value = document.getElementById("roadAddress").value + ' ' + document.getElementById("detailAddress").value;
         	 console.log($("#frmInsert").serialize()); 
         	 $("#frmInsert").submit();
           });
@@ -190,7 +193,7 @@
             } else {
                 document.getElementById("extraAddress").value = '';
             }
-
+			
             var guideTextBox = document.getElementById("guide");
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
             if(data.autoRoadAddress) {
