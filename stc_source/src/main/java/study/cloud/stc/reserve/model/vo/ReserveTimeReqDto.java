@@ -13,7 +13,9 @@ import lombok.ToString;
 @Getter
 @Setter
 public class ReserveTimeReqDto {
-	private String rsvNum;
+//	private int[] rsvNumList;
+	private int rsvNum;
+//	private int rsvNumAfter;
     private String rsvDate;
     private String rsvPerson;
     private String rsvAmount;

@@ -136,6 +136,7 @@
 	
 		$('#rsvDate').datepicker({
 		  format: "yyyy-mm-dd",
+		  // 초기날짜
 		  language: "kr",
 		  calendarWeeks: false,
 		  todayHighlight: true,
@@ -146,7 +147,6 @@
 		  console.log(e.format());
 		  // 선택된 날짜의 time과 price, 그리고 예약상태를 알아오기
 		  getTimePrice(selectedDate);
-		  
 		});
 	
 		// 시간선택,인원수카운트하여 총금액 구하기 (사용안함. 확인필)
@@ -258,9 +258,6 @@
 			  
 			  dataType:"json",
 			  success: function(result) {
-				  console.log(result);
-				  console.log(result.length);
-				  console.log(result[0].time);
 				  disaplyTimePriceRsv(result);
 				  },
 			  error: function(error){
@@ -314,7 +311,7 @@
 //		htmlval += '		<option value="${i + 12}">${i + 12}:00~${i + 13}:00</option>';
 		console.log(htmlval);
 
-	   	$('#rsvTime').append(htmlval);
+	   	$('#rsvTime').html(htmlval);
 	   	$('#rsvTime').selectpicker('refresh');
 	}
 	</script>

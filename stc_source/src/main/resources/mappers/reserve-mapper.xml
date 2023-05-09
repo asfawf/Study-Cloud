@@ -14,14 +14,21 @@
 	
 	<!-- 예약하기 -->
 	<insert id="insertReservation" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
+		<!-- <selectKey order="BEFORE" keyProperty="rsvNum" resultType="_int">
+		SELECT (NVL(MAX(RSV_NUM),0) + 1) as rsvNum FROM RESERVE
+		</selectKey>
+		<selectKey order="AFTER" keyProperty="rsvNumAfter"  resultType="_int">
+		SELECT (NVL(MAX(RSV_NUM),0) + 1) as rsvNum FROM RESERVE
+		</selectKey> -->
 		INSERT ALL
 		<foreach collection="rsvTime" item="rsvTime" index="index">
 		INTO RESERVE VALUES (
 		(SELECT (NVL(MAX(RSV_NUM),0) + #{index} + 1) FROM RESERVE)
+		<!-- (#{rsvNum} + #{index}) -->
 		, to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
 		, #{rsvPerson}
 		, #{memId}
-		, #{rsvAmount}
+		, ( select (#{rsvPerson}* pro_price ) from protime where  pro_num = #{proNum} and pro_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')   )
 		, 0
 		, #{rsvTime}
 		, sysdate
@@ -30,13 +37,24 @@
 		select * from dual
 	</insert>
 	
-	<update id="updateRsvNumToProTime" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
-		<foreach collection="rsvTime" item="rsvTime">
+	<update id="updateRsvNumToProTime" parameterType="map">
+		<selectKey order="BEFORE" keyProperty="rsvNum" resultType="_int">
+		 select rsv_num from reserve where  pro_num = #{proNum} and rsv_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
+		</selectKey>
 		update protime 
-		set rsv_num = (select rsv_num from reserve where rsv_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24'))
-		where pro_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
+		set rsv_num = #{rsvNum}
+		where  pro_num = #{proNum} and pro_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
+	</update>
+	<!-- 
+	<update id="updateRsvNumToProTime" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
+		update protime 
+		set rsv_num = (select rsv_num from reserve where  pro_num = #{proNum} and rsv_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24'))
+		where  pro_num = #{proNum} 
+		<foreach collection="rsvTime" item="rtime" index="index" open="and (" separator="OR" close=")">
+			  pro_date = to_date((#{rsvDate}||''||#{rtime}), 'yyyy-mm-ddhh24')
 		</foreach>
 	</update>
+	 -->
 	
 	<select id="selectProName" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="study.cloud.stc.reserve.model.vo.MapVo">
 		select pro_num, pro_name, pro_phone from map where pro_num = #{proNum}

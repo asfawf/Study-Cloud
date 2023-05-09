@@ -51,7 +51,7 @@
 						            </div>
 						            <div class="info-item">
 						                <div class="label">이용 시간</div>
-						                <div class="value">9:00 ~ 12:00 (3시간)</div>
+						                <div class="value">시간 넣어야됨</div>
 						            </div>
 						        </div>
 						        <div class="group-right">

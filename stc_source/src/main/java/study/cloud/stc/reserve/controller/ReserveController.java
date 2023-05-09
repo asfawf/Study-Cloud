@@ -1,5 +1,6 @@
 package study.cloud.stc.reserve.controller;
 
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,11 +47,12 @@ public class ReserveController {
 	//예약하기
 	@PostMapping("/reserve")
 	@ResponseBody
-	public String selectedValues(@RequestBody ReserveTimeReqDto rtDto) throws Exception {
+	public String selectedValues(@RequestBody ReserveTimeReqDto rtDto, Principal pricipal) throws Exception {
+		rtDto.setMemId(pricipal.getName());
 		this.rtDto = rtDto;
 		System.out.println("rtDto: " + this.rtDto);
 		reserveservice.insertReserve(rtDto);
-		reserveservice.updateRsvNumToProTime(rtDto);
+		//reserveservice.updateRsvNumToProTime(rtDto);
 		return "OK";
 		
 	}

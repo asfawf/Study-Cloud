@@ -43,10 +43,6 @@ public class ReserveServiceImpl implements ReserveService{
 		return dao.selectTimePriceRsvList(dto);
 	}
 
-	@Override
-	public int updateRsvNumToProTime(ReserveTimeReqDto rtDto) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.updateRsvNumToProTime(rtDto);
-	}
+
 
 }

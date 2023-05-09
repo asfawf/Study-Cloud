@@ -1,10 +1,13 @@
 package study.cloud.stc.reserve.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import study.cloud.stc.product.model.vo.ProductTimePriceDto;
 import study.cloud.stc.product.model.vo.ProductTimeReqDto;
@@ -22,8 +25,21 @@ public class ReserveDao {
 	
 	
 	//예약
+	@Transactional
 	public int insertReserve(ReserveTimeReqDto rtDto) throws Exception{
-		return sqlSession.insert("reserve.insertReservation", rtDto);	
+		int resultCnt = sqlSession.insert("reserve.insertReservation", rtDto);
+		int resultCnt2 = 0;
+		
+		if(rtDto != null && rtDto.getRsvTime()!= null ) {
+			for(int i=0; i< rtDto.getRsvTime().length; i++) {
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("proNum", rtDto.getProNum());
+				map.put("rsvDate", rtDto.getRsvDate());
+				map.put("rsvTime", rtDto.getRsvTime()[i]);
+				resultCnt2 += updateRsvNumToProTime(map);
+			}
+		}
+		return resultCnt;
 	}
 	
 	//예약확인
@@ -46,7 +62,7 @@ public class ReserveDao {
 	}
 	
 	//예약번호추가
-	public int updateRsvNumToProTime(ReserveTimeReqDto rtDto) throws Exception{
-		return sqlSession.update("reserve.updateRsvNumToProTime", rtDto);	
+	private int updateRsvNumToProTime(Map<String, String> map) throws Exception{
+		return sqlSession.update("reserve.updateRsvNumToProTime", map);	
 	}
 }
