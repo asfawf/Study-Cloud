@@ -71,5 +71,27 @@ public class QnaServiceImpl implements QnaService {
 		return dao.deleteReply(qnaNum);	
 	}
 
+	// user qna 
+	@Override
+	public int selectUserQnaCount(QnaVo vo) throws Exception {
+		return dao.selectUserQnaCount(vo);	
+	}
+	@Override
+	public List<QnaVo> selectUserQnaList(QnaVo vo) throws Exception {
+		return dao.selectUserQnaList(vo);	
+	}
+
+	@Override
+	public List<QnaVo> selectUserQna(int currentPage, int limit, QnaVo vo) throws Exception {
+		return dao.selectUserQna(currentPage, limit, vo);
+	}
+
+	@Override
+	public List<QnaVo> selectUserQnaList(String name) throws Exception {
+		return dao.selectUserQnaList(name);	
+	}
+	
+	
+
 
 }

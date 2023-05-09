@@ -25,4 +25,11 @@ public interface QnaService {
 	public List<QnaVo> selectHostProductQnaList(int currentPage, int limit, int proNum) throws Exception;
 	public int deleteReply(int qnaNum) throws Exception;
 	
+	// user qna
+	public int selectUserQnaCount(QnaVo vo) throws Exception;
+	public List<QnaVo> selectUserQnaList(QnaVo vo) throws Exception;
+	public List<QnaVo> selectUserQna(int currentPage, int limit, QnaVo vo) throws Exception;
+	public List<QnaVo> selectUserQnaList(String name) throws Exception;
+	
+	
 }

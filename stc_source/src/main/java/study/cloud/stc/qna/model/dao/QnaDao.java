@@ -59,4 +59,22 @@ public class QnaDao {
 		return sqlSession.update("product.replyDeleteQna", qnaNum);
 	}
 
+	// user qna
+	public int selectUserQnaCount(QnaVo vo) {
+		return sqlSession.selectOne("product.selectUserQnaCount", vo);
+	}
+	public List<QnaVo> selectUserQnaList(QnaVo vo) {
+		return sqlSession.selectList("product.selectUserQnaList", vo);
+	}
+
+	public List<QnaVo> selectUserQna(int currentPage, int limit, QnaVo vo) {
+		return sqlSession.selectList("product.selectUserQna", vo, new RowBounds((currentPage-1)*limit, limit));
+	}
+
+	public List<QnaVo> selectUserQnaList(String name) {
+		return sqlSession.selectList("product.selectUserQnaList", name);
+	}
+
+	
+
 }

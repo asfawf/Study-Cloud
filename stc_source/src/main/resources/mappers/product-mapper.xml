@@ -319,9 +319,20 @@
    		   SET HOST_ANSWER = null
          WHERE QNA_NUM = #{qnaNum}
 	</update>
-	
-	
-	
+
+	<!-- user/qna List -->
+	<select id="selectUserQnaList" resultType="qvo">
+		SELECT DISTINCT PRO_NUM, PRO_NAME FROM QNA WHERE MEM_ID = #{memId}
+	</select>
+	<select id="selectUserQna" resultType="qvo">
+		SELECT PRO_NUM, PRO_NAME, to_char(QNA_DATE,'yyyy"년" MM"월" dd"일"') QNA_DATE, MEM_QUESTION, QNA_NUM
+		FROM QNA WHERE MEM_ID = #{memId} 
+		AND PRO_NUM = #{proNum}
+		ORDER BY QNA_DATE DESC
+	</select>
+	<select id="selectUserQnaCount" resultType="qvo">
+		SELECT COUNT(*) FROM QNA WHERE MEM_ID = #{memId} AND PRO_NUM = #{proNum}
+	</select>
 	
 	
 
