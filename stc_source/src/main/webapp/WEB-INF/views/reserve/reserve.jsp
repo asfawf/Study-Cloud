@@ -293,7 +293,7 @@
 					var num = Number(timeprice.time) + 1;
 					var time = (num < 10) ? "0" + num : num.toString();
 					var formatedTime = timeprice.time+':00 ~ '+ time +':00'
-					htmlval += '         <option value="'+timeprice.time+'" value2="'+timeprice.price+'" disabled >'+i+'&nbsp;&nbsp; '+ 0 +'</option>'; 
+					htmlval += '         <option value="'+timeprice.time+'" value2="'+timeprice.price+'" disabled>'+formatedTime+'&nbsp;&nbsp; '+timeprice.price+'</option>';
 				} else {
 					console.log(timeprice.time);
 					var num = Number(timeprice.time) + 1;

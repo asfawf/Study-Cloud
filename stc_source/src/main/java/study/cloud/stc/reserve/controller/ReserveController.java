@@ -65,9 +65,11 @@ public class ReserveController {
 		mv.setViewName("/reserve/reservecheck");
 		System.out.println("rtDto: " + rtDto);
 		
+		ReserveTimeReqDto dto = reserveservice.selectRsvNum(rtDto);		
+		
 		MapVo mapVo = reserveservice.selectProName(rtDto);
 		
-		request.setAttribute("rtDto", rtDto);
+		request.setAttribute("dto", dto);
 		request.setAttribute("mapVo", mapVo);
 		
 		return mv;

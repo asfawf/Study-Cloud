@@ -43,21 +43,22 @@
 						        <div class="group-left">
 						            <div class="info-item">
 						                <div class="label">예약 번호</div>
-						                <div class="value"><span></span></div>
+						                <div class="value"><span>${dto.rsvNum }</span></div>
 						            </div>
 						            <div class="info-item">
 						                <div class="label">예약 날짜</div>
-						                <div class="value"><span>${rtDto.rsvDate }</span></div>
+						                <div class="value"><span>${dto.rsvDate }</span></div>
 						            </div>
 						            <div class="info-item">
 						                <div class="label">이용 시간</div>
-						                <div class="value">시간 넣어야됨</div>
+						                <div class="value">${dto.rsvTime[0]}</div>
+						                <div class="value">${dto.rsvTime[1]}</div>
 						            </div>
 						        </div>
 						        <div class="group-right">
 						            <div class="info-item">
 						                <div class="label">예약 인원</div>
-						                <div class="value"><span>${rtDto.rsvPerson }명</span></div>
+						                <div class="value"><span>${dto.rsvPerson }명</span></div>
 						            </div>
 						            <div class="info-item">
 						                <div class="label">공간 전화번호</div>
@@ -65,7 +66,7 @@
 						            </div>
 						            <div class="info-item">
 						                <div class="label">가격</div>
-						                <div class="value"><span>${rtDto.rsvAmount }</span>원</div>
+						                <div class="value"><span>${dto.rsvAmount }</span>원</div>
 						            </div>
 						        </div>
 						    </div>

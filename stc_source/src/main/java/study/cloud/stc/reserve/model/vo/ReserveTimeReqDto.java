@@ -23,8 +23,6 @@ public class ReserveTimeReqDto {
     private String[] rsvTime;
     private String memId;
     private String proNum;
-    
- 
 }
 
 

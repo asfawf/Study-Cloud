@@ -65,4 +65,84 @@ public class ReserveDao {
 	private int updateRsvNumToProTime(Map<String, String> map) throws Exception{
 		return sqlSession.update("reserve.updateRsvNumToProTime", map);	
 	}
+	
+	public ReserveTimeReqDto selectRsvNum(ReserveTimeReqDto rtDto) throws Exception {
+		List<ReserveTimeReqDto> list = sqlSession.selectList("reserve.selectRsvNum", rtDto);
+		String rsvTime = "";
+		int rsvHour = 0;
+		String[] rsvTimes = new String[2];
+		boolean[] timeArray = new boolean[24];
+		
+		ReserveTimeReqDto dto = new ReserveTimeReqDto();
+		
+		dto.setRsvNum(list.get(0).getRsvNum());
+		dto.setMemId(list.get(0).getMemId());
+		dto.setProNum(list.get(0).getProNum());
+		dto.setRsvAmount(list.get(0).getRsvAmount());
+		dto.setRsvDate(list.get(0).getRsvDate().split(" ")[0]);
+		dto.setRsvStatus(list.get(0).getRsvStatus());
+		dto.setRsvPerson(list.get(0).getRsvPerson());
+		
+		for(int i = 0; i < list.size(); i++) {
+			timeArray[Integer.parseInt(list.get(i).getRsvDate().split(" ")[1].substring(1,2))] = true;
+		}
+		
+		for(int i = 0; i < timeArray.length; i++) {
+			System.out.println(timeArray[i]);
+			if(timeArray[i]) {
+				//총 예약시간
+				rsvHour += 1;
+				
+				//전체 예약시간
+				if(i == 0) {
+					//0시만 예약했을 경우
+					if(!timeArray[i+1]) {
+						rsvTime += "00:00~01:00 ";
+					}else {
+						rsvTime += "00:00~";
+					}
+				}else {
+					if(timeArray[i-1]) {
+						if(!timeArray[i+1]) {
+							if(i < 10) {
+								rsvTime += "0" + (i+1) + ":00 ";
+							}else {
+								rsvTime += (i+1)+":00 ";
+							}
+						}else {
+							// continue
+						}
+					}else {
+						if(timeArray[i+1]) {
+							if(i < 10) {
+								rsvTime += "0" + i + ":00~";
+							}else {
+								rsvTime += i+":00~";
+							}
+						}else {
+							if(i < 10) {
+								rsvTime += "0" + i + ":00~";
+								
+								if(i + 1 < 10) {
+									rsvTime += "0" + (i+1) + ":00 ";
+								}else {
+									rsvTime += (i+1) + ":00 ";
+								}
+							}else {
+								rsvTime += i+":00~"+(i+1) + ":00 ";
+							}
+						}
+					}
+				}
+			}
+		}
+		rsvTimes[0] = rsvTime;
+		rsvTimes[1] = "(" + rsvHour + "시간)";
+		
+		dto.setRsvTime(rsvTimes);
+		
+		
+		System.out.println(dto);
+		return dto;
+	}
 }

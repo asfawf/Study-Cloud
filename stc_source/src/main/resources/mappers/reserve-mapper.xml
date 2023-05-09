@@ -37,13 +37,14 @@
 		select * from dual
 	</insert>
 	
+	<!-- 예약번호업데이 -->
 	<update id="updateRsvNumToProTime" parameterType="map">
 		<selectKey order="BEFORE" keyProperty="rsvNum" resultType="_int">
 		 select rsv_num from reserve where  pro_num = #{proNum} and rsv_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
 		</selectKey>
 		update protime 
 		set rsv_num = #{rsvNum}
-		where  pro_num = #{proNum} and pro_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
+		where pro_num = #{proNum} and pro_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
 	</update>
 	<!-- 
 	<update id="updateRsvNumToProTime" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
@@ -55,7 +56,14 @@
 		</foreach>
 	</update>
 	 -->
-	
+	 
+	 <select id="selectRsvNum" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
+	 	SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_AMOUNT, RSV_STATUS, PRO_NUM
+		FROM RESERVE WHERE MEM_ID='${memId}' AND TO_DATE(RSV_DATE, 'yy/MM/dd') = TO_DATE(#{rsvDate}, 'yy/MM/dd') AND PRO_NUM = TO_NUMBER(#{proNum})
+	 </select>
+	 
+	 <!-- RSV_DATE -> TO_DATE(RSV_DATE, 'yyyy-MM-dd') as RSV_DATE -->
+	 
 	<select id="selectProName" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="study.cloud.stc.reserve.model.vo.MapVo">
 		select pro_num, pro_name, pro_phone from map where pro_num = #{proNum}
 	</select>

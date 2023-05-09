@@ -42,7 +42,8 @@ public class ReserveServiceImpl implements ReserveService{
 	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
 		return dao.selectTimePriceRsvList(dto);
 	}
-
-
-
+	
+	public ReserveTimeReqDto selectRsvNum(ReserveTimeReqDto rtDto) throws Exception {
+		return dao.selectRsvNum(rtDto);
+	}
 }

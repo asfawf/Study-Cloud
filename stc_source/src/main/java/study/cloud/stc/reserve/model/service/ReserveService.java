@@ -30,6 +30,7 @@ public interface ReserveService {
 	//선택된 날짜의 time과 price, 그리고 예약상태를 알아오기
 	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception;
 	
+	public ReserveTimeReqDto selectRsvNum(ReserveTimeReqDto rtDto) throws Exception;
 
 }
 
