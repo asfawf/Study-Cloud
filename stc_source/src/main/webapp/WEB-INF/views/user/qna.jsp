@@ -22,8 +22,8 @@
                             <form action="" class="form-inline">
                                 <div class="form-group">                                   
                                     <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
-										<c:forEach items="${userQna.qnaList }" var="qna"> 	
-				                        	<option value="${qna.proNum }" >${qna.proName }</option>
+										<c:forEach items="${userQna.productList }" var="product"> 	
+				                        	<option value="${product.proNum }" >${product.proName }</option>
 										</c:forEach>
                                     </select>
                                 </div>
@@ -76,6 +76,8 @@
 	function getQnaListHandler(){
 		console.log($("#selectedProNum").val());
 		console.log($("[name=memId]").val());
+		var selectedProNum = $("#selectedProNum").val();
+		var memId = '${pageContext.request.userPrincipal.name}';
 		var page = $(this).data("page");
 		if(!page){
 			page=1;
@@ -84,9 +86,9 @@
 		$.ajax({
 			 url: "${pageContext.request.contextPath}/user/qna"
 		   , type: "POST"
-		   , data: {selectedProNum: $("#selectedProNum").val()
-			   		, memId: $("[name=memId]").val()
-					,page: page
+		   , data: {selectedProNum: selectedProNum
+			   		, memId: memId
+					, page: page
 		   			}
 			 
 		   , dataType: "json"  
@@ -105,8 +107,8 @@
 	}
 	function displayQnaList(result){
 		var htmlVal = '';
-		for(var i = 0; i < result.qna.length; i++){
-			var qna = result.qna[i];
+		for(var i = 0; i < result.qnaList.length; i++){
+			var qna = result.qnaList[i];
 			htmlVal += '<tr data-qnanum="'+qna.qnaNum+'">';
 			htmlVal += '<td colspan="1">'+qna.qnaDate+'</td>';
 			htmlVal += '<td colspan="4">'+qna.memQuestion
@@ -123,7 +125,7 @@
 			htmlVal += '<form>';
 			htmlVal += '<div class="modal-body">';											
 			htmlVal += '<div class="mb-3"><br>';
-			htmlVal += '<textarea class="form-control hostAnswer" name="hostAnswer" placeholder="내용" style="height: 300px;">'+qna.memQuestion+'</textarea>';
+			htmlVal += '<textarea class="form-control memQuestion" name="memQuestion" placeholder="내용" style="height: 300px;">'+qna.memQuestion+'</textarea>';
 			htmlVal += '</div></div>';
 			htmlVal += '<div class="modal-footer">';
 			htmlVal += '<div class="button notice-btn">';
@@ -177,12 +179,12 @@
   		$.ajax({   
   			  url: "${pageContext.request.contextPath}/user/qna/update"
    		    , type: "POST"
-  			, data: {qnaNum:qnanum, selectedProNum: $("[name=selectedProNum]").val(), memQuestion: $(this.form.memQuestion).val(), page: page, memId:$("[name=memId]").val()}
+  			, data: {qnaNum:qnanum, selectedProNum: $("[name=selectedProNum]").val(), memQuestion: $(this.form.memQuestion).val(), page: page}
   			, dataType: "json"  
   			, success: function (result) { 
   				console.log(result);
 
-   				if(result.qna.length > 0) { 
+   				if(result.qnaList.length > 0) { 
    					alert("수정되었습니다.")
    					displayQna(result);
    				}  
@@ -211,12 +213,12 @@
       		$.ajax({   
       			  url: "${pageContext.request.contextPath}/user/qna/delete"
        		    , type: "POST"
-      			, data: {qnaNum:qnanum, selectedProNum: $("[name=selectedProNum]").val(), page: page, memId:$("[name=memId]").val()}
+      			, data: {qnaNum:qnanum, selectedProNum: $("[name=selectedProNum]").val(), page: page}
       			, dataType: "json"  
       			, success: function (result) { 
       				console.log(result);
 
-       				if(result.qna.length >= 0) { 
+       				if(result.qnaList.length >= 0) { 
        					alert("삭제되었습니다.")
        					displayQnaList(result);
        				}            				 

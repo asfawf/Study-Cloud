@@ -25,6 +25,7 @@ import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.product.model.vo.ProductVo;
 import study.cloud.stc.qna.model.service.QnaService;
+import study.cloud.stc.qna.model.vo.UserQnaReqVo;
 import study.cloud.stc.qna.model.vo.QnaVo;
 import study.cloud.stc.reserve.model.service.ReserveService;
 import study.cloud.stc.reserve.model.vo.MapVo;
@@ -132,18 +133,17 @@ public class UserController {
 	public ModelAndView selectQnaList(ModelAndView mv
 			, @RequestParam(value="page", defaultValue="1") int page
 			, Principal principal
-			, QnaVo vo
 			) throws Exception {
 
-		List<QnaVo> qnaList = qna_service.selectUserQnaList(principal.getName());
+		List<QnaVo> productList = qna_service.selectUserQnaList(principal.getName());
 		int proNum = 0;
 		
-	    if (qnaList.size() > 0) {
-	        proNum = qnaList.get(qnaList.size() - 1).getProNum();
+	    if (productList.size() > 0) {
+	        proNum = productList.get(productList.size() - 1).getProNum();
 	    }
 	    
 		Map<String, Object> userQna = new HashMap<>();
-		userQna.put("qnaList", qnaList);
+		userQna.put("productList", productList);
 		userQna.put("selectedProNum", proNum);
 
 		mv.addObject("userQna", userQna);
@@ -164,23 +164,23 @@ public class UserController {
 		int totalCnt = qna_service.selectUserQnaCount(vo);
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, cntPerPage, 5);
 
-		List<QnaVo> qnaList = qna_service.selectUserQnaList(principal.getName());
+		List<QnaVo> productList = qna_service.selectUserQnaList(principal.getName());
 				
 		if (proNum == 0) {
-		    if (qnaList.size() > 0) {
-		        proNum = qnaList.get(qnaList.size() - 1).getProNum();
+		    if (productList.size() > 0) {
+		        proNum = productList.get(productList.size() - 1).getProNum();
 		    }
 		}
-		List<QnaVo> qna = new ArrayList<>();
+		List<QnaVo> qnaList = new ArrayList<>();
 		if (proNum > 0) {
-			qna = qna_service.selectUserQna(currentPage, cntPerPage, vo);
+			qnaList = qna_service.selectUserQna(currentPage, cntPerPage, vo);
 		}
 
 		Map<String, Object> userQna = new HashMap<>();
 		userQna.put("pageInfo", map);
 		userQna.put("selectedProNum", proNum);
+		userQna.put("productList", productList);
 		userQna.put("qnaList", qnaList);
-		userQna.put("qna", qna);
 		
 		return new Gson().toJson(userQna);
 
@@ -199,24 +199,24 @@ public class UserController {
 		int totalCnt = qna_service.selectUserQnaCount(vo);
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, cntPerPage, 5);
 
-		List<QnaVo> qnaList = qna_service.selectUserQnaList(principal.getName());
+		List<QnaVo> productList = qna_service.selectUserQnaList(principal.getName());
 
 		if (proNum == 0) {
-			if (qnaList.size() > 0) {
-		        proNum = qnaList.get(qnaList.size() - 1).getProNum();
+			if (productList.size() > 0) {
+		        proNum = productList.get(productList.size() - 1).getProNum();
 		    }
 		}
-		List<QnaVo> qna = new ArrayList<>();
+		List<QnaVo> qnaList = new ArrayList<>();
 		if (proNum > 0) {
 			qna_service.update(vo);
-			qna = qna_service.selectUserQna(currentPage, cntPerPage, vo);
+			qnaList = qna_service.selectUserQna(currentPage, cntPerPage, vo);
 		}
 
 		Map<String, Object> userQna = new HashMap<>();
 		userQna.put("pageInfo", map);
 		userQna.put("selectedProNum", proNum);
+		userQna.put("productList", productList);
 		userQna.put("qnaList", qnaList);
-		userQna.put("qna", qna);
 
 		return new Gson().toJson(userQna);
 	}
@@ -233,27 +233,27 @@ public class UserController {
 
 		int cntPerPage = 3; 
 		int currentPage = page;
-		int totalCnt = qna_service.selectHostQnaCount(proNum);
+		int totalCnt = qna_service.selectUserQnaCount(vo);
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, cntPerPage, 5);
 
-		List<QnaVo> qnaList = qna_service.selectUserQnaList(principal.getName());
+		List<QnaVo> productList = qna_service.selectUserQnaList(principal.getName());
 
 		if (proNum == 0) {
-			if (qnaList.size() > 0) {
-		        proNum = qnaList.get(qnaList.size() - 1).getProNum();
+			if (productList.size() > 0) {
+		        proNum = productList.get(productList.size() - 1).getProNum();
 		    }
 		}
-		List<QnaVo> qna = new ArrayList<>();
+		List<QnaVo> qnaList = new ArrayList<>();
 		if (proNum > 0) {
 			qna_service.delete(qnaNum);
-			qna = qna_service.selectUserQna(currentPage, cntPerPage, vo);
+			qnaList = qna_service.selectUserQna(currentPage, cntPerPage, vo);
 		}
 
 		Map<String, Object> userQna = new HashMap<>();
 		userQna.put("pageInfo", map);
 		userQna.put("selectedProNum", proNum);
+		userQna.put("productList", productList);
 		userQna.put("qnaList", qnaList);
-		userQna.put("qna", qna);
 
 		return new Gson().toJson(userQna);
 	}
