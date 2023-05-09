@@ -198,9 +198,11 @@
         LEFT OUTER JOIN PRODUCTFILE 
 	     USING (PRO_NUM)
 	     WHERE MEM_ID = #{memId}
+	     order by pro_num desc
 	 	</select>
+	
+	
 	<select id="productOneCnt" resultType="_int">
-
 	SELECT COUNT(*) CNT
 	  FROM MAP 
      	LEFT OUTER JOIN PRODUCT
@@ -210,8 +212,8 @@
         LEFT OUTER JOIN PRODUCTFILE 
 	     USING (PRO_NUM)
         WHERE PRO_NUM = #{proNum}
-	
 	</select>
+	
 	<select id="hostList"  resultType="hostProDto">
 	select  pro_num
         ,pro_name

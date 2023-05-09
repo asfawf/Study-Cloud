@@ -88,41 +88,28 @@ public class HostController {
 	//상품등록
 	@PostMapping("/product/insert")
 	public ModelAndView insertProduct(
-			ModelAndView mv
-//			, @RequestParam(name = "uploadfile", required = false) MultipartFile[] multifiles
-			, @RequestParam(name = "uploadfile", required = false) MultipartFile multi
-//			, @RequestParam(name = "uploadfile", required = false) MultipartHttpServletRequest multiReq
-			, HttpServletRequest request
-			,ProductDetailDto dto
-			,Principal principal
-			) throws Exception {
-		dto.setMemId(principal.getName());
-		Map<String, String> filePath;
-		try {
-//			if(multifiles != null) {
-//			for(int i=0; i<multifiles.length; i++) {
-//				MultipartFile multi = multifiles[i];
-//			filePath = fileUtil.saveFile(multi, request, null);
-			filePath = fileUtil.saveFile(multi, request, null);
-			dto.setProPicOriginal(filePath.get("original"));
-			dto.setProPicRename(filePath.get("rename"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		int result = pservice.insertDetail(dto);
-//		if(result == 4) {
-//			mv.setViewName("redirect:/host/product");
-//		}else if(result == 3) {
-//			mv.setViewName("redirect:/host/product");
-//		}else if(result == 2) {
-//			mv.setViewName("redirect:/host/product");
-//		}else {
-			mv.addObject("message","등록");
-			mv.setViewName("/host/product/insert");
-		
-		return mv;
-	}
+	        ModelAndView mv
+	        , @RequestParam(name = "uploadfile", required = false) MultipartFile[] multifiles
+	        , HttpServletRequest request
+	        , ProductDetailDto dto
+	        , Principal principal
+	) throws Exception {
+	    dto.setMemId(principal.getName());
 
+	    if (multifiles != null) {
+	        for (int i = 0; i < multifiles.length; i++) {
+	            MultipartFile multi = multifiles[i];
+	            Map<String, String> filePath = fileUtil.saveFile(multi, request, null);
+	            dto.setProPicOriginal(filePath.get("original"));
+	            dto.setProPicRename(filePath.get("rename"));
+	        }
+	    }
+
+	    int result = pservice.insertDetail(dto);
+	    mv.setViewName("/host/product");
+
+	    return mv;
+	}
 //	//상품등록
 //		@PostMapping("/product/insert")
 //		public ModelAndView insertProduct(

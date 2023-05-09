@@ -93,20 +93,12 @@
                                         <input name="uploadfile" type="file" class="form-control" >
                                     </div>
                                    
-<!--                                      <div class="form-group"> -->
-<!--                                         <input name="proZipcode" type="text" class="form-control"> -->
-<!--                                     </div>  -->
 									<input type="button" onclick="findPostCode()" value="주소 검색"><br>
 									<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+                                    
                                     <div class="form-group">
                                         <label>우편번호 :</label>
                                     <input type="text" name="proZipcode" id="postcode" placeholder="우편번호" readonly>
-									
-<!-- 									<div class="form-group"> -->
-<!-- 									<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br> -->
-<!-- 									</div> -->
-									
-									
 									<input type="hidden" name="proAddress" id="proAddress" value="">
 									<input type="text" name="pre_proAddress" id="roadAddress" placeholder="도로명주소" readonly>
 									<span id="guide" style="color:#999;display:none"></span>

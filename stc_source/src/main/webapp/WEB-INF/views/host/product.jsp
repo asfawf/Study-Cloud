@@ -15,19 +15,7 @@
 
  	<div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container"> 
-					<div class="col-md-12 padding-bottom-40 large-search">
-                        <div class="search-form pulse">
-                            <form action="${pageContext.request.contextPath}/host/product" class=" form-inline">
-                                <div class="col-md-12">
-	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" title="${param.proAddress}" onchange="submit();">
-	                                        <c:forEach var="v" items="${add }">
-												<option value="${v }">${v }</option>
-											</c:forEach>
-                                    	</select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+				
 		<!-- End page header -->
 
 
