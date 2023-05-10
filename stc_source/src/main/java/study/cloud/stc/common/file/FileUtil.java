@@ -14,8 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Component("fileUtil") 
 public class FileUtil {
-//	private final static String UPLOAD_FOLDER = "\\resources\\uploadfiles";
-	private final static String UPLOAD_FOLDER = "${pageContext.request.contextPath }/resources/uploadfiles/";
+	private final static String UPLOAD_FOLDER = "\\resources\\uploadfiles\\";
 
 	/***
 	 * a

@@ -41,7 +41,9 @@
 	<insert id="insertProduct2" parameterType="pdto">
 		INSERT ALL 
 		INTO PRODUCT VALUES 	(#{proNum}, #{memId},#{proPost},#{proInfo},#{proNotice},#{proRefund},#{proZipcode})
-		INTO PRODUCTFILE VALUES	(#{proNum}, #{proPicOriginal},#{proPicRename})
+		<foreach collection="picList" item="pic">
+		INTO PRODUCTFILE VALUES	(#{proNum}, #{pic.proPicOriginal},#{pic.proPicRename})
+		</foreach>
 		select * from dual
 	</insert>
 	

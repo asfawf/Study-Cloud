@@ -33,6 +33,7 @@ import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.product.model.service.ProductService;
 import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
+import study.cloud.stc.product.model.vo.ProductPicDto;
 import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 import study.cloud.stc.qna.model.service.QnaService;
@@ -97,12 +98,17 @@ public class HostController {
 	    dto.setMemId(principal.getName());
 
 	    if (multifiles != null) {
+	    	List<ProductPicDto> picList = new ArrayList<ProductPicDto>();
 	        for (int i = 0; i < multifiles.length; i++) {
 	            MultipartFile multi = multifiles[i];
 	            Map<String, String> filePath = fileUtil.saveFile(multi, request, null);
-	            dto.setProPicOriginal(filePath.get("original"));
-	            dto.setProPicRename(filePath.get("rename"));
+
+	            ProductPicDto pic = new ProductPicDto(); 
+	            pic.setProPicOriginal(filePath.get("original"));
+	            pic.setProPicRename(filePath.get("rename"));
+	            picList.add(pic);
 	        }
+	        dto.setPicList(picList);
 	    }
 
 	    int result = pservice.insertDetail(dto);

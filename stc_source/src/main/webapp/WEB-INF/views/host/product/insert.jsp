@@ -76,24 +76,18 @@
                                         <label>전화번호 :</label>
                                         <input name="proPhone" type="text" class="form-control" placeholder="전화번호">
                                     </div> 
-                                    <div class="form-group">
+                                    <div style="margin-bottom:10px;">
+									<input id="btn-addImg" type="button" onclick="addImageFile()" value="이미지추가">
+									</div>
+									<!-- 
+									<div class="form-group">
                                         <label>이미지 :</label>
                                         <input name="uploadfile" type="file" class="form-control" >
                                     </div>
-                                      <div class="form-group">
-                                        <label>이미지 :</label>
-                                        <input name="uploadfile" type="file" class="form-control">
-                                    </div>
-                                      <div class="form-group">
-                                        <label>이미지 :</label>
-                                        <input name="uploadfile" type="file" class="form-control" >
-                                    </div>
-                                      <div class="form-group">
-                                        <label>이미지 :</label>
-                                        <input name="uploadfile" type="file" class="form-control" >
-                                    </div>
-                                   
-									<input type="button" onclick="findPostCode()" value="주소 검색"><br>
+                                     -->
+                                    <div id="btn-post">
+									<input type="button" onclick="findPostCode()" value="주소 검색">
+									</div>
 									<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                                     
                                     <div class="form-group">
@@ -145,12 +139,26 @@
           <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
           <script> 	 
           
+          
+          
           $("#btnSubmit").click(function(){
         	// ctrl로 전달된 데이터는 roadAddr + ' ' + extraRoadAddr 형태
   			document.getElementById("proAddress").value = document.getElementById("roadAddress").value + ' ' + document.getElementById("detailAddress").value;
         	 console.log($("#frmInsert").serialize()); 
         	 $("#frmInsert").submit();
           });
+          function addImageFile(){
+        	  var htmlval = '';
+        	  htmlval += `
+       		  <div class="form-group">
+                  <label>이미지 :</label>
+                  <input name="uploadfile" type="file" class="form-control" >
+              </div>
+        	  `;
+//         	  $('#btn-addImg').after(htmlval);
+			  $('#btn-post').before(htmlval);
+          }
+          
           function findPostCode(){
           new daum.Postcode({
         	  oncomplete: function(data) {
