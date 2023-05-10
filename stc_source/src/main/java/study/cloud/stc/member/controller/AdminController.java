@@ -1,5 +1,6 @@
 package study.cloud.stc.member.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -249,9 +250,21 @@ public class AdminController {
 			ModelAndView mv
 			, HttpServletRequest req
 			, @RequestParam(value = "page", defaultValue="1") int page
+			, Principal principal
 			) throws Exception {
 		
+		// 방 인원 2명 미만인 방만 보여줌 
 		mv.addObject("roomList", crService.allListChattRoom());
+		
+		//로그인한 인원이 참가한 채팅방
+		String memId = principal.getName();
+		mv.addObject("enterList", crService.allEnterListChattRoom(memId));
+				
+		
+		
+		
+		
+		
 		mv.setViewName("admin/chatlist");
 		
 		//

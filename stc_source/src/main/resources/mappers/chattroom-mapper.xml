@@ -37,7 +37,25 @@
 	</select>
 	
 	<select id="allListChattRoom" resultType="chrvo">
-		SELECT *  FROM CHATTROOM 
+		SELECT  a.CHA_ROOM_ID,
+        a.ROOM_CONTENTS,
+        a.ROOM_LASTDATE
+		FROM CHATTROOM a
+		INNER JOIN MEMBER_ROOM b
+		ON a.CHA_ROOM_ID = b.ROOM_ID
+		GROUP BY a.CHA_ROOM_ID, a.ROOM_CONTENTS, a.ROOM_LASTDATE
+		<![CDATA[HAVING COUNT(b.MEM_ID) < 2]]>
+	</select>
+	
+	<select id="allEnterListChattRoom" resultType="chrvo">
+		SELECT  a.CHA_ROOM_ID,
+        a.ROOM_CONTENTS,
+        a.ROOM_LASTDATE
+		FROM CHATTROOM a
+		INNER JOIN MEMBER_ROOM b
+		ON a.CHA_ROOM_ID = b.ROOM_ID
+		WHERE b.MEM_ID = #{memId}
+		GROUP BY a.CHA_ROOM_ID, a.ROOM_CONTENTS, a.ROOM_LASTDATE	
 	</select>
 	
 	<select id="searchAllListChattRoom" resultType="chrvo">

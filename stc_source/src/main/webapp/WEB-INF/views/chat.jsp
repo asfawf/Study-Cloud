@@ -101,6 +101,8 @@
 		            }
 				});
 				
+
+				
 			}
 			// 퇴장
 			else if (msgData.cmd == 'CMD_EXIT') {

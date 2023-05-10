@@ -65,4 +65,9 @@ public class ChattRoomDao {
 		return session.selectOne("chroom.searchRoomCount", chaRoomId);
 	}
 
+	public List<ChattRoomVo> allEnterListChattRoom(String memId) {
+		// TODO Auto-generated method stub
+		return session.selectList("chroom.allEnterListChattRoom", memId);
+	}
+
 }

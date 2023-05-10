@@ -27,4 +27,6 @@ public interface ChattRoomService {
 
 	public int searchRoomCount(String chaRoomId);
 
+	public List<ChattRoomVo> allEnterListChattRoom(String memId);
+
 }

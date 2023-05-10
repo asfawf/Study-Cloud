@@ -74,4 +74,10 @@ public class ChattRoomServiceImpl implements ChattRoomService{
 		return dao.searchRoomCount(chaRoomId);
 	}
 
+	@Override
+	public List<ChattRoomVo> allEnterListChattRoom(String memId) {
+		// TODO Auto-generated method stub
+		return dao.allEnterListChattRoom(memId);
+	}
+
 }
