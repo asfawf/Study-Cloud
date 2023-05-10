@@ -9,12 +9,9 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<!-- iamport.payment.js -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-</head>
-<body>
- 
-<button  onclick="requestPay()">결제하기</button>
- 
-<script>
+<!-- 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script> -->
+	
+	<script>
 	var IMP = window.IMP;
 	IMP.init("imp43677748"); // 예: imp00000000
 	
@@ -34,18 +31,23 @@
       }, function (rsp) { // callback
     	  if (rsp.success) {
               alert('결제성공');
+//               location.href = "성공시url"
        } else {
               alert('결제실패');
        }
       });
     }
 	
-	
-
-	
-	
-	
   </script>
+
+
+</head>
+<body>
+ 
+<button id="payment" onclick="requestPay()">결제하기</button>
+ 
+---------------------------------------------------
+
   
 </body>
 </html>

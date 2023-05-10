@@ -304,9 +304,28 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.5.1</version>
 		</dependency>
-
+		
 		<!-- 메일 끝 -->
+		
+<!-- 		 포트원 결제 -->
+
+		<dependency>
+	    	<groupId>com.github.iamport</groupId>
+	    	<artifactId>iamport-rest-client-java</artifactId>
+	    	<version>0.2.22</version>
+		</dependency>
+		
 	</dependencies>
+	
+<!-- 	      	포트원 관련 -->
+	<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+	</repositories>
+	
+	
 	<build>
 		<plugins>
 			<plugin>
