@@ -213,7 +213,7 @@
 			<result column="pro_pic_Rename" property="proPicRename"/>
 		</collection>	
 	</resultMap>
-	<select id="hostProductList" resultMap="hostProDtoResultMap">
+	<select id="hostProductList" resultMap="hostProDtoResultMap" >
 <!-- 	<select id="hostProductList" resultType="hostProDto"> -->
 	select
 		 pro_num
@@ -221,16 +221,12 @@
         ,pro_address
         ,pro_phone
         ,mem_id
-        ,mem_authority
-        <!-- ,pro_pic_Original
-        ,pro_pic_Rename -->
-        <foreach collection="picList" item="pic" open="" close="" separator=",">
-        #{pic.proPicOriginal}
-       ,#{pic.proPicRename}
-        </foreach>
+<!--         ,mem_authority -->
+        ,pro_pic_Original
+        ,pro_pic_Rename
         from map
 	        left outer join product        using (pro_num)
-	        left outer join member        using (mem_id)
+<!-- 	        left outer join member        using (mem_id) -->
 	        LEFT OUTER JOIN PRODUCTFILE	     USING (PRO_NUM)
 	     WHERE MEM_ID = #{memId}
 	     order by pro_num desc
