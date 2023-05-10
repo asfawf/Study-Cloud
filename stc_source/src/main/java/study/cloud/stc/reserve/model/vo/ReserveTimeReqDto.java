@@ -18,9 +18,10 @@ public class ReserveTimeReqDto {
 //	private int rsvNumAfter;
     private String rsvDate;
     private String rsvPerson;
-    private String rsvAmount;
+    private int rsvAmount;
     private String rsvStatus;
     private String[] rsvTime;
+    private String regDate;
     private String memId;
     private String proNum;
 }

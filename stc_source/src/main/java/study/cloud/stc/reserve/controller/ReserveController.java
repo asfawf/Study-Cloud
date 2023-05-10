@@ -57,13 +57,15 @@ public class ReserveController {
 		
 	}
 	
-	@GetMapping("/reservecheck")
+	@RequestMapping("/reservecheck")
 	public ModelAndView reservecheck(
 			HttpServletRequest request, 
 			HttpServletResponse response, 
+			//@RequestBody ReserveTimeReqDto rtDto,
 			ModelAndView mv) throws Exception {
 		mv.setViewName("/reserve/reservecheck");
 		System.out.println("rtDto: " + rtDto);
+		
 		
 		ReserveTimeReqDto dto = reserveservice.selectRsvNum(rtDto);		
 		

@@ -70,8 +70,8 @@ public class ReserveDao {
 	public ReserveTimeReqDto selectRsvNum(ReserveTimeReqDto rtDto) throws Exception {
 		List<ReserveTimeReqDto> list = sqlSession.selectList("reserve.selectRsvNum", rtDto);
 		String rsvTime = "";
+		int rsvAmount = 0;
 		int rsvHour = 0;
-		String[] rsvTimes = new String[2];
 		boolean[] timeArray = new boolean[24];
 		
 		ReserveTimeReqDto dto = new ReserveTimeReqDto();
@@ -79,17 +79,21 @@ public class ReserveDao {
 		dto.setRsvNum(list.get(0).getRsvNum());
 		dto.setMemId(list.get(0).getMemId());
 		dto.setProNum(list.get(0).getProNum());
-		dto.setRsvAmount(list.get(0).getRsvAmount());
 		dto.setRsvDate(list.get(0).getRsvDate().split(" ")[0]);
 		dto.setRsvStatus(list.get(0).getRsvStatus());
 		dto.setRsvPerson(list.get(0).getRsvPerson());
 		
 		for(int i = 0; i < list.size(); i++) {
-			timeArray[Integer.parseInt(list.get(i).getRsvDate().split(" ")[1].substring(1,2))] = true;
+			rsvAmount += list.get(i).getRsvAmount();
+		}
+		
+		dto.setRsvAmount(rsvAmount);
+				
+		for(int i = 0; i < list.size(); i++) {
+			timeArray[Integer.parseInt(list.get(i).getRsvDate().split(" ")[1].substring(0,2))] = true;
 		}
 		
 		for(int i = 0; i < timeArray.length; i++) {
-			System.out.println(timeArray[i]);
 			if(timeArray[i]) {
 				//총 예약시간
 				rsvHour += 1;
@@ -137,13 +141,11 @@ public class ReserveDao {
 				}
 			}
 		}
-		rsvTimes[0] = rsvTime;
-		rsvTimes[1] = "(" + rsvHour + "시간)";
+		rsvTime += "(" + rsvHour + "시간)";
+		String[] rsvTimes = rsvTime.split(" ");
 		
 		dto.setRsvTime(rsvTimes);
 		
-		
-		System.out.println(dto);
 		return dto;
 	}
 }

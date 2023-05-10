@@ -25,7 +25,6 @@
 </div>
 <!-- End page header -->
 
-
 <!-- Body content -->	
 	<div class="content-area">
 		<div class="reserved-content">
@@ -62,16 +61,19 @@
 		<table class="table table-striped" border="1px">
 			<thead>
 				<tr>
+					<th>예약날짜</th>
 					<th>공간이름</th>
 					<th>관리</th>				
 				</tr>
 			</thead>
 			<tbody>
 			
-			<c:forEach items="${mapVo}" var="product">				
+			<c:forEach items="${reserveVo}" var="product">				
 				<tr>
-					<td><a href="${pageContext.request.contextPath}/user/reserve/info?proNum=${product.proNum}&proName=${product.proName}">${product.proName}</a></td>					
+					<td value="${product.rsvDate }">${product.rsvDate }</td>
+					<td><a href="#" onClick="moveReserveCheck('${product.rsvDate }', '${product.proNum }');">${product.proName}</a></td>					
 					<td><button class="btn delete-btn" formaction="${pageContext.request.contextPath}/user/reserve/delete">취소하기</button></td>
+					<td style="display:none;" value="${product.proNum }"></td>
 				</tr>
 			</c:forEach>				
 			</tbody>
@@ -100,6 +102,40 @@
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
+<script>
+	function moveReserveCheck(rsvDate, proNum) {    
+		console.log(rsvDate + " " + proNum);
+		// 날짜, 시간, 인원, 총가격 객체 생성
+		const rsvData = {
+    		rsvDate: rsvDate,
+		    proNum : proNum,
+		    memId : '${pageContext.request.userPrincipal.name}'
+		};
+	
+		console.log("객체생성:", rsvData);
+	
+	
+	// rsvData 직렬화, 서버 전송
+	var jsonData = JSON.stringify(rsvData);
+	
+	$.ajax({
+		  url: '${pageContext.request.contextPath}/reserve/reservecheck',
+		  type: 'post',
+		  contentType: "application/json; charset=utf-8",
+		  data: jsonData,
+		  success: function(result) {
+			  console.log(result);
+			  location.href='${pageContext.request.contextPath}/reserve/reservecheck';
+			  },
+		  error: function(error){
+			  alert(error.errorMsg);
+			  },
+		  beforeSend : function(xhr){
+			  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			  }
+			  });
+	}
+</script>
 
 </body>
 </html>

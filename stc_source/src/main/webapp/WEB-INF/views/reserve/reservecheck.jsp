@@ -51,8 +51,9 @@
 						            </div>
 						            <div class="info-item">
 						                <div class="label">이용 시간</div>
-						                <div class="value">${dto.rsvTime[0]}</div>
-						                <div class="value">${dto.rsvTime[1]}</div>
+						                <c:forEach  var="rsvTime" items="${dto.rsvTime }">
+						                	<div class="value">${rsvTime }</div>
+						                </c:forEach>
 						            </div>
 						        </div>
 						        <div class="group-right">
@@ -72,8 +73,10 @@
 						    </div>
 						</div>
 							<span> 
-							<button class="btn btn-primary" >결제하기</button>							                                                         
-                            </span>               
+							<button class="btn btn-primary" >결제하기</button>	
+							<!-- <button class="btn btn-primary" >취소하기</button>	 -->						                                                         
+                            </span>    
+                                       
  	               </div>
             </div>
 

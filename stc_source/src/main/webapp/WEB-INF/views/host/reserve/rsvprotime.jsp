@@ -132,7 +132,7 @@
 	   		success: function(result) {
 	   			console.log(result);
 	   			alert("공간 설정이 저장되었습니다.")
-	   			window.location.href="${pageContext.request.contextPath}/host/product";
+	   			location.href="${pageContext.request.contextPath}/host/product";
 	   			
 	   		},
 	   		error: function(error) {

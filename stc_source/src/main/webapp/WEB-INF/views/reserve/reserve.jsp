@@ -227,8 +227,8 @@
 			  beforeSend : function(xhr){
 				  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 				  }
-				  });
-		  });
+			});
+		});
 		
 		
 	// 선택된 날짜의 time과 price, 그리고 예약상태를 알아오기  

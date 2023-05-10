@@ -36,4 +36,5 @@ public class ReserveVo {
     private int rsvStatus;
     private int rsvTime;
     private String proNum;
+    private String proName;
 }
