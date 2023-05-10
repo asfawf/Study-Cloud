@@ -64,7 +64,7 @@
 									</tbody>
 								</table>
 								<div class= "form-group" style="padding: 50px;">
-								<input type="button" class="btn btn-primary rsvProTime-btn" id="rsvProTime-btn" value="저장">
+								<input type="submit" class="btn btn-primary rsvProTime-btn" id="rsvProTime-btn" value="저장">
 								</div>								
 							</div>
 						</div>
@@ -132,6 +132,8 @@
 	   		success: function(result) {
 	   			console.log(result);
 	   			alert("공간 설정이 저장되었습니다.")
+	   			window.location.href="${pageContext.request.contextPath}/host/product";
+	   			
 	   		},
 	   		error: function(error) {
 	   			alert("다시 설정해 주세요.");

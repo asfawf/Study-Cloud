@@ -42,6 +42,8 @@ public class UserController {
 	@Autowired
 	private QnaService qna_service;
 	
+	
+	//유저 마이페이지
 	@GetMapping
 	public ModelAndView main(ModelAndView mv,  Principal principal) throws Exception {
 		
@@ -50,6 +52,7 @@ public class UserController {
 		return mv;
 	}	
 	
+	//내 정보
 	@GetMapping("/info")
 	public ModelAndView viewUserInfo(ModelAndView mv, Principal principal, MemberVo vo) throws Exception {
 		
@@ -100,7 +103,10 @@ public class UserController {
 		return shout;
 	}
 	
+	
+	
 	//내 예약
+	//내 예약 리스트 페이지
 	@GetMapping("/reserve")
 	public ModelAndView selectreserveList(
 			HttpServletRequest request, 
@@ -122,12 +128,19 @@ public class UserController {
 		return mv;
 	}
 	
-	@GetMapping("/reserve/delete")
-	public ModelAndView deleteReservePage(ModelAndView mv) throws Exception {
-		mv.setViewName("/user/reserve/delete");
+	//예약확인상세페이지
+	@GetMapping("/reserve/info")
+	public ModelAndView dddddd(ModelAndView mv) throws Exception {
+		mv.setViewName("/user/reserve/info");
 		return mv;
 	}
 	
+	//공간삭제
+	
+	
+	
+	
+	//내 Q&A
 	@GetMapping("/qna")
 	public ModelAndView selectQnaList(ModelAndView mv
 			, @RequestParam(value="page", defaultValue="1") int page

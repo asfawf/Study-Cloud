@@ -21,15 +21,11 @@
 				</div>
 				<div class="panel-body recent-property-widget">
 					<img src="https://images.unsplash.com/photo-1616400619175-5beda3a17896?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80">
-					<p class="side-info" style="padding-top: 20px; padding-bottom: 20px;">강남역 도보 5분, 당신을 위한 프라이빗 룸.</p>
+					<p class="side-info" style="padding-top: 20px; padding-bottom: 20px;">${product.detail.proName }</p>
 					<div class="clear">
 						<ul class="dealer-contacts">
-							<li><i class="pe-7s-map-marker strong"> </i> ${product.detail.proAddress }</li>
-							<li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+							<li><i class="pe-7s-map-marker strong"> </i> ${product.detail.proAddress }</li>											
 							<li><i class="pe-7s-call strong"> </i> ${product.detail.proPhone }</li>
-							<li><i class="pe-7s-up-arrow strong"> </i> 11층</li>
-							<li><i class="pe-7s-car strong"> </i> 주차가능</li>
-							<li><i class="pe-7s-signal strong"> </i> 와이파이</li>
 						</ul>
 					</div>
 				</div>
@@ -91,19 +87,7 @@
 					</div>
 				</div>
 			</div>	
-			<div class="panel panel-default sidebar-menu">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<b>시간가격(임시)</b>
-					</h3>
-				</div>
-				<div class="panel-body recent-property-widget">
-					<div class="input-group" style="display: flex;">
-							<input id="proPrice" name="proPrice" value="1000">
-							
-						</div>
-					</div>
-				</div>
+			
 				<div class="panel panel-default sidebar-menu">
 				<div class="panel-heading">
 					<h3 class="panel-title">

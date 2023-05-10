@@ -70,7 +70,7 @@
 			
 			<c:forEach items="${mapVo}" var="product">				
 				<tr>
-					<td><a href="/reserve/reservecheck?proNum=${product.proNum}&proName=${product.proName}">${product.proName}</a></td>					
+					<td><a href="${pageContext.request.contextPath}/user/reserve/info?proNum=${product.proNum}&proName=${product.proName}">${product.proName}</a></td>					
 					<td><button class="btn delete-btn" formaction="${pageContext.request.contextPath}/user/reserve/delete">취소하기</button></td>
 				</tr>
 			</c:forEach>				

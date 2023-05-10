@@ -37,7 +37,7 @@
 		select * from dual
 	</insert>
 	
-	<!-- 예약번호업데이 -->
+	<!-- 예약번호업데이트 -->
 	<update id="updateRsvNumToProTime" parameterType="map">
 		<selectKey order="BEFORE" keyProperty="rsvNum" resultType="_int">
 		 select rsv_num from reserve where  pro_num = #{proNum} and rsv_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')

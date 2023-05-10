@@ -57,6 +57,7 @@ public class ReserveDao {
 		return sqlSession.selectList("reserve.selectProNameList");	
 	}
 	
+	//상품시간가격리스트
 	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
 		return sqlSession.selectList("reserve.selectTimePriceRsvList", dto);
 	}
@@ -110,7 +111,7 @@ public class ReserveDao {
 								rsvTime += (i+1)+":00 ";
 							}
 						}else {
-							// continue
+							// continue되면
 						}
 					}else {
 						if(timeArray[i+1]) {

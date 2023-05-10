@@ -27,7 +27,7 @@ public interface ReserveService {
 	//상품이름리스트
 	public List<MapVo> selectProNameList() throws Exception;
 	
-	//선택된 날짜의 time과 price, 그리고 예약상태를 알아오기
+	//선택된 날짜의 time과 price, 그리고 예약상태 알아오기
 	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception;
 	
 	public ReserveTimeReqDto selectRsvNum(ReserveTimeReqDto rtDto) throws Exception;

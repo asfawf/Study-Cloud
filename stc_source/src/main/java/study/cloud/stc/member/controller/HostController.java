@@ -50,13 +50,83 @@ public class HostController {
 	@Autowired
 	@Qualifier("fileUtil")
 	private FileUtil fileUtil;
-		
+	
+	
+	//호스트 마이페이지
 	@GetMapping
 	public ModelAndView main(ModelAndView mv) throws Exception {
 		mv.setViewName("/host/host");
 		return mv;
 	}	
 	
+	
+	//내정보
+	@GetMapping("/info")
+	public ModelAndView viewHostInfo(ModelAndView mv, Principal principal, MemberVo vo) throws Exception {
+		
+		
+		System.out.println("memId: "+principal.getName());
+		vo.setMemId(principal.getName());
+		
+		System.out.println("vo:"+ vo);
+		
+		System.out.println("result: "+mservice.takeInfo(vo));
+		
+		
+		mv.addObject("mv", mservice.takeInfo(vo));
+		
+		/*
+		 * vo.setMemId(principal.getName());
+		 * 
+		 * renewal= 
+		 */
+		
+		//System.out.println("renewal:" + renewal);
+		
+		mv.setViewName("/host/info");
+		
+		return mv;
+	}
+	
+	@PostMapping("/info")
+	@ResponseBody
+	public String hostInfoAjax(
+			MemberVo vo
+			) throws Exception {
+		
+		System.out.println("이건 변환 전: "+vo);
+		
+		String strphone = vo.getMemPhone();
+		String newstrPhone = strphone.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
+		
+		System.out.println("newstrPhone: "+ newstrPhone);
+		vo.setMemPhone(newstrPhone);
+		
+		System.out.println("이건 변환 후: "+vo);
+		
+		int result = 0;
+		
+		result = mservice.updateHostInfo(vo);
+
+		String shout= null;
+		
+		if(result > 0) {
+			shout = "success";
+		}else {
+			shout = "fail";
+		}
+		
+		return shout;
+	}
+	
+	
+	
+	
+	
+	
+	
+	//공간관리
+	//공간관리리스트
 	@GetMapping("/product")
 	public ModelAndView selectProductList(
 			ModelAndView mv
@@ -204,15 +274,62 @@ public class HostController {
 	}
 	
 	
+	//예약관리
+	//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
+	@GetMapping("/reserve/rsvprotime")
+	public ModelAndView selectRsvProtime(ModelAndView mv
+			,String proNum
+			) throws Exception {
+		mv.addObject("proNum", proNum);
+		mv.setViewName("/host/reserve/rsvprotime");
+		return mv;
+	}
+	
+	@GetMapping("/reserve/delete")
+	public ModelAndView deleteReservePage(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve/delete");
+		return mv;
+	}
+	
+	//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
+	@PostMapping("/reserve/rsvprotime")
+	@ResponseBody 
+	public String seletedValues(
+			 @RequestBody ProductTimeReqDto reqDto
+			) throws Exception {			
+		pservice.insertProTime(reqDto);
+		
+		return "OK";
+	
+	}
+	
+	//예약관리 리스트 페이지
+	@GetMapping("/reserve")
+	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve/reserve");
+		return mv;
+	}
+	
+//		//예약관리 - 예약확인상세페이지
+//		@GetMapping("/reserve")
+//		public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+//			mv.setViewName("/host/reserve/info");
+//			return mv;
+//		}
+//	
 	
 	
-	
+	//리뷰관리
+	//리뷰리스트
 	@GetMapping("/review")
 	public ModelAndView selectReviewList(ModelAndView mv) throws Exception {
 		mv.setViewName("/host/review");
 		return mv;
 	}	
 	
+	
+	//Q&A관리
+	//Q&A리스트
 	@GetMapping("/qna")
 	public ModelAndView selectQnaList(ModelAndView mv
 			, @RequestParam(value="page", defaultValue="1") int page
@@ -376,114 +493,11 @@ public class HostController {
 	}	
 	
 	
-	@GetMapping("/info")
-	public ModelAndView viewHostInfo(ModelAndView mv, Principal principal, MemberVo vo) throws Exception {
-		
-		
-		System.out.println("memId: "+principal.getName());
-		vo.setMemId(principal.getName());
-		
-		System.out.println("vo:"+ vo);
-		
-		System.out.println("result: "+mservice.takeInfo(vo));
-		
-		
-		mv.addObject("mv", mservice.takeInfo(vo));
-		
-		/*
-		 * vo.setMemId(principal.getName());
-		 * 
-		 * renewal= 
-		 */
-		
-		//System.out.println("renewal:" + renewal);
-		
-		mv.setViewName("/host/info");
-		
-		return mv;
-	}
-	
-	@PostMapping("/info")
-	@ResponseBody
-	public String hostInfoAjax(
-			MemberVo vo
-			) throws Exception {
-		
-		System.out.println("이건 변환 전: "+vo);
-		
-		String strphone = vo.getMemPhone();
-		String newstrPhone = strphone.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
-		
-		System.out.println("newstrPhone: "+ newstrPhone);
-		vo.setMemPhone(newstrPhone);
-		
-		System.out.println("이건 변환 후: "+vo);
-		
-		int result = 0;
-		
-		result = mservice.updateHostInfo(vo);
-
-		String shout= null;
-		
-		if(result > 0) {
-			shout = "success";
-		}else {
-			shout = "fail";
-		}
-		
-		return shout;
-	}
 	
 	
 	
 	
-	//예약관리
-	@GetMapping("/reserve")
-	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
-		mv.setViewName("/host/reserve/reserve");
-		return mv;
-	}
 	
-	@GetMapping("/reserve/rsvprotime")
-	public ModelAndView selectRsvProtime(ModelAndView mv
-			,String proNum
-			) throws Exception {
-		mv.addObject("proNum", proNum);
-		mv.setViewName("/host/reserve/rsvprotime");
-		return mv;
-	}
-	
-	@GetMapping("/reserve/delete")
-	public ModelAndView deleteReservePage(ModelAndView mv) throws Exception {
-		mv.setViewName("/host/reserve/delete");
-		return mv;
-	}
-	
-	//공간시간,가격설정
-	@PostMapping("/reserve/rsvprotime")
-	@ResponseBody 
-	public String seletedValues(
-			//@RequestBody Map<String, Object> jsonData
-			 @RequestBody ProductTimeReqDto reqDto
-			) throws Exception {
-		
-//		System.out.println(jsonData.get("proNum"));
-//		System.out.println(jsonData.get("values"));
-//		System.out.println(((List<Map<String, Object>>)jsonData.get("values")).size());
-		
-		
-//		List<Map<String, Object>> values = (List<Map<String, Object>>)jsonData.get("values");
-//		for(Map<String, Object> map : values) {
-//			//pservice.insertProTime(map);
-//			System.out.println(map.get("price"));
-//		}
-//		
-		pservice.insertProTime(reqDto);
-		
-		return "OK";
-		
-		
-	}
 	
 	
 }
