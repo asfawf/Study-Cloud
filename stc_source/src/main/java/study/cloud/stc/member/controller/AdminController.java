@@ -232,7 +232,7 @@ public class AdminController {
 			
 			) throws Exception {
 		
-		 List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
+		 List<HostProductDto> hostDto = pservice.selectAdminList(new HostProductDto());
 		 int currentPage = page;
 		 int totalCnt = pservice.selectCount(dto);
 		 Map<String, Integer> map= new Paging().paging(currentPage, totalCnt,10 , 10);

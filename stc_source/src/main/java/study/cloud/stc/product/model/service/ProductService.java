@@ -27,6 +27,7 @@ public interface ProductService {
 	public int insertDetail(ProductDetailDto dto) throws Exception;
 	
 	public List<HostProductDto> selectList (HostProductDto dto)throws Exception;
+	public List<HostProductDto> selectAdminList (HostProductDto dto)throws Exception;
 	
 	//업데이트
 		public int updateProduct(ProductDetailDto dto) throws Exception;
@@ -37,7 +38,7 @@ public interface ProductService {
 	//페이징관련
 		public int selectCount(HostProductDto dto) throws Exception;
 		public List<HostProductDto> selectList (int currentPage,int limit,HostProductDto dto) throws Exception; 
-		
+		public List<HostProductDto> selectAdminList (int currentPage,int limit,HostProductDto dto)throws Exception;
 	// host qna select 옵션 List
 	public List<ProductVo> selectHostProductList(String membId) throws Exception;
 	

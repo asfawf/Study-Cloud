@@ -180,6 +180,27 @@
 	
 	<!-- 호스트 & 어드민 상품목록 -->
 	
+	
+	<select id="adminProductList" resultType="hostProDto">
+	select
+		 pro_num
+        ,pro_name
+        ,pro_address
+        ,pro_phone
+        ,mem_id
+        ,mem_authority
+        ,pro_pic_Original
+        ,pro_pic_Rename
+        from map
+        left outer join product
+        using (pro_num)
+        left outer join member
+        using (mem_id)
+        LEFT OUTER JOIN PRODUCTFILE 
+	     USING (PRO_NUM)
+	</select>
+	
+	
 	<select id="hostProductList" resultType="hostProDto">
 	select
 		 pro_num
@@ -198,9 +219,11 @@
         LEFT OUTER JOIN PRODUCTFILE 
 	     USING (PRO_NUM)
 	     WHERE MEM_ID = #{memId}
+	     order by pro_num desc
 	 	</select>
+	
+	
 	<select id="productOneCnt" resultType="_int">
-
 	SELECT COUNT(*) CNT
 	  FROM MAP 
      	LEFT OUTER JOIN PRODUCT
@@ -210,8 +233,8 @@
         LEFT OUTER JOIN PRODUCTFILE 
 	     USING (PRO_NUM)
         WHERE PRO_NUM = #{proNum}
-	
 	</select>
+	
 	<select id="hostList"  resultType="hostProDto">
 	select  pro_num
         ,pro_name
@@ -325,9 +348,11 @@
 		SELECT DISTINCT PRO_NUM, PRO_NAME FROM QNA WHERE MEM_ID = #{memId}
 	</select>
 	<select id="selectUserQna" resultType="qvo">
-		SELECT PRO_NUM, PRO_NAME, to_char(QNA_DATE,'yyyy"년" MM"월" dd"일"') QNA_DATE, MEM_QUESTION, QNA_NUM
-		FROM QNA WHERE MEM_ID = #{memId} 
-		AND PRO_NUM = #{proNum}
+		SELECT to_char(QNA_DATE,'yyyy"년" MM"월" dd"일"') QNA_DATE, MEM_QUESTION, QNA_NUM
+		FROM QNA WHERE MEM_ID = #{memId}
+		<if test="proNum != null and proNum neq ''">
+         AND PRO_NUM = #{proNum}
+   	    </if>		
 		ORDER BY QNA_DATE DESC
 	</select>
 	<select id="selectUserQnaCount" resultType="qvo">

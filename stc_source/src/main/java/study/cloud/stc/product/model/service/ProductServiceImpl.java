@@ -131,6 +131,18 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public List<HostProductDto> selectAdminList(int currentPage, int limit,HostProductDto dto) throws Exception {
+	
+		return dao.selectAdminList(currentPage, limit, dto);
+	}
+
+	@Override
+	public List<HostProductDto> selectAdminList(HostProductDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
