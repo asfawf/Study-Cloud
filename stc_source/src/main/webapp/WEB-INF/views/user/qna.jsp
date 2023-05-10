@@ -71,11 +71,8 @@
 	getQnaListHandler();
 	
 	$("#selectedProNum").change(getQnaListHandler);
-
 	
 	function getQnaListHandler(){
-		console.log($("#selectedProNum").val());
-		console.log($("[name=memId]").val());
 		var selectedProNum = $("#selectedProNum").val();
 		var memId = '${pageContext.request.userPrincipal.name}';
 		var page = $(this).data("page");
@@ -179,10 +176,11 @@
   		$.ajax({   
   			  url: "${pageContext.request.contextPath}/user/qna/update"
    		    , type: "POST"
-  			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val(), selectedProNum: $("[name=selectedProNum]").val(), memQuestion: $(this.form.memQuestion).val(), page: page}
+  			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val()
+  				, selectedProNum: $("[name=selectedProNum]").val()
+  				, memQuestion: $(this.form.memQuestion).val(), page: page}
   			, dataType: "json"  
   			, success: function (result) { 
-  				console.log(result);
 
    				if(result.qnaList.length > 0) { 
    					alert("수정되었습니다.")
@@ -200,6 +198,7 @@
    		});
   		
    	}
+  	
   	/* deleteQna ajax Qna 삭제 */
    	$(".btndeleteQna").on("click", deleteQna);
   	function deleteQna() {
@@ -216,8 +215,7 @@
       			, data: {qnaNum:qnanum, selectedProNum: $("[name=selectedProNum]").val(), page: page}
       			, dataType: "json"  
       			, success: function (result) { 
-      				console.log(result);
-
+      				
        				if(result.qnaList.length > 0) { 
        					alert("삭제되었습니다.")
        					displayQnaList(result);
