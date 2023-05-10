@@ -80,7 +80,25 @@
                                         <input type="hidden" name="proPicRenameOld" value="${productDetail.proPicRename }">
                                     	<img alt="" src="../{productDetail.proPicRename }">
                                     </div>
+                                    
                                 </div>
+                               
+                               
+                               <input type="button" onclick="findPostCode()" value="주소 검색"><br>
+									<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+                                    
+                                    <div class="form-group">
+                                        <label>우편번호 :</label>
+                                    <input type="text" name="proZipcode" id="postcode" placeholder="우편번호" readonly>
+									<input type="hidden" name="proAddress" id="proAddress" value="">
+									<input type="text" name="pre_proAddress" id="roadAddress" placeholder="도로명주소" readonly>
+									<span id="guide" style="color:#999;display:none"></span>
+									<input type="text" id="detailAddress" name="pre_proAddress"  placeholder="상세주소를 입력해주세요">
+									<input type="text" id="extraAddress" placeholder="참고항목" readonly>
+                                    
+                                    </div>
+                               
+                               
                                 <div class="col-sm-10 col-sm-offset-1">
                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                    <input type="hidden" name="proNum" value="${productDetail.proNum }">

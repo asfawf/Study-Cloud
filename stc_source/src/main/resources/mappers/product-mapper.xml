@@ -180,6 +180,27 @@
 	
 	<!-- 호스트 & 어드민 상품목록 -->
 	
+	
+	<select id="adminProductList" resultType="hostProDto">
+	select
+		 pro_num
+        ,pro_name
+        ,pro_address
+        ,pro_phone
+        ,mem_id
+        ,mem_authority
+        ,pro_pic_Original
+        ,pro_pic_Rename
+        from map
+        left outer join product
+        using (pro_num)
+        left outer join member
+        using (mem_id)
+        LEFT OUTER JOIN PRODUCTFILE 
+	     USING (PRO_NUM)
+	</select>
+	
+	
 	<select id="hostProductList" resultType="hostProDto">
 	select
 		 pro_num
