@@ -34,6 +34,6 @@ public class QnaVo {
 	private String memQuestion;
 	private String memAuthority;
 	private String hostAnswer;
-	private Date qnaDate;
+	private String qnaDate;
 	private int qnaNum;
 }

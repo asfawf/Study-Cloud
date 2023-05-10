@@ -123,7 +123,11 @@
 			htmlVal += '<form id="frmreplyQna'+qna.qnaNum+'">';
 			htmlVal += '<div class="modal-body">';											
 			htmlVal += '<div class="mb-3"><br>';
-			htmlVal += '<textarea class="form-control hostAnswer" name="hostAnswer" placeholder="내용" style="height: 300px;">'+qna.hostAnswer+'</textarea>';
+			htmlVal += '<textarea class="form-control hostAnswer" name="hostAnswer" placeholder="내용" style="height: 300px;">';
+			if(qna.hostAnswer != null){
+			htmlVal += qna.hostAnswer
+			}
+			htmlVal += '</textarea>';
 			htmlVal += '</div></div>';
 			htmlVal += '<div class="modal-footer">';
 			htmlVal += '<div class="button notice-btn">';

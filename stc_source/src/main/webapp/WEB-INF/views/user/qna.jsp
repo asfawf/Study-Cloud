@@ -179,14 +179,14 @@
   		$.ajax({   
   			  url: "${pageContext.request.contextPath}/user/qna/update"
    		    , type: "POST"
-  			, data: {qnaNum:qnanum, selectedProNum: $("[name=selectedProNum]").val(), memQuestion: $(this.form.memQuestion).val(), page: page}
+  			, data: {qnaNum:qnanum, proNum:$("[name=proNum]").val(), selectedProNum: $("[name=selectedProNum]").val(), memQuestion: $(this.form.memQuestion).val(), page: page}
   			, dataType: "json"  
   			, success: function (result) { 
   				console.log(result);
 
    				if(result.qnaList.length > 0) { 
    					alert("수정되었습니다.")
-   					displayQna(result);
+	   				displayQnaList(result);
    				}  
    				
    			}
@@ -218,7 +218,7 @@
       			, success: function (result) { 
       				console.log(result);
 
-       				if(result.qnaList.length >= 0) { 
+       				if(result.qnaList.length > 0) { 
        					alert("삭제되었습니다.")
        					displayQnaList(result);
        				}            				 

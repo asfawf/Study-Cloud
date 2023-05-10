@@ -25,7 +25,6 @@ import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
 import study.cloud.stc.product.model.vo.ProductVo;
 import study.cloud.stc.qna.model.service.QnaService;
-import study.cloud.stc.qna.model.vo.UserQnaReqVo;
 import study.cloud.stc.qna.model.vo.QnaVo;
 import study.cloud.stc.reserve.model.service.ReserveService;
 import study.cloud.stc.reserve.model.vo.MapVo;
@@ -139,7 +138,7 @@ public class UserController {
 		int proNum = 0;
 		
 	    if (productList.size() > 0) {
-	        proNum = productList.get(productList.size() - 1).getProNum();
+	        proNum = productList.get(0).getProNum();
 	    }
 	    
 		Map<String, Object> userQna = new HashMap<>();
@@ -158,7 +157,9 @@ public class UserController {
 			, Principal principal
 			, QnaVo vo
 			) throws Exception {
-
+		vo.setProNum(proNum);
+		vo.setMemId(principal.getName());
+		
 		int cntPerPage = 3; 
 		int currentPage = page;
 		int totalCnt = qna_service.selectUserQnaCount(vo);
@@ -168,7 +169,7 @@ public class UserController {
 				
 		if (proNum == 0) {
 		    if (productList.size() > 0) {
-		        proNum = productList.get(productList.size() - 1).getProNum();
+		    	proNum = productList.get(0).getProNum();
 		    }
 		}
 		List<QnaVo> qnaList = new ArrayList<>();
@@ -193,7 +194,9 @@ public class UserController {
 			, @RequestParam(value="qnaNum") int qnaNum
 			, Principal principal
 			) throws Exception {
-
+		vo.setProNum(proNum);
+		vo.setMemId(principal.getName());
+		
 		int cntPerPage = 3; 
 		int currentPage = page;
 		int totalCnt = qna_service.selectUserQnaCount(vo);
@@ -203,7 +206,7 @@ public class UserController {
 
 		if (proNum == 0) {
 			if (productList.size() > 0) {
-		        proNum = productList.get(productList.size() - 1).getProNum();
+				proNum = productList.get(0).getProNum();
 		    }
 		}
 		List<QnaVo> qnaList = new ArrayList<>();
@@ -230,7 +233,9 @@ public class UserController {
 			, Principal principal
 			, QnaVo vo
 			) throws Exception {
-
+		vo.setProNum(proNum);
+		vo.setMemId(principal.getName());
+		
 		int cntPerPage = 3; 
 		int currentPage = page;
 		int totalCnt = qna_service.selectUserQnaCount(vo);
@@ -240,7 +245,7 @@ public class UserController {
 
 		if (proNum == 0) {
 			if (productList.size() > 0) {
-		        proNum = productList.get(productList.size() - 1).getProNum();
+				proNum = productList.get(0).getProNum();
 		    }
 		}
 		List<QnaVo> qnaList = new ArrayList<>();

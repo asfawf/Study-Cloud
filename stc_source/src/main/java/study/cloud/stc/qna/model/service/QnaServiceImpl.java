@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import study.cloud.stc.qna.model.dao.QnaDao;
-import study.cloud.stc.qna.model.vo.UserQnaReqVo;
 import study.cloud.stc.qna.model.vo.QnaVo;
  
 
@@ -78,27 +77,14 @@ public class QnaServiceImpl implements QnaService {
 		return dao.selectUserQnaCount(vo);	
 	}
 	@Override
-	public int selectUserQnaCount(UserQnaReqVo qrvo) throws Exception {
-		return dao.selectUserQnaCount(qrvo);	
+	public List<QnaVo> selectUserQnaList(String name) throws Exception {
+		return dao.selectUserQnaList(name);	
 	}
-
 	@Override
 	public List<QnaVo> selectUserQna(int currentPage, int limit, QnaVo vo) throws Exception {
 		return dao.selectUserQna(currentPage, limit, vo);
 	}
-	@Override
-	public List<QnaVo> selectUserQna(int currentPage, int limit, int proNum) throws Exception {
-		return dao.selectUserQna(currentPage, limit, proNum);
-	}
-
-//	@Override
-//	public List<UserQnaReqVo> selectUserQnaList(String name) throws Exception {
-//		return dao.selectUserQnaList(name);	
-//	}
-	@Override
-	public List<QnaVo> selectUserQnaList(String name) throws Exception {
-		return dao.selectUserQnaList(name);	
-	}
+	
 
 
 }

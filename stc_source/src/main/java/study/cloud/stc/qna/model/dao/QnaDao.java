@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import study.cloud.stc.qna.model.vo.UserQnaReqVo;
 import study.cloud.stc.qna.model.vo.QnaVo;
  
 
@@ -64,22 +63,13 @@ public class QnaDao {
 	public int selectUserQnaCount(QnaVo vo) throws Exception{
 		return sqlSession.selectOne("product.selectUserQnaCount", vo);
 	}
-	public int selectUserQnaCount(UserQnaReqVo qrvo) throws Exception{
-		return sqlSession.selectOne("product.selectUserQnaCount", qrvo);
-	}
-
-	public List<QnaVo> selectUserQna(int currentPage, int limit, QnaVo vo) throws Exception{
-		return sqlSession.selectList("product.selectUserQna", vo, new RowBounds((currentPage-1)*limit, limit));
-	}
-	public List<QnaVo> selectUserQna(int currentPage, int limit, int proNum) throws Exception{
-		return sqlSession.selectList("product.selectUserQna", proNum, new RowBounds((currentPage-1)*limit, limit));
-	}
-//	public List<UserQnaReqVo> selectUserQnaList(String name) throws Exception{
-//		return sqlSession.selectList("product.selectUserQnaList", name);
-//	}
 	public List<QnaVo> selectUserQnaList(String name) throws Exception{
 		return sqlSession.selectList("product.selectUserQnaList", name);
 	}
+	public List<QnaVo> selectUserQna(int currentPage, int limit, QnaVo vo) throws Exception{
+		return sqlSession.selectList("product.selectUserQna", vo, new RowBounds((currentPage-1)*limit, limit));
+	}
+
 	
 
 }

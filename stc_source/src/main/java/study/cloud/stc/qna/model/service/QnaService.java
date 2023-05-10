@@ -2,7 +2,6 @@ package study.cloud.stc.qna.model.service;
 
 import java.util.List;
 
-import study.cloud.stc.qna.model.vo.UserQnaReqVo;
 import study.cloud.stc.qna.model.vo.QnaVo;
 
 
@@ -28,12 +27,8 @@ public interface QnaService {
 	
 	// user qna
 	public int selectUserQnaCount(QnaVo vo) throws Exception;
-	public int selectUserQnaCount(UserQnaReqVo qrvo) throws Exception;
-	
-	public List<QnaVo> selectUserQna(int currentPage, int limit, QnaVo vo) throws Exception;
-	public List<QnaVo> selectUserQna(int currentPage, int limit, int proNum) throws Exception;
-//	public List<UserQnaReqVo> selectUserQnaList(String name) throws Exception;
 	public List<QnaVo> selectUserQnaList(String name) throws Exception;
+	public List<QnaVo> selectUserQna(int currentPage, int limit, QnaVo vo) throws Exception;
 	
 	
 }

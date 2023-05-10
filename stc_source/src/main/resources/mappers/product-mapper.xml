@@ -57,7 +57,6 @@
 	<select id="selectList" resultType="pdvo">
 		SELECT PRO_NUM
       		 , PRO_NAME
-<!--              , SUBSTR(PRO_ADDRESS,3) AS PRO_ADDRESS -->
              , PRO_ADDRESS
              , PRO_PHONE
              , MIN(PRO_PRICE) AS PRO_PRICE
@@ -66,8 +65,6 @@
          USING (PRO_NUM)
     LEFT OUTER JOIN PROTIME 
          USING (PRO_NUM)
-         
-         
    <trim prefix="WHERE" prefixOverrides="AND|OR">
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
@@ -355,7 +352,7 @@
 
 	<!-- user/qna List -->
 	<select id="selectUserQnaList" resultType="qvo">
-		SELECT DISTINCT PRO_NUM, PRO_NAME FROM QNA WHERE MEM_ID = #{memId}
+		SELECT PRO_NUM, PRO_NAME FROM QNA WHERE MEM_ID = #{memId} group by PRO_NUM, PRO_NAME ORDER BY max(qna_date) desc
 	</select>
 	<select id="selectUserQna" resultType="qvo">
 		SELECT to_char(QNA_DATE,'yyyy"년" MM"월" dd"일"') QNA_DATE, MEM_QUESTION, QNA_NUM
@@ -365,7 +362,7 @@
    	    </if>		
 		ORDER BY QNA_DATE DESC
 	</select>
-	<select id="selectUserQnaCount" resultType="qvo">
+	<select id="selectUserQnaCount" resultType="_int">
 		SELECT COUNT(*) FROM QNA WHERE MEM_ID = #{memId} AND PRO_NUM = #{proNum}
 	</select>
 	
