@@ -16,9 +16,6 @@
 	<result column="pro_Refund" property="proRefund"/>
 	<result column="pro_Zipcode" property="proZipcode"/>
 	
-<!-- 	<result column="pro_Date" property="proDate"/>
-	<result column="pro_Price" property="proPrice"/> -->
-	
 	 <collection column="pro_Num" property="timePriceList" ofType="study.cloud.stc.product.model.vo.ProductTimePriceDto">
 		<result column="pro_Date" property="time"/>
 		<result column="pro_Price" property="price"/>
@@ -42,7 +39,8 @@
 		INSERT ALL 
 		INTO PRODUCT VALUES 	(#{proNum}, #{memId},#{proPost},#{proInfo},#{proNotice},#{proRefund},#{proZipcode})
 		<foreach collection="picList" item="pic">
-		INTO PRODUCTFILE VALUES	(#{proNum}, #{pic.proPicOriginal},#{pic.proPicRename})
+		INTO PRODUCTFILE VALUES	(#{proNum},
+		 #{pic.proPicOriginal},#{pic.proPicRename})
 		</foreach>
 		select * from dual
 	</insert>
@@ -202,8 +200,21 @@
 	     USING (PRO_NUM)
 	</select>
 	
-	
-	<select id="hostProductList" resultType="hostProDto">
+	<resultMap type="hostProDto" id="hostProDtoResultMap">
+		<id column="pro_num" property="proNum"/>
+		<result column="pro_name" property="proName"/>
+		<result column="pro_address" property="proAddress"/>
+		<result column="pro_phone" property="proPhone"/>
+		<result column="mem_id" property="memId"/>
+		<result column="mem_authority" property="memAuthority"/>
+
+		<collection property="picList" ofType="study.cloud.stc.product.model.vo.ProductPicDto">
+			<result column="pro_pic_Original" property="proPicOriginal"/>
+			<result column="pro_pic_Rename" property="proPicRename"/>
+		</collection>	
+	</resultMap>
+	<select id="hostProductList" resultMap="hostProDtoResultMap">
+<!-- 	<select id="hostProductList" resultType="hostProDto"> -->
 	select
 		 pro_num
         ,pro_name
@@ -211,15 +222,16 @@
         ,pro_phone
         ,mem_id
         ,mem_authority
-        ,pro_pic_Original
-        ,pro_pic_Rename
+        <!-- ,pro_pic_Original
+        ,pro_pic_Rename -->
+        <foreach collection="picList" item="pic" open="" close="" separator=",">
+        #{pic.proPicOriginal}
+       ,#{pic.proPicRename}
+        </foreach>
         from map
-        left outer join product
-        using (pro_num)
-        left outer join member
-        using (mem_id)
-        LEFT OUTER JOIN PRODUCTFILE 
-	     USING (PRO_NUM)
+	        left outer join product        using (pro_num)
+	        left outer join member        using (mem_id)
+	        LEFT OUTER JOIN PRODUCTFILE	     USING (PRO_NUM)
 	     WHERE MEM_ID = #{memId}
 	     order by pro_num desc
 	 	</select>

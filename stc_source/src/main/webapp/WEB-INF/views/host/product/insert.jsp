@@ -88,7 +88,8 @@
                                     <div id="btn-post">
 									<input type="button" onclick="findPostCode()" value="주소 검색">
 									</div>
-									<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+									<div id="map" style="width:300px;height:300px;margin-top:10px;display:none">
+									</div>
                                     
                                     <div class="form-group">
                                         <label>우편번호 :</label>

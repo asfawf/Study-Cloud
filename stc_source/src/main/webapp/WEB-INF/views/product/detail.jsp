@@ -42,26 +42,35 @@
     <li data-target="#carousel-example-generic" data-slide-to="2"></li>
   </ol>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
+<!--   <!-- Wrapper for slides --> -->
+<%--    <c:forEach items="${product.detail.picList }" var="pic" varStatus="s"> --%>
+<!--   <div class="carousel-inner" role="listbox"> -->
 <!--     <div class="item active"> -->
-<%--       <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.proPicRename}"  alt="..."> --%>
+
+<%--   <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/>    --%>
+<%-- <%--       <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.proPicRename}"  alt="..."> --%> --%>
 <!--       <div class="carousel-caption"> -->
 <!--         ... -->
 <!--       </div> -->
 <!--     </div> -->
-<!--     <div class="item"> -->
-<%--       <img src="${pageContext.request.contextPath}/resources/sneat/assets/img/hello/085528.jpg" alt="..."> --%>
-<!--       <div class="carousel-caption"> -->
-<!--         ... -->
-<!--       </div> -->
-<!--     </div> -->
-    ...
-  <c:forEach items="${product.detail.picList }" var="pic" varStatus="s">
-  <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/>   
-  </c:forEach>
-    
+<!--     ... -->
+<!--   </div> -->
+<%--   </c:forEach> --%>
+  
+  
+    <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+	
+	<c:forEach items="${product.detail.picList }" var="pic" varStatus="s">
+	<div class="item active">
+      <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/>
+    </div>
+   
   </div>
+      </c:forEach> 
+  
+     
+  
 
   <!-- Controls -->
   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">

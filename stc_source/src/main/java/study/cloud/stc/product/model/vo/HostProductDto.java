@@ -1,5 +1,7 @@
 package study.cloud.stc.product.model.vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -24,7 +26,7 @@ public class HostProductDto {
     private String memId;
     private String memAuthority;
     
-    private String proPicOriginal;
-	private String proPicRename;
-
+//    private String proPicOriginal;
+//	private String proPicRename;
+	private List<ProductPicDto> picList;
 }

@@ -12,19 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import study.cloud.stc.common.file.FileUtil;
 import study.cloud.stc.common.paging.Paging;
@@ -70,7 +66,6 @@ public class HostController {
 			) throws Exception {
 		String memId = principal.getName();
 		 dto.setMemId(memId);
-		 List<HostProductDto> hostDto = pservice.selectList(new HostProductDto());
 		 int currentPage = page;
 		 int totalCnt = pservice.selectCount(dto);
 		 Map<String, Integer> map= new Paging().paging(currentPage, totalCnt,10 , 10);
@@ -172,28 +167,29 @@ public class HostController {
 	@PostMapping("/product/update")
 	public ModelAndView updateProduct(
 			ModelAndView mv
-//		  , @RequestParam(name = "uploadfile", required = false) MultipartFile[] multifiles
-		  , @RequestParam(name = "uploadfile", required = false) MultipartFile multi
-			,ProductDetailDto pd
+		  , @RequestParam(name = "uploadfile", required = false) MultipartFile[] multifiles
+//		  , @RequestParam(name = "uploadfile", required = false) MultipartFile multi
+			,ProductDetailDto dto
+			
 			,Principal principal
 			, HttpServletRequest request
 			// 	@RequestParam("proNum") int proNum,
 			) throws Exception {
-		//   pd = pservice.selectOne(proNum);
-		Map<String, String> filePath;
-		try {
-//			if(multifiles != null) {
-//				for(int i=0; i<multifiles.length; i++) {
-//					MultipartFile multi = multifiles[i];
-					filePath = fileUtil.saveFile(multi, request, null);
-						pd.setProPicOriginal(filePath.get("original"));
-						pd.setProPicRename(filePath.get("rename"));
-//				}
-//			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		int result = pservice.updateProduct(pd);  // TODO ProductDetailDto으로 수정
+		 if (multifiles != null) {
+		    	List<ProductPicDto> picList = new ArrayList<ProductPicDto>();
+		        for (int i = 0; i < multifiles.length; i++) {
+		            MultipartFile multi = multifiles[i];
+		            Map<String, String> filePath = fileUtil.saveFile(multi, request, null);
+
+		            ProductPicDto pic = new ProductPicDto(); 
+		            pic.setProPicOriginal(filePath.get("original"));
+		            pic.setProPicRename(filePath.get("rename"));
+		            picList.add(pic);
+		        }
+		        dto.setPicList(picList);
+		    }
+		
+		int result = pservice.updateProduct(dto);  // TODO ProductDetailDto으로 수정
 		if(result == 4) {
 			mv.setViewName("redirect:/host/product");
 		}else if(result == 3) {
