@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/pay")
-public class Pay {
+public class PayController {
 
 	
 	@GetMapping
