@@ -471,10 +471,10 @@
 							<c:forEach items="${adminEntry }" var="aentry">
 								<c:choose>
 									<c:when test="${aentry.connectStatus == 'ONLINE' }">
-										<li class="list-group-item list-group-item-primary entry-${aentry.memId }">${aentry.memId }<span class="glyphicon glyphicon-ok-circle enter-${aentry.memId}" style=" float: right; color: green;" aria-hidden="true">${aentry.connectStatus }</span> </li>
+										<li class="list-group-item list-group-item-primary entry-${aentry.memId }">${aentry.memId}<span class="glyphicon glyphicon-ok-circle enter-${aentry.memId}" style=" float: right; color: green;" aria-hidden="true">${aentry.connectStatus}</span> </li>
 									</c:when>
 									<c:otherwise>
-										<li class="list-group-item list-group-item-primary exit-${aentry.memId }">${aentry.memId }<span class="glyphicon glyphicon-remove-circle exiter-${aentry.memId  }" style=" float: right; color: red;" aria-hidden="true">${aentry.connectStatus }</span> </li>
+										<li class="list-group-item list-group-item-primary exit-${aentry.memId }">${aentry.memId}<span class="glyphicon glyphicon-remove-circle exiter-${aentry.memId}" style=" float: right; color: red;" aria-hidden="true">${aentry.connectStatus}</span> </li>
 									</c:otherwise>
 								</c:choose> 	
 							</c:forEach>															

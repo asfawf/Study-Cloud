@@ -4,6 +4,7 @@
 	<resultMap type="mervo" id="mmervo">
 		<id column="MEM_ID" property="memId"/>
 		<result column="ROOM_ID" property="roomId"/>
+		<result column="CONNECT_STATUS" property="connectStatus"/>
 	</resultMap>
 
 	<select id="viewMemberId" resultType="mervo">
@@ -11,12 +12,13 @@
 	</select>
 	
 	<insert id="addMemId">
-		INSERT INTO MEMBER_ROOM(MEM_ID, ROOM_ID) VALUES(#{memId}, #{roomId})
+		INSERT INTO MEMBER_ROOM(MEM_ID, ROOM_ID, CONNECT_STATUS) VALUES(#{memId}, #{roomId}, 'OFFLINE')
 	</insert>
 	
 	<select id="selectAdminEntry"  resultType="mervo">
 		SELECT  a.MEM_ID
 	    ,   a.ROOM_ID
+	    ,   a.CONNECT_STATUS
 	    FROM MEMBER_ROOM a
 	    INNER JOIN MEMBER b
 			ON	a.MEM_ID = b.MEM_ID
@@ -28,6 +30,7 @@
 	<select id="selectUserEntry"  resultType="mervo">
 		SELECT  a.MEM_ID
 	    ,   a.ROOM_ID
+	    ,   a.CONNECT_STATUS
 	    FROM MEMBER_ROOM a
 	    INNER JOIN MEMBER b
 			ON	a.MEM_ID = b.MEM_ID
@@ -35,4 +38,12 @@
 	    AND		a.MEM_ID = b.MEM_ID
 	    AND		b.MEM_AUTHORITY = 'ROLE_USER'	
 	</select>
+	
+	<update id="offlineUser">
+		UPDATE MEMBER_ROOM SET CONNECT_STATUS= 'OFFLINE' where MEM_ID= #{memId} AND ROOM_ID= #{roomId}
+	</update>
+	
+	<update id="onlineUser">
+		UPDATE MEMBER_ROOM SET CONNECT_STATUS= 'ONLINE' where MEM_ID= #{memId} AND ROOM_ID= #{roomId}
+	</update>
 </mapper>
