@@ -22,7 +22,8 @@
                             <form action="${pageContext.request.contextPath}/product" class=" form-inline">
                                 <div class="col-md-12">
                                 	<div class="col-md-4">                                     
-	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" data-size="10" title="${param.proAddress}" onchange="submit();">
+	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" data-size="10" onchange="submit();">
+	                                        	<option value="">지역</option>	                                        	
 	                                        <c:forEach var="v" items="${add }">
 												<option value="${v }">${v }</option>
 											</c:forEach>
@@ -36,7 +37,7 @@
                                     	</select>
                                     </div>
                                     <div class="col-md-4">                                     
-                                       <input type="text" class="form-control" width="270" name="proDate" placeholder="${param.proDate}" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
+                                       <input type="text" class="form-control" width="270" name="proDate" placeholder="${!empty param.proDate ? param.proDate : '  날짜'}" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">
@@ -122,18 +123,18 @@
 	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
 	                               	</c:when>
 	                               	<c:otherwise>
-	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage - 1 }"></a></li>
+	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&proDate=${param.proDate}&page=${pageInfo.currentPage - 1 }"></a></li>
 	                               	</c:otherwise>
                                 	</c:choose>
 	                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
-										<li><a href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&page=${page }">${page }</a></li>
+										<li><a href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&proDate=${param.proDate}&page=${page }">${page }</a></li>
 									</c:forEach>  
 									<c:choose>
 									<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
 	                               		<li><a class="disabled pe-7s-angle-right"></a></li>
 	                               	</c:when>
 	                               	<c:otherwise>
-	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage +1 }"></a></li>
+	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/product?proAddress=${param.proAddress }&proDate=${param.proDate}&page=${pageInfo.currentPage +1 }"></a></li>
 	                               	</c:otherwise> 
 	                               	</c:choose>
                                 </ul>

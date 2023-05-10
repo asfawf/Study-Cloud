@@ -8,6 +8,10 @@
 <title>키워드로 장소검색하고 목록으로 표출하기</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+<style type="text/css">
+.customoverlay {bottom:50px;}
+.customoverlay a {color: #777;}
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
@@ -24,10 +28,10 @@
                             <form action="${pageContext.request.contextPath}/product/map" class=" form-inline">
                                 <div class="col-md-12">
                                 	<div class="col-md-4">                                     
-	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" 
-	                                    	title="${param.proAddress}" onchange="submit();">
+	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" onchange="submit();">
+	                                         	<option value="">지역</option>	                                        	
 	                                        <c:forEach var="v" items="${add }">
-												<option value="${v }" ${param.proAddress eq v ? 'selected' : '' }>${v }</option>
+												<option value="${v }">${v }</option>
 											</c:forEach>
                                     	</select>                                    	
                                 	</div>

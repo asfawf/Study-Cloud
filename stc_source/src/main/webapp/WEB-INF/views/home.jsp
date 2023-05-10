@@ -35,7 +35,8 @@
                         <div class="search-form pulse">
                             <form class="form-inline">                                
                                 <div class="form-group">                                     
-                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" data-size="10" title="지역">
+                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" data-size="10">
+                                        	<option value="">지역</option>
                                         <c:forEach var="v" items="${add }">
 											<option value="${v }">${v }</option>
 										</c:forEach>
@@ -59,20 +60,6 @@
                 </div>
             </div>
         </div>
-<script>
-	$('#datepicker').datepicker({
-	    uiLibrary: 'bootstrap',
-	    format: "yymmdd",
-	    language: "kr",
-	    todayHighlight: true
-	});
- 	$('.chat').click(function() {	
-		alert('로그인을 해주세요');
-		location.replace("${pageContext.request.contextPath}/chatting?room_id=${pageContext.request.userPrincipal.name}");
-		return false;			
-	});
-</script>
-        
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>

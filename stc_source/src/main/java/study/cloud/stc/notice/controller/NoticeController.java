@@ -46,17 +46,17 @@ public class NoticeController {
 		  , NoticeVo vo
 		  , @RequestParam(value="page", defaultValue="1") int page
 		  , @RequestParam(value="notiIdx", defaultValue="") String notiIdx
-//		  , @RequestParam(name = "report", required = false) MultipartFile multi
-//		  , HttpServletRequest request
+		  , @RequestParam(name = "report", required = false) MultipartFile multi
+		  , HttpServletRequest request
 			) throws Exception {
-//		Map<String, String> filePath;
-//		try {
-//			filePath = fileUtil.saveFile(multi, request, null);
-//			vo.setOriginalFilename(filePath.get("original"));
-//			vo.setRenameFilename(filePath.get("rename"));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		Map<String, String> filePath;
+		try {
+			filePath = fileUtil.saveFile(multi, request, null);
+			vo.setOriginalFilename(filePath.get("original"));
+			vo.setRenameFilename(filePath.get("rename"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		int currentPage = page; 
 		int totalCnt= service.selectCount(notiIdx); 
 		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT); 

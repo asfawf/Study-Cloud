@@ -187,7 +187,7 @@ public class UserController {
 	}
 	@PostMapping("/qna/update")
 	@ResponseBody
-	public String replyUpdateQnaAjax(QnaVo vo
+	public String updateQnaAjax(QnaVo vo
 			, @RequestParam(name="selectedProNum") int proNum
 			, @RequestParam(value="page", defaultValue="1") int page
 			, @RequestParam(value="qnaNum") int qnaNum

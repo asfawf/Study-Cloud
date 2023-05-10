@@ -75,7 +75,7 @@
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
        </if>
        <if test="proDate != null and proDate neq ''">
-         OR PRO_DATE = #{proDate}
+         OR to_char(PRO_DATE,'yyyy-mm-dd') IN #{proDate}
        </if>
    </trim>         
          GROUP BY (PRO_NUM, PRO_NAME, PRO_ADDRESS, PRO_PHONE)

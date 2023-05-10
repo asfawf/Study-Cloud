@@ -54,14 +54,7 @@ public class ProductController {
 		mv.setViewName("product/map");
 		return mv;
 	}
-//	@PostMapping("/map")
-//	public ModelAndView selectproductMap(ModelAndView mv
-//			, ProductVo vo
-//			) throws Exception {
-//		mv.addObject("pdList", service.selectList(vo));
-//		mv.setViewName("product/map");
-//		return mv;
-//	}
+
 	@GetMapping("/detail")
 	public ModelAndView productDetail(
 			ModelAndView mv
