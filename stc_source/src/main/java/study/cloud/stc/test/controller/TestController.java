@@ -65,11 +65,6 @@ public class TestController {
 		return mv;
 	}
 	
-	@GetMapping("/pay")
-	public ModelAndView paypage(ModelAndView mv) {
-		mv.setViewName("pay");
-		return mv;
-	}
 	
 
 	
