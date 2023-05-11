@@ -7,6 +7,11 @@
 <title>검색 페이지</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
+<style>
+.proNum , .proAddress{
+	line-height: 100%;
+}
+</style>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
 <c:set var="add">
@@ -94,19 +99,14 @@
                                     <div class="item-thumb">
                                         <a href="${pageContext.request.contextPath}/product/detail?proNum=${product.proNum }" ><img src="<%=request.getContextPath() %>/resources/sneat/assets/img/demo/property-3.jpg"></a>
                                     </div>
-
                                     <div class="item-entry overflow">
-                                        <h5><a href="${pageContext.request.contextPath}/product/detail?proNum=${product.proNum }"> ${product.proName } </a></h5>
+                                        <h5 class="proNum"><a href="${pageContext.request.contextPath}/product/detail?proNum=${product.proNum }"> ${product.proName } </a></h5>
                                         <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> ${product.proAddress } </b></span> <br>
+                                        <span class="pull-left proAddress"><b>${product.proAddress }</b></span> <br>
                                         <span class="pull-left"> ${product.proPhone } </span>
                                         <span class="proerty-price pull-right"> <fmt:formatNumber value="${product.proPrice }" type="currency" /> </span>                                        
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                     </div>
-                                    <%-- <div class="item-entry">
-                                        <span class="proerty-price pull-right"> ￦ ${product.proPrice } </span>
-                                    </div> --%>
-                                    
                                 </div>
                             </div>
                             </c:forEach>
