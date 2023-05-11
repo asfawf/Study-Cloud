@@ -29,19 +29,20 @@
 		                <div class="row">                
 		  	                <form action="${pageContext.request.contextPath}/notice" class="form-inline" style="display: inline-flex; padding-left: 20px;">
 		          	            <div class="form-group">                                   
-		                            <select name="notiIdx" class="selectpicker show-tick form-control" data-width="220px" onchange="submit();">
-										<option value=""> -전체- </option>
-										<option value="공지" ${param.notiIdx eq '공지' ? 'selected' : '' }>공지</option>
-										<option value="이벤트" ${param.notiIdx eq '이벤트' ? 'selected' : '' }>이벤트</option>
-										<option value="복구" ${param.notiIdx eq '복구' ? 'selected' : '' }>복구</option>
-										<option value="복구완료" ${param.notiIdx eq '복구완료' ? 'selected' : '' }>복구완료</option>	
+		                            <select name="notiIdx" class="form-control" style="width: 220px;" onchange="submit();">
+										<option value=""> -전체- </option>																			
+										<c:forEach items="${selectNotiIdx }" var="selectNotiIdx">
+		                            		<option value="${selectNotiIdx.notiIdx }"${param.notiIdx eq selectNotiIdx.notiIdx ? 'selected' : '' }>
+		                            		${selectNotiIdx.notiIdx }
+		                            		</option>
+										</c:forEach>										
 									</select>
 		                        </div>
 		                    </form>
 	                        <sec:authorize access="isAuthenticated()">
 							<sec:authorize access="hasRole('ADMIN')">
 								<!-- 공지사항 등록 버튼 시작 -->
-								<button id="notibtn" type="button" class="btn search-btn" data-toggle="modal" data-target="#insertNotice" style="display: inline;">
+								<button id="notibtn" type="button" class="btn notibtn" data-toggle="modal" data-target="#insertNotice" style="display: inline;">
 									등록
 								</button>
 								<!-- 공지사항 등록 Modal -->
@@ -58,13 +59,7 @@
 											<div class="modal-body">
 												<div class="row">
 													<div class="col-sm-4">
-													<select name="notiIdx" class="selectpicker show-tick form-control" title="-전체-" >
-														<option> -전체- </option>
-														<option value="공지">공지</option>
-														<option value="이벤트">이벤트</option>
-														<option value="복구">복구</option>
-														<option value="복구완료">복구완료</option>													
-													</select>													
+													<input type="text" class="form-control notiIdx" name="notiIdx" placeholder="분류" style="width: 180px;">																									
 													</div>
 													<div class="col-sm-8">
 														<input type="text" class="form-control notiTitle" name="notiTitle" placeholder="제목">
@@ -73,7 +68,7 @@
 												<div class="mb-3">
 													<br>
 													<textarea class="form-control ckeditor" id="insertNotiContents" name="notiContents" placeholder="내용" style="height: 300px;"></textarea>
-													<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}"><br>
+													<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}">
 													<input type="file" class="form-control" name="report" placeholder="첨부파일">
 												</div>
 											</div>
@@ -141,8 +136,14 @@
 																<div class="modal-body">
 																	<div class="row">
 																		<div class="col-sm-4">
-																		<select name="notiIdx" class="selectpicker show-tick form-control" title="${notice.notiIdx }">
-																			<option value="${notice.notiIdx }">${notice.notiIdx }</option>
+																		<select name="notiIdx" class="form-control" style="width: 180px;">
+																			<option value="${notice.notiIdx }"${param.notiIdx eq notiIdx ? 'selected' : ''  }>${notice.notiIdx }</option>
+																			<option value=""> -전체- </option>
+																			<c:forEach items="${selectNotiIdx }" var="selectNotiIdx">
+											                            		<option value="${selectNotiIdx.notiIdx }"${param.notiIdx eq selectNotiIdx.notiIdx ? 'selected' : '' }>
+											                            		${selectNotiIdx.notiIdx }
+											                            		</option>
+																			</c:forEach>
 																		</select>
 																		</div>
 																		<div class="col-sm-8">
@@ -240,9 +241,14 @@
 	function ckinsertForm() {
 		var insertForm = $('#insertForm')
 		var notiTitleLength = $(".notiTitle").val().trim().length;
+		var notiIdxLength = $(".notiIdx").val().trim().length;
 		var notiContents = CKEDITOR.instances['insertNotiContents'];
 		
-		if(notiTitleLength < 1){
+		if(notiIdxLength < 1){
+			alert("분류를 입력하세요.");
+			$(".notiIdx").focus();
+			$(".notiIdx").val("");
+		} else if(notiTitleLength < 1){
 			alert("제목을 입력하세요.");
 			$(".notiTitle").focus();
 			$(".notiTitle").val("");
