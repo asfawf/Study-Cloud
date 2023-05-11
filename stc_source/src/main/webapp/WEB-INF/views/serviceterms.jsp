@@ -8,10 +8,10 @@
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 </head>
-<body>
+<body style="background: #f6f6f6;">
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
 <section>
-	<div class="count-area"> 
+	<div class="count-area" style="background: #f6f6f6;"> 
 	    <div class="container">
 		    <div class="row">
 	    	    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
@@ -21,7 +21,7 @@
 	    </div>
 	</div>
 	
-	<div class="content-area recent-property">
+	<div class="content-area recent-property" style="background: #f6f6f6;">
         <div class="container">
             <div class="row row-feat">
             <div class="notice-slider-area" style="height: 120px;">
@@ -56,7 +56,7 @@
 						스터디클라우드에게는 참 안타까운 일입니다만, 회원은 언제든지 스터디클라우드 서비스 이용계약 해지를 신청하여 회원에서 탈퇴할 수 있으며, 이 경우 스터디클라우드는 관련 법령 등이 정하는 바에 따라 이를 지체 없이 처리하겠습니다.
 						스터디클라우드 서비스 이용계약이 해지되면, 관련 법령 및 개인정보처리방침에 따라 스터디클라우드가 해당 회원의 정보를 보유할 수 있는 경우를 제외하고, 해당 회원 계정에 부속된 게시물 일체를 포함한 회원의 모든 데이터는 소멸됨과 동시에 복구할 수 없게 됩니다. 다만, 이 경우에도 다른 회원이 별도로 담아갔거나 스크랩한 게시물과 공용 게시판에 등록한 댓글 등의 게시물은 삭제되지 않으므로 반드시 해지 신청 이전에 삭제하신 후 탈퇴하시기 바랍니다.
 						<br><br>
-						<h5><b>스터디클라우드 서비스와 관련하여 궁금하신 사항이 있으시면 고객센터(대표번호: 1544 - 9970 / 평일 09:00~18:00)로 문의 주시기 바랍니다.</b></h5>
+						<h5><b>스터디클라우드 서비스와 관련하여 궁금하신 사항이 있으시면 고객센터(대표번호: 1544 - 9970 / 평일 09:00~18:00)로 <br>문의 주시기 바랍니다.</b></h5>
                 	</div>   
                 </div>
             </div>

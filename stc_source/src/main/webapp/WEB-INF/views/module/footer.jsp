@@ -21,7 +21,7 @@
                     <div class="bottom-menu pull-right fixed-bottom"> 
                         <ul> 
                             <li><a class="wow animated" href="${pageContext.request.contextPath}/serviceterms">이용약관</a></li>
-                            <li><a class="wow animated" href="#">개인정보처리방침</a></li>
+                            <li><a class="wow animated" href="${pageContext.request.contextPath}/privacy">개인정보처리방침</a></li>
                         </ul> 
                     </div>
                 </div>

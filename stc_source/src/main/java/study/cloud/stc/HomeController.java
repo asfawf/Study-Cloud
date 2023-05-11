@@ -49,4 +49,9 @@ public class HomeController {
 		mv.setViewName("serviceterms");
 		return mv;
 	}
+	@GetMapping("/privacy")
+	public ModelAndView viewPrivacy(ModelAndView mv) {
+		mv.setViewName("privacy");
+		return mv;
+	}
 }
