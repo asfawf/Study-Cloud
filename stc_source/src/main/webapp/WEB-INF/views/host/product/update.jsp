@@ -80,7 +80,6 @@
                                         <input type="hidden" name="proPicRenameOld" value="${productDetail.proPicRename }">
                                     	<img alt="" src="../{productDetail.proPicRename }">
                                     </div>
-                                    
                                 </div>
                                
                                
@@ -95,9 +94,7 @@
 									<span id="guide" style="color:#999;display:none"></span>
 									<input type="text" id="detailAddress" name="pre_proAddress"  placeholder="상세주소를 입력해주세요">
 									<input type="text" id="extraAddress" placeholder="참고항목" readonly>
-                                    
                                     </div>
-                               
                                
                                 <div class="col-sm-10 col-sm-offset-1">
                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

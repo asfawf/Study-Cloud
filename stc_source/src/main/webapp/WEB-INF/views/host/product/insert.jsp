@@ -63,15 +63,6 @@
                                         <label>환불정책 :</label>
                                         <input name="proRefund" type="text" class="form-control" placeholder="환불정책">
                                     </div>
-                                   
-                                   <!--  <div class="form-group">
-                                        <label>가격(시간당) :</label>
-                                        <input name="proPrice" type="text" class="form-control">
-                                    </div>  -->
-<!--                                     <div class="form-group"> -->
-<!--                                         <label>주소 : </label> -->
-<!--                                         <input name="proAddress" type="text" class="form-control"> -->
-<!--                                     </div>  -->
                                     <div class="form-group">
                                         <label>전화번호 :</label>
                                         <input name="proPhone" type="text" class="form-control" placeholder="전화번호">
