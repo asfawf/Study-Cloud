@@ -704,7 +704,7 @@
 			}
 		
 		function QuitRoom(){
-			location.href="${pageContext.request.contextPath}/";
+			location.href="${pageContext.request.contextPath}/admin/chatting/list";
 		}
 	</script>
  	<%-- <div id="contentCover">
