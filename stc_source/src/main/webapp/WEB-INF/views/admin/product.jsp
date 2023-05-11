@@ -21,12 +21,12 @@
 								<select id="lunchBegins" class="form-control"
 									data-live-search="true" data-live-search-style="begins"
 									title="Select your city">
-									<option>New york, CA</option>
-									<option>Paris</option>
-									<option>Casablanca</option>
-									<option>Tokyo</option>
-									<option>Marraekch</option>
-									<option>kyoto , shibua</option>
+									<option>host1</option>
+									<option>host2</option>
+									<option>host3</option>
+									<option>host4</option>
+									<option>host5</option>
+									<option>host6</option>
 								</select>
 							</div>
 							<button class="btn search-btn" type="submit">
@@ -56,27 +56,54 @@
 
 									<div class="col-md-4 p0">
 
-										<div class="box-two proerty-item" style="height: 170px">
-											<div class="item-thumb">
-												<a
-													href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }"><img
-													src="assets/img/demo/property-3.jpg"></a>
-											</div>
-											<div class="item-entry overflow">
-												<h5>
-													<a
-														href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }">${list.proName }</a>
-												</h5>
-												<div class="dot-hr"></div>
-												<span class="pull-left"><b>${list.proPhone }</span>
-												<p style="display: none;">${list.proAddress }</p>
-												<div class="dealer-action pull-right">
-													<a href="${pageContext.request.contextPath}/host/product/update?proNum=${list.proNum}" class="button">Edit </a> <a
-														href="#" class="button delete_user_car">Delete</a>
-												</div>
-											</div>
+							 <!-- 테이블구역 -->
+				<div class="container" style="color: black; margin-top: 40px;" >
+					<table class="table table-striped" border="1px">
+						<thead>
+				    		<tr>
+						        <th colspan="1" class="text-center">공간이름</th>
+						        <th colspan="4" class="text-center">호스트이름</th>
+						        <th colspan="1" class="text-center">주소</th>
+						        <th colspan="1" class="text-center">관리</th>
+				    		</tr>
+						</thead>
+						<tbody >
+								<th colspan="1" class="text-center">${list.proName }</th>
+						        <th colspan="4" class="text-center">${list.memId }</th>
+						        <th colspan="1" class="text-center">${list.proAddress }</th>
+						        <th colspan="1" class="text-center">삭제하기</th>
 
-										</div>
+						</tbody>
+					</table>
+				</div>
+
+
+
+
+
+
+
+<!-- 										<div class="box-two proerty-item" style="height: 170px"> -->
+<!-- 											<div class="item-thumb"> -->
+<!-- 												<a -->
+<%-- 													href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }"><img --%>
+<!-- 													src="assets/img/demo/property-3.jpg"></a> -->
+<!-- 											</div> -->
+<!-- 											<div class="item-entry overflow"> -->
+<!-- 												<h5> -->
+<!-- 													<a -->
+<%-- 														href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }">${list.proName }</a> --%>
+<!-- 												</h5> -->
+<!-- 												<div class="dot-hr"></div> -->
+<%-- 												<span class="pull-left"><b>${list.proPhone }</span> --%>
+<%-- 												<p style="display: none;">${list.proAddress }</p> --%>
+<!-- 												<div class="dealer-action pull-right"> -->
+<%-- 													<a href="${pageContext.request.contextPath}/host/product/update?proNum=${list.proNum}" class="button">Edit </a> <a --%>
+<!-- 														href="#" class="button delete_user_car">Delete</a> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+
+<!-- 										</div> -->
 									</div>
 								</div>
 							</c:forEach>
@@ -94,18 +121,18 @@
 	                               		<li><a class="disabled pe-7s-angle-left"></a></li>
 	                               	</c:when>
 	                               	<c:otherwise>
-	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage - 1 }"></a></li>
+	                                    <li><a class="pe-7s-angle-left" href="${pageContext.request.contextPath}/admin/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage - 1 }"></a></li>
 	                               	</c:otherwise>
                                 	</c:choose>
 	                                <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="page">
-										<li><a href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${page }">${page }</a></li>
+										<li><a href="${pageContext.request.contextPath}/admin/product?proAddress=${param.proAddress }&page=${page }">${page }</a></li>
 									</c:forEach>  
 									<c:choose>
 									<c:when test="${pageInfo.currentPage eq pageInfo.endPage}">
 	                               		<li><a class="disabled pe-7s-angle-right"></a></li>
 	                               	</c:when>
 	                               	<c:otherwise>
-	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/host/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage +1 }"></a></li>
+	                                    <li><a class="pe-7s-angle-right" href="${pageContext.request.contextPath}/admin/product?proAddress=${param.proAddress }&page=${pageInfo.currentPage +1 }"></a></li>
 	                               	</c:otherwise> 
 	                               	</c:choose>
                                 </ul>

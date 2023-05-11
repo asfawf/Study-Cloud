@@ -238,7 +238,7 @@ public class AdminController {
 		 int totalCnt = pservice.selectCount(dto);
 		 Map<String, Integer> map= new Paging().paging(currentPage, totalCnt,10 , 10);
 		 mv.addObject("pageInfo", map);
-		 mv.addObject("hostlist",pservice.selectList(currentPage, 10, dto));
+		 mv.addObject("hostlist",pservice.selectAdminList(currentPage, 10, dto));
 		 mv.setViewName("/admin/product");
 		return mv;
 	}	
