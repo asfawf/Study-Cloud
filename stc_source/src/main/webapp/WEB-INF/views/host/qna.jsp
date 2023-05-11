@@ -111,7 +111,13 @@
 			htmlVal += '<td colspan="1">'+qna.memId+'</td>';
 			htmlVal += '<td colspan="4">'+qna.memQuestion+'<button class="pull-right btndeleteQna" type="button" data-qnanum="'+qna.qnaNum+'">삭제</button></td>';
 			htmlVal += '<td colspan="1">';
-			htmlVal += '<button data-toggle="modal" data-target="#replyQna'+qna.qnaNum+'" type="button">수정</button>&nbsp&nbsp';
+			htmlVal += '<button data-toggle="modal" data-target="#replyQna'+qna.qnaNum+'" type="button">';
+			if(qna.hostAnswer != null){
+			htmlVal += '수정';
+			} else {
+			htmlVal += '답변';
+			}
+			htmlVal += '</button>&nbsp&nbsp';
 			htmlVal += '<button class="btnreplyDeleteQna" type="button" data-qnanum="'+qna.qnaNum+'">삭제</button>';			
 			htmlVal += '<div class="modal" id="replyQna'+qna.qnaNum+'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
 			htmlVal += '<div class="modal-dialog">';

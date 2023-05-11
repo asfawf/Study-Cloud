@@ -258,6 +258,7 @@
   			notiContents.setData('');
   			return false;
 	  	} else {
+	  		alert("등록되었습니다.");
   			insertForm.submit();
 	  	}	
 		
