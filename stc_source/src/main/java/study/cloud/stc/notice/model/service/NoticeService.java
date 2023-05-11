@@ -15,4 +15,5 @@ public interface NoticeService {
 	public int selectCount(String notiIdx) throws Exception;
 	public int selectCount() throws Exception;
 	public List<NoticeVo> selectList(int currentPage, int limit, String notiIdx) throws Exception;
+	public List<NoticeVo> selectNotiIdx() throws Exception;
 }

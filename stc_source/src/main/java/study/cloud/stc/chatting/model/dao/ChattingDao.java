@@ -24,4 +24,14 @@ public class ChattingDao {
 		return session.selectList("chatns.selectListMessage", schvo);
 	}
 
+	public int reduceCount(String chaContents) {
+		// TODO Auto-generated method stub
+		return session.update("chatns.reduceCount", chaContents);
+	}
+
+	public int entreducecount(String memId) {
+		// TODO Auto-generated method stub
+		return session.update("chatns.entreducecount", memId); 
+	}
+
 }

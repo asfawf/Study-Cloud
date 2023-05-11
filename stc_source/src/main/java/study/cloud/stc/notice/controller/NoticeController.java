@@ -52,6 +52,7 @@ public class NoticeController {
 		int totalCnt= service.selectCount(notiIdx); 
 		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, BOARD_LIMIT, PAGE_LIMIT); 
 		mv.addObject("pageInfo", map);
+		mv.addObject("selectNotiIdx", service.selectNotiIdx());
 		mv.addObject("noticeList", service.selectList(currentPage, BOARD_LIMIT, notiIdx));
 		mv.setViewName("notice");
 

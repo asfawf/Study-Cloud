@@ -185,6 +185,13 @@ public class MemberDao {
 		return session.selectOne("memberns.quitStdInfo", stdVo);
 	}
 
+
+
+	public MemberVo viweDetailInfo(String memId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("memberns.viewDetailInfo", memId);
+	}
+
 	
 	
 

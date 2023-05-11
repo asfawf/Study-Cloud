@@ -22,5 +22,6 @@ public class ChattingVo {
 	private Date chaTime;
 	private String memId;
 	private String roomId;
+	private String chareadcount;
 	
 }

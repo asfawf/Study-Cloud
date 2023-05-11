@@ -1,5 +1,6 @@
 package study.cloud.stc.chatting.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import study.cloud.stc.chatting.model.vo.ChattRoomVo;
@@ -15,7 +16,7 @@ public interface ChattRoomService {
 
 	public List<ChattRoomVo> selectListChattRoom(ChattRoomVo crvo);
 
-	public int selectCount();
+	public int selectCount(String chaRoomId);
 
 	public List<ChattRoomVo> searchListChattRoom();
 
@@ -23,7 +24,7 @@ public interface ChattRoomService {
 
 	public List<ChattRoomVo> searchAllListChattRoom();
 
-	public List<ChattRoomVo> searchReqChattRoom(String chaRoomId);
+	public List<ChattRoomVo> searchReqChattRoom(HashMap<String, String> map);
 
 	public int searchRoomCount(String chaRoomId);
 

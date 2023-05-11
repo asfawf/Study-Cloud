@@ -92,7 +92,6 @@ public class HandlerChat extends TextWebSocketHandler {
 				vo.setRoomId((String) mapReceive.get("room_id"));
 				
 				// 1-2. chat 		- 저장 방식의 변화로 그냥 바로 문자 저장 가능
-				System.out.println("저장되는 메세지 : "+ vo);
 				service.addtMessage(vo);
 				
 				
@@ -163,7 +162,7 @@ public class HandlerChat extends TextWebSocketHandler {
 						
 						// 메세지 전송 시간이 들어있음
 						mapToSend.put("formatedNow", formatedNow);
-
+						
 						String jsonStr = objectMapper.writeValueAsString(mapToSend);
 						sess.sendMessage(new TextMessage(jsonStr));
 					}

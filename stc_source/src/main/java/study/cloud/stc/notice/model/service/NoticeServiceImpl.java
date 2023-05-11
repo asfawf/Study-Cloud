@@ -56,6 +56,11 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.selectCount();
 	}
 
+	@Override
+	public List<NoticeVo> selectNotiIdx() throws Exception {
+		return dao.selectNotiIdx();
+	}
+
 	
 
 }

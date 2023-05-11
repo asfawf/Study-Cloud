@@ -3,6 +3,7 @@ package study.cloud.stc.member.controller;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +54,13 @@ public class JoinController {
 		 * memAuthority=ROLE_USER, 
 		 * memSns=null)
 		 */
+		
+		System.out.println("암호화 전: "+ memberVo.getMemPasswd());
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		String securePw = encoder.encode(memberVo.getMemPasswd());
+		System.out.println("암호화 후: "+ securePw);
 		
 		memberService.insertJoin(memberVo);
 		

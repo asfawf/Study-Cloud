@@ -44,4 +44,8 @@ public class NoticeDao {
 	public List<NoticeVo> selectList(int currentPage, int limit, String notiIdx) throws Exception {
 		return sqlSession.selectList("notice.selectList", notiIdx, new RowBounds((currentPage-1)*limit, limit));
 	}
+
+	public List<NoticeVo> selectNotiIdx() {
+		return sqlSession.selectList("notice.selectNotiIdx");
+	}
 }

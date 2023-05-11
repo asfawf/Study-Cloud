@@ -54,7 +54,7 @@
 	            <div class="col-md-12 clear"> 
 					<div class="text-center">
 	    				<div class="pagination">
-	        				<ul class="pagination-sm">
+	        				<ul>
 								
 	            			</ul>
 	        			</div>
@@ -150,7 +150,7 @@
 	
 	function displayPaging(result){
 		var htmlVal = '';
-		htmlVal += '<ul class="pagination-sm">';
+		htmlVal += '<ul>';
     				if(result.pageInfo.currentPage == 1){
 		htmlVal +='				<li><a class="disabled pe-7s-angle-left"></a></li>';
     				} else {

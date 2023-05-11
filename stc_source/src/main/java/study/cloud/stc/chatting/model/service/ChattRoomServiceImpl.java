@@ -1,5 +1,6 @@
 package study.cloud.stc.chatting.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,9 @@ public class ChattRoomServiceImpl implements ChattRoomService{
 	}
 
 	@Override
-	public int selectCount() {
+	public int selectCount(String chaRoomId) {
 		// TODO Auto-generated method stub
-		return dao.selectCount();
+		return dao.selectCount(chaRoomId);
 	}
 
 	@Override
@@ -63,9 +64,9 @@ public class ChattRoomServiceImpl implements ChattRoomService{
 	}
 
 	@Override
-	public List<ChattRoomVo> searchReqChattRoom(String chaRoomId) {
+	public List<ChattRoomVo> searchReqChattRoom(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return dao.searchReqChattRoom(chaRoomId);
+		return dao.searchReqChattRoom(map);
 	}
 
 	@Override

@@ -11,54 +11,63 @@
 <!-- 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script> -->
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	
+	
 	<script>
+	
+	var principalId = $("#principalId").val();
+	var amount = $("#amount").val();
+	var name = $("#name").val();
+	
 	var IMP = window.IMP;
 	IMP.init("imp43677748"); // 예: imp00000000
 	
+			
     function requestPay() {
       IMP.request_pay({ // param
-          pg: "kcp",
-          pay_method: "card",
-          merchant_uid: "G9F8s0131-0000411",
-          name: "[1시간무료[헬로강남]",
-          amount: 100,
-          buyer_email: "studycloud@gmail.com",
-          buyer_name: "구매자",
-//           buyer_tel: "010-1234-5678",
-//           buyer_addr: "서울특별시 강남구",
-//           buyer_postcode: "01181"
-      }, function (rsp) { // callback
-    	  if (rsp.success) {
-              alert('결제성공');
-//               location.href = "성공시url"
-           // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-              // jQuery로 HTTP 요청
-              jQuery.ajax({
-                url: "${pageContext.request.contextPath}/payinfo", 
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                data: {
-                  imp_uid: rsp.imp_uid,            // 결제 고유번호
-                  merchant_uid: rsp.merchant_uid   // 주문번호
-                  name : rsp.name
-                }
-              }).done(function (data) {
-                // 가맹점 서버 결제 API 성공시 로직
-              })
-            } else {
-              alert("결제에 실패하였습니다");
-            }
-          });
+		          pg: "kcp",
+		          pay_method: "card",
+		          merchant_uid: "12654-564581",
+		          name: "이룸스터디룸회의실 잠실점",
+		          amount: 100,
+		      }
+		      , function (rsp) { // callback
+		    	  if (rsp.success) {
+		              alert('결제성공');
+		//               location.href = "성공시url"
+		           // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+		              // jQuery로 HTTP 요청
+		              jQuery.ajax({
+		                url: "${pageContext.request.contextPath}/payinfo", 
+		                method: "POST",
+		                headers: { "Content-Type": "application/json" },
+		                data: {
+		                  imp_uid: rsp.imp_uid,            // 결제 고유번호
+		                  merchant_uid: rsp.merchant_uid,  //주문번호
+		                  name : rsp.name
+		                }
+		              }).done(function (data) {
+		                // 가맹점 서버 결제 API 성공시 로직
+		              })
+		            } else {
+		              alert("결제에 실패하였습니다");
+		            }
+	          }
+	      ); // IMP.request_pay(
+    } //requestPay()
   </script>
-
+	
+	
+	
 
 </head>
 <body>
 <hr>
-<button id="payment" onclick="requestPay()">결제하기</button>
+<button onclick="requestPay()">결제하기</button>
 <hr>
  
----------------------------------------------------
+
+
+
 
   
 </body>

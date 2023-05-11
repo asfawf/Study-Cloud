@@ -45,6 +45,21 @@
 					/* $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight); */
 					$('#divChatData').append('<div align=\"left\" class=\"wrap\" >' + msgData.sender + '<div class=\"messageformleft\" style=\"max-width: 300px;\">' + msgData.msg + '</div>' + '<div class=\"chatTime\">'+ msgData.formatedNow+'</div>' +'</div>');
 
+					//readCount 줄이기
+					$.ajax({
+					url: '${pageContext.request.contextPath}/chatting/reducecount',
+					type: 'post',
+					data: { "msg" :  msgData.msg },
+					beforeSend : function(xhr){
+
+		                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+		                
+		            },
+		            success : function(data){
+		            	
+		            }
+				});	
+					
 					chatLog.scrollTop(chatLog.prop('scrollHeight'));
 				}
 				else if(msgData.division== "${standname }" ){
@@ -67,11 +82,52 @@
 			else if (msgData.cmd == 'CMD_ENTER') {
 				$('#divEnterChatData').append('<div align="center ">' + msgData.msg + '</div>');
 				
+				
+				// 들어왔을때 줄이기
+				$.ajax({
+					url: '${pageContext.request.contextPath}/chatting/entreducecount',
+					type: 'post',
+					data: { "enterId" :  msgData.enterId },
+					beforeSend : function(xhr){
+
+		                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); 
+		                
+		            },
+		            success : function(data){
+		            	
+		            }
+				});	
+				
+				
 				// 입장 시 참조 값
 				console.log('입장 한 사람: '+msgData.enterId );
 				
-				$('.exiter-'+msgData.enterId).remove();
-				$('.enter-'+msgData.enterId).remove();
+				$('.exit-'+msgData.enterId).remove();
+				$('.entry-'+msgData.enterId).remove();
+				
+				if("${detailInfo.memAuthority}" == "ROLE_ADMIN"){
+					
+					console.log("관리자");
+					
+						$('.admin-enter').append(
+		            		'<li class=\"list-group-item list-group-item-primary entry-'+msgData.enterId+'\">'+ msgData.enterId +'</li>'
+		            	);
+					
+					
+				}else{
+					console.log("일반 유저");
+					
+						$('.user-enter').append(
+								'<li class=\"list-group-item list-group-item-primary entry-'+msgData.enterId+'\">'+ msgData.enterId +'</li>'
+		            			
+		            	);
+				}
+				
+				console.log('입장 한 사람 권한: '+ "${detailInfo.memAuthority}");
+				
+				/* $('.exiter-'+msgData.enterId).remove();
+				$('.enter-'+msgData.enterId).remove(); */
+				
 				
 				$.ajax({
 					url: '${pageContext.request.contextPath}/chatting/onlinestatus',
@@ -99,9 +155,7 @@
 			            	);
 		            	
 		            }
-				});
-				
-
+				});				
 				
 			}
 			// 퇴장
@@ -435,7 +489,7 @@
 						</div>			
 					</div>
   					<div class="col-xs-6 roomCountdiv" style="background-color:rgb(62,162,255) ; border-color: rgb(58,152,240); height: 100px;" id="roomCountdiv">
-	  						<h5 id="fix-room" class="fix-room" style="color: white;">개설된 채팅방</h3>
+	  						<h5 id="fix-room" class="fix-room" style="color: white; align-content: center;">개설된 채팅방</h3>
 	  						<p style="font-size: 50px; color: white; padding-left: 30%;" id="fix-room" class="fix-room">${roomCount }</p>
   					</div>
   					<!-- <div class="col-xs-12" style="padding-left: 15px; padding-bottom: 5px ; padding-top: 5px; background-color: rgb(62,162,255); height: 60px;">
@@ -467,7 +521,7 @@
 						</ul>
 					</div>
 					<div class="input-group col-xs-12" style="padding-left: 15px; padding-right: 15px; padding-bottom: 5px ; padding-top: 10px; padding-bottom: 10px; margin-top: 20px; background-color: rgb(240,242,245); height: 60px; margin-bottom: 10px; height: 208px; ">
-						<ul style="height: 45%; padding-left: 0px; overflow: auto; list-style: none;" class="none-scroll">
+						<ul style="height: 45%; padding-left: 0px; overflow: auto; list-style: none;" class="none-scroll admin-enter">
 							<c:forEach items="${adminEntry }" var="aentry">
 								<c:choose>
 									<c:when test="${aentry.connectStatus == 'ONLINE' }">
@@ -479,7 +533,7 @@
 								</c:choose> 	
 							</c:forEach>															
 						</ul>
-						<ul style=" height: 45%; padding-left: 0px; overflow: auto; list-style: none;" class="none-scroll">
+						<ul style=" height: 45%; padding-left: 0px; overflow: auto; list-style: none;" class="none-scroll user-enter">
 							<c:forEach items="${userEntry }" var="uentry"> 
 								<c:choose>
 									<c:when test="${uentry.connectStatus == 'ONLINE' }">
@@ -650,7 +704,7 @@
 			}
 		
 		function QuitRoom(){
-			location.href="${pageContext.request.contextPath}/";
+			location.href="${pageContext.request.contextPath}/admin/chatting/list";
 		}
 	</script>
  	<%-- <div id="contentCover">

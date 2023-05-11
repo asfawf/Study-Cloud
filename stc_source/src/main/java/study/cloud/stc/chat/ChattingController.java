@@ -27,6 +27,7 @@ import study.cloud.stc.chatting.model.service.MemberRoomService;
 import study.cloud.stc.chatting.model.vo.ChattRoomVo;
 import study.cloud.stc.chatting.model.vo.ChattingVo;
 import study.cloud.stc.chatting.model.vo.MemberRoomVo;
+import study.cloud.stc.member.model.service.MemberService;
 import study.cloud.stc.member.model.vo.MemberVo;
 
 @Controller
@@ -41,6 +42,9 @@ public class ChattingController {
 	
 	@Autowired
 	MemberRoomService mrservice;
+	
+	@Autowired
+	MemberService mbservice;
 	
 	// 채팅방 입장
 		@GetMapping
@@ -58,12 +62,11 @@ public class ChattingController {
 			ChattRoomVo crvo = new ChattRoomVo();
 
 			schvo.setRoomId(room_id);
-
+			crvo.setChaRoomId(room_id);
 			// 전송자 구분 용 
 			String standname = principal.getName();
 
 			//참가자 리스트 (관리자)
-			
 			request.setAttribute("adminEntry", mrservice.selectAdminEntry(room_id)); 
 			
 			//참가자 리스트 (유저)
@@ -75,7 +78,11 @@ public class ChattingController {
 			request.setAttribute("chrlist", crService.selectListChattRoom(crvo));
 			
 			// 입장시 보여지는 개설 된 전체 방 개수
-			request.setAttribute("roomCount", crService.selectCount());
+			request.setAttribute("roomCount", crService.selectCount(room_id)); 
+			
+			//입장 한 안원의 상세 정보
+			request.setAttribute("detailInfo", mbservice.viweDetailInfo(standname));
+			
 			
 			return "chat";
 		}
@@ -84,7 +91,8 @@ public class ChattingController {
 		@ResponseBody
 		public List<ChattRoomVo> userInfoAjax(
 				HttpServletRequest req,
-				@RequestParam(value="searchKeyword", defaultValue="valueIsNull") String chaRoomId
+				@RequestParam(value="searchKeyword", defaultValue="valueIsNull") String chaRoomId,
+				@RequestParam(value="room_id", defaultValue="valueIsNull") String roomId
 			) throws Exception {
 			
 			
@@ -93,9 +101,15 @@ public class ChattingController {
 				return crService.searchAllListChattRoom();
 			}
 			
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("chaRoomId", chaRoomId);
+			map.put("roomId", roomId);
+			
+			
 			// 하단의 경우에서 부터는 조건에 맞춰서 찾기
 //			return new Gson().toJson(crService.searchListChattRoom());
-			return crService.searchReqChattRoom(chaRoomId);
+//			return crService.searchReqChattRoom(chaRoomId);
+			return crService.searchReqChattRoom(map);
 		}
 		
 		@PostMapping("/updatecount")
@@ -105,7 +119,7 @@ public class ChattingController {
 				) throws Exception {
 			
 			if(chaRoomId.equals("valueIsNull")) {
-				String nullcount = String.valueOf( crService.selectCount());
+				String nullcount = String.valueOf( crService.selectCount(chaRoomId));
 				
 				return nullcount;
 			}
@@ -173,4 +187,37 @@ public class ChattingController {
 			
 			return "DigiXross";
 		}
+		
+		
+		@PostMapping("/reducecount")
+		@ResponseBody
+		public String reducecount(
+				HttpServletRequest req,
+				@RequestParam(value="msg", defaultValue="valueIsNull") String msg
+			) throws Exception {
+			
+			if((int) msg.length() > 0) {
+				service.reduceCount(msg);
+			}else {
+				return "this is empty";
+			}
+			
+			
+			return "clear";
+		}
+		
+		@PostMapping("/entreducecount")
+		@ResponseBody
+		public String entreducecount(
+				HttpServletRequest req,
+				@RequestParam(value="enterId", defaultValue="valueIsNull") String enterId
+			) throws Exception {
+			
+			
+			service.entreducecount(enterId);
+			
+			
+			return "clear";
+		}
+		
 }
