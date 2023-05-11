@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사용자 - Q&A 관리</title>
+<title>사용자 - 내 Q&A</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 </head>

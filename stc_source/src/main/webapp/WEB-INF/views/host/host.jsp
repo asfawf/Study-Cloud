@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>호스트 마이페이지</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
