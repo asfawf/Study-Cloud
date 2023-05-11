@@ -50,7 +50,6 @@
 	insert into productfile
 	values
 	(#{proNum}, #{proPicOriginal},#{proPicRename})
-	
 	</insert>
 		
 	<!-- productList 화면 -->
@@ -292,13 +291,7 @@
     
 	</update>
 	
-	<update id="updateProTime">
-	update protime
-	set
-	pro_price=#{proPrice}
-	where pro_num = #{proNum}
-	</update>
-	
+
 	<update id="updateProductFile">
 	update productfile
 	set
@@ -371,7 +364,7 @@
 	
 
 	<!-- 상품운영시간  -->
-	<insert id="insertProTime" parameterType="study.cloud.stc.product.model.vo.ProductTimeReqDto">
+	<insert id="insertProTimeAll" parameterType="study.cloud.stc.product.model.vo.ProductTimeReqDto">
 		INSERT all
 		<foreach collection="values" item="value">
 		
@@ -380,4 +373,15 @@
 		</foreach>
 		select * from dual
 	</insert>
+	<insert id="insertProTime" parameterType="map">
+		INSERT 
+		INTO PROTIME VALUES( to_date(#{proDate}||''||#{time}, 'yyyy-mm-ddhh24')
+					, #{proNum}, #{price}, null)		
+	</insert>
+	<update id="updateProTime" parameterType="map">
+		update PROTIME 
+		set  pro_price = #{price}
+		where pro_date= to_date(#{proDate}||''||#{time}, 'yyyy-mm-ddhh24')
+			and pro_num=#{proNum}
+	</update>
 </mapper>

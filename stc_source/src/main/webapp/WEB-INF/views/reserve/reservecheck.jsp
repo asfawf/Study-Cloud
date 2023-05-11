@@ -10,7 +10,7 @@
 </head>
 <body>
 <!-- Header area-->
-<%@ include file="/WEB-INF/views/module/header.jsp" %> 
+<%@ include file="/WEB-INF/views/module/header2.jsp" %> 
 
 <!-- Start page header --> 
 <section>
@@ -73,7 +73,7 @@
 						    </div>
 						</div>
 							<span> 
-							<button class="btn btn-primary" >결제하기</button>	
+							<button class="btn btn-primary" onclick="f1()"  >결제하기</button>	
 							<!-- <button class="btn btn-primary" >취소하기</button>	 -->						                                                         
                             </span>    
                                        

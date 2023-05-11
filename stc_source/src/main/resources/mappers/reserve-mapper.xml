@@ -63,9 +63,9 @@
 	 	SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_AMOUNT, RSV_STATUS, PRO_NUM, REG_DATE
 		FROM RESERVE 
 		WHERE MEM_ID='${memId}' 
-			AND TO_DATE(RSV_DATE, 'yy/MM/dd') = TO_DATE(#{rsvDate}, 'yy/MM/dd') 
+			<!-- AND TO_DATE(RSV_DATE, 'yy/MM/dd') = TO_DATE(#{rsvDate}, 'yy/MM/dd')  -->
 			AND PRO_NUM = TO_NUMBER(#{proNum})
-			AND REG_DATE = (select MAX(reg_date) from (select reg_date from reserve group by reg_date))
+			AND REG_DATE = to_date(#{regDate}, 'yyyy-mm-dd hh24:mi:ss')
 	 </select>
 	 
 	 <!-- RSV_DATE -> TO_DATE(RSV_DATE, 'yyyy-MM-dd') as RSV_DATE -->
@@ -92,7 +92,7 @@
 		FROM RESERVE WHERE MEM_ID='${memId}' AND RSV_DATE >= TO_DATE(SYSDATE, 'yyyy-mm-dd') ORDER BY RSV_NUM -->
 		select m.pro_name, r.pro_num, r.reg_date , r.rsv_date
 		from map m, 
-		    (select pro_num, reg_date, MIN(rsv_date) as rsv_date from reserve where mem_id = 'user1'  group by pro_num, reg_date) r
+		    (select pro_num, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date, MIN(rsv_date) as rsv_date from reserve where mem_id = #{memId}  group by pro_num, reg_date) r
 		where m.pro_num = r.pro_num
 		order by r.rsv_date DESC
 	</select>

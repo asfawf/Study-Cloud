@@ -15,14 +15,14 @@
 		<div class="count-area">
 			<div class="container">
 				<div class="row">
-					<div
-						class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<h2 style=""></h2>
+					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+						<h2 style="">${product.proName} 공간 시간,가격 설정</h2>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- End page header -->
+
 		<!-- Body content -->
 		<div class="content-area single-property">
 			&nbsp;
@@ -46,11 +46,11 @@
 										<c:forEach var="i" begin="0" end="23">
 											<tr>
 												<td>
-												<input type="checkbox" data-protime="${i}" name="proTime" value="${i}" /> 
-												&nbsp;&nbsp;&nbsp;${i < 10 ? '0' : ''}${i}:00 ~ ${i < 10 ? '0' : ''}${i}:00
+												<input type="checkbox" data-protime="${i}" name="proTime" value="${i}" id="proTime_${i }" /> 
+												&nbsp;&nbsp;&nbsp;${i < 10 ? '0' : ''}${i}:00 ~ ${i < 10 ? '0' : ''}${i+1}:00
 												</td>
 												<td>
-												<select data-proprice="${i}" name="proPrice">
+												<select data-proprice="${i}" name="proPrice" id="proPrice_${i }">
 														<option value="" disabled selected>가격선택</option>
 														<option value="1000">1000원</option>
 														<option value="1500">1500원</option>
@@ -83,17 +83,56 @@
 	dateInput.addEventListener("change", function() {
 	    selectedDate = this.value;
 	    console.log("날짜:", selectedDate);
+	    getTimePrice(selectedDate);
 	});
+	
+	// 선택된 날짜 시간설정된 값 알아오기
+	function getTimePrice(selectedDate){  // selectedDate yyyy-mm-dd
+		var proNum =  '${proNum }';
+		console.log(proNum)
+	 	 $.ajax({
+			  url: '${pageContext.request.contextPath}/reserve/timePriceRsv',
+			  type: 'get',
+			  data: {proDate: selectedDate, proNum: proNum},
+
+			  dataType:"json",
+			  success: function(result) {
+				  console.log(result);
+				  disaplyTimePriceRsv(result);
+			  },
+			  error: function(error){
+				  alert(error.errorMsg);
+			  },
+			  beforeSend : function(xhr){
+				  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			  }
+		});
+	}
+	
+	function disaplyTimePriceRsv(data){
+		for(var i=0; i<data.length; i++){
+			var time = data[i].time;
+			var price = data[i].price;
+			var rsvNum = data[i].rsvNum;
+			time = (time<10) ? time.substr(1): time;
+			var selectorName = "#proTime_"+time;
+			var selectorPriceName = "#proPrice_"+time;
+			$(selectorName).iCheck('check');
+			$(selectorPriceName).val(price).prop("selected");
+			if(rsvNum){
+				$(selectorName).iCheck('disable');
+			}
+			///
+		}                       
+	}
 	
 	// 저장 버튼 클릭		
 	$("#rsvProTime-btn").click(updateValues);
 	 
-	 
-	 
 	 function updateValues() {
 		 // checkbox, select 선택된 값 배열에 담기
 		 var selectedValues = [];
-		 $("[name=proTime]:checked").each(function(){
+		 $("[name=proTime]:checked").not(':disabled').each(function(){
 			 var i = $(this).data("protime");
 			 var time = $(this).val();
 			 var price = 0;

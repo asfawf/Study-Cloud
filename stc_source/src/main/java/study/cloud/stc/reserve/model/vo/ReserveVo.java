@@ -37,4 +37,5 @@ public class ReserveVo {
     private int rsvTime;
     private String proNum;
     private String proName;
+    private String regDate;
 }

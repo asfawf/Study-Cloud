@@ -57,23 +57,19 @@ public class ReserveController {
 		
 	}
 	
-	@RequestMapping("/reservecheck")
+	@GetMapping("/reservecheck")
 	public ModelAndView reservecheck(
-			HttpServletRequest request, 
-			HttpServletResponse response, 
-			//@RequestBody ReserveTimeReqDto rtDto,
+			ReserveTimeReqDto rtDto,
+			Principal pricipal,
 			ModelAndView mv) throws Exception {
-		mv.setViewName("/reserve/reservecheck");
-		System.out.println("rtDto: " + rtDto);
-		
-		
+		rtDto.setMemId(pricipal.getName());
 		ReserveTimeReqDto dto = reserveservice.selectRsvNum(rtDto);		
-		
 		MapVo mapVo = reserveservice.selectProName(rtDto);
 		
-		request.setAttribute("dto", dto);
-		request.setAttribute("mapVo", mapVo);
+		mv.addObject("dto", dto);
+		mv.addObject("mapVo", mapVo);
 		
+		mv.setViewName("/reserve/reservecheck");
 		return mv;
 	}
 	
@@ -83,7 +79,7 @@ public class ReserveController {
 	@ResponseBody
 	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
 		List<ProductTimePriceDto> timePriceRsvList =  reserveservice.selectTimePriceRsvList(dto);
-		return timePriceRsvList;  // json 형태임. springframework
+		return timePriceRsvList;  // json 형태
 	}
 		
 	

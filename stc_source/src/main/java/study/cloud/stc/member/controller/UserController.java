@@ -129,9 +129,9 @@ public class UserController {
 	}
 	
 	//예약확인상세페이지
-	@GetMapping("/reserve/info")
+	@GetMapping("/reserve/reservecheck")
 	public ModelAndView dddddd(ModelAndView mv) throws Exception {
-		mv.setViewName("/user/reserve/info");
+		mv.setViewName("/user/reserve/reservecheck");
 		return mv;
 	}
 	

@@ -239,9 +239,10 @@
 			  url: '${pageContext.request.contextPath}/reserve/timePriceRsv',
 			  type: 'get',
 			  data: {proDate: selectedDate, proNum: proNum},
-			  
+
 			  dataType:"json",
 			  success: function(result) {
+				  console.log(result);
 				  disaplyTimePriceRsv(result);
 				  },
 			  error: function(error){

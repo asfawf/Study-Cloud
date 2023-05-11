@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,6 +35,10 @@ import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 import study.cloud.stc.qna.model.service.QnaService;
 import study.cloud.stc.qna.model.vo.QnaVo;
+import study.cloud.stc.reserve.model.service.ReserveService;
+import study.cloud.stc.reserve.model.vo.MapVo;
+import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
+import study.cloud.stc.reserve.model.vo.ReserveVo;
  
 
 @Controller
@@ -46,6 +51,8 @@ public class HostController {
 	private ProductService pservice;
 	@Autowired
 	private MemberService mservice;
+	@Autowired
+	private ReserveService reserveService;
 	
 	@Autowired
 	@Qualifier("fileUtil")
@@ -277,12 +284,22 @@ public class HostController {
 	//예약관리
 	//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
 	@GetMapping("/reserve/rsvprotime")
-	public ModelAndView selectRsvProtime(ModelAndView mv
-			,String proNum
-			) throws Exception {
+	public ModelAndView selectRsvProtime(ModelAndView mv, String proNum ) throws Exception {
 		mv.addObject("proNum", proNum);
 		mv.setViewName("/host/reserve/rsvprotime");
 		return mv;
+	}
+	
+	//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
+	@PostMapping("/reserve/rsvprotime")
+	@ResponseBody 
+	public String seletedValues(
+			@RequestBody ProductTimeReqDto reqDto
+			) throws Exception {			
+		pservice.insertProTime(reqDto);
+		
+		return "OK";
+		
 	}
 	
 	@GetMapping("/reserve/delete")
@@ -291,22 +308,26 @@ public class HostController {
 		return mv;
 	}
 	
-	//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
-	@PostMapping("/reserve/rsvprotime")
-	@ResponseBody 
-	public String seletedValues(
-			 @RequestBody ProductTimeReqDto reqDto
-			) throws Exception {			
-		pservice.insertProTime(reqDto);
-		
-		return "OK";
-	
-	}
 	
 	//예약관리 리스트 페이지
 	@GetMapping("/reserve")
-	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+	public ModelAndView selectreserveList(
+			HttpServletRequest request, 
+			HttpServletResponse response,
+			ModelAndView mv, 
+			Principal principal) throws Exception {
+		
 		mv.setViewName("/host/reserve/reserve");
+		
+		ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
+		rtDto.setMemId(principal.getName());
+				
+		List<ReserveVo> reserveVo = reserveService.selectReserveList(rtDto);
+		List<MapVo> mapVo = reserveService.selectProNameList();
+		
+		request.setAttribute("reserveVo", reserveVo);
+		request.setAttribute("mapVo", mapVo);
+				
 		return mv;
 	}
 	

@@ -1,6 +1,8 @@
 package study.cloud.stc.product.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import study.cloud.stc.product.model.vo.HostProductDto;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
+import study.cloud.stc.product.model.vo.ProductTimePriceDto;
 import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 
@@ -105,8 +108,30 @@ public class ProductDao {
 	
 	
 	//상품운영시간
-	public int insertProTime(ProductTimeReqDto dto) throws Exception{
-		return sqlSession.insert("product.insertProTime", dto);	
+	public int insertProTime(ProductTimeReqDto dto) {
+		int resultCnt = 0;  // insert 한 갯수
+		for(ProductTimePriceDto tp : dto.getValues()) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("time", tp.getTime());
+			map.put("price", tp.getPrice());
+			map.put("rsvNum", tp.getRsvNum());
+			map.put("proNum", dto.getProNum());
+			map.put("proDate", dto.getProDate());
+			
+			int result = 0;
+			try {
+				result = sqlSession.insert("product.insertProTime", map);
+			}catch (Exception e) {
+				// insert 실패
+			}
+			if(result == 0) {  // insert 실패
+				result = sqlSession.update("product.updateProTime", map);
+			}else {
+				resultCnt++;  
+			}
+		}
+		return resultCnt;
+//		return sqlSession.insert("product.insertProTimeAll", dto);	
 	}
 	
 }
