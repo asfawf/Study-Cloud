@@ -10,4 +10,8 @@ public interface ChattingService {
 
 	public List<ChattingVo> selectListMessage(ChattingVo schvo);
 
+	public int reduceCount(String msg);
+
+	public int entreducecount(String enterId);
+
 }

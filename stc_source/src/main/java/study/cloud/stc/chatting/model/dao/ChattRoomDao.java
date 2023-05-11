@@ -1,5 +1,6 @@
 package study.cloud.stc.chatting.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,9 +36,9 @@ public class ChattRoomDao {
 		return session.selectList("chroom.selectListChattRoom", crvo);
 	}
 
-	public int selectCount() {
+	public int selectCount(String chaRoomId) {
 		// TODO Auto-generated method stub
-		return  session.selectOne("chroom.selectCount");
+		return  session.selectOne("chroom.selectCount", chaRoomId);
 	}
 
 	public List<ChattRoomVo> searchListChattRoom() {
@@ -55,9 +56,9 @@ public class ChattRoomDao {
 		return session.selectList("chroom.searchAllListChattRoom");
 	}
 
-	public List<ChattRoomVo> searchReqChattRoom(String chaRoomId) {
+	public List<ChattRoomVo> searchReqChattRoom(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return  session.selectList("chroom.searchReqChattRoom", chaRoomId);
+		return  session.selectList("chroom.searchReqChattRoom", map);
 	}
 
 	public int searchRoomCount(String chaRoomId) {

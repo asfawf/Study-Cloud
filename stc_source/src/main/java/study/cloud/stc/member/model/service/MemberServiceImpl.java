@@ -176,6 +176,14 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.quitStdInfo(stdVo);
 	}
+
+
+
+	@Override
+	public MemberVo viweDetailInfo(String standname) {
+		// TODO Auto-generated method stub
+		return dao.viweDetailInfo(standname);
+	}
 	
 	
 }

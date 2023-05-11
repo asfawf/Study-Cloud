@@ -201,4 +201,8 @@
 		SELECT COUNT(*) FROM MEMBER WHERE MEM_ID = #{memId}
 	</select>
 	
+	<select id="viewDetailInfo" resultType="mvo">
+		SELECT * FROM MEMBER WHERE MEM_ID= #{memId}
+	</select>
+	
 </mapper>

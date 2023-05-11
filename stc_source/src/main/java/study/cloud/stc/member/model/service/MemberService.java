@@ -66,4 +66,6 @@ public interface MemberService {
 	
 	public MemberVo quitStdInfo(MemberVo stdVo) throws Exception;
 	
+	public MemberVo viweDetailInfo(String standname);
+	
 }

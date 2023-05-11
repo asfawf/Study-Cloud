@@ -26,4 +26,16 @@ public class ChattingServiceImpl implements ChattingService{
 		return dao.selectListMessage(schvo);
 	}
 
+	@Override
+	public int reduceCount(String msg) {
+		// TODO Auto-generated method stub
+		return dao.reduceCount(msg);
+	}
+
+	@Override
+	public int entreducecount(String enterId) {
+		// TODO Auto-generated method stub
+		return dao.entreducecount(enterId);
+	}
+
 }
