@@ -40,16 +40,13 @@
                                 <div class="col-sm-4">
                                     <h3><i class="fa fa-phone"></i> 전화상담</h3>
                                     <p class="text-muted"></p>
-                                    <p><strong>02 XXX XXXX</strong></p>
+                                    <p><strong>1544 - 9970</strong></p>
                                 </div>
                                 <!-- /.col-sm-4 -->
                                 <div class="col-sm-4">
                                     <h3><i class="fa fa-envelope"></i> 이메일</h3>
                                     <p class="text-muted">Please feel free to write an email to us or to use our electronic ticketing system.</p>
-                                    <ul>
-                                        <li><strong><a href="mailto:">info@studycloud.com</a></strong>   </li>
-                                        <!-- <li><strong><a href="#">Ticketio</a></strong> - our ticketing support platform</li> -->
-                                    </ul>
+                                    <p><strong><a href="mailto:">info@studycloud.com</a></strong></p>
                                 </div>
                                 <!-- /.col-sm-4 -->
                             </div>
