@@ -35,15 +35,17 @@
 											</c:forEach>
                                     	</select>                                    	
                                 	</div>
-                                    <div class="col-md-4">                                   
-                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="인원">
-											<c:forEach var="i" begin="0" end="20" step="5">
-										   		<option>${i }</option>
+                                    <div class="col-md-4">                   
+	                                    <select class="selectpicker" name="proPrice" onchange="submit();">
+	                                    		<option value="">가격</option>
+											<c:forEach var="price" begin="1000" end="3000" step="500">
+										   		<option value="${price }"><fmt:formatNumber value="${price }" />원</option>
 											</c:forEach>                                        
-                                    	</select>
+	                                    </select>
                                     </div>
                                     <div class="col-md-4">                                     
-                                       <input type="text" class="form-control" width="270" name="proDate" placeholder="${param.proDate}" onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
+                                       <input type="text" class="form-control" width="270" name="proDate" placeholder="${!empty param.proDate ? param.proDate : '  날짜'}" 
+                                           onchange="submit();" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">

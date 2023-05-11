@@ -43,14 +43,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">                                   
-                                    <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="인원">
-										<c:forEach var="i" begin="0" end="20" step="5">
-									   		<option>${i }</option>
+                                    <select class="selectpicker" name="proPrice" title="가격">
+										<c:forEach var="price" begin="1000" end="3000" step="500">
+									   		<option value="${price }"><fmt:formatNumber value="${price }" />원</option>
 										</c:forEach>                                        
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                	<input type="text" class="form-control" width="270" name="proDate" placeholder="날짜" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
+                                	<input type="text" class="form-control" width="270" name="proDate" placeholder="  날짜" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
                                 </div>
                                 <button class="btn search-btn" type="submit" formaction="${pageContext.request.contextPath}/product">검색</button>
                                 <button class="btn search-btn" type="submit" formaction="${pageContext.request.contextPath}/product/map">지도</button>

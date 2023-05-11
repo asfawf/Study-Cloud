@@ -68,6 +68,9 @@
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
        </if>
+       <if test="proPrice != null and proPrice neq ''">
+         OR PRO_PRICE = #{proPrice}
+       </if>
        <if test="proDate != null and proDate neq ''">
          OR to_char(PRO_DATE,'yyyy-mm-dd') IN #{proDate}
        </if>

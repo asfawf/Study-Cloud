@@ -28,6 +28,6 @@ public class ProductVo {
 	private String proName;
 	private String proAddress;
 	private String proPhone;
-	private int proPrice;
+	private String proPrice;
 	private String proDate;
 }
