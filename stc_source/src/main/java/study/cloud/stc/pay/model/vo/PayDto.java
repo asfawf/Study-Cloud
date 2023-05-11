@@ -20,12 +20,18 @@ import lombok.ToString;
 public class PayDto {
 
 	
-	private Date RsvDate;
-	private int proNum;
+	private Date RsvDate;			//예약날짜
+	private int proNum;				//상품번호
+	private String rsvNum;          //예약번호
+	private int rsvAmount;			//총금액
 	
-	private String rsvTime;
-	private Date payDate;
 	
+	private String rsvTime;			//예약시간
+	private Date payDate;			//결제시간
+	
+	
+	private String proAddress;		//
+	private String proPhone;
 	
 	
 	
