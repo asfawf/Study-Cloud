@@ -76,6 +76,7 @@ public class ReserveController {
 		
 		mv.addObject("dto", dto);
 		mv.addObject("mapVo", mapVo);
+
 		
 		mv.setViewName("/reserve/reserveinfo");
 		return mv;

@@ -50,9 +50,17 @@ public class ReserveDao {
 		return sqlSession.insert("reserve.rsvdelete", rtDto);
 	}
 	
+	public List<ReserveVo> selectReserveListForHost(ReserveTimeReqDto rtDto) throws Exception{
+		return sqlSession.selectList("reserve.selectReserveListForHost", rtDto);	
+	}
+	
 	//예약확인
 	public List<ReserveVo> selectReserveList(ReserveTimeReqDto rtDto) throws Exception{
 		return sqlSession.selectList("reserve.selectReserveList", rtDto);	
+	}
+	
+	public List<ReserveVo> selectList(ReserveTimeReqDto rtDto) throws Exception{
+		return sqlSession.selectList("reserve.selectList", rtDto);	
 	}
 	
 	//상품이름조회
