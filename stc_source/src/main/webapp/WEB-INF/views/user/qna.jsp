@@ -21,9 +21,9 @@
                         <div class="">
                             <form action="" class="form-inline">
                                 <div class="form-group">                                   
-                                    <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
-										<c:forEach items="${userQna.productList }" var="product"> 	
-				                        	<option value="${product.proNum }" >${product.proName }</option>
+                                    <select name="selectedProNum" id="selectedProNum" class="form-control" style="width: 220px;">
+                                    	<c:forEach items="${userQna.productList }" var="product"> 	
+				                        	<option value="${product.proNum }">${product.proName }</option>
 										</c:forEach>
                                     </select>
                                 </div>
@@ -76,6 +76,9 @@
 		var selectedProNum = $("#selectedProNum").val();
 		var memId = '${pageContext.request.userPrincipal.name}';
 		var page = $(this).data("page");
+		if(!selectedProNum){
+			selectedProNum = 0;
+		}
 		if(!page){
 			page=1;
 		}
@@ -89,8 +92,8 @@
 		   			}
 			 
 		   , dataType: "json"  
-      	   , success: function (result) { 
-      			displayQnaList(result);
+      	   , success: function (result) {
+     			displayQnaList(result);
 			}
 		   , error : function(request,status,error) {
 			   alert("code:" + request.status + "\n" + "message:" +

@@ -21,7 +21,7 @@
                         <div class="">
                             <form action="" class="form-inline">
                                 <div class="form-group">                                   
-                                    <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
+                                    <select name="selectedProNum" id="selectedProNum" class="form-control" style="width: 220px;">
 										<c:forEach items="${userQna.productList }" var="product"> 	
 				                        	<option value="${product.proNum }" >${product.proName }</option>
 										</c:forEach>
