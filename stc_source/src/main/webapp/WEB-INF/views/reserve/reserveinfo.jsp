@@ -59,6 +59,27 @@
 	          }
 	      ); // IMP.request_pay(
     } //requestPay()
+    
+    function moveBack(){
+    	history.back();
+    }
+    
+    $(document).ready(function(){
+    	const urlParams = new URLSearchParams(location.search);
+    	var state = urlParams.get('state');
+    	var btnPay = document.getElementById('btn-pay');
+    	var btnBack = document.getElementById('btn-back');
+    	
+    	console.log(state);
+    	
+    	if(state == 1){
+    		btnPay.style.visibility = 'hidden';
+    		btnBack.style.visibility = 'visible';
+    	}else{
+    		btnPay.style.visibility = 'visible';
+    		btnBack.style.visibility = 'hidden';
+    	}
+    });
   </script>
 
 
@@ -127,10 +148,10 @@
 						        </div>
 						    </div>
 						</div>
-							<span> 
+							<span>
+							<button class="btn btn-primary" onclick="requestPay()" id="btn-pay" name="btn-pay" >결제하기</button>	
 
-							<button class="btn btn-primary" onclick="requestPay()"  >결제하기</button>	
-							<!-- <button class="btn btn-primary" >취소하기</button>	 -->						                                                         
+							<button class="btn btn-primary" onclick="history.back()" id="btn-back" name="btn-back">뒤로가기</button>						                                                         
                             </span>    
                                        
  	               </div>

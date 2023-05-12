@@ -236,7 +236,7 @@
 				  console.log(insertedRegDate);
 				  
 				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?';
-				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+insertedRegDate+'&proNum='+proNum;
+				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+insertedRegDate+'&proNum='+proNum+'&state='+0;
 				  },
 			  error: function(error){
 				  alert(error.errorMsg);

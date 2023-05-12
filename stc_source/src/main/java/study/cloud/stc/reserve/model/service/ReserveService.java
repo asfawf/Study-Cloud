@@ -23,6 +23,9 @@ public interface ReserveService {
 		
 	//예약확인
 	public List<ReserveVo> selectReserveList(ReserveTimeReqDto rtDto) throws Exception;
+	public List<ReserveVo> selectList(ReserveTimeReqDto rtDto) throws Exception;
+	
+	public List<ReserveVo> selectReserveListForHost(ReserveTimeReqDto rtDto) throws Exception;
 	
 	//상품이름
 	public MapVo selectProName(ReserveTimeReqDto vo) throws Exception;

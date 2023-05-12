@@ -20,7 +20,7 @@
                             <form action="" class="form-inline">
                                 <div class="form-group">                                   
                                     <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
-										<c:forEach items="${reserveVo}" var="product"> 	
+										<c:forEach items="${listVo}" var="product"> 	
 				                        	<option value="${product.proNum }" >${product.proName }</option>
 										</c:forEach>
                                     </select>
@@ -110,7 +110,7 @@ $(".delete-btn").click(function(){
 
 	function moveReserveCheck(regDate, proNum) {    
 		console.log(regDate + " " + proNum);
-		location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+regDate+'&proNum='+proNum;
+		location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+regDate+'&proNum='+proNum+'&state='+1;
 		/* 
 		// 날짜, 시간, 인원, 총가격 객체 생성
 		const rData = {

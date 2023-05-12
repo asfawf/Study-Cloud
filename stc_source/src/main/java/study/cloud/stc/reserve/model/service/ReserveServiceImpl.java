@@ -22,10 +22,20 @@ public class ReserveServiceImpl implements ReserveService{
 	public int insertReserve(ReserveTimeReqDto rtDto) throws Exception {
 		return dao.insertReserve(rtDto);
 	}
+	
+	@Override
+	public List<ReserveVo> selectReserveListForHost(ReserveTimeReqDto rtDto) throws Exception {
+		return dao.selectReserveListForHost(rtDto);
+	}
 
 	@Override
 	public List<ReserveVo> selectReserveList(ReserveTimeReqDto rtDto) throws Exception {
 		return dao.selectReserveList(rtDto);
+	}
+	
+	@Override
+	public List<ReserveVo> selectList(ReserveTimeReqDto rtDto) throws Exception {
+		return dao.selectList(rtDto);
 	}
 
 	@Override

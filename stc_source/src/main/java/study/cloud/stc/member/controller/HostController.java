@@ -322,7 +322,7 @@ public class HostController {
 			ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
 			rtDto.setMemId(principal.getName());
 					
-			List<ReserveVo> reserveVo = reserveService.selectReserveList(rtDto);
+			List<ReserveVo> reserveVo = reserveService.selectReserveListForHost(rtDto);
 			List<MapVo> mapVo = reserveService.selectProNameList();
 			
 			request.setAttribute("reserveVo", reserveVo);

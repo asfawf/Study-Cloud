@@ -31,10 +31,12 @@
 				<div class="clearfix padding-top-40">
 					<div class="col-md-12 single-property-content ">
 						<div class="row">
-							<div class="form-group" style="padding: 50px;">
+							<div class="col-sm-6 col-sm-offset-3" style="padding: 50px;">
 								<input type="text" class="form-control" id="proDate" name="proDate" placeholder="날짜선택" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
 							</div>
-							<div class="form-group">							
+						</div>
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">							
 								<table>
 									<thead>
 										<tr>
@@ -47,7 +49,7 @@
 											<tr>
 												<td>
 												<input type="checkbox" data-protime="${i}" name="proTime" value="${i}" id="proTime_${i }" /> 
-												&nbsp;&nbsp;&nbsp;${i < 10 ? '0' : ''}${i}:00 ~ ${i < 10 ? '0' : ''}${i+1}:00
+												&nbsp;&nbsp;&nbsp;${i < 10 ? '0' : ''}${i}:00 ~ ${(i+1) < 10 ? '0' : ''}${i+1}:00
 												</td>
 												<td>
 												<select data-proprice="${i}" name="proPrice" id="proPrice_${i }">
@@ -94,7 +96,6 @@
 			  url: '${pageContext.request.contextPath}/product/timepricersv',
 			  type: 'get',
 			  data: {proDate: selectedDate, proNum: proNum},
-
 			  dataType:"json",
 			  success: function(result) {
 				  console.log(result);

@@ -120,9 +120,11 @@ public class UserController {
 		rtDto.setMemId(principal.getName());
 				
 		List<ReserveVo> reserveVo = reserveService.selectReserveList(rtDto);
+		List<ReserveVo> listVo = reserveService.selectList(rtDto); 
 		List<MapVo> mapVo = reserveService.selectProNameList();
 		
 		request.setAttribute("reserveVo", reserveVo);
+		request.setAttribute("listVo", listVo);
 		request.setAttribute("mapVo", mapVo);
 				
 		return mv;
@@ -130,8 +132,11 @@ public class UserController {
 	
 	//예약확인상세페이지
 	@GetMapping("/reserve/reserveinfo")
-	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+	public ModelAndView selectreserveList(HttpServletRequest request, ModelAndView mv) throws Exception {
 		mv.setViewName("/user/reserve/reserveinfo");
+		
+		request.setAttribute("state", "1");
+		
 		return mv;
 	}
 	

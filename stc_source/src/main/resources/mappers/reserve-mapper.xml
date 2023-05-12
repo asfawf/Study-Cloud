@@ -96,6 +96,16 @@
 		SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_AMOUNT, RSV_STATUS, RSV_TIME
 		FROM reserve WHERE MEM_ID='${memId}' order by RSV_NUM
 	</select>
+	
+	<select id="selectReserveListForHost" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="rsvvo">
+		select rsv.rsv_num, rsv.reg_date, rsv.rsv_date, m.pro_num, m.pro_name
+		from map m, 
+            (select MIN(rsv.rsv_num) as rsv_num, to_char(rsv.reg_date, 'yyyy-mm-dd hh24:mi:ss') as reg_date, MIN(to_char(rsv.rsv_date, 'yyyy-mm-dd')) as rsv_date, rsv.pro_num
+                from reserve rsv 
+                where rsv.pro_num in (select prod.pro_num from product prod where mem_id = #{memId})
+                group by rsv.reg_date, rsv.pro_num) rsv
+		where rsv.pro_num = m.pro_num
+	</select>
 
 	<select id="selectReserveList" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="rsvvo">
 		<!-- SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_AMOUNT, RSV_STATUS, RSV_TIME, PRO_NUM
@@ -105,6 +115,14 @@
 		    (select pro_num, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date, MIN(rsv_date) as rsv_date from reserve where mem_id = #{memId}  group by pro_num, reg_date) r
 		where m.pro_num = r.pro_num
 		order by r.rsv_date DESC
+	</select>
+	
+	<select id="selectList" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="rsvvo">
+		select distinct(m.pro_name) as pro_name, r.pro_num
+		from map m, 
+		    (select pro_num, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date, MIN(rsv_date) as rsv_date from reserve where mem_id = #{memId}  group by pro_num, reg_date) r
+		where m.pro_num = r.pro_num
+		order by m.pro_name ASC
 	</select>
 
 	<select id="rsvselectCount" resultType="_int">
