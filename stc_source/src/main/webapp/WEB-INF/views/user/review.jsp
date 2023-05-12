@@ -39,13 +39,13 @@
 						<thead>
 				    		<tr>
 						        <th colspan="1" class="text-center">날짜</th>
-						        <th colspan="4" class="text-center">Q&A 내용</th>
+						        <th colspan="4" class="text-center">리뷰 내용</th>
 						        <th colspan="1" class="text-center">관리</th>
 				    		</tr>
 						</thead>
-						<tbody id="qList">
+						<!-- <tbody id="qList">
 						
-						</tbody>
+						</tbody> -->
 					</table>
 				</div>
 				
@@ -65,7 +65,7 @@
 		
 
 <script>
-	var selectedProNum = '${userQna.selectedProNum}';
+/* 	var selectedProNum = '${userQna.selectedProNum}';
 	$("#selectedProNum").val(selectedProNum).prop("selected", true);
 	
 	getQnaListHandler();
@@ -199,7 +199,7 @@
   		
    	}
   	
-  	/* deleteQna ajax Qna 삭제 */
+ 
    	$(".btndeleteQna").on("click", deleteQna);
   	function deleteQna() {
   		 
@@ -232,7 +232,7 @@
   		} else {
   			return false;
   		}
-   	}
+   	} */
 </script>
 
 </section>

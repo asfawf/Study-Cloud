@@ -106,8 +106,8 @@
            $(".btninsertQna").on("click", insertQna);
           	function insertQna() {
           		var memQuestionLength = $("[name=memQuestion]").val().trim().length;
-          		if(memQuestionLength < 1) {
-          			alert("글자 수가 적으면 등록되지 않습니다. 글을 입력해주세요.")
+          		if(memQuestionLength < 10) {
+          			alert("내용을 입력하세요(최소 10글자 이상).")
           			$("[name=memQuestion]").focus()
           			$("[name=memQuestion]").val("")
           			return false;

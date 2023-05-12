@@ -40,8 +40,8 @@
 					<table class="table table-striped" border="1px">
 						<thead>
 				    		<tr>
-						        <th colspan="1" class="text-center">공간이름</th>
-						        <th colspan="4" class="text-center">주소</th>
+						        <th colspan="1" class="text-center">아이디</th>
+						        <th colspan="4" class="text-center">리뷰내용</th>
 						        <th colspan="1" class="text-center">관리</th>
 				    		</tr>
 						</thead>
@@ -95,31 +95,7 @@
  
 </div>
 
-       
-
-
-        
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/modernizr-2.6.2.min.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery-1.10.2.min.js"></script> 
-        <script src="<%=request.getContextPath() %>/resources/sneat/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/bootstrap-select.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/bootstrap-hover-dropdown.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/easypiechart.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/owl.carousel.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/wow.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/icheck.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/price-range.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/sneat/assets/js/main.js"></script>
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
-
-
 </body>
 </html>
