@@ -105,7 +105,22 @@
 		<aside class="sidebar sidebar-property blog-asside-right"
 			style="padding-bottom: 0px; padding-right: 0px; padding-left: 0px; ">
 			<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
+			<!-- <sec:authorize access="isAnonymous()">
+			<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<sec:authorize access="hasRole('ADMIN')">
+					<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
+				</sec:authorize>
+				<sec:authorize access="hasRole('HOST')">
+					<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
+				</sec:authorize>
+				<sec:authorize access="hasRole('USER')">
+					<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
+				</sec:authorize>
+			</sec:authorize> -->
 		</aside>
+	
 	</div>
 <!-- stop contents -->				
 
@@ -218,8 +233,7 @@
 			  data: jsonData,
 			  success: function(result) {
 				  console.log(result);
-				  alert("예약 성공");
-				  location.href='${pageContext.request.contextPath}/reserve/reservecheck';
+				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo';
 				  },
 			  error: function(error){
 				  alert(error.errorMsg);
@@ -236,7 +250,7 @@
 		  var proNum =  '${product.detail.proNum }';
 		  console.log(proNum)
 		 $.ajax({
-			  url: '${pageContext.request.contextPath}/reserve/timePriceRsv',
+			  url: '${pageContext.request.contextPath}/reserve/timepricersv',
 			  type: 'get',
 			  data: {proDate: selectedDate, proNum: proNum},
 

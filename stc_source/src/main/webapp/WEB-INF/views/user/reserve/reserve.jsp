@@ -37,23 +37,23 @@
 
 <!-- 테이블구역 -->
 		<div class="container" style="color: black; margin-top: 40px;">
-		<table class="table table-striped" border="1px">
+		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th colspan="1" class="text-center">등록</th>
-					<th colspan="1" class="text-center">예약날짜</th>
-					<th colspan="4" class="text-center">공간이름</th>
-					<th colspan="1" class="text-center">관리</th>				
+					<th class="text-center">신청날짜</th>
+					<th class="text-center">이용날짜</th>
+					<th class="text-center">공간이름</th>
+					<th class="text-center">관리</th>				
 				</tr>
 			</thead>
 			<tbody>
 			
 			<c:forEach items="${reserveVo}" var="product">				
 				<tr>
-					<td colspan="1" class="text-center" value="${product.regDate }">${product.regDate }</td>
-					<td colspan="1" class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
-					<td colspan="4" class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }');">${product.proName}</a></td>					
-					<td colspan="1" class="text-center" class="text-center"><button class="btn delete-btn" formaction="${pageContext.request.contextPath}/user/reserve/delete">취소하기</button></td>
+					<td class="text-center" value="${product.regDate }">${product.regDate }</td>
+					<td class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
+					<td class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }');">${product.proName}</a></td>					
+					<td class="text-center" class="text-center"><button class="delete-btn" formaction="${pageContext.request.contextPath}/user/reserve/delete">예약취소</button></td>
 					<%-- <td colspan="1" class="text-center" style="display:none;" value="${product.proNum }"></td> --%>
 				</tr>
 			</c:forEach>				
@@ -88,7 +88,7 @@
 <script>
 	function moveReserveCheck(regDate, proNum) {    
 		console.log(regDate + " " + proNum);
-		location.href='${pageContext.request.contextPath}/reserve/reservecheck?regDate='+regDate+'&proNum='+proNum;
+		location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+regDate+'&proNum='+proNum;
 		/* 
 		// 날짜, 시간, 인원, 총가격 객체 생성
 		const rData = {
@@ -98,12 +98,12 @@
 		};
 		console.log("객체생성:", rData);
 		$.ajax({
-			  url: '${pageContext.request.contextPath}/reserve/reservecheck',
+			  url: '${pageContext.request.contextPath}/reserve/reserveinfo',
 			  type: 'post',
 			  data: jsonData,
 			  success: function(result) {
 				  console.log(result);
-				  location.href='${pageContext.request.contextPath}/reserve/reservecheck';
+				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo';
 				  },
 			  error: function(error){
 				  alert(error.errorMsg);

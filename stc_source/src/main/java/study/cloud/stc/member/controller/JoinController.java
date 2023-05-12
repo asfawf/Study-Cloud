@@ -29,13 +29,13 @@ public class JoinController {
 	@Autowired
 	private MailSendService mailSendService;
 	
-	@GetMapping("/joinForm")
+	@GetMapping("/joinform")
 	public ModelAndView joinForm(ModelAndView mv) {
-		mv.setViewName("/join/joinForm");
+		mv.setViewName("/join/joinform");
 		return mv;
 	}
 	
-	@PostMapping("/prev")
+	@PostMapping("/insert") //prev 로 되어있었음
 	public String insertJoin(
 			MemberVo memberVo
 			, ModelAndView mv
@@ -83,7 +83,7 @@ public class JoinController {
         return String.valueOf(result);
     }
 	
-	@GetMapping("/emailCheck")
+	@GetMapping("/emailcheck")
 	@ResponseBody
 	public String emailCheck(String memEmail) {
 		System.out.println("이메일 인증 요청");		

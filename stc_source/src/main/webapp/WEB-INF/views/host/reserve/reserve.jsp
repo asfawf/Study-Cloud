@@ -37,22 +37,24 @@
 
 <!-- 테이블구역 -->
 		<div class="container" style="color: black; margin-top: 40px;">
-		<table class="table table-striped" border="1px">
+		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th colspan="1" class="text-center">예약날짜</th>
+					<th colspan="1" class="text-center">신청날짜</th>
+					<th colspan="1" class="text-center">이용날짜</th>
 					<th colspan="4" class="text-center">공간이름</th>
-					<th colspan="1" class="text-center">관리</th>				
+					<th colspan="1" class="text-center">관리</th>					
 				</tr>
 			</thead>
 			<tbody>
 			
 			<c:forEach items="${reserveVo}" var="product">				
 				<tr>
-					<td value="${product.rsvDate }">${product.rsvDate }</td>
-					<td><a href="#" onClick="moveReserveCheck('${product.rsvDate }', '${product.proNum }');">${product.proName}</a></td>					
-					<td><button class="btn delete-btn" formaction="${pageContext.request.contextPath}/host/reserve/delete">취소하기</button></td>
-					<td style="display:none;" value="${product.proNum }"></td>
+					<td colspan="1" class="text-center" value="${product.regDate }">${product.regDate }</td>
+					<td colspan="1" class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
+					<td colspan="4" class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }');">${product.proName}</a></td>					
+					<td colspan="1" class="text-center" class="text-center"><button class="btn delete-btn">취소하기</button></td>
+					<%-- <td colspan="1" class="text-center" style="display:none;" value="${product.proNum }"></td> --%>
 				</tr>
 			</c:forEach>				
 			</tbody>
@@ -100,13 +102,13 @@
 		var jsonData = JSON.stringify(rsvData);
 		
 		$.ajax({
-			  url: '${pageContext.request.contextPath}/reserve/reservecheck',
+			  url: '${pageContext.request.contextPath}/reserve/reserveinfo',
 			  type: 'post',
 			  contentType: "application/json; charset=utf-8",
 			  data: jsonData,
 			  success: function(result) {
 				  console.log(result);
-				  location.href='${pageContext.request.contextPath}/reserve/reservecheck';
+				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo';
 				  },
 			  error: function(error){
 				  alert(error.errorMsg);

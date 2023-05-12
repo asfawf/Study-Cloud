@@ -58,8 +58,8 @@ public class ReserveController {
 		
 	}
 	
-	@GetMapping("/reservecheck")
-	public ModelAndView reservecheck(
+	@GetMapping("/reserveinfo")
+	public ModelAndView reserveinfo(
 			ReserveTimeReqDto rtDto,
 			Principal pricipal,
 			ModelAndView mv) throws Exception {
@@ -70,7 +70,7 @@ public class ReserveController {
 		mv.addObject("dto", dto);
 		mv.addObject("mapVo", mapVo);
 		
-		mv.setViewName("/reserve/reservecheck");
+		mv.setViewName("/reserve/reserveinfo");
 		return mv;
 	}
 	
@@ -81,7 +81,7 @@ public class ReserveController {
 	
 	
 	//선택된 날짜의 time과 price, 그리고 예약상태를 알아오기 
-	@GetMapping("/timePriceRsv")
+	@GetMapping("/timepricersv")
 	@ResponseBody
 	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
 		List<ProductTimePriceDto> timePriceRsvList =  reserveservice.selectTimePriceRsvList(dto);
