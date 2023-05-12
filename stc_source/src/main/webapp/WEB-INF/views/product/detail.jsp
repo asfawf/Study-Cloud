@@ -42,13 +42,13 @@
     <li data-target="#carousel-example-generic" data-slide-to="2"></li>
   </ol>
 
-<!--   <!-- Wrapper for slides --> -->
+<!--   <!-- Wrapper for slides -->
 <%--    <c:forEach items="${product.detail.picList }" var="pic" varStatus="s"> --%>
 <!--   <div class="carousel-inner" role="listbox"> -->
 <!--     <div class="item active"> -->
 
 <%--   <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/>    --%>
-<%-- <%--       <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.proPicRename}"  alt="..."> --%> --%>
+<%--   <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.proPicRename}"  alt="..."> --%> 
 <!--       <div class="carousel-caption"> -->
 <!--         ... -->
 <!--       </div> -->
@@ -61,13 +61,15 @@
     <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
 	
-	<c:forEach items="${product.detail.picList }" var="pic" varStatus="s">
 	<div class="item active">
+		<div>
+	<c:forEach items="${product.detail.picList }" var="pic" varStatus="s">
       <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/>
+      </c:forEach>
+      </div> 
     </div>
    
   </div>
-      </c:forEach> 
   
      
   

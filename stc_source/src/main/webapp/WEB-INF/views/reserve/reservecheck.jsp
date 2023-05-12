@@ -7,6 +7,58 @@
 <title>예약 확인</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
+<script>
+	
+	
+	
+	
+	var IMP = window.IMP;
+	IMP.init("imp43677748"); // imp키 property에 넣어야함
+	
+	var principalId = $("#principalId").val();
+	var amount = $("#amount").val();
+	var name = $("${mapVo.proName }").val();
+// 	var amount =	$(${dto.rsvAmount }).val();
+	
+	
+			
+    function requestPay() {
+      IMP.request_pay({ // param
+		          pg: "kcp",
+		          pay_method: "card",
+		          merchant_uid: "12654-564581",
+		          name: "name",
+		          amount: 100,
+		      }
+		      , function (rsp) { // callback
+		    	  if (rsp.success) {
+		              alert('결제성공');
+		//               location.href = "성공시url"
+		           // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+		              // jQuery로 HTTP 요청
+		              jQuery.ajax({
+		                url: "${pageContext.request.contextPath}/payinfo", 
+		                method: "POST",
+		                headers: { "Content-Type": "application/json" },
+		                data: {
+		                  imp_uid: rsp.imp_uid,            // 결제 고유번호
+		                  merchant_uid: rsp.merchant_uid,  //주문번호
+		                  name : rsp.name
+		                }
+		              }).done(function (data) {
+		                // 가맹점 서버 결제 API 성공시 로직
+		              })
+		            } else {
+		              alert("결제에 실패하였습니다");
+		            }
+	          }
+	      ); // IMP.request_pay(
+    } //requestPay()
+  </script>
+
+
 </head>
 <body>
 <!-- Header area-->
@@ -73,7 +125,7 @@
 						    </div>
 						</div>
 							<span> 
-							<button class="btn btn-primary" onclick="f1()"  >결제하기</button>	
+							<button class="btn btn-primary" onclick="requestPay()"  >결제하기</button>	
 							<!-- <button class="btn btn-primary" >취소하기</button>	 -->						                                                         
                             </span>    
                                        

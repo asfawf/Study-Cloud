@@ -18,6 +18,7 @@
 	var amount = $("#amount").val();
 	var name = $("#name").val();
 	
+	
 	var IMP = window.IMP;
 	IMP.init("imp43677748"); // 예: imp00000000
 	
