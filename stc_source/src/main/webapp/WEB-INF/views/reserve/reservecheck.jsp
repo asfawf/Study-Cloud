@@ -11,9 +11,11 @@
 
 <script>
 	
-	
-	
-	
+		//가격 = ${dto.rsvAmount }
+		//상품이름 = ${mapVo.proName }
+		//예약 번호 = merchant_uid
+		//결제 완료 번호
+		
 	var IMP = window.IMP;
 	IMP.init("imp43677748"); // imp키 property에 넣어야함
 	
@@ -28,8 +30,9 @@
       IMP.request_pay({ // param
 		          pg: "kcp",
 		          pay_method: "card",
-		          merchant_uid: "12654-564581",
-		          name: "name",
+		          merchant_uid: "${dto.rsvNum }"+new Date().getTime(),
+		          name: "${mapVo.proName }",
+// 		          amount: ${dto.rsvAmount },
 		          amount: 100,
 		      }
 		      , function (rsp) { // callback

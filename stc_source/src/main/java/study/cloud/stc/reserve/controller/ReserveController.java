@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,6 +73,29 @@ public class ReserveController {
 		mv.setViewName("/reserve/reservecheck");
 		return mv;
 	}
+	
+	@GetMapping("/reservecheck")
+	public ModelAndView reserveinfo(
+			ReserveTimeReqDto rtDto,
+			Principal pricipal,
+			ModelAndView mv,
+			@PathVariable(value="imp_uid")
+			@PathVariable(value="merchant_uid")
+			@PathVariable(value="name")
+			) throws Exception {
+		rtDto.setMemId(pricipal.getName());
+		ReserveTimeReqDto dto = reserveservice.selectRsvNum(rtDto);		
+		MapVo mapVo = reserveservice.selectProName(rtDto);
+		
+		mv.addObject("dto", dto);
+		mv.addObject("mapVo", mapVo);
+		
+		mv.setViewName("/reserve/reservecheck");
+		return mv;
+	}
+	
+	
+	
 	
 	
 	//선택된 날짜의 time과 price, 그리고 예약상태를 알아오기 
