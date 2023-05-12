@@ -35,7 +35,7 @@
 
                 <!-- 테이블구역 -->
 				<div class="container" style="color: black; margin-top: 40px;" >
-					<table class="table table-striped" border="1px">
+					<table class="table table-striped">
 						<thead>
 				    		<tr>
 						        <th colspan="1" class="text-center">날짜</th>

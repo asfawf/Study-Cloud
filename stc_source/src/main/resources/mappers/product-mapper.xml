@@ -85,6 +85,10 @@
 	  FROM MAP 
       LEFT OUTER JOIN PRODUCT
      USING (PRO_NUM)
+	<if test="proPrice != null and proPrice neq ''">
+      LEFT OUTER JOIN PROTIME 
+     USING (PRO_NUM) 
+	</if>
 	<if test="proDate != null and proDate neq ''">
       LEFT OUTER JOIN PROTIME 
      USING (PRO_NUM) 
@@ -92,9 +96,12 @@
 	<trim prefix="WHERE" prefixOverrides="AND|OR">
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
-       </if> 
+       </if>
+       <if test="proPrice != null and proPrice neq ''">
+         OR PRO_PRICE = #{proPrice}
+       </if>
        <if test="proDate != null and proDate neq ''">
-         OR PRO_DATE = #{proDate}
+         OR to_char(PRO_DATE,'yyyy-mm-dd') IN #{proDate}
        </if>
     </trim> 
     </select>
