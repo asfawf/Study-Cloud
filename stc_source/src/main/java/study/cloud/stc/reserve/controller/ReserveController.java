@@ -78,10 +78,7 @@ public class ReserveController {
 	public ModelAndView reserveinfo(
 			ReserveTimeReqDto rtDto,
 			Principal pricipal,
-			ModelAndView mv,
-			@PathVariable(value="imp_uid")
-			@PathVariable(value="merchant_uid")
-			@PathVariable(value="name")
+			ModelAndView mv
 			) throws Exception {
 		rtDto.setMemId(pricipal.getName());
 		ReserveTimeReqDto dto = reserveservice.selectRsvNum(rtDto);		
