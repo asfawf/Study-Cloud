@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 목록</title>
 <%@ include file="/WEB-INF/views/module/link.jsp"%>
 </head>
 <body>
@@ -110,25 +110,6 @@
 	</script>
 
 
-
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/vendor/modernizr-2.6.2.min.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js//jquery-1.10.2.min.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/bootstrap/js/bootstrap.min.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/bootstrap-select.min.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/bootstrap-hover-dropdown.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/easypiechart.min.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.easypiechart.min.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/owl.carousel.min.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/wow.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/icheck.min.js"></script> --%>
-
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/price-range.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/jquery.validate.min.js"></script> --%>
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/wizard.js"></script> --%>
-
-<%-- 		<script	src="<%=request.getContextPath()%>/resources/sneat/assets/js/main.js"></script> --%>
-		
 		</div>
 		
 		</div>
