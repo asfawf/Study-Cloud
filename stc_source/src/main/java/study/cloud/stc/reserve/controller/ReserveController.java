@@ -74,22 +74,7 @@ public class ReserveController {
 		return mv;
 	}
 	
-	@GetMapping("/reservecheck")
-	public ModelAndView reserveinfo(
-			ReserveTimeReqDto rtDto,
-			Principal pricipal,
-			ModelAndView mv
-			) throws Exception {
-		rtDto.setMemId(pricipal.getName());
-		ReserveTimeReqDto dto = reserveservice.selectRsvNum(rtDto);		
-		MapVo mapVo = reserveservice.selectProName(rtDto);
-		
-		mv.addObject("dto", dto);
-		mv.addObject("mapVo", mapVo);
-		
-		mv.setViewName("/reserve/reservecheck");
-		return mv;
-	}
+	
 	
 	
 	
