@@ -130,10 +130,36 @@ public class UserController {
 	
 	//예약확인상세페이지
 	@GetMapping("/reserve/reserveinfo")
-	public ModelAndView dddddd(ModelAndView mv) throws Exception {
+	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
 		mv.setViewName("/user/reserve/reserveinfo");
 		return mv;
 	}
+	
+	//예약취소하기 삭제
+	@PostMapping("/reserve/delete")
+	@ResponseBody
+	public String delete(ReserveTimeReqDto rtDto, Principal pricipal) throws Exception {
+		rtDto.setMemId(pricipal.getName());
+		int result = reserveService.deleteReserve(rtDto);
+
+		//TODO 최서안
+//		ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
+//		rtDto.setMemId(principal.getName());
+//				
+//		List<ReserveVo> reserveVo = reserveService.selectReserveList(rtDto);
+//		List<MapVo> mapVo = reserveService.selectProNameList();
+//		
+//		request.setAttribute("reserveVo", reserveVo);
+//		request.setAttribute("mapVo", mapVo);
+//				
+
+		
+		return "일단 위 TODO";
+	}
+	
+	
+	
+	
 	
 	//공간삭제
 	

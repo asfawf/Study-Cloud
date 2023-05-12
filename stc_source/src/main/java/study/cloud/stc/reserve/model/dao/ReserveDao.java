@@ -42,6 +42,14 @@ public class ReserveDao {
 		return resultCnt;
 	}
 	
+	
+	//예약삭제
+	@Transactional
+	public int deleteReserve(ReserveTimeReqDto rtDto) throws Exception{
+		sqlSession.insert("reserve.updateForRsvdelete", rtDto);
+		return sqlSession.insert("reserve.rsvdelete", rtDto);
+	}
+	
 	//예약확인
 	public List<ReserveVo> selectReserveList(ReserveTimeReqDto rtDto) throws Exception{
 		return sqlSession.selectList("reserve.selectReserveList", rtDto);	

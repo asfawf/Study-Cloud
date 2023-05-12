@@ -53,7 +53,7 @@
 					<td class="text-center" value="${product.regDate }">${product.regDate }</td>
 					<td class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
 					<td class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }');">${product.proName}</a></td>					
-					<td class="text-center" class="text-center"><button class="delete-btn" formaction="${pageContext.request.contextPath}/user/reserve/delete">예약취소</button></td>
+					<td class="text-center" class="text-center"><button class="delete-btn" data-pronum="${product.proNum }" data-regdate="${product.regDate }">예약취소</button></td>
 					<%-- <td colspan="1" class="text-center" style="display:none;" value="${product.proNum }"></td> --%>
 				</tr>
 			</c:forEach>				
@@ -86,6 +86,28 @@
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
 <script>
+$(".delete-btn").click(function(){
+	console.log($(this).data("regdate"));
+	console.log($(this).data("pronum"));
+	$.ajax({
+		url:"${pageContext.request.contextPath}/user/reserve/delete"
+		,type:"post"
+		,data:{regDate: $(this).data("regdate"),proNum: $(this).data("pronum") }
+		,success:function(result){
+			console.log(result);
+			location.reload();
+			//TODO: displayListDiv();
+		}
+		,error: function(error){
+		  alert(error.errorMsg);
+		  }
+		  ,beforeSend : function(xhr){
+			  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			  }
+	});	
+});
+
+
 	function moveReserveCheck(regDate, proNum) {    
 		console.log(regDate + " " + proNum);
 		location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+regDate+'&proNum='+proNum;

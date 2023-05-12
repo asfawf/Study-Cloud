@@ -18,6 +18,9 @@ public interface ReserveService {
 	//예약
 	public int insertReserve(ReserveTimeReqDto rtDto) throws Exception;
 	
+	//예약 삭제
+	public int deleteReserve(ReserveTimeReqDto rtDto) throws Exception;
+		
 	//예약확인
 	public List<ReserveVo> selectReserveList(ReserveTimeReqDto rtDto) throws Exception;
 	

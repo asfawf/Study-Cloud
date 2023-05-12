@@ -22,6 +22,9 @@
 		<selectKey order="AFTER" keyProperty="rsvNumAfter"  resultType="_int">
 		SELECT (NVL(MAX(RSV_NUM),0) + 1) as rsvNum FROM RESERVE
 		</selectKey> -->
+		<selectKey keyProperty="regDate" resultType="string" order="BEFORE">
+		select to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss') regDate from dual
+		</selectKey>		
 		INSERT ALL
 		<foreach collection="rsvTime" item="rsvTime" index="index">
 		INTO RESERVE VALUES (
@@ -33,11 +36,13 @@
 		, ( select (#{rsvPerson}* pro_price ) from protime where  pro_num = #{proNum} and pro_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')   )
 		, 0
 		, #{rsvTime}
-		, sysdate
+		, to_date(#{regDate}, 'yyyy-mm-dd hh24:mi:ss') 
+		<!-- sysdate -->
 		,#{proNum})
 		</foreach>
 		select * from dual
 	</insert>
+
 	
 	<!-- 예약번호업데이트 -->
 	<update id="updateRsvNumToProTime" parameterType="map">
@@ -78,8 +83,13 @@
 		select pro_num, pro_name from map where pro_num in (select distinct pro_num from reserve)
 	</select>
 
+	<!-- 예약삭제 -->
+	<update id="updateForRsvdelete">
+	update protime set rsv_num = null 
+		where rsv_num in (select rsv_num from reserve WHERE REG_DATE = to_date(#{regDate}, 'yyyy-mm-dd hh24:mi:ss') and pro_num=#{proNum} )
+	</update>
 	<delete id="rsvdelete">
-		DELETE FROM reserve WHERE RSV_NUM = #{rsvNum}
+		DELETE FROM reserve WHERE REG_DATE = to_date(#{regDate}, 'yyyy-mm-dd hh24:mi:ss') and pro_num=#{proNum}
 	</delete>
 
 	<select id="rsvselectOne" resultType="rsvvo">

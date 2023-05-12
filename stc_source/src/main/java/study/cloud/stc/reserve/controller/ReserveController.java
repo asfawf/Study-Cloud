@@ -49,12 +49,19 @@ public class ReserveController {
 	@PostMapping("/reserve")
 	@ResponseBody
 	public String selectedValues(@RequestBody ReserveTimeReqDto rtDto, Principal pricipal) throws Exception {
+		String insertedRegDate = "";
+		
 		rtDto.setMemId(pricipal.getName());
 		this.rtDto = rtDto;
 		System.out.println("rtDto: " + this.rtDto);
-		reserveservice.insertReserve(rtDto);
+		int result = reserveservice.insertReserve(rtDto);
 		//reserveservice.updateRsvNumToProTime(rtDto);
-		return "OK";
+		if(result > 0) {
+			insertedRegDate = rtDto.getRegDate();
+		} else {
+			
+		}
+		return insertedRegDate;
 		
 	}
 	
@@ -78,17 +85,7 @@ public class ReserveController {
 	
 	
 	
-	
-	
-	//선택된 날짜의 time과 price, 그리고 예약상태를 알아오기 
-	@GetMapping("/timepricersv")
-	@ResponseBody
-	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
-		List<ProductTimePriceDto> timePriceRsvList =  reserveservice.selectTimePriceRsvList(dto);
-		return timePriceRsvList;  // json 형태
-	}
-		
-	
+
 	 
 	
 

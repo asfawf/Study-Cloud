@@ -46,4 +46,9 @@ public class ReserveServiceImpl implements ReserveService{
 	public ReserveTimeReqDto selectRsvNum(ReserveTimeReqDto rtDto) throws Exception {
 		return dao.selectRsvNum(rtDto);
 	}
+
+	@Override
+	public int deleteReserve(ReserveTimeReqDto rtDto) throws Exception {
+		return dao.deleteReserve(rtDto);
+	}
 }

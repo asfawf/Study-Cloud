@@ -231,9 +231,12 @@
 			  type: 'post',
 			  contentType: "application/json; charset=utf-8",
 			  data: jsonData,
-			  success: function(result) {
-				  console.log(result);
-				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo';
+			  
+			  success: function(insertedRegDate) {
+				  console.log(insertedRegDate);
+				  
+				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?';
+				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+insertedRegDate+'&proNum='+proNum;
 				  },
 			  error: function(error){
 				  alert(error.errorMsg);
@@ -250,7 +253,7 @@
 		  var proNum =  '${product.detail.proNum }';
 		  console.log(proNum)
 		 $.ajax({
-			  url: '${pageContext.request.contextPath}/reserve/timepricersv',
+			  url: '${pageContext.request.contextPath}/product/timepricersv',
 			  type: 'get',
 			  data: {proDate: selectedDate, proNum: proNum},
 

@@ -19,9 +19,12 @@ import com.google.gson.Gson;
 import study.cloud.stc.common.paging.Paging;
 import study.cloud.stc.product.model.service.ProductService;
 import study.cloud.stc.product.model.vo.ProductDetailDto;
+import study.cloud.stc.product.model.vo.ProductTimePriceDto;
+import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.product.model.vo.ProductVo;
 import study.cloud.stc.qna.model.service.QnaService;
 import study.cloud.stc.qna.model.vo.QnaVo;
+import study.cloud.stc.reserve.model.service.ReserveService;
 
 @Controller
 @RequestMapping("/product")
@@ -31,6 +34,8 @@ public class ProductController {
 	private ProductService service;
 	@Autowired
 	private QnaService qna_service;
+	@Autowired
+	private ReserveService reserveservice;
 	
 	@GetMapping
 	public ModelAndView productList(ModelAndView mv
@@ -169,5 +174,14 @@ public class ProductController {
 		product.put("qnaList", qnaList);
 		return new Gson().toJson(product);
 	}
+	
+	//선택된 날짜의 time과 price, 그리고 예약상태를 알아오기 
+	@GetMapping("/timepricersv")
+	@ResponseBody
+	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception {
+		List<ProductTimePriceDto> timePriceRsvList =  reserveservice.selectTimePriceRsvList(dto);
+		return timePriceRsvList;  // json 형태
+	}
+		
 	
 }

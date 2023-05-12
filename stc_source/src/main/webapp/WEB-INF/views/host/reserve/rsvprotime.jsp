@@ -91,7 +91,7 @@
 		var proNum =  '${proNum }';
 		console.log(proNum)
 	 	 $.ajax({
-			  url: '${pageContext.request.contextPath}/reserve/timepricersv',
+			  url: '${pageContext.request.contextPath}/product/timepricersv',
 			  type: 'get',
 			  data: {proDate: selectedDate, proNum: proNum},
 
