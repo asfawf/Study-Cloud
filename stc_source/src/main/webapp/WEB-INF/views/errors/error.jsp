@@ -9,7 +9,16 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
-      
+<section>  
+	<div class="count-area"> 
+		    <div class="container">
+			    <div class="row">
+		    	    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+		        	    <h2></h2>               
+		            </div>
+		        </div>
+		    </div>
+		</div>    
         <div class="content-area error-page" style="background-color: #FFFFFF; padding-bottom: 55px;">
             <div class="container">
                 <div class="row">
@@ -21,7 +30,7 @@
                 </div> 
             </div>
         </div> 
-
+</section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>
 </html>
