@@ -78,7 +78,7 @@
                                         <input name="uploadfile" type="file" class="form-control" >
                                         <input type="hidden" name="proPicOriginalOld" value="${productDetail.proPicOriginal }">
                                         <input type="hidden" name="proPicRenameOld" value="${productDetail.proPicRename }">
-                                    	<img alt="" src="../{productDetail.proPicRename }">
+<!--                                     	<img alt="" src="../{productDetail.proPicRename }"> -->
                                     </div>
                                 </div>
                                
