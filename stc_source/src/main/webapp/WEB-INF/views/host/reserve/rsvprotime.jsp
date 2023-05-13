@@ -15,8 +15,10 @@
 		<div class="count-area">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<h2 style="">${product.proName} 공간 시간,가격 설정</h2>
+					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title" style="padding: 60px;">
+						<h3>운영시간,가격을 설정합니다.<br> 
+						<small>각 시간마다 가격을 설정해 주세요.</small>
+						</h3>
 					</div>
 				</div>
 			</div>
@@ -24,17 +26,14 @@
 		<!-- End page header -->
 
 		<!-- Body content -->
-		<div class="content-area single-property">
-			&nbsp;
-			<div class="container">
-
-				<div class="clearfix padding-top-40">
-					<div class="col-md-12 single-property-content ">
-						<div class="row">
-							<div class="col-sm-6 col-sm-offset-3" style="padding: 50px;">
+		<div class="content-area user-profiel">
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+							<div class="col-sm-6 col-sm-offset-3" style="padding-top: 80px; padding-bottom: 40px;">
 								<input type="text" class="form-control" id="proDate" name="proDate" placeholder="날짜선택" onfocus="(this.type='date')" onfocusout="(this.type='text')"/>
 							</div>
-						</div>
+						
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3">							
 								<table>
@@ -65,8 +64,8 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<div class= "form-group" style="padding: 50px;">
-								<input type="submit" class="btn btn-primary rsvProTime-btn" id="rsvProTime-btn" value="저장">
+								<div class= "form-group" style="padding: 80px;">
+								<input type="submit" class="btn btn-primary rsvProTime-btn" id="rsvProTime-btn" value="저장" style="">
 								</div>								
 							</div>
 						</div>
@@ -184,14 +183,7 @@
 	   	 	});
 	   	}
 		 
-
- 
- 
-
-	 
-	 
-	 
-	</script>
+	 </script>
 
 
 
@@ -199,6 +191,9 @@
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
 <style>
+	
+	
+
 	td {
 	    padding-right: 20px;
 	    padding-bottom: 10px;

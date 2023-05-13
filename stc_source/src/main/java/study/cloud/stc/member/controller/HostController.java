@@ -234,71 +234,65 @@ public class HostController {
 	
 	
 	//예약관리
-		//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
-		@GetMapping("/reserve/rsvprotime")
-		public ModelAndView selectRsvProtime(ModelAndView mv, String proNum ) throws Exception {
-			mv.addObject("proNum", proNum);
-			mv.setViewName("/host/reserve/rsvprotime");
-			return mv;
-		}
-		
-		//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
-		@PostMapping("/reserve/rsvprotime")
-		@ResponseBody 
-		public String seletedValues(
-				@RequestBody ProductTimeReqDto reqDto
-				) throws Exception {			
-			pservice.insertProTime(reqDto);
-			
-			return "OK";
-			
-		}
-		
-		@GetMapping("/reserve/delete")
-		public ModelAndView deleteReservePage(ModelAndView mv) throws Exception {
-			mv.setViewName("/host/reserve/delete");
-			return mv;
-		}
-		
-		
-		//예약관리 리스트 페이지
-			@GetMapping("/reserve")
-			public ModelAndView selectreserveList(
-					HttpServletRequest request, 
-					HttpServletResponse response,
-					ModelAndView mv, 
-					Principal principal) throws Exception {
-				
-				mv.setViewName("/host/reserve/reserve");
-				
-				ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
-				rtDto.setMemId(principal.getName());
-						
-				List<ReserveVo> reserveVo = reserveService.selectReserveListForHost(rtDto);
-				List<MapVo> mapVo = reserveService.selectProNameList();
-				
-				request.setAttribute("reserveVo", reserveVo);
-				request.setAttribute("mapVo", mapVo);
-						
-				return mv;
-			}
-			
-			//예약확인상세페이지
-			@GetMapping("/reserve/reserveinfo")
-			public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
-				mv.setViewName("/host/reserve/reserveinfo");
-				return mv;
-			}
+	//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
+	@GetMapping("/reserve/rsvprotime")
+	public ModelAndView selectRsvProtime(ModelAndView mv, String proNum ) throws Exception {
+		mv.addObject("proNum", proNum);
+		mv.setViewName("/host/reserve/rsvprotime");
+		return mv;
+	}
 	
-//			//예약취소하기
-//			@PostMapping("/reserve/delete")
-//			@ResponseBody
-//			public String delete(ReserveTimeReqDto rtDto, Principal pricipal) throws Exception {
-//				rtDto.setMemId(pricipal.getName());
-//				int result = reserveService.deleteReserve(rtDto);
-//				return "";
-//			}
-//			
+	//공간관리 - RESERVETIME EDIT 공간 시간,가격설정
+	@PostMapping("/reserve/rsvprotime")
+	@ResponseBody 
+	public String seletedValues(
+			@RequestBody ProductTimeReqDto reqDto
+			) throws Exception {			
+			int result = pservice.insertProTime(reqDto);
+			
+			return String.valueOf(result);
+	}
+		
+	//예약관리 리스트 페이지
+	@GetMapping("/reserve")
+	public ModelAndView selectreserveList(
+			HttpServletRequest request, 
+			HttpServletResponse response,
+			ModelAndView mv, 
+			Principal principal) throws Exception {
+		
+		mv.setViewName("/host/reserve/reserve");
+		
+		ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
+		rtDto.setMemId(principal.getName());
+				
+		List<ReserveVo> reserveVo = reserveService.selectReserveListForHost(rtDto);
+		List<ReserveVo> listVo = reserveService.selectList(rtDto);
+		List<MapVo> mapVo = reserveService.selectProNameList();
+		
+		request.setAttribute("reserveVo", reserveVo);
+		request.setAttribute("listVo", listVo);
+		request.setAttribute("mapVo", mapVo);
+				
+		return mv;
+	}
+		
+	//예약확인상세페이지
+	@GetMapping("/reserve/reserveinfo")
+	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve/reserveinfo");
+		return mv;
+	}
+
+	//예약취소하기 삭제
+	@PostMapping("/reserve/delete")
+	@ResponseBody
+	public String delete(ReserveTimeReqDto rtDto, Principal pricipal) throws Exception {
+		rtDto.setMemId(pricipal.getName());
+		int result = reserveService.deleteReserve(rtDto);
+		
+		 return String.valueOf(result);
+	}
 	
 	
 	//리뷰관리

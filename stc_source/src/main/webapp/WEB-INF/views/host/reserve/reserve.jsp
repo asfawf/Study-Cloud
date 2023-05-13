@@ -4,87 +4,90 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사용자 - 내 예약 관리</title>
+<title>호스트 - 내 예약 관리</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
 <section>
 <%@ include file="/WEB-INF/views/module/header2.jsp" %>
 <input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}">
-<!-- Start page header --> 
-<div class="slider-area" >
-            <div class="slider-content">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
-                        <div class="">
-                            <form action="" class="form-inline">
-                                <div class="form-group">                                   
-                                    <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
-										<c:forEach items="${reserveVo}" var="product"> 	
-				                        	<option value="${product.proNum }" >${product.proName }</option>
-										</c:forEach>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>                    
-                </div>
-<!-- End page header -->
+	<!-- Start page header --> 
+	<div class="slider-area" >
+           <div class="slider-content">
+               <div class="row">
+                   <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                       <div class="">
+                           <form action="" class="form-inline">
+                               <div class="form-group">                                   
+                                   <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
+									<c:forEach items="${listVo}" var="product"> 	
+			                        	<option value="${product.proNum }" >${product.proName }</option>
+									</c:forEach>
+                                   </select>
+                               </div>
+                           </form>
+                       </div>
+                   </div>                    
+               </div>
+			<!-- End page header -->
 
 	
 	
 
 
-<!-- 테이블구역 -->
-		<div class="container" style="color: black; margin-top: 40px;">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th colspan="1" class="text-center">신청날짜</th>
-					<th colspan="1" class="text-center">이용날짜</th>
-					<th colspan="4" class="text-center">공간이름</th>
-					<th colspan="1" class="text-center">관리</th>					
-				</tr>
-			</thead>
-			<tbody>
-			
-			<c:forEach items="${reserveVo}" var="product">				
-				<tr>
-					<td colspan="1" class="text-center" value="${product.regDate }">${product.regDate }</td>
-					<td colspan="1" class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
-					<td colspan="4" class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }', '${product.memId }');">${product.proName}</a></td>					
-					<td colspan="1" class="text-center" class="text-center"><button class="btn delete-btn">취소하기</button></td>
-				</tr>
-			</c:forEach>				
-			</tbody>
-		</table>
-	</div>
-
-	
-
-		<!-- 페이징  -->
-	<div class="col-md-12 clear">
-		<div class="text-center">
-			<div class="pagination">
-				<ul>
-					<li><a href="#">Prev</a></li>
-					<c:forEach begin="${pageInfo.startPage }"
-						end="${pageInfo.endPage }" var="page">
-						<li><a href="#">${page }</a></li>
-					</c:forEach>
-					<li><a href="#">Next</a></li>
-				</ul>
+			<!-- 테이블구역 -->
+			<div class="container" style="color: black; margin-top: 40px;">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="text-center">신청날짜</th>
+						<th class="text-center">이용날짜</th>
+						<th class="text-center">공간이름</th>
+						<th class="text-center">관리</th>					
+					</tr>
+				</thead>
+				<tbody>
+				
+					<c:forEach items="${reserveVo}" var="product">			
+					<tr>
+						<td class="text-center" value="${product.regDate }">${product.regDate }</td>
+						<td class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
+						<td class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }', '${product.memId }');">${product.proName}</a></td>					
+						<td class="text-center" class="text-center"><button class="delete-btn" data-pronum="${product.proNum }" data-regdate="${product.regDate }">예약취소</button></td>
+					</tr>
+					</c:forEach>				
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
-
-
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
 <script>
+	$(".delete-btn").click(function(){
+		console.log($(this).data("regdate"));
+		console.log($(this).data("pronum"));
+		$.ajax({
+			url:"${pageContext.request.contextPath}/host/reserve/delete"
+			,type:"post"
+			,data:{regDate: $(this).data("regdate"),proNum: $(this).data("pronum") }
+			,success:function(result){
+				console.log(result);
+				location.reload();
+				alert('예약이 취소되었습니다.');
+			}
+			,error: function(error){
+			  alert(error.errorMsg);
+			  }
+			  ,beforeSend : function(xhr){
+				  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				  }
+		});	
+	});
+
+
+
 	function moveReserveCheck(regDate, proNum, memId) {    
 		console.log(regDate + " " + memId);
 		// 날짜, 시간, 인원, 총가격 객체 생성

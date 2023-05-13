@@ -146,25 +146,10 @@ public class UserController {
 	public String delete(ReserveTimeReqDto rtDto, Principal pricipal) throws Exception {
 		rtDto.setMemId(pricipal.getName());
 		int result = reserveService.deleteReserve(rtDto);
-
-		//TODO 최서안
-//			ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
-//			rtDto.setMemId(principal.getName());
-//					
-//			List<ReserveVo> reserveVo = reserveService.selectReserveList(rtDto);
-//			List<MapVo> mapVo = reserveService.selectProNameList();
-//			
-//			request.setAttribute("reserveVo", reserveVo);
-//			request.setAttribute("mapVo", mapVo);
-//					
-
 		
-		return "일단 위 TODO";
+		 return String.valueOf(result);
 	}
 
-	
-	
-	
 	
 	
 	//내 리뷰

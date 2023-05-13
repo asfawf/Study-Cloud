@@ -11,24 +11,24 @@
 <section>
 <%@ include file="/WEB-INF/views/module/header2.jsp" %>
 <input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}">
-<!-- Start page header --> 
-<div class="slider-area" >
-            <div class="slider-content">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
-                        <div class="">
-                            <form action="" class="form-inline">
-                                <div class="form-group">                                   
-                                    <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
-										<c:forEach items="${listVo}" var="product"> 	
-				                        	<option value="${product.proNum }" >${product.proName }</option>
-										</c:forEach>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>                    
-                </div>
+	<!-- Start page header --> 
+	<div class="slider-area" >
+		<div class="slider-content">
+	         <div class="row">
+	             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+	                 <div class="">
+	                     <form action="" class="form-inline">
+	                         <div class="form-group">                                   
+	                             <select name="selectedProNum" id="selectedProNum" class="form-control" title="내 공간 목록">
+									<c:forEach items="${listVo}" var="product"> 	
+			                     		<option value="${product.proNum }" >${product.proName }</option>
+									</c:forEach>
+	                             </select>
+	                         </div>
+	                     </form>
+	                 </div>
+	             </div>                    
+	         </div>
 <!-- End page header -->
 
 	
@@ -36,50 +36,32 @@
 
 
 <!-- 테이블구역 -->
-		<div class="container" style="color: black; margin-top: 40px;">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th class="text-center">신청날짜</th>
-					<th class="text-center">이용날짜</th>
-					<th class="text-center">공간이름</th>
-					<th class="text-center">관리</th>				
-				</tr>
-			</thead>
-			<tbody>
-			
-			<c:forEach items="${reserveVo}" var="product">				
-				<tr>
-					<td class="text-center" value="${product.regDate }">${product.regDate }</td>
-					<td class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
-					<td class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }');">${product.proName}</a></td>					
-					<td class="text-center" class="text-center"><button class="delete-btn" data-pronum="${product.proNum }" data-regdate="${product.regDate }">예약취소</button></td>
-					<%-- <td colspan="1" class="text-center" style="display:none;" value="${product.proNum }"></td> --%>
-				</tr>
-			</c:forEach>				
-			</tbody>
-		</table>
-	</div>
-
-	
-
-		<!-- 페이징  -->
-	<div class="col-md-12 clear">
-		<div class="text-center">
-			<div class="pagination">
-				<ul>
-					<li><a href="#">Prev</a></li>
-					<c:forEach begin="${pageInfo.startPage }"
-						end="${pageInfo.endPage }" var="page">
-						<li><a href="#">${page }</a></li>
-					</c:forEach>
-					<li><a href="#">Next</a></li>
-				</ul>
-			</div>
+			<div class="container" style="color: black; margin-top: 40px;">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="text-center">신청날짜</th>
+						<th class="text-center">이용날짜</th>
+						<th class="text-center">공간이름</th>
+						<th class="text-center">관리</th>				
+					</tr>
+				</thead>
+				<tbody>
+				
+				<c:forEach items="${reserveVo}" var="product">				
+					<tr>
+						<td class="text-center" value="${product.regDate }">${product.regDate }</td>
+						<td class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
+						<td class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }');">${product.proName}</a></td>					
+						<td class="text-center" class="text-center"><button class="delete-btn" data-pronum="${product.proNum }" data-regdate="${product.regDate }">예약취소</button></td>
+						<%-- <td colspan="1" class="text-center" style="display:none;" value="${product.proNum }"></td> --%>
+					</tr>
+				</c:forEach>				
+				</tbody>
+			</table>
 		</div>
 	</div>
-	</div>
-	</div>
+</div>
 
 
 </section>
