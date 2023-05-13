@@ -109,41 +109,6 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "naverlogin", method = RequestMethod.GET)
-	public String callBack(){
-		return "login/callBack";
-	}
-	
-	@RequestMapping(value="naversave", method=RequestMethod.POST)
-	public @ResponseBody String naverSave(@RequestParam("n_age") String n_age, @RequestParam("n_birthday") String n_birthday, @RequestParam("n_email") String n_email, @RequestParam("n_gender") String n_gender, @RequestParam("n_id") String n_id, @RequestParam("n_name") String n_name, @RequestParam("n_nickName") String n_nickName) {
-		System.out.println("#############################################");
-		System.out.println(n_age);
-		System.out.println(n_birthday);
-		System.out.println(n_email);
-		System.out.println(n_gender);
-		System.out.println(n_id);
-		System.out.println(n_name);
-		System.out.println(n_nickName);
-		System.out.println("#############################################");
-		// ajax에서 성공 결과에서 ok인지 no인지에 따라 다른 페이지에 갈 수 있게끔 result의 기본값을 "no"로 선언
-		 
-		MemberVo naver= new MemberVo();
-		naver.setMemId(n_id);
-		naver.setMemEmail(n_email);
-		
-		System.out.println("naver: " + n_id + " : " +n_email);
-		
-		String result = "no";
-		
-		if(naver!=null) {
-			// naver가 비어있지 않는다는건 데이터를 잘 받아왔다는 뜻이므로 result를 "ok"로 설정
-			result = "ok";
-		}
-
-		return result;
-	    
-	}
-	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

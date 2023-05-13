@@ -2,11 +2,10 @@
 -- SELECT * FROM MEMBER;
 -- 예시
 -- insert into MEMBER values('아이디','비밀번호','이름','전화번호','이메일', DEFAULT , '계정권한', '가입구분');
-Insert Into Member values('admin1','1234','admin','123456','1234@ccc', 1 , 'ROLE_ADMIN', null);
-Insert Into Member values('admin2','5678','admin','123456','1234@ccc', 1 , 'ROLE_ADMIN', null);
-Insert Into Member values('user1','1234','admin','123456','1234@ccc', 1 , 'ROLE_USER', null);
-Insert Into Member values('user2','1234','admin','123456','1234@ccc', 0 , 'ROLE_USER', null);
-Insert Into Member values('KAKAO_soub0713@naver.com',NULL,'snsuser','123456','soub0713@naver.com', 1 , 'ROLE_USER', 'kakao');
+Insert Into Member values('admin1asd','1234','admin','010-5968-9865','1234@naver.com', 1 , 'ROLE_ADMIN', null);
+Insert Into Member values('admin2','5678','admin','010-5968-9855','12ax34@naver.com', 1 , 'ROLE_ADMIN', null);
+Insert Into Member values('user1','1234','admin','010-5968-9884','12aaa34@naver.com', 1 , 'ROLE_USER', null);
+Insert Into Member values('user2','1234','admin','010-5968-9878','1234@google.com', 0 , 'ROLE_USER', null);
 -- update MEMBER set MEM_PASSWD = '비밀번호수정', MEM_PHONE = '전화번호수정', MEM_EMAIL = '이메일수정', MEM_SNS= '가입구분' where MEM_ID = '아이디';
 -- DELETE FROM MEMBER WHERE MEM_ID = 'admin2';
 
@@ -205,3 +204,4 @@ insert into QNA values(상품번호, '상품이름', '아이디', '사용자문�
 insert into SNS values('토큰', '아이디', 'SNS별명', 'SNS연동날짜 DEFAULT', 'SNS종류', '계정권한');
 -- update SNS set SNS_NAME = 'SNS별명 수정내용' where MEM_ID = '아이디';
 -- DELETE FROM SNS WHERE MEM_ID = '아이디';
+
