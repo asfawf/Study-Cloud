@@ -188,45 +188,6 @@ public class HostController {
 
 	    return mv;
 	}
-//	//상품등록
-//		@PostMapping("/product/insert")
-//		public ModelAndView insertProduct(
-//				ModelAndView mv
-//				, @RequestParam(name = "uploadfile", required = false) MultipartHttpServletRequest multiReq
-//				, HttpServletRequest request
-//				,ProductDetailDto dto
-//				,Principal principal
-//				) throws Exception {
-//			dto.setMemId(principal.getName());
-//			Map<String, String> filePath;
-//			try {
-//				if(multiReq != null) {
-//				for(int i=0; i<multiReq.length; i++) {
-//					MultipartFile multi = multiReq[i];
-//				filePath = fileUtil.saveFile(multi, request, null);
-//				filePath = fileUtil.saveFileList(multiReq, request, null);
-//				dto.setProPicOriginal(filePath.get("original"));
-//				dto.setProPicRename(filePath.get("rename"));
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			int result = pservice.insertDetail(dto);
-////			if(result == 4) {
-////				mv.setViewName("redirect:/host/product");
-////			}else if(result == 3) {
-////				mv.setViewName("redirect:/host/product");
-////			}else if(result == 2) {
-////				mv.setViewName("redirect:/host/product");
-////			}else {
-//				mv.addObject("message","등록");
-//				mv.setViewName("/host/product/insert");
-//			
-//			return mv;
-//		}
-//	
-//	
-	
-	
 	
 	@GetMapping("/product/update")
 	public ModelAndView updateProductPage(

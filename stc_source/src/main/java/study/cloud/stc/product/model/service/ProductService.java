@@ -22,8 +22,6 @@ public interface ProductService {
 	public ProductDetailDto selectOne(int proNum) throws Exception;
 	
 	//상품등록
-	public int insertProduct(ProductDetailDto dto) throws Exception;
-	public int insertMap(ProductDetailDto dto) throws Exception;
 	public int insertDetail(ProductDetailDto dto) throws Exception;
 	
 	public List<HostProductDto> selectList (HostProductDto dto)throws Exception;

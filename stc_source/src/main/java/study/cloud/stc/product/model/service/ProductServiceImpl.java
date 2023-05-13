@@ -45,15 +45,6 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 	//상품등록	
-	@Override
-	public int insertProduct(ProductDetailDto dto) throws Exception {
-		return dao.insertProduct(dto);
-	}
-
-	@Override
-	public int insertMap(ProductDetailDto dto) throws Exception {
-		return dao.insertProduct(dto);
-	}
 
 	@Override
 	@Transactional
@@ -120,6 +111,9 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	
+	
+	
 	
 	//상품운영시간
 	@Override
