@@ -52,7 +52,7 @@
 				<tr>
 					<td colspan="1" class="text-center" value="${product.regDate }">${product.regDate }</td>
 					<td colspan="1" class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
-					<td colspan="4" class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }');">${product.proName}</a></td>					
+					<td colspan="4" class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }', '${product.memId }');">${product.proName}</a></td>					
 					<td colspan="1" class="text-center" class="text-center"><button class="btn delete-btn">취소하기</button></td>
 				</tr>
 			</c:forEach>				
@@ -85,13 +85,17 @@
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
 <script>
-	function moveReserveCheck(rsvDate, proNum) {    
-		console.log(rsvDate + " " + proNum);
+	function moveReserveCheck(regDate, proNum, memId) {    
+		console.log(regDate + " " + memId);
 		// 날짜, 시간, 인원, 총가격 객체 생성
 		const rsvData = {
-    		rsvDate: rsvDate,
+			rsvDate: '',
+			rsvTime: '',
+			rsvPerson: 0,
+			rsvAmount: 0,
+    		regDate: regDate,
 		    proNum : proNum,
-		    memId : '${pageContext.request.userPrincipal.name}'
+		    memId : memId
 		};
 	
 		console.log("객체생성:", rsvData);
@@ -107,7 +111,8 @@
 			  data: jsonData,
 			  success: function(result) {
 				  console.log(result);
-				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo';
+				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?';
+				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+regDate+'&proNum='+proNum+'&memId='+memId+'&state='+1; 
 				  },
 			  error: function(error){
 				  alert(error.errorMsg);

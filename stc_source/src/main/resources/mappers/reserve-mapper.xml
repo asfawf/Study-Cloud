@@ -79,12 +79,12 @@
 	</select>
 	
 	<select id="selectReserveListForHost" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="rsvvo">
-		select rsv.rsv_num, rsv.reg_date, rsv.rsv_date, m.pro_num, m.pro_name
+		select rsv.rsv_num, rsv.reg_date, rsv.rsv_date, m.pro_num, m.pro_name, rsv.mem_id
 		from map m, 
-            (select MIN(rsv.rsv_num) as rsv_num, to_char(rsv.reg_date, 'yyyy-mm-dd hh24:mi:ss') as reg_date, MIN(to_char(rsv.rsv_date, 'yyyy-mm-dd')) as rsv_date, rsv.pro_num
+            (select rsv.mem_id, MIN(rsv.rsv_num) as rsv_num, to_char(rsv.reg_date, 'yyyy-mm-dd hh24:mi:ss') as reg_date, MIN(to_char(rsv.rsv_date, 'yyyy-mm-dd')) as rsv_date, rsv.pro_num
                 from reserve rsv 
                 where rsv.pro_num in (select prod.pro_num from product prod where mem_id = #{memId})
-                group by rsv.reg_date, rsv.pro_num) rsv
+                group by rsv.reg_date, rsv.pro_num, rsv.mem_id) rsv
 		where rsv.pro_num = m.pro_num
 	</select>
 

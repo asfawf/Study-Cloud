@@ -96,7 +96,7 @@
 			,success:function(result){
 				console.log(result);
 				location.reload();
-				//TODO: displayListDiv();
+				alert('예약이 취소되었습니다.');
 			}
 			,error: function(error){
 			  alert(error.errorMsg);

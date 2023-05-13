@@ -220,7 +220,6 @@
 			  
 			  success: function(insertedRegDate) {
 				  console.log(insertedRegDate);
-				  
 				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?';
 				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+insertedRegDate+'&proNum='+proNum+'&state='+0;
 				  },

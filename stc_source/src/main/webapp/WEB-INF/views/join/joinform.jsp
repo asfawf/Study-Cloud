@@ -33,7 +33,7 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
-							<form:form action="prev" method="post">
+							<form:form action="insert" method="post">
 								<div class="input-group" style="padding-left: 60px; padding-right: 60px; padding-top: 60px;">
 									<div>
 										<label for="id">가입 구분</label>

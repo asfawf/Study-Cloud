@@ -35,25 +35,10 @@ public class JoinController {
 		return mv;
 	}
 	
-	@PostMapping("/insert") //prev 로 되어있었음
+	@PostMapping("/insert") 
 	public String insertJoin(
 			MemberVo memberVo
-			, ModelAndView mv
 		) throws Exception {
-		/* 현재 들어오는 데이터 모양 
-		 * 
-		 * TODO : 전화번호 - 제거 후 set 하기
-		 * 
-		 * MemberVo(
-		 * memId=sacscsacs, 
-		 * memPasswd=1223, 
-		 * memName=cccccccccccccc,
-		 * memPhone=010-9586-9586, 
-		 * memEmail=sscscc@fawwvav, 
-		 * memQuit=0,
-		 * memAuthority=ROLE_USER, 
-		 * memSns=null)
-		 */
 		
 		System.out.println("암호화 전: "+ memberVo.getMemPasswd());
 		
@@ -62,10 +47,12 @@ public class JoinController {
 		String securePw = encoder.encode(memberVo.getMemPasswd());
 		System.out.println("암호화 후: "+ securePw);
 		
+		String strphone = memberVo.getMemPhone();
+		String newstrPhone = strphone.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
+		
+		memberVo.setMemPhone(newstrPhone);
 		memberService.insertJoin(memberVo);
-		
-		
-		
+	
 		return "redirect:/";
 	}
 			

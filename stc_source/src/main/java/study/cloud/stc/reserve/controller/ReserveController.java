@@ -64,12 +64,17 @@ public class ReserveController {
 		
 	}
 	
-	@GetMapping("/reserveinfo")
+	@RequestMapping("/reserveinfo")
 	public ModelAndView reserveinfo(
 			ReserveTimeReqDto rtDto,
-			Principal pricipal,
+			Principal principal,
 			ModelAndView mv) throws Exception {
-		rtDto.setMemId(pricipal.getName());
+		if(!principal.getName().contains("host")) {
+			rtDto.setMemId(principal.getName());
+		}
+		
+		System.out.println(rtDto.getMemId());
+		
 		ReserveTimeReqDto dto = reserveservice.selectRsvNum(rtDto);		
 		MapVo mapVo = reserveservice.selectProName(rtDto);
 		

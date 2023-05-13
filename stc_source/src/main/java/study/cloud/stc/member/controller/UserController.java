@@ -131,14 +131,14 @@ public class UserController {
 	}
 	
 	//예약확인상세페이지
-	@GetMapping("/reserve/reserveinfo")
-	public ModelAndView selectreserveList(HttpServletRequest request, ModelAndView mv) throws Exception {
-		mv.setViewName("/user/reserve/reserveinfo");
-		
-		request.setAttribute("state", "1");
-		
-		return mv;
-	}
+//	@GetMapping("/reserve/reserveinfo")
+//	public ModelAndView selectreserveList(HttpServletRequest request, ModelAndView mv) throws Exception {
+//		mv.setViewName("/user/reserve/reserveinfo");
+//		
+//		request.setAttribute("state", "1");
+//		
+//		return mv;
+//	}
 	
 	//예약취소하기 삭제
 	@PostMapping("/reserve/delete")
@@ -147,14 +147,23 @@ public class UserController {
 		rtDto.setMemId(pricipal.getName());
 		int result = reserveService.deleteReserve(rtDto);
 
-		return "";
+		//TODO 최서안
+//			ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
+//			rtDto.setMemId(principal.getName());
+//					
+//			List<ReserveVo> reserveVo = reserveService.selectReserveList(rtDto);
+//			List<MapVo> mapVo = reserveService.selectProNameList();
+//			
+//			request.setAttribute("reserveVo", reserveVo);
+//			request.setAttribute("mapVo", mapVo);
+//					
+
+		
+		return "일단 위 TODO";
 	}
+
 	
 	
-	
-	
-	
-	//공간삭제
 	
 	
 	
