@@ -305,6 +305,9 @@ public class UserController {
 		int cntPerPage = 3; 
 		int currentPage = page;
 		int totalCnt = qna_service.selectUserQnaCount(vo);
+		if(totalCnt == 1) {
+			totalCnt = 0;
+		}
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, cntPerPage, 5);
 
 		List<QnaVo> productList = qna_service.selectUserQnaList(principal.getName());

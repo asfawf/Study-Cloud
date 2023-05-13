@@ -13,7 +13,7 @@
 <%@ include file="/WEB-INF/views/module/header2.jsp" %>
 
 <section>
-	
+<input type="hidden" class="form-control" name="memId" value="${pageContext.request.userPrincipal.name}">
         <!-- selectedProNum -->
 
         <div class="slider-area" >
@@ -24,10 +24,9 @@
                             <form action="" class="form-inline">
                                 <div class="form-group">                                   
                                     <select name="selectedProNum" id="selectedProNum" class="form-control" style="width: 220px;">
-										<%-- <c:forEach items="${hostQna.productList }" var="product">  --%>	
-				                        	<%-- <option value="${product.proNum }" >${product.proName }</option> --%>
-										<%-- </c:forEach> --%>
-										<option>상품 장소</option>
+										<c:forEach items="${userQna.productList }" var="product"> 	
+				                        	<option value="${product.proNum }" >${product.proName }</option>
+										</c:forEach>
                                     </select>
                                 </div>
                             </form>
@@ -37,64 +36,39 @@
 
 
                 <!-- 테이블구역 -->
- 				<div class="container" style="color: black; margin-top: 40px;" >
+				<div class="container" style="color: black; margin-top: 40px;" >
 					<table class="table table-striped">
 						<thead>
 				    		<tr>
-						        <th colspan="1" class="text-center">아이디</th>
-						        <th colspan="4" class="text-center">리뷰내용</th>
+						        <th colspan="1" class="text-center">날짜</th>
+						        <th colspan="4" class="text-center">리뷰 내용</th>
 						        <th colspan="1" class="text-center">관리</th>
 				    		</tr>
 						</thead>
-						<tbody id="rList">
-						<!-- 임시용 -->
-						<tr>
-				            <td colspan="1">헬로강남</td>
-				            <td colspan="4">서울시 강남구 강남대로 12-24</td>
-				            <td colspan="1"><button>수정</button><button>삭제</button></td>
-				        </tr>
-				        <tr>
-				            <td colspan="1">헬로성수</td>
-				            <td colspan="4">서울시 마포수 와우산로 12-24</td>
-				            <td colspan="1"><button>수정</button><button>삭제</button></td>
-				        </tr>
-				        <tr>
-				            <td colspan="1">헬로홍대</td>
-				            <td colspan="4">동작구 대방로 12-24</td>
-				            <td colspan="1"><button>수정</button><button>삭제</button></td>
-				        </tr>
-				        <tr>
-				            <td colspan="1">헬로동작</td>
-				            <td colspan="4">동작구 대방로 12-24</td>
-				            <td colspan="1"><button>수정</button><button>삭제</button></td>
-				        </tr>
-				        <tr>
-				            <td colspan="1"></td>
-				            <td colspan="4"></td>
-				            <td colspan="1"></td>				
-				        </tr>
-				        <tr>
-				            <td colspan="1"></td>
-				            <td colspan="4"></td>
-				            <td colspan="1"></td>				
-				        </tr>
-				        <tr>
-				            <td colspan="1"></td>
-				            <td colspan="4"></td>
-				            <td colspan="1"></td>
-				        </tr>
-						<!--  -->
-						</tbody>
+						<!-- <tbody id="qList">
+						
+						</tbody> -->
 					</table>
 				</div>
-        
-    </tbody>
-    </table>
-            </div>
-
+				
+				<!-- qna 페이징 -->
+	            <div class="col-md-12 clear"> 
+					<div class="text-center">
+	    				<div class="pagination">
+	        				<ul>
+								
+	            			</ul>
+	        			</div>
+	    			</div>                
+				</div>					                    
+        	</div> 
         </div>
- 
-</div>
+        
+		
+
+<script>
+
+</script>
 
 </section>
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>

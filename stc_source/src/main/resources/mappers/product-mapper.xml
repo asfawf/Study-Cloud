@@ -181,7 +181,15 @@
 		 ORDER BY QNA_DATE DESC
 	</select>
 	
-	
+	<!-- detail/review -->
+	<select id="userRsvNumSelect" resultType="study.cloud.stc.review.model.vo.ReviewResReqVo">
+		SELECT MEM_ID, REG_DATE, MIN(RSV_NUM) RSV_NUMBER
+		FROM (SELECT MEM_ID, REG_DATE, RSV_NUM 
+				FROM RESERVE 
+				WHERE PRO_NUM = #{proNum})
+		GROUP BY MEM_ID, REG_DATE 
+		ORDER BY MIN(RSV_NUM)
+	</select>
 	
 	
 	<!-- 호스트 & 어드민 상품목록 -->

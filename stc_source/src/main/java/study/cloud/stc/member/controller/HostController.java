@@ -342,8 +342,24 @@ public class HostController {
 	//리뷰관리
 	//리뷰리스트
 	@GetMapping("/review")
-	public ModelAndView selectReviewList(ModelAndView mv) throws Exception {
-		mv.setViewName("/host/review");
+	public ModelAndView selectReviewList(ModelAndView mv
+			, @RequestParam(value="page", defaultValue="1") int page
+			, Principal principal
+			) throws Exception {
+
+		List<QnaVo> productList = qna_service.selectUserQnaList(principal.getName());
+		int proNum = 0;
+		
+	    if (productList.size() > 0) {
+	        proNum = productList.get(0).getProNum();
+	    }
+	    
+		Map<String, Object> userQna = new HashMap<>();
+		userQna.put("productList", productList);
+		userQna.put("selectedProNum", proNum);
+
+		mv.addObject("userQna", userQna);
+		mv.setViewName("/user/review");
 		return mv;
 	}	
 	

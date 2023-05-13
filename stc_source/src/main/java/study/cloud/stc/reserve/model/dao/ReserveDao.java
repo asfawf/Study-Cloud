@@ -14,6 +14,7 @@ import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
+import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 
 
@@ -163,5 +164,13 @@ public class ReserveDao {
 		dto.setRsvTime(rsvTimes);
 		
 		return dto;
+	}
+
+
+	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception{
+		return sqlSession.selectList("product.userRsvNumSelect", proNum);
+	}
+	public List<ReserveVo> userRsvNum(ReviewResReqVo rsvo) throws Exception{
+		return sqlSession.selectList("product.userRsvNumSelect", rsvo);
 	}
 }

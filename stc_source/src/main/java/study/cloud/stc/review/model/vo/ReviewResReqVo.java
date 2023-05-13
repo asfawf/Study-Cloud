@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewVo {
+public class ReviewResReqVo {
 
 //	RSV_NUM	VARCHAR2(30 BYTE)	No		1	주문번호
 //	PRO_NAME	VARCHAR2(100 BYTE)	Yes		2	상품이름
@@ -25,10 +25,23 @@ public class ReviewVo {
 //	REV_NUM	NUMBER	Yes		5	리뷰번호
 //	HOST_REPLY	VARCHAR2(1000 BYTE)	Yes		6	호스트답글  
 
-	private String rsvNum;
+	private String memId;
+	private String regDate;
+	private String rsvNumber;
+	
+	
 	private String proName;
 	private String revContents;
 	private Date revDate;
 	private String revNum;
 	private String hostReply;
+	
+	private int rsvNum;
+    private Date rsvDate;
+    private int rsvPerson;    
+    private int rsvAmount;
+    private int rsvStatus;
+    private int rsvTime;
+    private String proNum;
+    
 }

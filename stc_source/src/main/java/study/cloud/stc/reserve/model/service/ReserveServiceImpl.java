@@ -11,6 +11,7 @@ import study.cloud.stc.reserve.model.dao.ReserveDao;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
+import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 @Service
 public class ReserveServiceImpl implements ReserveService{
@@ -60,5 +61,14 @@ public class ReserveServiceImpl implements ReserveService{
 	@Override
 	public int deleteReserve(ReserveTimeReqDto rtDto) throws Exception {
 		return dao.deleteReserve(rtDto);
+	}
+
+	@Override
+	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception {
+		return dao.userRsvNumSelect(proNum);
+	}
+	@Override
+	public List<ReserveVo> userRsvNum(ReviewResReqVo rsvo) throws Exception {
+		return dao.userRsvNum(rsvo);
 	}
 }

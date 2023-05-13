@@ -10,6 +10,7 @@ import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
+import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 
 public interface ReserveService {
@@ -37,6 +38,9 @@ public interface ReserveService {
 	public List<ProductTimePriceDto> selectTimePriceRsvList(ProductTimeReqDto dto) throws Exception;
 	
 	public ReserveTimeReqDto selectRsvNum(ReserveTimeReqDto rtDto) throws Exception;
+
+	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception;
+	public List<ReserveVo> userRsvNum(ReviewResReqVo rsvo) throws Exception;
 
 }
 
