@@ -33,48 +33,33 @@
                             <div class="light-slide-item">            
                                 <div class="clearfix">
                                     
-                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
+<!--                                     <ul id="image-gallery" class="gallery list-unstyled cS-hidden"> -->
+   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
-<!--   <!-- Wrapper for slides -->
-<%--    <c:forEach items="${product.detail.picList }" var="pic" varStatus="s"> --%>
-<!--   <div class="carousel-inner" role="listbox"> -->
-<!--     <div class="item active"> -->
-
-<%--   <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/>    --%>
-<%--   <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.proPicRename}"  alt="..."> --%> 
-<!--       <div class="carousel-caption"> -->
-<!--         ... -->
-<!--       </div> -->
-<!--     </div> -->
-<!--     ... -->
-<!--   </div> -->
-<%--   </c:forEach> --%>
   
   
-    <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-	
+  
+<!--   Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
 	<div class="item active">
 		<div>
-	<c:forEach items="${product.detail.picList }" var="pic" varStatus="s">
-      <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/>
-      </c:forEach>
+<%--       <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/> --%>
+      <img src="..."/>
       </div> 
     </div>
    
-  </div>
-  
-     
-  
+	<c:forEach items="${product.detail.picList }" var="pic" varStatus="s">
+    <div class="item">
+          <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}" style="width:100%; height:100%"; >
+          <div class="carousel-caption" style="color:black;">
+          </div>
+     </div>
+      </c:forEach>
+   
+   
+  		</div>
 
-  <!-- Controls -->
+
   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -224,9 +209,10 @@
 	                }
 	            });
 	        });
-
+			</script>
  
 
+			<script>
           	
 			/* 지도 */
  			var mapContainer = document.getElementById('map'), 
@@ -276,6 +262,8 @@
 
 			</script>
 	</section>
+	
+	
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 </body>
 </html>
