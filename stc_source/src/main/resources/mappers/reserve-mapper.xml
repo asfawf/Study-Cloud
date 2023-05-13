@@ -16,12 +16,6 @@
 	
 	<!-- 예약하기 -->
 	<insert id="insertReservation" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
-		<!-- <selectKey order="BEFORE" keyProperty="rsvNum" resultType="_int">
-		SELECT (NVL(MAX(RSV_NUM),0) + 1) as rsvNum FROM RESERVE
-		</selectKey>
-		<selectKey order="AFTER" keyProperty="rsvNumAfter"  resultType="_int">
-		SELECT (NVL(MAX(RSV_NUM),0) + 1) as rsvNum FROM RESERVE
-		</selectKey> -->
 		<selectKey keyProperty="regDate" resultType="string" order="BEFORE">
 		select to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss') regDate from dual
 		</selectKey>		
@@ -29,7 +23,6 @@
 		<foreach collection="rsvTime" item="rsvTime" index="index">
 		INTO RESERVE VALUES (
 		(SELECT (NVL(MAX(RSV_NUM),0) + #{index} + 1) FROM RESERVE)
-		<!-- (#{rsvNum} + #{index}) -->
 		, to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
 		, #{rsvPerson}
 		, #{memId}
@@ -53,17 +46,7 @@
 		set rsv_num = #{rsvNum}
 		where pro_num = #{proNum} and pro_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24')
 	</update>
-	<!-- 
-	<update id="updateRsvNumToProTime" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
-		update protime 
-		set rsv_num = (select rsv_num from reserve where  pro_num = #{proNum} and rsv_date = to_date((#{rsvDate}||''||#{rsvTime}), 'yyyy-mm-ddhh24'))
-		where  pro_num = #{proNum} 
-		<foreach collection="rsvTime" item="rtime" index="index" open="and (" separator="OR" close=")">
-			  pro_date = to_date((#{rsvDate}||''||#{rtime}), 'yyyy-mm-ddhh24')
-		</foreach>
-	</update>
-	 -->
-	 
+	
 	 <select id="selectRsvNum" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto">
 	 	SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_AMOUNT, RSV_STATUS, PRO_NUM, REG_DATE
 		FROM RESERVE 
@@ -72,8 +55,6 @@
 			AND PRO_NUM = TO_NUMBER(#{proNum})
 			AND REG_DATE = to_date(#{regDate}, 'yyyy-mm-dd hh24:mi:ss')
 	 </select>
-	 
-	 <!-- RSV_DATE -> TO_DATE(RSV_DATE, 'yyyy-MM-dd') as RSV_DATE -->
 	 
 	<select id="selectProName" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="study.cloud.stc.reserve.model.vo.MapVo">
 		select pro_num, pro_name, pro_phone from map where pro_num = #{proNum}
@@ -108,8 +89,6 @@
 	</select>
 
 	<select id="selectReserveList" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="rsvvo">
-		<!-- SELECT RSV_NUM, RSV_DATE, RSV_PERSON, MEM_ID, RSV_AMOUNT, RSV_STATUS, RSV_TIME, PRO_NUM
-		FROM RESERVE WHERE MEM_ID='${memId}' AND RSV_DATE >= TO_DATE(SYSDATE, 'yyyy-mm-dd') ORDER BY RSV_NUM -->
 		select m.pro_name, r.pro_num, r.reg_date , r.rsv_date
 		from map m, 
 		    (select pro_num, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date, MIN(rsv_date) as rsv_date from reserve where mem_id = #{memId}  group by pro_num, reg_date) r
@@ -132,7 +111,7 @@
 	<select id="selectTimePriceRsvList" resultType="study.cloud.stc.product.model.vo.ProductTimePriceDto">
 		SELECT to_char(pro_date, 'hh24') time, pro_price price, rsv_num, PRO_NUM 
 		FROM PROTIME  
-		where PRO_NUM =#{proNum} and trunc(pro_date) =  #{proDate} <!-- and pro_date >= sysdate -->
+		where PRO_NUM =#{proNum} and trunc(pro_date) =  #{proDate}
 		order by time
 	</select>
 	

@@ -105,20 +105,6 @@
 		<aside class="sidebar sidebar-property blog-asside-right"
 			style="padding-bottom: 0px; padding-right: 0px; padding-left: 0px; ">
 			<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
-			<!-- <sec:authorize access="isAnonymous()">
-			<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
-			</sec:authorize>
-			<sec:authorize access="isAuthenticated()">
-				<sec:authorize access="hasRole('ADMIN')">
-					<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
-				</sec:authorize>
-				<sec:authorize access="hasRole('HOST')">
-					<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
-				</sec:authorize>
-				<sec:authorize access="hasRole('USER')">
-					<button id=rsv-Btn class="btn btn-primary rsv-Btn" style="width: 100%; height: 55px;">예약하기</button>
-				</sec:authorize>
-			</sec:authorize> -->
 		</aside>
 	
 	</div>
@@ -148,7 +134,7 @@
 		  getTimePrice(selectedDate);
 		});
 	
-		// 시간선택,인원수카운트하여 총금액 구하기 (사용안함. 확인필)
+		// 시간선택,인원수카운트하여 총금액 구하기
 		$('.selectpicker').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
 		  selectedTime = $(this).val();
 		  totalAmount();
@@ -274,8 +260,6 @@
 		
 	function disaplyTimePriceRsv(data){
 		var htmlval = '';
-		//htmlval += '  ';
-		//htmlval += '<select class="selectpicker form-control" multiple data-size="10" title="시간선택" id="rsvTime" name="rsvTime">';  
 		for(var i=0; i<24; i++){
 			var timeprice = data[i];
 			if(i==0){
@@ -285,9 +269,7 @@
 			}
 						
 			if(!timeprice){
-				// 예약 불가능시간
-				//var formatedTime = timeprice.time+':00-'+(timeprice.time+1)+':00'
-				//htmlval += '         <option value="'+timeprice.time+'" disabled >'+i+'&nbsp;&nbsp; '+0+'</option>';   
+				
 			}else {
 				if(timeprice.rsvNum){
 					// 이미 예약된 상태
@@ -310,7 +292,7 @@
 				htmlval += '</optgroup>';
 			}
 		}                       
-//		htmlval += '		<option value="${i + 12}">${i + 12}:00~${i + 13}:00</option>';
+
 		console.log(htmlval);
 
 	   	$('#rsvTime').html(htmlval);

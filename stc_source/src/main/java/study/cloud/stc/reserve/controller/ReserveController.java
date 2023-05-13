@@ -55,7 +55,6 @@ public class ReserveController {
 		this.rtDto = rtDto;
 		System.out.println("rtDto: " + this.rtDto);
 		int result = reserveservice.insertReserve(rtDto);
-		//reserveservice.updateRsvNumToProTime(rtDto);
 		if(result > 0) {
 			insertedRegDate = rtDto.getRegDate();
 		} else {
@@ -81,42 +80,6 @@ public class ReserveController {
 		mv.setViewName("/reserve/reserveinfo");
 		return mv;
 	}
-	
-	
-	
-	
-	
-
-	 
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	@ExceptionHandler(NullPointerException.class)
@@ -150,7 +113,6 @@ public class ReserveController {
 		mv.setViewName("errors/error");
 		return mv;
 	}
-//	@ExceptionHandler
 	@ExceptionHandler(Exception.class)
 	public ModelAndView memberExceptionHandler( Exception e
 			// 오류 발생함. ModelAndView mv

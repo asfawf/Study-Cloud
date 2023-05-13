@@ -54,7 +54,6 @@
 					<td colspan="1" class="text-center" value="${product.rsvDate }">${product.rsvDate }</td>
 					<td colspan="4" class="text-center"><a href="#" onClick="moveReserveCheck('${product.regDate }', '${product.proNum }');">${product.proName}</a></td>					
 					<td colspan="1" class="text-center" class="text-center"><button class="btn delete-btn">취소하기</button></td>
-					<%-- <td colspan="1" class="text-center" style="display:none;" value="${product.proNum }"></td> --%>
 				</tr>
 			</c:forEach>				
 			</tbody>

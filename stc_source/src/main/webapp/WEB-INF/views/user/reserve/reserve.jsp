@@ -86,56 +86,32 @@
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
 <script>
-$(".delete-btn").click(function(){
-	console.log($(this).data("regdate"));
-	console.log($(this).data("pronum"));
-	$.ajax({
-		url:"${pageContext.request.contextPath}/user/reserve/delete"
-		,type:"post"
-		,data:{regDate: $(this).data("regdate"),proNum: $(this).data("pronum") }
-		,success:function(result){
-			console.log(result);
-			location.reload();
-			//TODO: displayListDiv();
-		}
-		,error: function(error){
-		  alert(error.errorMsg);
-		  }
-		  ,beforeSend : function(xhr){
-			  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	$(".delete-btn").click(function(){
+		console.log($(this).data("regdate"));
+		console.log($(this).data("pronum"));
+		$.ajax({
+			url:"${pageContext.request.contextPath}/user/reserve/delete"
+			,type:"post"
+			,data:{regDate: $(this).data("regdate"),proNum: $(this).data("pronum") }
+			,success:function(result){
+				console.log(result);
+				location.reload();
+				//TODO: displayListDiv();
+			}
+			,error: function(error){
+			  alert(error.errorMsg);
 			  }
-	});	
-});
-
+			  ,beforeSend : function(xhr){
+				  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				  }
+		});	
+	});
 
 	function moveReserveCheck(regDate, proNum) {    
 		console.log(regDate + " " + proNum);
 		location.href='${pageContext.request.contextPath}/reserve/reserveinfo?regDate='+regDate+'&proNum='+proNum+'&state='+1;
-		/* 
-		// 날짜, 시간, 인원, 총가격 객체 생성
-		const rData = {
-			regDate: regDate,
-		    proNum : proNum,
-		   // memId : '${pageContext.request.userPrincipal.name}'
-		};
-		console.log("객체생성:", rData);
-		$.ajax({
-			  url: '${pageContext.request.contextPath}/reserve/reserveinfo',
-			  type: 'post',
-			  data: jsonData,
-			  success: function(result) {
-				  console.log(result);
-				  location.href='${pageContext.request.contextPath}/reserve/reserveinfo';
-				  },
-			  error: function(error){
-				  alert(error.errorMsg);
-				  },
-			  beforeSend : function(xhr){
-				  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-				  }
-	      });  //$.ajax({
-	    	   */
-	}  //moveReserveCheck(){
+		
+	}  
 </script>
 
 </body>

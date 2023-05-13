@@ -20,9 +20,6 @@ public class MemberServiceImpl implements MemberService {
 	public int insertJoin(MemberVo vo) throws Exception {
 		return dao.insertJoin(vo);
 	}
-	
-	
-	
 	@Override
 	public int idCheck(String memId) throws Exception{
 		return dao.idCheck(memId);

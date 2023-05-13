@@ -22,8 +22,6 @@ public class MemberDao {
         return session.selectOne("memberns.idCheck", memId);
     }
 	
-	
-	
 	public int insertJoin(MemberVo vo) {
 		return session.insert("memberns.insertJoin", vo);
 	}

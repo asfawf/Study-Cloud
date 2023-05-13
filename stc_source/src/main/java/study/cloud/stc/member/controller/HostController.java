@@ -271,33 +271,33 @@ public class HostController {
 	
 	
 	//예약관리 리스트 페이지
-		@GetMapping("/reserve")
-		public ModelAndView selectreserveList(
-				HttpServletRequest request, 
-				HttpServletResponse response,
-				ModelAndView mv, 
-				Principal principal) throws Exception {
-			
-			mv.setViewName("/host/reserve/reserve");
-			
-			ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
-			rtDto.setMemId(principal.getName());
-					
-			List<ReserveVo> reserveVo = reserveService.selectReserveListForHost(rtDto);
-			List<MapVo> mapVo = reserveService.selectProNameList();
-			
-			request.setAttribute("reserveVo", reserveVo);
-			request.setAttribute("mapVo", mapVo);
-					
-			return mv;
-		}
+	@GetMapping("/reserve")
+	public ModelAndView selectreserveList(
+			HttpServletRequest request, 
+			HttpServletResponse response,
+			ModelAndView mv, 
+			Principal principal) throws Exception {
 		
-		//예약확인상세페이지
-		@GetMapping("/reserve/reserveinfo")
-		public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
-			mv.setViewName("/host/reserve/reserveinfo");
-			return mv;
-		}
+		mv.setViewName("/host/reserve/reserve");
+		
+		ReserveTimeReqDto rtDto = new ReserveTimeReqDto();
+		rtDto.setMemId(principal.getName());
+				
+		List<ReserveVo> reserveVo = reserveService.selectReserveListForHost(rtDto);
+		List<MapVo> mapVo = reserveService.selectProNameList();
+		
+		request.setAttribute("reserveVo", reserveVo);
+		request.setAttribute("mapVo", mapVo);
+				
+		return mv;
+	}
+	
+	//예약확인상세페이지
+	@GetMapping("/reserve/reserveinfo")
+	public ModelAndView selectreserveList(ModelAndView mv) throws Exception {
+		mv.setViewName("/host/reserve/reserveinfo");
+		return mv;
+	}
 	
 	
 	//리뷰관리
