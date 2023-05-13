@@ -205,41 +205,32 @@ public class HostController {
 	@PostMapping("/product/update")
 	public ModelAndView updateProduct(
 			ModelAndView mv
-		  , @RequestParam(name = "uploadfile", required = false) MultipartFile[] multifiles
-//		  , @RequestParam(name = "uploadfile", required = false) MultipartFile multi
-			,ProductDetailDto dto
-			
-			,Principal principal
-			, HttpServletRequest request
-			// 	@RequestParam("proNum") int proNum,
-			) throws Exception {
-		 if (multifiles != null) {
-		    	List<ProductPicDto> picList = new ArrayList<ProductPicDto>();
-		        for (int i = 0; i < multifiles.length; i++) {
-		            MultipartFile multi = multifiles[i];
-		            Map<String, String> filePath = fileUtil.saveFile(multi, request, null);
-
-		            ProductPicDto pic = new ProductPicDto(); 
-		            pic.setProPicOriginal(filePath.get("original"));
-		            pic.setProPicRename(filePath.get("rename"));
-		            picList.add(pic);
-		        }
-		        dto.setPicList(picList);
-		    }
-		
-		int result = pservice.updateProduct(dto);  // TODO ProductDetailDto으로 수정
-		if(result == 4) {
-			mv.setViewName("redirect:/host/product");
-		}else if(result == 3) {
-			mv.setViewName("redirect:/host/product");
-		}else if(result == 2) {
-			mv.setViewName("redirect:/host/product");
-		}else {
-//			mv.addObject("message","업데이트 실패");
-			mv.setViewName("redirect:/host/product");
+			  , @RequestParam(name = "uploadfile", required = false) MultipartFile multi
+				,ProductDetailDto pd
+				,Principal principal
+				, HttpServletRequest request
+				) throws Exception {
+			Map<String, String> filePath;
+			try {
+						filePath = fileUtil.saveFile(multi, request, null);
+							pd.setProPicOriginal(filePath.get("original"));
+							pd.setProPicRename(filePath.get("rename"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			int result = pservice.updateProduct(pd);  // TODO ProductDetailDto으로 수정
+			if(result == 4) {
+				mv.setViewName("redirect:/host/product");
+			}else if(result == 3) {
+				mv.setViewName("redirect:/host/product");
+			}else if(result == 2) {
+				mv.setViewName("redirect:/host/product");
+			}else {
+//				mv.addObject("message","업데이트 실패");
+				mv.setViewName("redirect:/host/product");
+			}
+			return mv;
 		}
-		return mv;
-	}
 	
 	
 	//예약관리
