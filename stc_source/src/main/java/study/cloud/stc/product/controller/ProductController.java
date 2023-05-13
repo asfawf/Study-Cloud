@@ -25,6 +25,8 @@ import study.cloud.stc.product.model.vo.ProductVo;
 import study.cloud.stc.qna.model.service.QnaService;
 import study.cloud.stc.qna.model.vo.QnaVo;
 import study.cloud.stc.reserve.model.service.ReserveService;
+import study.cloud.stc.reserve.model.vo.ReserveVo;
+import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 @Controller
 @RequestMapping("/product")
@@ -70,7 +72,8 @@ public class ProductController {
 		ProductDetailDto dto = service.selectOne(proNum);
 		Map<String, Object> product = new HashMap<>();
 		product.put("detail", dto);
-		
+		List<ReserveVo> rsvo = reserveservice.userRsvNumSelect(proNum);
+		mv.addObject("userRsvNum", rsvo);
 		mv.addObject("product", product);
 		mv.setViewName("product/detail");
 		return mv;
@@ -104,6 +107,9 @@ public class ProductController {
 
 		int currentPage = qnapage; 
 		int totalCnt= qna_service.selectQnaCount(vo.getProNum());
+		if(totalCnt == 0) {
+			totalCnt = 1;
+		}
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
 		
 		qna_service.insert(vo);
@@ -145,6 +151,9 @@ public class ProductController {
 
 		int currentPage = qnapage; 
 		int totalCnt= qna_service.selectQnaCount(vo.getProNum());
+		if(totalCnt == 1) {
+			totalCnt = 0;
+		}
 		Map<String, Integer> map = new Paging().paging(currentPage, totalCnt, 3, 5); 
 		qna_service.delete(qnaNum);
 		List<QnaVo> qnaList = qna_service.selectQnaList(currentPage, 3, vo.getProNum());

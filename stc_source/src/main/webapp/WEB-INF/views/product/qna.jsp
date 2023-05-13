@@ -52,7 +52,6 @@
 										<!-- replyQna modal -->
 										 
                                         <!-- qna 페이징 -->
-                                        <c:if test="${!empty qna.qnaNum }">
                                         <div class="col-md-12 clear"> 
 					                        <div class="text-center">
 					                            <div class="pagination">
@@ -62,7 +61,6 @@
 					                            </div>
 					                        </div>                
 					                    </div>
-					                    </c:if>
                                     </div>
                                 </section>
                             </div>
@@ -149,16 +147,22 @@
            			htmlVal += '<div class="col-sm col-md-12" id="'+qna.qnaNum+'">';
            			htmlVal += '<h5 class="text-uppercase">'+qna.memId
            			htmlVal += '<p class="posted pull-right">';
-          			if('${product.detail.memId}' == '${pageContext.request.userPrincipal.name}'){
-          			htmlVal += '<button data-toggle="modal" data-target="#replyQna'+qna.qnaNum+'" type="button">답변</button>&nbsp';
-          			}
           			if(qna.memId == '${pageContext.request.userPrincipal.name}'){
           			htmlVal += '<button data-toggle="modal" data-target="#updateQna'+qna.qnaNum+'" type="button">수정</button>&nbsp';
           			htmlVal += '<button class="delete btndeleteQna" type="button" data-qnanum="'+qna.qnaNum+'">삭제</button>';
           			}
           			htmlVal += '</p></h5>';
            			htmlVal += '<p class="posted">'+qna.qnaDate+'</p>';
-          			htmlVal += '<p class="posted">'+qna.memQuestion+'</p>';
+          			htmlVal += '<p class="posted">'+qna.memQuestion
+          			if('${product.detail.memId}' == '${pageContext.request.userPrincipal.name}'){
+          			htmlVal += '<button class="pull-right" data-toggle="modal" data-target="#replyQna'+qna.qnaNum+'" type="button">';
+          			if(qna.hostAnswer != null){
+          			htmlVal += '수정';
+          			} else {
+          			htmlVal += '답변';
+          			}
+          			htmlVal += '</button></p>';
+          			}
           			htmlVal += '</div>';
           			htmlVal += '<div class="col-sm col-md-8">';
           			if(qna.hostAnswer != null){
@@ -311,7 +315,7 @@
 	          			, success: function (result) { 
 	          				console.log(result);
 	
-	           				if(result.qnaList.length > 0) { 
+	           				if(result.qnaList.length >= 0) { 
 	           					alert("삭제되었습니다.")
 		           				displayQna(result);
 	           				}            				 

@@ -93,7 +93,7 @@
 			 
 		   , dataType: "json"  
       	   , success: function (result) {
-     			displayQnaList(result);
+      		   displayQnaList(result);
 			}
 		   , error : function(request,status,error) {
 			   alert("code:" + request.status + "\n" + "message:" +
@@ -219,7 +219,7 @@
       			, dataType: "json"  
       			, success: function (result) { 
       				
-       				if(result.qnaList.length > 0) { 
+       				if(result.qnaList.length >= 0) { 
        					alert("삭제되었습니다.")
        					displayQnaList(result);
        				}            				 
