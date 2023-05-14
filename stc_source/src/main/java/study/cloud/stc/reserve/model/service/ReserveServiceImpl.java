@@ -25,8 +25,18 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 	
 	@Override
+	public int selectTotalCount() throws Exception {
+		return dao.selectTotalCount();
+	}
+	
+	@Override
 	public List<ReserveVo> selectReserveListForHost(ReserveTimeReqDto rtDto) throws Exception {
 		return dao.selectReserveListForHost(rtDto);
+	}
+	
+	@Override
+	public List<ReserveVo> selectListForHost(ReserveTimeReqDto rtDto) throws Exception {
+		return dao.selectListForHost(rtDto);
 	}
 
 	@Override

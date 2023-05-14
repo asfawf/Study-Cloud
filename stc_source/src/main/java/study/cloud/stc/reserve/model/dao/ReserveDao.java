@@ -51,8 +51,16 @@ public class ReserveDao {
 		return sqlSession.insert("reserve.rsvdelete", rtDto);
 	}
 	
+	public int selectTotalCount() throws Exception{
+		return sqlSession.selectOne("reserve.selectTotalCount");	
+	}
+	
 	public List<ReserveVo> selectReserveListForHost(ReserveTimeReqDto rtDto) throws Exception{
 		return sqlSession.selectList("reserve.selectReserveListForHost", rtDto);	
+	}
+	
+	public List<ReserveVo> selectListForHost(ReserveTimeReqDto rtDto) throws Exception{
+		return sqlSession.selectList("reserve.selectListForHost", rtDto);	
 	}
 	
 	//예약확인

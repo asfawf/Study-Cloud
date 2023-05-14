@@ -261,6 +261,7 @@ public class HostController {
 	public ModelAndView selectreserveList(
 			HttpServletRequest request, 
 			HttpServletResponse response,
+			@RequestParam(value="page", defaultValue="1") int page,
 			ModelAndView mv, 
 			Principal principal) throws Exception {
 		
@@ -270,8 +271,13 @@ public class HostController {
 		rtDto.setMemId(principal.getName());
 				
 		List<ReserveVo> reserveVo = reserveService.selectReserveListForHost(rtDto);
-		List<ReserveVo> listVo = reserveService.selectList(rtDto);
+		List<ReserveVo> listVo = reserveService.selectListForHost(rtDto);
 		List<MapVo> mapVo = reserveService.selectProNameList();
+		
+		int currentPage = page; 
+		int totalCnt= reserveService.selectTotalCount(); 
+		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 12, 3); 
+		mv.addObject("pageInfo", map);
 		
 		request.setAttribute("reserveVo", reserveVo);
 		request.setAttribute("listVo", listVo);

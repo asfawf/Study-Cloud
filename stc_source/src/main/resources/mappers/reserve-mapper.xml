@@ -87,6 +87,17 @@
                 group by rsv.reg_date, rsv.pro_num, rsv.mem_id) rsv
 		where rsv.pro_num = m.pro_num
 	</select>
+	
+	<select id="selectListForHost" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="rsvvo">
+		select distinct(m.pro_name) as pro_name, m.pro_num
+		from map m, 
+            (select rsv.mem_id, MIN(rsv.rsv_num) as rsv_num, to_char(rsv.reg_date, 'yyyy-mm-dd hh24:mi:ss') as reg_date, MIN(to_char(rsv.rsv_date, 'yyyy-mm-dd')) as rsv_date, rsv.pro_num
+                from reserve rsv 
+                where rsv.pro_num in (select prod.pro_num from product prod where mem_id = #{memId})
+                group by rsv.reg_date, rsv.pro_num, rsv.mem_id) rsv
+		where rsv.pro_num = m.pro_num
+		order by m.pro_name ASC
+	</select>
 
 	<select id="selectReserveList" parameterType="study.cloud.stc.reserve.model.vo.ReserveTimeReqDto" resultType="rsvvo">
 		select m.pro_name, r.pro_num, r.reg_date , r.rsv_date
@@ -104,7 +115,7 @@
 		order by m.pro_name ASC
 	</select>
 
-	<select id="rsvselectCount" resultType="_int">
+	<select id="selectTotalCount" resultType="_int">
 		SELECT COUNT(*) FROM reserve
 	</select>
 	

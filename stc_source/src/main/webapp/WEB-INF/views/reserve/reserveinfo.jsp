@@ -67,6 +67,7 @@
     $(document).ready(function(){
     	const urlParams = new URLSearchParams(location.search);
     	var state = urlParams.get('state');
+    	
     	var btnPay = document.getElementById('btn-pay');
     	var btnBack = document.getElementById('btn-back');
     	

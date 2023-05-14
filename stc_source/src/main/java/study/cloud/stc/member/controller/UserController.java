@@ -113,6 +113,7 @@ public class UserController {
 	public ModelAndView selectreserveList(
 			HttpServletRequest request, 
 			HttpServletResponse response,
+			@RequestParam(value="page", defaultValue="1") int page,
 			ModelAndView mv, 
 			Principal principal) throws Exception {
 		
@@ -125,22 +126,17 @@ public class UserController {
 		List<ReserveVo> listVo = reserveService.selectList(rtDto); 
 		List<MapVo> mapVo = reserveService.selectProNameList();
 		
+		int currentPage = page; 
+		int totalCnt= reserveService.selectTotalCount(); 
+		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 12, 3); 
+		mv.addObject("pageInfo", map);
+		
 		request.setAttribute("reserveVo", reserveVo);
 		request.setAttribute("listVo", listVo);
 		request.setAttribute("mapVo", mapVo);
 				
 		return mv;
 	}
-	
-	//예약확인상세페이지
-//	@GetMapping("/reserve/reserveinfo")
-//	public ModelAndView selectreserveList(HttpServletRequest request, ModelAndView mv) throws Exception {
-//		mv.setViewName("/user/reserve/reserveinfo");
-//		
-//		request.setAttribute("state", "1");
-//		
-//		return mv;
-//	}
 	
 	//예약취소하기 삭제
 	@PostMapping("/reserve/delete")
