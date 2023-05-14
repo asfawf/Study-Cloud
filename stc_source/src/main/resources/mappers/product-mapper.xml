@@ -182,6 +182,21 @@
 	</select>
 	
 	<!-- detail/review -->
+	<select id="userRsvProName" resultType="study.cloud.stc.review.model.vo.ReviewResReqVo">
+		SELECT PRO_NUM, (select PRO_NAME from map where PRO_NUM = r.PRO_NUM) PRO_NAME
+		FROM RESERVE r
+		WHERE MEM_ID = #{memId} 
+		group by PRO_NUM 
+		ORDER BY MIN(REG_DATE) desc
+	</select>
+	<select id="userRsvNum" resultType="study.cloud.stc.review.model.vo.ReviewResReqVo">
+		SELECT PRO_NUM, (select PRO_NAME from map where PRO_NUM = r.PRO_NUM) PRO_NAME, MEM_ID, REG_DATE, MIN(RSV_NUM) RSV_NUMBER
+		FROM (SELECT PRO_NUM, MEM_ID, REG_DATE, RSV_NUM 
+				FROM RESERVE) r
+        WHERE MEM_ID = #{memId}
+		GROUP BY PRO_NUM, PRO_NUM, MEM_ID, REG_DATE 
+		ORDER BY MIN(RSV_NUM)
+	</select>
 	<select id="userRsvNumSelect" resultType="study.cloud.stc.review.model.vo.ReviewResReqVo">
 		SELECT MEM_ID, REG_DATE, MIN(RSV_NUM) RSV_NUMBER
 		FROM (SELECT MEM_ID, REG_DATE, RSV_NUM 

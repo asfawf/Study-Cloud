@@ -29,9 +29,13 @@
                                 <div class="col-md-12">
                                 	<div class="col-md-4">                                     
 	                                    <select id="basic" name="proAddress" class="selectpicker show-tick form-control" data-live-search="true" data-live-search-style="begins" onchange="submit();">
-	                                         	<option value="">지역</option>	                                        	
-	                                        <c:forEach var="v" items="${add }">
-												<option value="${v }">${v }</option>
+	                                        <option value="" ${param.proAddress eq v ? 'selected' : '' }>
+                                        		<c:if test="${!empty param.proAddress}">${param.proAddress}</c:if>
+                                        		<c:if test="${empty param.proAddress}">지역</c:if>
+                                        	</option>                                      	
+	                                        <option value="">---------------------</option>
+	                                        <c:forEach var="v" items="${add }">	                                        
+											<option value="${v }">${v }</option>
 											</c:forEach>
                                     	</select>                                    	
                                 	</div>

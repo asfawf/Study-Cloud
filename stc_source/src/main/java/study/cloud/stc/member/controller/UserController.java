@@ -30,6 +30,7 @@ import study.cloud.stc.reserve.model.service.ReserveService;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
+import study.cloud.stc.review.model.service.ReviewService;
 
 @Controller
 @RequestMapping("/user")
@@ -41,7 +42,8 @@ public class UserController {
 	private ReserveService reserveService;
 	@Autowired
 	private QnaService qna_service;
-	
+	@Autowired
+	private ReviewService rv_service;
 	
 	//유저 마이페이지
 	@GetMapping
@@ -169,7 +171,8 @@ public class UserController {
 		Map<String, Object> userQna = new HashMap<>();
 		userQna.put("productList", productList);
 		userQna.put("selectedProNum", proNum);
-
+		List<ReserveVo> rsvo = rv_service.userRsvProName(principal.getName());
+		userQna.put("userRsvNum", rsvo);
 		mv.addObject("userQna", userQna);
 		mv.setViewName("/user/review");
 		return mv;

@@ -22,7 +22,7 @@
                             <form action="" class="form-inline">
                                 <div class="form-group">                                   
                                     <select name="selectedProNum" id="selectedProNum" class="form-control" style="width: 220px;">
-										<c:forEach items="${userQna.productList }" var="product"> 	
+										<c:forEach items="${userQna.userRsvNum }" var="product"> 	
 				                        	<option value="${product.proNum }" >${product.proName }</option>
 										</c:forEach>
                                     </select>

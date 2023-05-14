@@ -26,6 +26,7 @@ import study.cloud.stc.qna.model.service.QnaService;
 import study.cloud.stc.qna.model.vo.QnaVo;
 import study.cloud.stc.reserve.model.service.ReserveService;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
+import study.cloud.stc.review.model.service.ReviewService;
 import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 @Controller
@@ -38,6 +39,8 @@ public class ProductController {
 	private QnaService qna_service;
 	@Autowired
 	private ReserveService reserveservice;
+	@Autowired
+	private ReviewService rv_service;
 	
 	@GetMapping
 	public ModelAndView productList(ModelAndView mv
@@ -46,9 +49,9 @@ public class ProductController {
 			) throws Exception {
 		int currentPage = page; 
 		int totalCnt= service.selectCount(vo); 
-		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 8, 3); 
+		Map<String, Integer> map= new Paging().paging(currentPage, totalCnt, 12, 3); 
 		mv.addObject("pageInfo", map);
-		mv.addObject("pdList", service.selectList(currentPage, 8, vo));
+		mv.addObject("pdList", service.selectList(currentPage, 12, vo));
 		mv.setViewName("product/product");
 		return mv;
 	}
@@ -72,7 +75,7 @@ public class ProductController {
 		ProductDetailDto dto = service.selectOne(proNum);
 		Map<String, Object> product = new HashMap<>();
 		product.put("detail", dto);
-		List<ReserveVo> rsvo = reserveservice.userRsvNumSelect(proNum);
+		List<ReserveVo> rsvo = rv_service.userRsvNumSelect(proNum);
 		mv.addObject("userRsvNum", rsvo);
 		mv.addObject("product", product);
 		mv.setViewName("product/detail");

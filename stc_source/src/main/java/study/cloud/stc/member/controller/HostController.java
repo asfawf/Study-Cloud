@@ -39,6 +39,7 @@ import study.cloud.stc.reserve.model.service.ReserveService;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
+import study.cloud.stc.review.model.service.ReviewService;
  
 
 @Controller
@@ -53,6 +54,8 @@ public class HostController {
 	private MemberService mservice;
 	@Autowired
 	private ReserveService reserveService;
+	@Autowired
+	private ReviewService rv_service;
 	
 	@Autowired
 	@Qualifier("fileUtil")
@@ -313,7 +316,8 @@ public class HostController {
 		Map<String, Object> userQna = new HashMap<>();
 		userQna.put("productList", productList);
 		userQna.put("selectedProNum", proNum);
-
+		List<ReserveVo> rsvo = rv_service.userRsvNumSelect(proNum);
+		userQna.put("userRsvNum", rsvo);
 		mv.addObject("userQna", userQna);
 		mv.setViewName("/user/review");
 		return mv;
