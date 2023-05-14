@@ -80,10 +80,9 @@
                                         <input type="hidden" name="proPicRenameOld" value="${productDetail.proPicRename }">
 <!--                                     	<img alt="" src="../{productDetail.proPicRename }"> -->
                                     </div>
-                                </div>
-                               
-                               
-                               <input type="button" onclick="findPostCode()" value="주소 검색"><br>
+                                    
+                                    
+                                    <input type="button" onclick="findPostCode()" value="주소 검색"><br>
 									<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                                     
                                     <div class="form-group">
@@ -103,6 +102,11 @@
                                    
                                    <button type="submit" name="delete">삭제하기</button>
                                 </div>
+                                    
+                                </div>
+                               
+                               
+                               
                             </div>
                          </form>
                     </div>

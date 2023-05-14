@@ -36,35 +36,11 @@
 <!--                                     <ul id="image-gallery" class="gallery list-unstyled cS-hidden"> -->
    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
-  
-  
-  
-<!--   Wrapper for slides -->
-<!-- 		<div class="carousel-inner" role="listbox"> -->
-<!-- 	<div class="item active"> -->
-<!-- 		<div> -->
-<%--     	  <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}"/> --%>
-<!--       </div>  -->
-<!--     </div> -->
-   
-<%-- 	<c:forEach items="${product.detail.picList }" var="pic" varStatus="s"> --%>
-<!--     <div class="item"> -->
-<%--           <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}" style="width:100%; height:100%"; > --%>
-<!--           <div class="carousel-caption" style="color:black;"> -->
-<!--           </div> -->
-<!--      </div> -->
-<%--       </c:forEach> --%>
-   
-   
-<!--   		</div> -->
-
-
-
  <div class="carousel-inner" role="listbox" style="widht:100%; height:450px">
  
     <div class="item active" >
 <%--       <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic.proPicRename}" alt="..."> --%>
-      <img src="${pageContext.request.contextPath }/resources/uploadfiles/${pic[0].proPicRename}" alt="...">
+      <img src="${pageContext.request.contextPath }/resources/uploadfiles/${product.detail.picList[1].proPicRename}" alt="...">
       <div class="carousel-caption">
         ...
       </div>

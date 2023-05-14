@@ -35,12 +35,14 @@
 									<div class="col-md-4 p0">
 
 										<div class="box-two proerty-item" style="height: 170px">
-											<div class="item-thumb">list.picList[0]<a	href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }">
+											<div class="item-thumb">
 											<c:if test="${not empty list.picList[0]}">
-													<img src="${pageContext.request.contextPath }/resources/uploadfiles/${list.picList[0].proPicRename}"/></a>
+													<a href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }">
+													<img src="${pageContext.request.contextPath }/resources/uploadfiles/${list.picList[0].proPicRename}"/>
+													</a>
 											</c:if>
 											</div>
-											<div class="item-entry overflow">
+											<div class="item-entry overflow" style="float:right";>
 												<h5>
 													<a
 														href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }">${list.proName }</a>
