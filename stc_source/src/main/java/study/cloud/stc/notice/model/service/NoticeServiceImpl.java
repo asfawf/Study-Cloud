@@ -32,16 +32,6 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVo> selectList(String notiIdx) throws Exception{
-		return dao.selectList(notiIdx);
-	}
-
-	@Override
-	public List<NoticeVo> selectList(NoticeVo vo) throws Exception{
-		return dao.selectList(vo);
-	}
-
-	@Override
 	public List<NoticeVo> selectList(int currentPage, int limit, String notiIdx) throws Exception {
 		return dao.selectList(currentPage, limit, notiIdx);
 	}
@@ -49,11 +39,6 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int selectCount(String notiIdx) throws Exception {
 		return dao.selectCount(notiIdx);
-	}
-
-	@Override
-	public int selectCount() throws Exception {
-		return dao.selectCount();
 	}
 
 	@Override

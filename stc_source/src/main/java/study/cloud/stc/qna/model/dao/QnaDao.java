@@ -20,14 +20,6 @@ public class QnaDao {
 		return sqlSession.insert("product.insertQna", vo);
 	}
 
-	public List<QnaVo> selectList() {
-		return sqlSession.selectList("product.selectQnaList");
-	}
-
-	/* product/detail/qna 화면 */
-	public List<QnaVo> selectQnaList(int proNum) throws Exception{
-		return sqlSession.selectList("product.selectQnaList", proNum);
-	}
 	/* product/detail/qna 페이징 처리 화면 */
 	public int selectQnaCount(int proNum) throws Exception{
 		return sqlSession.selectOne("product.selectQnaCount", proNum);

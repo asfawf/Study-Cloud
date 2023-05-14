@@ -21,16 +21,6 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public List<QnaVo> selectList() throws Exception {
-		return dao.selectList();
-	}
-
-	@Override
-	public List<QnaVo> selectQnaList(int proNum) throws Exception {
-		return dao.selectQnaList(proNum);
-	}
-
-	@Override
 	public int selectQnaCount(int proNum) throws Exception {
 		return dao.selectQnaCount(proNum);
 	}

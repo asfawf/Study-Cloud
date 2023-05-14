@@ -26,19 +26,9 @@ public class NoticeDao {
 	public int delete(int notiNum) throws Exception{
 		return sqlSession.delete("notice.delete", notiNum);
 	}
-	
-	public List<NoticeVo> selectList(String notiIdx) throws Exception{
-		return sqlSession.selectList("notice.selectList", notiIdx);
-	}
-	public List<NoticeVo> selectList(NoticeVo vo) throws Exception{
-		return sqlSession.selectList("notice.selectList", vo);
-	}
 
 	public int selectCount(String notiIdx) throws Exception{
 		return sqlSession.selectOne("notice.selectOneCount", notiIdx);
-	}
-	public int selectCount() throws Exception{
-		return sqlSession.selectOne("notice.selectOneCount");
 	}
 
 	public List<NoticeVo> selectList(int currentPage, int limit, String notiIdx) throws Exception {

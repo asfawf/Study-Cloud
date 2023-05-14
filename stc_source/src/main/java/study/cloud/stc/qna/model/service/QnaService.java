@@ -8,14 +8,12 @@ import study.cloud.stc.qna.model.vo.QnaVo;
 public interface QnaService {
 
 	public int insert(QnaVo vo) throws Exception;
-	public List<QnaVo> selectList() throws Exception;
 
 	// productDetail 페이징 List
 	public int selectQnaCount(int proNum) throws Exception;
 	public List<QnaVo> selectQnaList(int currentPage, int limit, int proNum) throws Exception;
 	
 	// detail qna List
-	public List<QnaVo> selectQnaList(int proNum) throws Exception;
 	public int update(QnaVo vo) throws Exception;
 	public int delete(int qnaNum) throws Exception;
 	public int updateReply(QnaVo vo) throws Exception;

@@ -40,8 +40,6 @@ public interface ReserveService {
 	
 	public ReserveTimeReqDto selectRsvNum(ReserveTimeReqDto rtDto) throws Exception;
 
-	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception;
-	public List<ReserveVo> userRsvNum(ReviewResReqVo rsvo) throws Exception;
 
 }
 

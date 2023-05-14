@@ -167,10 +167,4 @@ public class ReserveDao {
 	}
 
 
-	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception{
-		return sqlSession.selectList("product.userRsvNumSelect", proNum);
-	}
-	public List<ReserveVo> userRsvNum(ReviewResReqVo rsvo) throws Exception{
-		return sqlSession.selectList("product.userRsvNumSelect", rsvo);
-	}
 }

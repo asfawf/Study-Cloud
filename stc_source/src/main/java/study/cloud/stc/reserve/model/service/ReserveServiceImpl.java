@@ -63,12 +63,4 @@ public class ReserveServiceImpl implements ReserveService{
 		return dao.deleteReserve(rtDto);
 	}
 
-	@Override
-	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception {
-		return dao.userRsvNumSelect(proNum);
-	}
-	@Override
-	public List<ReserveVo> userRsvNum(ReviewResReqVo rsvo) throws Exception {
-		return dao.userRsvNum(rsvo);
-	}
 }
