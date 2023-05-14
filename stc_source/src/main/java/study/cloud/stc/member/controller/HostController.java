@@ -187,7 +187,7 @@ public class HostController {
 	    }
 
 	    int result = pservice.insertDetail(dto);
-	    mv.setViewName("/host/product");
+	    mv.setViewName("redirect:/host/product");
 
 	    return mv;
 	}
