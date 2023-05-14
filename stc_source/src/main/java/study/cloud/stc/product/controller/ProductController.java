@@ -1,5 +1,6 @@
 package study.cloud.stc.product.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,11 +72,12 @@ public class ProductController {
 			, @RequestParam(value="qnapage", defaultValue="1") int qnapage
 			, @RequestParam(value="proNum" ,defaultValue = "") int proNum
 			) throws Exception {
-
 		ProductDetailDto dto = service.selectOne(proNum);
 		Map<String, Object> product = new HashMap<>();
 		product.put("detail", dto);
-		List<ReserveVo> rsvo = rv_service.userRsvNumSelect(proNum);
+		List<ReviewResReqVo> rsvo = rv_service.userRsvNumSelect(proNum);
+		List<ReviewResReqVo> reviewList = rv_service.selectReviewList(proNum);
+		mv.addObject("reviewList", reviewList);
 		mv.addObject("userRsvNum", rsvo);
 		mv.addObject("product", product);
 		mv.setViewName("product/detail");

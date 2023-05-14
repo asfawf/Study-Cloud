@@ -15,14 +15,20 @@ public class ReviewDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception{
+	public List<ReviewResReqVo> userRsvNumSelect(int proNum) throws Exception{
 		return sqlSession.selectList("product.userRsvNumSelect", proNum);
 	}
-	public List<ReserveVo> userRsvNum(String name) {
+	public List<ReviewResReqVo> userRsvNum(String name) {
 		return sqlSession.selectList("product.userRsvNum", name);
 	}
-	public List<ReserveVo> userRsvProName(String name) {
+	public List<ReviewResReqVo> userRsvProName(String name) {
 		return sqlSession.selectList("product.userRsvProName", name);
+	}
+	public List<ReviewResReqVo> selectReviewList(int proNum) {
+		return sqlSession.selectList("review.selectReviewList", proNum);
+	}
+	public List<ReviewResReqVo> selectUserReviewList(ReviewResReqVo vo) {
+		return sqlSession.selectList("review.selectUserReviewList", vo);
 	}
 	
 }

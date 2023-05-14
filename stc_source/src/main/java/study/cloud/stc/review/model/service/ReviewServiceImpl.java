@@ -16,16 +16,25 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewDao dao;
 
 	@Override
-	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception {
+	public List<ReviewResReqVo> userRsvNumSelect(int proNum) throws Exception {
 		return dao.userRsvNumSelect(proNum);
 	}
 	@Override
-	public List<ReserveVo> userRsvNum(String name) throws Exception {
+	public List<ReviewResReqVo> userRsvNum(String name) throws Exception {
 		return dao.userRsvNum(name);
 	}
 	@Override
-	public List<ReserveVo> userRsvProName(String name) throws Exception {
+	public List<ReviewResReqVo> userRsvProName(String name) throws Exception {
 		return dao.userRsvProName(name);
 	}
+	@Override
+	public List<ReviewResReqVo> selectReviewList(int proNum) throws Exception {
+		return dao.selectReviewList(proNum);
+	}
+	@Override
+	public List<ReviewResReqVo> selectUserReviewList(ReviewResReqVo vo) throws Exception {
+		return dao.selectUserReviewList(vo);
+	}
+	
 	
 }

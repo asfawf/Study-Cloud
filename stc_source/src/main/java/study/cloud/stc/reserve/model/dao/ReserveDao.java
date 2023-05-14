@@ -14,7 +14,6 @@ import study.cloud.stc.product.model.vo.ProductTimeReqDto;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
-import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 
 

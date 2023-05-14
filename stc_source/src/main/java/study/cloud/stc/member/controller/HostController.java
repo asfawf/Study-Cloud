@@ -40,6 +40,7 @@ import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
 import study.cloud.stc.review.model.service.ReviewService;
+import study.cloud.stc.review.model.vo.ReviewResReqVo;
  
 
 @Controller
@@ -322,7 +323,7 @@ public class HostController {
 		Map<String, Object> userQna = new HashMap<>();
 		userQna.put("productList", productList);
 		userQna.put("selectedProNum", proNum);
-		List<ReserveVo> rsvo = rv_service.userRsvNumSelect(proNum);
+		List<ReviewResReqVo> rsvo = rv_service.userRsvNumSelect(proNum);
 		userQna.put("userRsvNum", rsvo);
 		mv.addObject("userQna", userQna);
 		mv.setViewName("/user/review");

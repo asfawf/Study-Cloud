@@ -50,7 +50,7 @@
 				</div>
 				
 				<!-- qna 페이징 -->
-	            <div class="col-md-12 clear"> 
+	            <div class="col-md-12 clear" style="padding-top: 100px;"> 
 					<div class="text-center">
 	    				<div class="pagination">
 	        				<ul>

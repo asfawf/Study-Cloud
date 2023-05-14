@@ -11,7 +11,6 @@ import study.cloud.stc.reserve.model.dao.ReserveDao;
 import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
-import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 @Service
 public class ReserveServiceImpl implements ReserveService{

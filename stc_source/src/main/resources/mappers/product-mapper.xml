@@ -198,7 +198,7 @@
 		ORDER BY MIN(RSV_NUM)
 	</select>
 	<select id="userRsvNumSelect" resultType="study.cloud.stc.review.model.vo.ReviewResReqVo">
-		SELECT MEM_ID, REG_DATE, MIN(RSV_NUM) RSV_NUMBER
+		SELECT MEM_ID, REG_DATE, MIN(RSV_NUM) RSV_NUMBER, (SELECT PRO_NAME FROM MAP WHERE PRO_NUM = #{proNum}) PRO_NAME
 		FROM (SELECT MEM_ID, REG_DATE, RSV_NUM 
 				FROM RESERVE 
 				WHERE PRO_NUM = #{proNum})

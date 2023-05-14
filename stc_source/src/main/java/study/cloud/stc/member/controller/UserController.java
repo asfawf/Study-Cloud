@@ -31,6 +31,7 @@ import study.cloud.stc.reserve.model.vo.MapVo;
 import study.cloud.stc.reserve.model.vo.ReserveTimeReqDto;
 import study.cloud.stc.reserve.model.vo.ReserveVo;
 import study.cloud.stc.review.model.service.ReviewService;
+import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 @Controller
 @RequestMapping("/user")
@@ -156,20 +157,18 @@ public class UserController {
 			, @RequestParam(value="page", defaultValue="1") int page
 			, Principal principal
 			) throws Exception {
-
-		List<QnaVo> productList = qna_service.selectUserQnaList(principal.getName());
-		int proNum = 0;
 		
-	    if (productList.size() > 0) {
-	        proNum = productList.get(0).getProNum();
-	    }
-	    
-		Map<String, Object> userQna = new HashMap<>();
-		userQna.put("productList", productList);
-		userQna.put("selectedProNum", proNum);
-		List<ReserveVo> rsvo = rv_service.userRsvProName(principal.getName());
-		userQna.put("userRsvNum", rsvo);
-		mv.addObject("userQna", userQna);
+		Map<String, Object> userReview = new HashMap<>();
+		
+		List<ReviewResReqVo> userRsvNum = rv_service.userRsvProName(principal.getName());
+		String proNum = userRsvNum.get(0).getProNum();
+		userReview.put("userRsvNum", userRsvNum);
+		ReviewResReqVo vo = new ReviewResReqVo();
+		vo.setProNum(proNum);
+		vo.setMemId(principal.getName());
+		List<ReviewResReqVo> reviewList = rv_service.selectUserReviewList(vo);
+		userReview.put("reviewList", reviewList);
+		mv.addObject("userReview", userReview);
 		mv.setViewName("/user/review");
 		return mv;
 	}

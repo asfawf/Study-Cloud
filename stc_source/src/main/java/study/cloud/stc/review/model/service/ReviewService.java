@@ -7,7 +7,10 @@ import study.cloud.stc.review.model.vo.ReviewResReqVo;
 
 public interface ReviewService {
 
-	public List<ReserveVo> userRsvNumSelect(int proNum) throws Exception;
-	public List<ReserveVo> userRsvNum(String name) throws Exception;
-	public List<ReserveVo> userRsvProName(String name) throws Exception;
+	public List<ReviewResReqVo> userRsvNumSelect(int proNum) throws Exception;
+	public List<ReviewResReqVo> userRsvNum(String name) throws Exception;
+	public List<ReviewResReqVo> userRsvProName(String name) throws Exception;
+	public List<ReviewResReqVo> selectReviewList(int proNum) throws Exception;
+	public List<ReviewResReqVo> selectUserReviewList(ReviewResReqVo vo) throws Exception;
+	
 }

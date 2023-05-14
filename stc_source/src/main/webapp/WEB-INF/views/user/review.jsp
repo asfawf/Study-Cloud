@@ -21,9 +21,9 @@
                         <div class="">
                             <form action="" class="form-inline">
                                 <div class="form-group">                                   
-                                    <select name="selectedProNum" id="selectedProNum" class="form-control" style="width: 220px;">
-										<c:forEach items="${userQna.userRsvNum }" var="product"> 	
-				                        	<option value="${product.proNum }" >${product.proName }</option>
+                                    <select name="proNum" id="selectedProNum" class="form-control" style="width: 220px;">
+										<c:forEach items="${userReview.userRsvNum }" var="product"> 	
+				                        	<option value="${product.proNum }" ${param.proNum eq product.proNum ? 'selected' : '' }>${product.proName }</option>
 										</c:forEach>
                                     </select>
                                 </div>
@@ -43,18 +43,28 @@
 						        <th colspan="1" class="text-center">관리</th>
 				    		</tr>
 						</thead>
-						<!-- <tbody id="qList">
-						
-						</tbody> -->
+						<tbody id="">
+							<c:forEach items="${userReview.reviewList }" var="review">
+							<tr data-revnum="${review.revNum }">
+								<td colspan="1">${review.revDate }</td>
+								<td colspan="4">${review.revContents }</td>
+								<td colspan="1">
+								<button data-toggle="modal" data-target="#update${review.revNum }" type="button">수정</button>
+								<button class="btndeleteQna" type="button" data-qnanum="${review.revNum }">삭제</button></td>
+							</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 				
 				<!-- qna 페이징 -->
-	            <div class="col-md-12 clear"> 
+	            <div class="col-md-12 clear" style="padding-top: 100px;"> 
 					<div class="text-center">
 	    				<div class="pagination">
 	        				<ul>
-								
+								<li><a class="disabled pe-7s-angle-left"></a></li>
+								<li><a >1</a></li>
+								<li><a class="disabled pe-7s-angle-right"></a></li>						            		
 	            			</ul>
 	        			</div>
 	    			</div>                
