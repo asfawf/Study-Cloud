@@ -4,17 +4,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>호스트 공간 목록</title>
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 <body>
 
 <%@ include file="/WEB-INF/views/module/header2.jsp" %>
 <section>
+
+
+	<div class="count-area"> 
+	    <div class="container">
+		    <div class="row">
+	    	    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+	        	    <h2>호스트 공간 목록</h2>             
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+
   <!-- Body content -->
 		<div class="slider-area" style="height:250px;">
 			<div class="slider-content">
-					<h2>호스트 공간 목록</h2>
+					
 					<!-- <div class="search-form wow pulse" data-wow-delay="0.8s"> -->
 						<form action="" class=" form-inline">
 							<div class="form-group">
@@ -56,8 +69,8 @@
 <!-- 									<div class="col-md-4 p0"> -->
 
 							 <!-- 테이블구역 -->
-				<div class="container" style="color: black;" margin-bottom:"1px"; >
-					<table class="table table-bordered">
+				<div class="container" style="color: black; margin-top: 40px;" >
+					<table class="table ttable-striped">
 						<thead>
 				    		<tr>
 						        <th class="text-center">공간이름</th>
@@ -81,35 +94,9 @@
 				</div>
 
 
-
-
-
-
-
-<!-- 										<div class="box-two proerty-item" style="height: 170px"> -->
-<!-- 											<div class="item-thumb"> -->
-<!-- 												<a -->
-<%-- 													href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }"><img --%>
-<!-- 													src="assets/img/demo/property-3.jpg"></a> -->
-<!-- 											</div> -->
-<!-- 											<div class="item-entry overflow"> -->
-<!-- 												<h5> -->
-<!-- 													<a -->
-<%-- 														href="${pageContext.request.contextPath}/product/detail?proNum=${list.proNum }">${list.proName }</a> --%>
-<!-- 												</h5> -->
-<!-- 												<div class="dot-hr"></div> -->
-<%-- 												<span class="pull-left"><b>${list.proPhone }</span> --%>
-<%-- 												<p style="display: none;">${list.proAddress }</p> --%>
-<!-- 												<div class="dealer-action pull-right"> -->
-<%-- 													<a href="${pageContext.request.contextPath}/host/product/update?proNum=${list.proNum}" class="button">Edit </a> <a --%>
-<!-- 														href="#" class="button delete_user_car">Delete</a> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
-
-<!-- 										</div> -->
-<!-- 									</div> -->
 								</div>
 						</div>
+					</div>
 
 	
 			<!-- 			페이징 -->
