@@ -16,7 +16,20 @@ Insert Into Member values('user2','1234','admin','010-5968-9878','1234@google.co
 -- SELECT * FROM MAP;
 -- 예시
 -- insert into MAP values(상품번호, '상품이름', '상품주소', '전화번호');
-insert into MAP values(1, '상품이름', '상품주소', '전화번호');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '작심스터디카페 혜화점', '서울 종로구 창경궁로 253-1 어젤리아명륜1 3층', '02-747-0910');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '랭스터디카페 대학로점', '서울 종로구 대학로10길 15-11 3층', '02-766-0907');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '플래닛스터디카페 대학로점', '서울 종로구 대학로 149 유니로드빌딩 6층', '010-8497-6296');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '크라스 스터디랩 종로점', '서울 종로구 종로 120 동영타워 2층', '02-6959-8309');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '멘토즈스터디카페 혜화역점', '서울 종로구 대학로 146 씨티밸리빌딩 5층 502호', '010-4767-8636');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '그린스터디카페 독립문역점', '서울 종로구 통일로16길 5 시온빌딩 2층', '010-2089-3832');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '멘토즈스터디카페 혜화가톨릭대점', '서울 종로구 창경궁로 293-1', '02-747-9785');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '스터디카페 스페로 성균관대점', '서울 종로구 창경궁로 236 3층', '02-745-8934');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '작심스터디카페 대학로점', '서울 종로구 대학로10길 12 4층', '010-7519-4344');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '플래닛 스터디카페 혜화점', '서울 종로구 창경궁로 269 3층', '010-5559-6296');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '스터디피아', '서울 종로구 창경궁로 109 세운스퀘어 주얼리관 1층', '02-6272-0022');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '세검정스터디카페', '서울 종로구 자하문로 312 5층', '010-5915-3679');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '코넬스터디카페', '서울 종로구 통일로 262 2층', '070-8098-4645');
+insert into MAP values(SEQ_PRO_NUM.NEXTVAL, '초월스터디카페 혜화점', '서울 종로구 성균관로 13 2층', '010-9184-5046');
 -- update MAP set PRO_NAME = '수정내용', PRO_ADDRESS = '수정내용', PRO_PHONE = '수정내용' where PRO_NUM = 1;
 -- delete from MAP where PRO_NUM = 1;
 
