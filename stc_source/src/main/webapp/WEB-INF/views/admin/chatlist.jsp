@@ -144,7 +144,7 @@
 									</thead>
 									<tbody style="overflow: auto;" class=" none-scroll">
 										<c:forEach items="${enterList }" var="list">
-											<tr style="">
+											<tr class="active-row">
 												<td style="text-align: center;">${list.chaRoomId }</td>
 												<td style="text-align: center;">${list.roomContents }</td>
 												<td style="text-align: center;">${list.roomLastDate }</td>

@@ -38,14 +38,16 @@
 			            <div class="notice-slider-content">
 			                <div class="row" style=" padding-top: 15px;">                
 								<form action="${pageContext.request.contextPath}/admin/user" method="get" style=" padding-bottom: 30px;">
-									<select id="selectbox" class="" name="selectbox" onchange="chageLangSelect(this)">
-										<option value="" selected disabled>설정을 고르세요</option>              
-										<option value="1">전체</option>
-										<option value="2">활성화 유저</option>
-										<option value="3">탈퇴 혹은 차단</option>
-										<option value="4">SNS</option>
-									</select>
-									<button type="submit">검색</button>
+									<div class="form-group" style="display: inline-block;">   
+										<select id="selectbox" class="form-control" style="width: 220px;" name="selectbox" onchange="chageLangSelect(this)">
+											<option value="" selected disabled>설정을 고르세요</option>              
+											<option value="1">전체</option>
+											<option value="2">활성화 유저</option>
+											<option value="3">탈퇴 혹은 차단</option>
+											<option value="4">SNS</option>
+										</select>
+									</div>
+									<button type="submit" class="btn notibtn">검색</button>   
 								</form>
 								<table class="table table-hover table-striped">
 									<thead>
@@ -71,12 +73,12 @@
 													<c:choose>
 														<c:when test="${vo.memQuit != 0}">
 															<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/user/block?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
-																<button form="block${vo.memId}" type="button" class="btn btn-primary block" onclick="submit();">차단하기</button>
+																<button form="block${vo.memId}" type="button" class=" block" onclick="submit();">차단하기</button>
 															</form:form>
 														</c:when>
 														<c:otherwise>
 																<form:form id="block${vo.memId}" action="${pageContext.request.contextPath}/admin/user/unblock?memId=${vo.memId }&selectbox=${nowoption }" method="POST">
-																	<button form="block${vo.memId}" type="button" class="btn btn-primary block" onclick="submit();">차단해제</button>
+																	<button form="block${vo.memId}" type="button" class=" block" onclick="submit();">차단해제</button>
 																</form:form>
 														</c:otherwise>					
 													</c:choose>

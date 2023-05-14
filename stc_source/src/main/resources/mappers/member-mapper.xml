@@ -144,7 +144,9 @@
 		select * FROM MEMBER WHERE MEM_ID = #{memId}
 	</select>
 	
-	
+	<select id="selectSnsUser" resultType="mvo">
+		select MEM_ID,MEM_PASSWD,MEM_NAME,MEM_PHONE,MEM_EMAIL,MEM_QUIT,MEM_AUTHORITY,MEM_SNS FROM MEMBER WHERE MEM_AUTHORITY = 'ROLE_USER' AND MEM_SNS != 'null'
+	</select>
 		
 	<!-- 회원전체 탈퇴수정, 차단, 차단 해제, 삭제, 조회, 비밀번호 변환 -->
 	<update id="Quitupdate">		

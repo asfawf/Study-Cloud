@@ -119,7 +119,7 @@ body {
 									style="padding-left: 3%; padding-right: 3%;">
 									<div style="padding-top: 20px;">
 										<button type="submit" class="btn btn-default"
-											style="width: 100%; border-top: 20px;">로그인</button>
+											style="color: white; width: 100%; border-top: 20px; border-radius: 10px;">로그인</button>
 									</div>
 								</div>
 
@@ -128,7 +128,7 @@ body {
 									<div style="padding-top: 20px;">
 										<a href="${pageContext.request.contextPath}/jointerms">
 											<button type="button" class="btn btn-default"
-												style="width: 100%; border-top: 20px;">회원가입</button>
+												style="color: white; width: 100%; border-top: 20px; border-radius: 10px;">회원가입</button>
 										</a>
 									</div>
 								</div>
@@ -151,7 +151,7 @@ body {
 							</form:form>
 
 							<div style="padding-left: 3%;">
-								<h2>Social login :</h2>
+								<h4 style="color: white;">Social login :</h4>
 							</div>
 
 							<div class="text-center"
@@ -159,7 +159,7 @@ body {
 								<a class="kakao"
 									href="https://kauth.kakao.com/oauth/authorize?client_id=94e122bfd99bcf13ff8bfa4508d639b3&redirect_uri=http://localhost:8090/stc/kakaologin&response_type=code">
 									<button type="button" class="kakaobtn"
-										style="width: 100%; border-top: 20px; color: white;">카카오로그인</button>
+										style="width: 100%; border-top: 20px; color: white;  border-radius: 10px;">카카오로그인</button>
 								</a>
 							</div>
 							

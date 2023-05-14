@@ -175,10 +175,7 @@ public class ChattingController {
 				) {
 			
 			MemberRoomVo mrvo= new MemberRoomVo();
-			/*
-			 * System.out.println("이거 퇴장한 사람 아이디 + exitId:" + exitId);
-			 * System.out.println("이거 퇴장한 방 + roomId"+ roomId);
-			 */
+			
 			mrvo.setMemId(exitId);
 			mrvo.setRoomId(roomId);
 			

@@ -31,4 +31,8 @@
 		WHERE MEM_ID != #{memId} 
 		AND CHA_READCOUNT != 0		
 	</update>
+	
+	<select id="viewUnreadmsg" resultType="_int">
+		SELECT COUNT(*) CNT FROM CHAT WHERE MEM_ID = #{memId} AND CHA_READCOUNT != 0 AND ROOM_ID = #{roomId} AND CHA_CONTENTS = #{chaContents}
+	</select>
 </mapper>
