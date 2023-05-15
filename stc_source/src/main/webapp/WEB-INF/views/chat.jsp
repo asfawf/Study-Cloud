@@ -72,8 +72,10 @@
 					/* var divChatData = $('#divChatData');
 					 */
 					/* $( '.chatLog' ).scrollTop($('.chatLog')[0].scrollHeight); */
-					$('#divChatData').append('<div align=\"right\" class=\"wrap\">'+ msgData.sender +'<div class=\"chatTime\">'+ msgData.formatedNow +'이게readCount ' + msgData.readCount+ '</div>' + '<div class=\"messageformright\" style=\"max-width: 300px;\">' + msgData.msg +'</div>' +'</div>');
+					$('#divChatData').append('<div align=\"right\" class=\"wrap\">'+ msgData.sender +'<div class=\"chatTime\">'+ msgData.formatedNow + '</div>' + '<div class=\"messageformright\" style=\"max-width: 300px;\">' + msgData.msg +'</div>' +'</div>');
 
+					/* '이게readCount ' + msgData.readCount+ */
+					
 					chatLog.scrollTop(chatLog.prop('scrollHeight'));
 					
 				}
