@@ -82,7 +82,20 @@
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/8d86159f-4d2d-4c54-a3be-770a1770752b)
 
 ## 5.시퀀스 다이어그램
+<details> 
+<summary>시퀀스 다이어그램 </summary>
 
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/e9e25e24-e744-4ca4-9f53-e16842de1985)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/4cdaca8e-0e6d-488e-8656-b7dc5ab80e89)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/a45bbe51-7ab7-463f-a096-8a7c0b69783f)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/96af629b-4004-478c-8f33-cbd51bb09feb)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/4fdf1b0c-0cd5-4bad-840e-561b97046102)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/f048baa3-17a9-43c6-b41f-ad6c54eb954f)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/74c19222-d955-4be7-a3b1-4afa15743599)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/2333ece7-6435-4ee5-88d1-517acbc9ff2d)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/66948362-38f7-4564-b166-1d7f228d6c03)
+
+</details>
 
 ## 6.ERD 다이어그램
 
@@ -127,7 +140,20 @@
 </details>
 
 ## 8.클래스 다이어그램
+<details> 
+<summary>클래스 다이어그램 </summary>
 
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/fbf382fb-0d91-40d1-8379-ab2465e7697f)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/08a136e6-8252-49e2-a468-365c5c068ec5)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/87e77205-df91-40a9-930c-07e5c4bcde99)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/4d11a86e-cb07-4ce4-b90e-755c0fc16015)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/02337a26-38a1-4da4-9df7-b4646817ca92)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/704203ac-8a87-4e61-86c5-41de69f4c009)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/932228ac-0cc3-4eab-b2db-7ed93d59581d)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/694b87f2-99ef-4b4f-81a7-b6f972242f6f)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/194a7556-ecfe-418d-9afe-c316a32999a5)
+
+</details>
 
 ## 9.변경사항 혹은 history
 
