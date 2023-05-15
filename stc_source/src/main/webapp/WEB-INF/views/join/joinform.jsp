@@ -10,12 +10,12 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
-<body>
+<body style="background: #f6f6f6;">
 	<%@ include file="/WEB-INF/views/module/header.jsp"%>
 
 	<!-- Start page header -->
 	<section>
-		<div class="count-area">
+		<div class="count-area" style="background: #f6f6f6;">
 			<div class="container">
 				<div class="row">
 					<div

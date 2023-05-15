@@ -10,13 +10,13 @@
 <%@ include file="/WEB-INF/views/module/link.jsp" %>
 </head>
 
-<body>
+<body style="background: #f6f6f6;">
 <!-- Header area-->
 <%@ include file="/WEB-INF/views/module/header.jsp" %> 
 
 <!-- Start page header --> 
 <section>
-    <div class="count-area"> 
+    <div class="count-area" style="background: #f6f6f6;"> 
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
