@@ -1,61 +1,39 @@
-## 프로젝트 이름 : Study-Cloud 
-<br>
+# 파이널 프로젝트 - STUDY-CLOUD
+
+# Contents 📖
+1. [개발 배경과 목표](#1️⃣-개발-배경과-목표)
+2. [개발 환경](#2️⃣-개발-환경)
+3. [주요 기능](#3️⃣-주요-기능)
+4. [산출물](#4️⃣-산출물)
+5. [최종발표자료(Google Drive)](https://docs.google.com/presentation/d/181jzaUyEli8fAgDtYkjm3YvEkabIQe7s/edit#slide=id.g22a7829c76b_2_99)
+
+## 1️⃣ 개발 배경과 목표
+### 개발 배경
+- 일상에서 특정 공간을 빌리고 싶지만 여러가지의 검색결과가 섞여 공간을 찾는데 어려음을 대학생, 직장인들이 많다.
+- 스터디 클라우드는 시간, 비용, 지역에 따라 부담 없이 짧은 시간내에 다양한 스터디 룸을 찾을 수 있다.
+- 자신이 정한 검색을 기준으로 스터디룸을 짧은 사긴내에 검색할수 있다
+
+## 2️⃣ 개발 환경
 
 
-## 목차
-
-<br>
-
-## 프로젝트 소개
+## 3️⃣ 주요 기능
 
 
 
-<br>
+## 4️⃣ 산출물
+## 1.개발일정
+## 2.요구사항 정의서
 
-## 기술 스택
-<img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"> <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"> <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
+## 3. UI 설계서
+## 4. 유스케이스 다이어그램
 
+## 5.시퀀스 다이어그램
+## 6.ERD 다이어그램
 
-<br>
+## 7.클래스 URL 맵핑
 
-## 구현 기능
+## 8.클래스 다이어그램
 
-### -이정현: 
-#####    기능 1 :
-#####    기능 2 :
-#####    기능 3 :
-#####    기능 4 :
+## 9.history
 
-### -윤솔:
-#####    기능 1 :
-#####    기능 2 :
-#####    기능 3 :
-#####    기능 4 :
-
-### -천준혁:
-#####    기능 1 :
-#####    기능 2 :
-#####    기능 3 :
-#####    기능 4 :
-
-### -최서안:
-#####    기능 1 :
-#####    기능 2 :
-#####    기능 3 :
-#####    기능 4 :
-
-<br>
-
-## 배운 점 & 아쉬운 점
-
-### -이정현: 
-
-### -윤솔: 
-
-### -천준혁: 
-
-### -최서안: 
-
-
-<br>
-
+## 10.테스트 케이스
