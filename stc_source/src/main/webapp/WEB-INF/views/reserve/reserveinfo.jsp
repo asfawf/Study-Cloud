@@ -32,8 +32,8 @@
 		          pay_method: "card",
 		          merchant_uid: "${dto.rsvNum }"+new Date().getTime(),
 		          name: "${mapVo.proName }",
-// 		          amount: ${dto.rsvAmount },
-		          amount: 100,
+		          amount: "${dto.rsvAmount }",
+// 		          amount: 100,
 		      }
 		      , function (rsp) { // callback
 		    	  if (rsp.success) {
