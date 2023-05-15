@@ -65,7 +65,7 @@
                                     <h4><strong>${review.memId }</strong>
                                     <span class="posted pull-right">
                                     <button data-toggle="modal" data-target="#updateReivew${review.revNum }" type="button">수정</button>
-									<button class="delete btndeleteQna" type="button" data-qnanum="${review.revNum }">삭제</button></span></h4>
+									<button class="delete btndeleteReivew" type="button" data-qnanum="${review.revNum }">삭제</button></span></h4>
                                 </div>
                                 <div class="modal fade" id="updateReivew${review.revNum }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
@@ -120,6 +120,12 @@
 			}
 		}
 		
+		$(".btndeleteReivew").click(ckdeleteReivew);
+		function ckdeleteReivew() {
+			if(confirm("리뷰를 삭제하시겠습니까?")){
+				
+			}
+		}
 		getReviewListHandler();
         
         function getReviewListHandler(){
