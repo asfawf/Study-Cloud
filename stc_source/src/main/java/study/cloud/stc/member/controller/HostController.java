@@ -313,11 +313,11 @@ public class HostController {
 			, Principal principal
 			) throws Exception {
 
-		List<QnaVo> productList = qna_service.selectUserQnaList(principal.getName());
+		List<ProductVo> productList = pservice.selectHostProductList(principal.getName());
 		int proNum = 0;
 		
 	    if (productList.size() > 0) {
-	        proNum = productList.get(0).getProNum();
+	        proNum = productList.get(productList.size() - 1).getProNum();
 	    }
 	    
 		Map<String, Object> userQna = new HashMap<>();
@@ -325,8 +325,10 @@ public class HostController {
 		userQna.put("selectedProNum", proNum);
 		List<ReviewResReqVo> rsvo = rv_service.userRsvNumSelect(proNum);
 		userQna.put("userRsvNum", rsvo);
+		List<ReviewResReqVo> reviewList = rv_service.selectReviewList(proNum);
+		userQna.put("reviewList", reviewList);
 		mv.addObject("userQna", userQna);
-		mv.setViewName("/user/review");
+		mv.setViewName("/host/review");
 		return mv;
 	}	
 	

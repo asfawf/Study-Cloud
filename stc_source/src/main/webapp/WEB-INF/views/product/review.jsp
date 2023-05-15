@@ -4,6 +4,8 @@
 							<div class="section property-share">
                           		<input type="hidden" class="form-control" name="proNum" value="${product.detail.proNum }">                                
                           		<h4 class="s-property-title">review
+                          		<sec:authorize var="isauth" access="isAuthenticated()">
+								<sec:authorize var="" access="hasRole('USER')">
                           		<!-- review 등록 버튼 시작 -->                          			
 									<button type="button" class="btn qna-btn pull-right btninsert" data-toggle="modal" data-target="#insertReview" style="display: inline;">
 										등록
@@ -51,6 +53,8 @@
 										</div>
 									</div>
 									<!-- 공지사항 등록 버튼 끝 -->
+								</sec:authorize>			
+								</sec:authorize>
                           		</h4>
                           		</div>
 								<!-- review 시작 -->

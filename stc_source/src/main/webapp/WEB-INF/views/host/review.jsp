@@ -45,9 +45,16 @@
 						        <th colspan="1" class="text-center">관리</th>
 				    		</tr>
 						</thead>
-						<!-- <tbody id="qList">
-						
-						</tbody> -->
+						<tbody id="">
+							<c:forEach items="${userQna.reviewList }" var="review">
+							<tr data-revnum="${review.revNum }">
+								<td colspan="1">${review.revDate }</td>
+								<td colspan="4">${review.revContents }</td>
+								<td colspan="1">
+								<button class="btndeleteQna" type="button" data-qnanum="${review.revNum }">삭제</button></td>
+							</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 				
