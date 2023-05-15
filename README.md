@@ -104,7 +104,7 @@
 [요구 사항 정의서(Google Drive)](https://docs.google.com/spreadsheets/d/1loN4Tgtiki4tR7pAoieqtcR1SyyVuMhq/edit#gid=1857108071)
 
 ## 3. 화면 설계서
-[화면 설계서(Google Drive)](https://docs.google.com/presentation/d/18IYjfRnmvZ1XR_cBN_5M-XQAQzHIGUhx/edit#slide=id.g1fd5abc6870_1_0)
+[화면 설계서(Google Drive)](https://docs.google.com/presentation/d/1jYvdFFJgSZ9pj4DfdI9S5WbPeexDtDcd/edit?usp=sharing&ouid=100115649288468550394&rtpof=true&sd=true)
 
 ## 4. 유스케이스 다이어그램
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/8d86159f-4d2d-4c54-a3be-770a1770752b)
