@@ -73,28 +73,64 @@
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/6b530869-4132-4987-8edc-1eb7a2773f5e)
 
 ## 2.요구사항 정의서
+[요구 사항 정의서(Google Drive)](https://docs.google.com/spreadsheets/d/1loN4Tgtiki4tR7pAoieqtcR1SyyVuMhq/edit#gid=1857108071)
 
-
-## 3. UI 설계서
-
+## 3. 화면 설계서
+[화면 설계서(Google Drive)](https://docs.google.com/presentation/d/18IYjfRnmvZ1XR_cBN_5M-XQAQzHIGUhx/edit#slide=id.g1fd5abc6870_1_0)
 
 ## 4. 유스케이스 다이어그램
-
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/8d86159f-4d2d-4c54-a3be-770a1770752b)
 
 ## 5.시퀀스 다이어그램
 
 
 ## 6.ERD 다이어그램
 
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/a9e4f54a-e9e8-4238-8e0c-b398ec5a92f6)
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/d2be6bb3-ea40-4ea5-b67c-7936102d129d)
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/ad25a19b-2ba4-49f8-8866-fadf8048f580)
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/b46ebf39-2196-4263-b55e-615aa4dbf310)
+
 
 ## 7.클래스 URL 맵핑
 
+<details>
+       <summary>MEMBER</summary>
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/f77468d5-337c-4674-afdb-ba98d4780365)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/fb09cccb-b983-4609-9759-c57bbab1783b)
+
+</details>
+
+<details> 
+<summary>chat + review + QNA </summary>
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/c04a86e3-3953-4bee-89f4-d2dacc607bd3)
+
+</details>
+
+<details> 
+<summary>reserve + product </summary>
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/8cb89725-0a3c-4e18-9cdf-652769a01516)
+
+</details>
+
+<details> 
+<summary>pay + notice </summary>
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/4909f695-b091-418d-ae14-1a82a21351ea)
+
+</details>
 
 ## 8.클래스 다이어그램
 
 
 ## 9.변경사항 혹은 history
 
-[변경사항 혹은 history 자료](https://docs.google.com/spreadsheets/d/1mh46rlAMplGj744a4B2tdy9MEyNw-NbUpXg4xLhCX70/edit#gid=0)
+[변경사항 혹은 history 자료(Google Drive)](https://docs.google.com/spreadsheets/d/1mh46rlAMplGj744a4B2tdy9MEyNw-NbUpXg4xLhCX70/edit#gid=0)
 
 ## 10.테스트 케이스
