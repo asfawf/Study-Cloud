@@ -127,14 +127,7 @@
 
 ## 6.ERD 다이어그램
 
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/a9e4f54a-e9e8-4238-8e0c-b398ec5a92f6)
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/d2be6bb3-ea40-4ea5-b67c-7936102d129d)
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/ad25a19b-2ba4-49f8-8866-fadf8048f580)
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/b46ebf39-2196-4263-b55e-615aa4dbf310)
-
+![Copy of Copy of StudyCloud](https://github.com/asfawf/Study-Cloud/assets/115056752/de69e006-bcfb-45bc-8cad-38c5ba55fdba)
 
 ## 7.클래스 URL 맵핑
 
