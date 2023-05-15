@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div class="pull-left">
-                        <span> (C) <a href="<%=request.getContextPath() %>/">StudyCloud</a> , All rights reserved 2023  </span> 
+                        <span> (C) <a href="http://www.KimaroTec.com">KimaroTheme</a> , All rights reserved 2016  </span> 
                     </div> 
                     <div class="bottom-menu pull-right fixed-bottom"> 
                         <ul> 
