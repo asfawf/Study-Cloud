@@ -76,7 +76,7 @@
        </if>
    </trim>         
          GROUP BY (PRO_NUM, PRO_NAME, PRO_ADDRESS, PRO_PHONE)
-         ORDER BY PRO_NUM
+         ORDER BY PRO_NUM DESC
 	</select>
 	
 	<!-- productList 페이징 count -->
