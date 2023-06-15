@@ -4,7 +4,7 @@
 1. [개발 배경 및 주안점](#1️⃣-개발-배경-및-주안점)
 2. [개발 환경](#2️⃣-개발-환경)
 3. [주요 기능](#3️⃣-주요-기능)
-4. [팀원 별 산출물 및 문서](#4️⃣-팀원-별-산출물-및-문서)
+4. [프로젝트 관련 문서](#4️⃣-프로젝트-관련-문서)
 5. [최종발표자료(Google Drive)](https://docs.google.com/presentation/d/181jzaUyEli8fAgDtYkjm3YvEkabIQe7s/edit#slide=id.g22a7829c76b_2_99)
 
 ## 1️⃣ 개발 배경 및 주안점
@@ -22,52 +22,8 @@
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/53508906-02b8-484c-a181-78c53c3232c5)
 
 ## 3️⃣ 주요 기능
+### 팀원 별 개발 사항
 
-### 지도 검색
-<details>
-       <summary>지도 검색</summary>
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/af6f6e68-65e2-4e1f-8eab-f53d55c0d567)
-
-</details>
-
-### 물건 상세 검색
-<details>
-       <summary>물건 상세 검색</summary>
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/275b88c7-5d61-4d7b-bc14-99d8a25ebeb3)
-
-</details>
-
-### 회원가입
-
-<details>
-     <summary>회원가입 </summary>
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/8e50cbc5-4e42-428b-9554-052a8af61f9d)
-
-</details>
-
-
-### 관리자 공지 사항
-<details>
-     <summary>관리자 공지 사항</summary>
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/de0eb127-e6c8-42fa-b187-03e3e467c732)
-
-</details>
-
-### 문의(사용자) 채팅
-<details>
-     <summary>문의(사용자) 채팅</summary>
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/6ba96a70-7222-4d78-b753-5eecd5e98cbe)
-
-</details>
-
-## 4️⃣ 팀원 별 산출물 및 문서
-
-## 0. 팀원 별 개발 사항
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/fab1b72f-32ee-444b-8066-fff6e0386058)
 <details> 
@@ -148,6 +104,10 @@
   |**회원 정보 탈퇴**|가입시(현재 로그인한 계정의) 비밀번호 기입 시 해당 계정 탈퇴
   |**회원 관리 : 차단 , 해제**|해당 조건에서 조회된 아이디를 차단 혹은 차단 해제
 </details>
+
+## 4️⃣ 프로젝트 관련 문서
+
+
 
 ## 1.개발일정
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/6b530869-4132-4987-8edc-1eb7a2773f5e)
