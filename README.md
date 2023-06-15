@@ -94,10 +94,10 @@
 <summary>로그인 및 계정 찾기 🔎</summary>
 
 ## 1. 로그인 + 로그아웃
-![로그인](https://github.com/asfawf/Study-Cloud/assets/115056752/a14287f0-1b7a-4703-b35c-60a35f480c68)
+![로그인](https://github.com/asfawf/Study-Cloud/assets/115056752/ef643d79-0221-4257-89bc-fc8bf8335738)
 
 ## 2. 계정 찾기 + 카카오 로그인
-![찾기 + 카카오](https://github.com/asfawf/Study-Cloud/assets/115056752/ccb69423-dc54-4338-a538-cbaa7f48ccfb)
+![찾기](https://github.com/asfawf/Study-Cloud/assets/115056752/9d2f69bc-091d-45dc-825f-075527f78125)
 
 |핵심 기능|기능 설명|
   |--|----|
