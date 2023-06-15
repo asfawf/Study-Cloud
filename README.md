@@ -110,6 +110,28 @@
 
 </details>
 
+<details> 
+<summary>관리자와의 채팅 (문의)🔎</summary>
+
+## 1. 채팅 전송 및 채팅 구간 자동 스크롤
+![ezgif com-video-to-gif](https://github.com/asfawf/Study-Cloud/assets/115056752/2c3b3c26-6a3b-4ec1-b25a-309e442b1728)
+
+## 2. 채팅 방 나누기
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/99880472-b5e6-41ad-9f49-2d3252099ff7)
+
+![ezgif com-video-to-gif (1)](https://github.com/asfawf/Study-Cloud/assets/115056752/17f5d1a9-22a6-4865-a4c5-64de0aa7cf68)
+
+  |핵심 기능|기능 설명|
+  |--|----|
+  |**1:1문의 (관리자 + 일반 유저)**| 1:1문의 시작, 종료, 채팅검색/ 버튼 누르면 관련 답변 
+  |**권한 구분**|로그인한 유저 권한에 따라 바로 자신의 채팅방으로 이동 혹은 개설된 채팅방 목록 페이지로 이동
+  |**채팅 연결**|회원일 경우 현재 채팅방이 존재하면 해당 채팅방으로 이동  후 이전에 나누었던 채팅 목록 DB에서 출력 관리자의 경우 개설된 채팅방 목록 페이지로 이동 후 선택한 채팅방으로 
+  |**채팅 방 구분**|로그인한 일반 유저 아이디에 Socket 연결 구분
+
+  
+
+</details>
+
 ## 1.개발일정
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/6b530869-4132-4987-8edc-1eb7a2773f5e)
 
