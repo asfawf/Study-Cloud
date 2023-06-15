@@ -132,6 +132,23 @@
 
 </details>
 
+<details>
+  <summary>계정 관리🔎</summary>
+
+## 1. 유저 정보 수정 및 탈퇴
+![ezgif com-video-to-gif (2)](https://github.com/asfawf/Study-Cloud/assets/115056752/744ac122-d7a8-4878-8c93-2d44c674a602)
+
+## 2. 관리자 유저 관리(종류별) + 차단 및 
+![ezgif com-video-to-gif (3)](https://github.com/asfawf/Study-Cloud/assets/115056752/65baad6b-80d4-4e8c-ba88-9826283985c7)
+
+ |핵심 기능|기능 설명|
+  |--|----|
+  |**회원 관리**|현재 가입된 회원 조회
+  |**회원 정보 수정**|가입시 작성한 회원 정보 조회 및 정규식 내에서 수정
+  |**회원 정보 탈퇴**|가입시(현재 로그인한 계정의) 비밀번호 기입 시 해당 계정 탈퇴
+  |**회원 관리 : 차단 , 해제**|해당 조건에서 조회된 아이디를 차단 혹은 차단 해제
+</details>
+
 ## 1.개발일정
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/6b530869-4132-4987-8edc-1eb7a2773f5e)
 
