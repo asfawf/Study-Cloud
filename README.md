@@ -64,6 +64,9 @@
   |**아이디 찾기**|메일 확인을 통해 아이디 찾기 기능 제공|
   |**비밀번호 찾기**|아이디 및 이메일 정보 확인을 통해 비밀번호 찾기 기능 제공|
 
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/c6d231df-61a1-44b1-80f9-8cd467b87aec)
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/d5011e7c-2223-43c0-b1cd-9bb7039b9b86)
+
 </details>
 
 <details> 
