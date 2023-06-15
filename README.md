@@ -91,7 +91,7 @@
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/1d5b7367-7265-48b9-9222-83a30e54a1c8)
 <details> 
-<summary>담당 요소 및 개발 부문</summary>
+<summary>로그인 및 계정 찾기 🔎</summary>
 
 </details>
 
