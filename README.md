@@ -24,13 +24,6 @@
 ## 3️⃣ 주요 기능
 ### 팀원 별 개발 사항
 
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/fab1b72f-32ee-444b-8066-fff6e0386058)
-<details> 
-<summary>담당 요소 및 개발 부문 </summary>
-
-</details>
-
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/1a88875a-6cd9-41cb-93d7-397513b3bbfd)
 <details> 
 <summary>이용약관 및 회원가입 🔎</summary>
@@ -53,14 +46,6 @@
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/114970539/cebc0d7e-b240-4ef3-b54a-e8e70bfb03c1)
 </details>
-
-
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/a592f7c1-ca6d-445e-8e0e-9a0ee2698473)
-<details> 
-<summary>담당 요소 및 개발 부문 </summary>
-
-</details>
-
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/1d5b7367-7265-48b9-9222-83a30e54a1c8)
 <details> 
@@ -133,6 +118,20 @@
 
 
 </details>
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/fab1b72f-32ee-444b-8066-fff6e0386058)
+<details> 
+<summary>담당 요소 및 개발 부문 </summary>
+
+</details>
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/a592f7c1-ca6d-445e-8e0e-9a0ee2698473)
+<details> 
+<summary>담당 요소 및 개발 부문 </summary>
+
+</details>
+
+
 
 ## 4️⃣ 프로젝트 관련 문서
 
