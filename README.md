@@ -10,7 +10,7 @@
 ## 1️⃣ 개발 배경 및 주안점
 
 ### 개발 배경
-![image](https://github.com/asfawf/Study-Cloud/assets/115056752/02c4d6f1-9ad2-40f1-a6f2-6d245e8e8d1e)
+![image](https://github.com/asfawf/Study-Cloud/assets/114970539/fe7ca9e3-96ce-4ce0-b00f-57623dd6a721)
 
 ### 밴치마킹 사이트 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/ad950c8f-056d-4d3a-937e-0870935b1a50)
