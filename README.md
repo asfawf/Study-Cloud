@@ -33,8 +33,25 @@
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/1a88875a-6cd9-41cb-93d7-397513b3bbfd)
 <details> 
-<summary>담당 요소 및 개발 부문 </summary>
+<summary>이용약관 및 회원가입 🔎</summary>
 
+## 1. 이용약관 
+![jointerms](https://github.com/asfawf/Study-Cloud/assets/114970539/80757d2d-a114-4ac5-b5f1-db2d8b5aa544)
+
+## 2. 회원가입
+
+|핵심 기능|기능 설명|
+  |--|----|
+  |**이용약관**|이용약관 모두 동의하면 회원가입 페이지로 이동|
+  |**아이디 중복 확인**|아이디 체크 후 자동 중복 체크|
+  |**비밀번호 확인**|입력한 비밀번호가 동일한지 재확인|
+  |**인증코드 발송**|이메일 주소 체크 후 기입된 주소로 회원가입시 필요한 인증코드 이메일 발송|
+  |**인증코드 확인**|입력한 인증코드가 유효한 인증코드인지 확인|
+  |**회원가입(전체)**|각 항목별로 유효성 검사 체크 후 가입 가능|
+  
+![image](https://github.com/asfawf/Study-Cloud/assets/114970539/0f36039e-02bc-4a5d-936e-5e4323fbfab5)
+
+![image](https://github.com/asfawf/Study-Cloud/assets/114970539/cebc0d7e-b240-4ef3-b54a-e8e70bfb03c1)
 </details>
 
 
