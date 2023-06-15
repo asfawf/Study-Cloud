@@ -106,6 +106,15 @@
   |**회원 정보 수정**|가입시 작성한 회원 정보 조회 및 정규식 내에서 수정
   |**회원 정보 탈퇴**|가입시(현재 로그인한 계정의) 비밀번호 기입 시 해당 계정 탈퇴
   |**회원 관리 : 차단 , 해제**|해당 조건에서 조회된 아이디를 차단 혹은 차단 해제
+
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/8856454a-ee26-40c8-9613-e2a174712855)
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/8e6ed591-ed98-4556-8fbf-a6e6647fa82a)
+
+![image](https://github.com/asfawf/Study-Cloud/assets/115056752/1e2ab1f4-7691-43d7-ab10-c85e124bb5b1)
+
+
 </details>
 
 ## 4️⃣ 프로젝트 관련 문서
