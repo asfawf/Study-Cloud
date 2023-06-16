@@ -98,7 +98,24 @@
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/fab1b72f-32ee-444b-8066-fff6e0386058)
 <details> 
-<summary>담당 요소 및 개발 부문 </summary>
+<summary>공지사항 🔎</summary>
+  
+## 1. 공지사항 조회
+![공지사항 조회](https://github.com/asfawf/Study-Cloud/assets/115023222/f9479c3c-cc76-4878-b652-643f33a5f1a2)
+
+## 2. 공지사항 관리(관리자)
+![공지사항 admin](https://github.com/asfawf/Study-Cloud/assets/115023222/8b0e089f-8a7d-429f-a083-07bb113db297)
+
+|핵심 기능|기능 설명|
+|--|----|
+|**공지사항 조회**|로그인 여부 상관없이 selectbox의 값이 변할때(onchange) 공지사항 리스트 변환|
+|**공지사항 등록**|분류, 제목이 빈칸일 경우와 내용이 10글자 미만일 경우 알림. 등록 후 새로고침|
+|**공지사항 수정**|내용 수정 후 등록시 알림 후 새로고침|
+|**공지사항 삭제**|공지사항 삭제시 확인 후 새로고침|
+
+![공지사항 코드1](https://github.com/asfawf/Study-Cloud/assets/115023222/685dfcb1-19b3-434a-a27a-5104ac9b5b40)
+![공지사항 코드2](https://github.com/asfawf/Study-Cloud/assets/115023222/ef311c22-5025-49a8-b5a2-125822aa5e20)
+![공지사항 코드3](https://github.com/asfawf/Study-Cloud/assets/115023222/4158dca7-719f-4d25-92cf-4e4488540f26)
 
 </details>
 
@@ -226,8 +243,9 @@
 </details>
 
 ## 6.ERD 다이어그램
+![StudyCloud erd](https://github.com/asfawf/Study-Cloud/assets/115023222/dd48287f-7efe-4ae1-8685-8c6b277885bc)
 
-![Copy of Copy of StudyCloud](https://github.com/asfawf/Study-Cloud/assets/115056752/de69e006-bcfb-45bc-8cad-38c5ba55fdba)
+
 
 ## 7.클래스 URL 맵핑
 
