@@ -1,6 +1,6 @@
-# 파이널 프로젝트 - STUDY-CLOUD
+# StudyCloud📖 스터디룸 예약 사이트
 
-# Contents 📖
+# Contents 
 1. [개발 배경 및 주안점](#1️⃣-개발-배경-및-주안점)
 2. [개발 환경](#2️⃣-개발-환경)
 3. [주요 기능](#3️⃣-주요-기능)
@@ -116,6 +116,8 @@
 ![jointerms](https://github.com/asfawf/Study-Cloud/assets/114970539/80757d2d-a114-4ac5-b5f1-db2d8b5aa544)
 
 ## 2. 회원가입
+![join](https://github.com/asfawf/Study-Cloud/assets/114970539/4228e43b-172e-4284-97f6-b55b182dae22)
+
 
 
 |핵심 기능|기능 설명|
@@ -230,7 +232,7 @@
 ## 7.클래스 URL 맵핑
 
 <details>
-       <summary>MEMBER</summary>
+<summary>MEMBER</summary>
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/f77468d5-337c-4674-afdb-ba98d4780365)
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/fb09cccb-b983-4609-9759-c57bbab1783b)
@@ -238,21 +240,21 @@
 </details>
 
 <details> 
-<summary>chat + review + QNA </summary>
+<summary>CHAT + REVIEW + QNA </summary>
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/c04a86e3-3953-4bee-89f4-d2dacc607bd3)
 
 </details>
 
 <details> 
-<summary>reserve + product </summary>
+<summary>RESERVE + PRODUCT </summary>
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/8cb89725-0a3c-4e18-9cdf-652769a01516)
 
 </details>
 
 <details> 
-<summary>pay + notice </summary>
+<summary>PAY + NOTICE </summary>
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/4909f695-b091-418d-ae14-1a82a21351ea)
 
