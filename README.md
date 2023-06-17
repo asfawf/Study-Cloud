@@ -122,10 +122,10 @@
 <summary>공간 목록 및 지도 검색 🔎</summary>
 
 ## 1. 공간 목록 검색
-![공간 검색](https://github.com/asfawf/Study-Cloud/assets/115023222/51601680-f67d-4772-a39e-18a9429f3804)
+![공간 검색](https://github.com/asfawf/Study-Cloud/assets/115023222/e82d41f7-af10-4afa-8477-afae5f6e5ec5)
 
 ## 2. 공간 지도 검색
-![공간 지도검색](https://github.com/asfawf/Study-Cloud/assets/115023222/071e374d-ce30-4407-a893-ff5403e08145)
+![공간 지도검색](https://github.com/asfawf/Study-Cloud/assets/115023222/45efbef0-8cad-4b59-9e09-b9ab0de85ecc)
 
 |핵심 기능|기능 설명|
 |--|----|
