@@ -39,8 +39,12 @@
                                     	</select>
                                 	</div>
                                     <div class="col-md-4">                   
-	                                    <select class="selectpicker" name="proPrice" onchange="submit();">
-	                                    		<option value="">가격</option>
+	                                    <select class="form-control selectpicker" name="proPrice" onchange="submit();">
+                                   			<option value="" ${param.proPrice eq price ? 'selected' : '' }>
+                                        		<c:if test="${!empty param.proPrice}"><fmt:formatNumber value="${param.proPrice }" />원</c:if>
+                                        		<c:if test="${empty param.proPrice}">가격</c:if>
+                                        	</option>
+                                        	<option value="">---------------------</option>
 											<c:forEach var="price" begin="1000" end="3000" step="500">
 										   		<option value="${price }"><fmt:formatNumber value="${price }" />원</option>
 											</c:forEach>                                        

@@ -67,21 +67,21 @@
    <trim prefix="WHERE" prefixOverrides="AND|OR">
        <if test="proAddress != null and proAddress neq ''">
          PRO_ADDRESS LIKE '%'||#{proAddress}||'%'
-       </if>
-       <if test="proPrice != null and proPrice neq ''">
-         OR PRO_PRICE = #{proPrice}
-       </if>
+       </if>       
        <if test="proDate != null and proDate neq ''">
          OR to_char(PRO_DATE,'yyyy-mm-dd') IN #{proDate}
        </if>
    </trim>         
          GROUP BY (PRO_NUM, PRO_NAME, PRO_ADDRESS, PRO_PHONE)
+       <if test="proPrice != null and proPrice neq ''">
+         HAVING MIN(PRO_PRICE) = #{proPrice}
+       </if>
          ORDER BY PRO_NUM DESC
 	</select>
 	
 	<!-- productList 페이징 count -->
 	<select id="selectOneCount" resultType="_int">
-	SELECT COUNT(*) CNT
+	SELECT COUNT(DISTINCT PRO_NUM) CNT
 	  FROM MAP 
       LEFT OUTER JOIN PRODUCT
      USING (PRO_NUM)
