@@ -140,7 +140,21 @@
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/a592f7c1-ca6d-445e-8e0e-9a0ee2698473)
 <details> 
-<summary>담당 요소 및 개발 부문 </summary>
+<summary>공간 등록 🔎</summary>
+
+## 공간 등록 ##
+
+![ezgif com-resize](https://github.com/asfawf/Study-Cloud/assets/111718342/e1caf229-810e-4199-b33c-9efe5a3b6284)
+
+|핵심 기능|기능 설명|
+|--|----|
+|**공간 등록**|host가 소유하고 있는 공간을 웹사이트에 등록|
+|**정보 입력**|공간의 상세정보를 입력|
+|**이미지 추가**|이미지 업로드|
+|**주소 검색**|공간의 주소를 검색후 자동등록|
+
+![code](https://github.com/asfawf/Study-Cloud/assets/111718342/2079fe85-2bce-4153-8eb7-89cec161d53c)
+
 
 </details>
 
