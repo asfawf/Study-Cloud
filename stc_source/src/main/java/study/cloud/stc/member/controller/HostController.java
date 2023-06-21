@@ -344,7 +344,7 @@ public class HostController {
 		int proNum = 0;
 		
 	    if (productList.size() > 0) {
-	        proNum = productList.get(productList.size() - 1).getProNum();
+	        proNum = productList.get(0).getProNum();
 	    }
 	    
 		Map<String, Object> hostQna = new HashMap<>();
@@ -372,7 +372,7 @@ public class HostController {
 
 		if (proNum == 0) {
 		    if (productList.size() > 0) {
-		        proNum = productList.get(productList.size() - 1).getProNum();
+		        proNum = productList.get(0).getProNum();
 		    }
 		}
 		List<QnaVo> qnaList = new ArrayList<>();
@@ -407,7 +407,7 @@ public class HostController {
 
 		if (proNum == 0) {
 		    if (productList.size() > 0) {
-		        proNum = productList.get(productList.size() - 1).getProNum();
+		        proNum = productList.get(0).getProNum();
 		    }
 		}
 		List<QnaVo> qnaList = new ArrayList<>();
@@ -443,7 +443,7 @@ public class HostController {
 
 		if (proNum == 0) {
 		    if (productList.size() > 0) {
-		        proNum = productList.get(productList.size() - 1).getProNum();
+		        proNum = productList.get(0).getProNum();
 		    }
 		}
 		List<QnaVo> qnaList = new ArrayList<>();
@@ -479,7 +479,7 @@ public class HostController {
 
 		if (proNum == 0) {
 		    if (productList.size() > 0) {
-		        proNum = productList.get(productList.size() - 1).getProNum();
+		        proNum = productList.get(0).getProNum();
 		    }
 		}
 		List<QnaVo> qnaList = new ArrayList<>();
