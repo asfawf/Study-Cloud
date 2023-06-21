@@ -135,7 +135,43 @@
 |**상세페이지로 이동**|목록 페이지 중 사진 또는 공간이름 클릭, 지도 페이지에서 공간이름의 말풍선 클릭시 상세페이지로 이동|
 
 ![공간 검색 코드1](https://github.com/asfawf/Study-Cloud/assets/115023222/7a125b59-97c5-4447-ac71-f99b52c2791f)
-![공간 검색 코드2](https://github.com/asfawf/Study-Cloud/assets/115023222/4ad758ab-75b3-4176-bb14-a8a8aa6840cd)
+![공간 검색 코드2](https://github.com/asfawf/Study-Cloud/assets/115023222/4f709abd-4def-4f66-b883-61745eabd8d3)
+</details>
+<details> 
+<summary>사용자 QNA 🔎</summary>
+  
+## 1. 상세페이지 QNA 등록
+![user qna1](https://github.com/asfawf/Study-Cloud/assets/115023222/dbd0741f-40ce-4faf-8e80-ebd502da7e5f)
+
+## 2. 사용자 QNA 관리
+![user qna2](https://github.com/asfawf/Study-Cloud/assets/115023222/9f39ff3b-b4b6-45f6-9f89-660b1e68d97c)
+
+|핵심 기능|기능 설명|
+|--|----|
+|**QNA 등록**|로그인한 사용자가 상세페이지에서 QNA 등록|
+|**QNA 수정**|등록한 QNA를 수정|
+|**QNA 삭제**|등록한 QNA를 삭제|
+
+![사용자 QNA1](https://github.com/asfawf/Study-Cloud/assets/115023222/e0c26721-20db-4149-8c27-1880ce2e1688)
+![사용자 QNA2](https://github.com/asfawf/Study-Cloud/assets/115023222/a56690e5-9a42-4e80-aad0-7aa1198b4d2b)
+![사용자 QNA 관리](https://github.com/asfawf/Study-Cloud/assets/115023222/a39305e3-0213-4c8a-9692-f9399858a652)
+</details>
+<details> 
+<summary>호스트 QNA 🔎</summary>
+  
+## 1. 호스트 상세페이지, QNA 관리
+![host qna](https://github.com/asfawf/Study-Cloud/assets/115023222/6a319944-7396-4b5b-8409-3185be190791)
+
+|핵심 기능|기능 설명|
+|--|----|
+|**QNA 삭제**|사용자가 등록한 QNA를 삭제|
+|**QNA 답변 등록**|호스트가 사용자가 등록한 QNA에 답변 등록|
+|**QNA 답변 수정**|등록한 QNA 답변을 수정|
+|**QNA 답변 삭제**|등록한 QNA 답변을 삭제|
+
+![호스트 QNA 관리1](https://github.com/asfawf/Study-Cloud/assets/115023222/232647f4-3281-409c-a128-edb24a460563)
+![호스트 QNA 관리2](https://github.com/asfawf/Study-Cloud/assets/115023222/9375633d-7ad2-4857-8a3a-6da9bd89caea)
+![호스트 QNA 관리3](https://github.com/asfawf/Study-Cloud/assets/115023222/88272eca-8d1c-444f-a69f-746f1efaf117)
 </details>
 
 ![image](https://github.com/asfawf/Study-Cloud/assets/115056752/a592f7c1-ca6d-445e-8e0e-9a0ee2698473)
